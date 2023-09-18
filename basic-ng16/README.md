@@ -51,7 +51,7 @@ To setup webpack module federation we had to:
 
 ### Webpack configuration file
 
-We add two webpack configuration files, one `webpack.config.js` which contains the base of the webpack configuration and a `webpack.config.prod.js` which extends the base configuration with production settings *if needed*.
+Two webpack configuration files were added, one `webpack.config.js` which contains the base of the webpack configuration and a `webpack.config.prod.js` which extends the base configuration with production settings *if needed*.
 
 For this projects all the configuration is on the `webpack.config.js`. This file contains the minimum configuration required to get module federation to work properly with angular.
 
