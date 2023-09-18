@@ -64,3 +64,38 @@ The only difference between the shell's webpack configuration and the mfe1's web
 The `angular.json` file contains angular specific app configuration. This file needs to be adjusted so that we can tell angular to use the webpack configuration files. To do this we change the builders used by `ng build` and `ng serve` from the default angular builders to the `ngx-build-plus` builders which then allow us to add an extra configuration which points to the webpack configuration files.
 
 Using the Shell's angular configuration file as an example, what was changed was:
+
+- The builder for `ng build` at `projects.shell-ng16.architect.build.builder` was changed to `ngx-build-plus:browser`: 
+```json
+"builder": "ngx-build-plus:browser",
+```
+
+- Extra default options were added for `ng build` at `projects.shell-ng16.architect.build`: 
+```json
+"extraWebpackConfig": "webpack.config.js",
+"commonChunk": false
+```
+
+- Extra production options were added for `ng build` at `projects.shell-ng16.architect.build.configurations.production`: 
+```json
+"extraWebpackConfig": "webpack.prod.config.js"
+```
+
+- The builder for `ng serve` at `projects.shell-ng16.architect.serve.builder` was changed to `ngx-build-plus:dev-server`: 
+```json
+"builder": "ngx-build-plus:dev-server",
+```
+
+- Extra default options were added for `ng serve` at `projects.shell-ng16.architect.serve`: 
+```json
+"options": {
+    "port": 4200,
+    "publicHost": "http://localhost:4200",
+    "extraWebpackConfig": "webpack.config.js"
+}
+```
+
+- Extra production options were added for `ng serve` at `projects.shell-ng16.architect.serve.configurations.production`: 
+```json
+"extraWebpackConfig": "webpack.prod.config.js"
+```
