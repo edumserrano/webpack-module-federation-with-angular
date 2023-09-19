@@ -67,6 +67,11 @@ The only difference between the shell's webpack configuration and the mfe1's web
 - the shell wants to consume the mfe1 app and therefore in the `plugins.ModuleFederationPlugin.remotes` it points to the mfe1 app location.
 - the mfe1 app wants to expose an angular module and therefore in the `plugins.ModuleFederationPlugin.exposes` indicates which angular module is exposed.
 
+> **Note**
+> 
+> For a better understanding of the settings defined in the webpack configuration file see  [Basics of webpack module federation](../docs/basics-module-federation.md). 
+>
+
 ### Angular configuration file
 
 The `angular.json` file contains angular specific app configuration. This file needs to be adjusted so that we can tell angular to use the webpack configuration files. To do this we change the builders used by `ng build` and `ng serve` from the default angular builders to the `ngx-build-plus` builders which then allow us to add an extra configuration which points to the webpack configuration files.
