@@ -5,7 +5,9 @@
 
 ## Description 
 
-Examples of how to setup webpack module federation.
+Examples of how to setup webpack module federation. 
+
+If you are not familiar with webpack module federation it's recommended that you start by reading and exploring the [basic-ng16](/basic-ng16/README.md) example. Although this example uses angular, it goes over the basics for setting up webpack module federation which you can use with any frontend technology.
 
 ## Example's list
 
