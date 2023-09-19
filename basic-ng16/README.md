@@ -47,7 +47,7 @@ The `/mfe1` route added to the `AppRoutingModule` uses an import to lazy load th
 > **Note**
 > 
 > For a better understanding of how the external webpack module from mfe1 is loaded into the shell see [How the loading of an external webpack module works
-](/docs/basics-module-federation.md#how-the-loading-of-an-external-webpack-module-works).
+](/edu-test/basics-module-federation.md#how-the-loading-of-an-external-webpack-module-works).
 >
 
 ## Webpack module federation
