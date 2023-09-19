@@ -42,16 +42,32 @@ The shell app is able to consume the angular module exposed by the mfe1 app and 
 - the default [AppModule](/angular-architects-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
 - the default [AppRoutingModule](/angular-architects-ng16/shell-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
 
-A route was added to the `AppRoutingModule` that lazy loads the mfe1 app on the `/mfe1` path. You can load the mfe1 app by selecting the `load my-feature angular module from mfe1` link.
+Two routes were added to the `AppRoutingModule` and both of them dynamically load the same `MyFeatureModule` from the mfe1 app. Dynamically meaning that the remote location does not need to be specified in the shell's webpack configuration file. The difference between the routes is that one uses a manifest file and one does not. but one of them dynamically uses a using the information provided inline.
 
-The `/mfe1` route added to the `AppRoutingModule` uses an import to lazy load the `MyFeatureModule` from the mfe1 app. The lazy load is done via the `loadChildren` function which imports the external webpack module `mfe1/my-feature-module` at runtime and then accesses the `MyFeatureModule` angular module from the mfe1 app. Also note that for typescript to be ok with the import we must tell it that the module `mfe1/my-feature-module` exists and we do that by declaring it in the [remote-module.d.ts](/basic-ng16/shell-ng16/src/app/remote-modules.d.ts) file.
+Both routes use the `loadRemoteModule` from the `@angular-architects/module-federation` package to dynamically load the external webpack module.
 
 > **Note**
-> 
-> For a better understanding of how the external webpack module from mfe1 is loaded into the shell see [How the loading of an external webpack module works
-](../docs/basics-module-federation.md#how-the-loading-of-an-external-webpack-module-works).
+>
+> This is an example app, and though you can mix the approaches to dynamically load a webpack module you would usually choose to either use a manifest file or not.
+
+Lastly, note that for the manifest option to work you need:
+
+1) a manifest file which can be found at [dynamic-ng16/shell-ng16/src/assets/mf.manifest.json](/dynamic-ng16/shell-ng16/src/assets/mf.manifest.json). 
+2) load the manifest file data so that the `loadRemoteModule` from the `@angular-architects/module-federation` can access it. This is done at the [main.ts](/dynamic-ng16/shell-ng16/src/main.ts) file.
+
+> **Warning**
+>
+> Both links on the home page of the shell app dynamically load the SAME mfe1 app. If you alternate clicking between those links it might seem that nothing is happening but notice that the path is changes between `mfe1-dynamic` and `mfe1-manifest`.
 >
 
 ## Webpack module federation
 
 The setup of webpack module federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
+
+If you want to use a manifest file you can configure your shell as shown in [webpack module federation setup](/docs/basics-angular-architects.md#webpack-module-federation-setup) but use `--type dynamic-host` instead of `--type host`:
+
+```
+ng g @angular-architects/module-federation:init --project shell-ng16 --port 4200 --type dynamic-host
+```
+
+This will create a manifest file and update the `main.ts` to load the manifest when the app is starting.
