@@ -42,14 +42,12 @@ The shell app is able to consume the angular module exposed by the mfe1 app and 
 
 A route was added to the `AppRoutingModule` that lazy loads the mfe1 app on the `/mfe1` path. You can load the mfe1 app by selecting the `load my-feature angular module from mfe1` link.
 
+The `/mfe1` route added to the `AppRoutingModule` uses an import to lazy load the `MyFeatureModule` from the mfe1 app. The lazy load is done via the `loadChildren` function which imports the external webpack module `mfe1/my-feature-module` at runtime and then accesses the `MyFeatureModule` angular module from the mfe1 app. Also note that for typescript to be ok with the import we must tell it that the module `mfe1/my-feature-module` exists and we do that by declaring it in the [remote-module.d.ts](/basic-ng16/shell-ng16/src/app/remote-modules.d.ts) file.
+
 > **Note**
 > 
-> The `/mfe1` route added to the `AppRoutingModule` uses a static import to lazy load the `MyFeatureModule` from the mfe1 app. The lazy load done via the `loadChildren` function imports the `mfe1/my-feature-module` ES module and then returns the `MyFeatureModule` angular module from the mfe1 app. Also note that for typescript to be ok with the import we must tell it that the module `mfe1/my-feature-module` exists and we do that by declaring it in the [remote-module.d.ts](/basic-ng16/shell-ng16/src/app/remote-modules.d.ts) file.
->
-> Lastly, note that the import name `mfe1/my-feature-module` and the angular module returned by the import `MyFeatureModule`, must match with what is configured on the webpack configuration files on both the shell and the remote and the name of the exposed angular module of the mfe1 app:
-> - from the `mfe1/my-feature-module` import, the `mfe1` is because that's how the remote is named on the shell's webpack configuration at `plugins.ModuleFederationPlugin.remotes`. The `my-feature-module` part is what the mfe1 remote is exposing on its webpack configuration, see `plugins.ModuleFederationPlugin.exposes`. 
-> - the `MyFeatureModule` angular module is what is returned because that is the name of the angular module at `/basic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts` which is what the mfe1 remote is exposing under the key `my-feature-module` on its webpack configuration file.
-> - to put it all together, the import that the shell does for the ES module `mfe1/my-feature-module` works by reading the JS file at `http://localhost:4201/remoteEntry.js`, as defined on the shell's webpack configuration file, and then looking for a mapping for the key `my-feature-module`, which in turn points to the `my-feature.module.ts` file of the mfe1 app. Once this ES module is loaded we then return the angular module `MyFeatureModule` which the `loadChildren` function lazy loads.
+> For a better understanding of how the external webpack module from mfe1 is loaded into the shell see [How the loading of an external webpack module works
+](/docs/basics-module-federation.md#how-the-loading-of-an-external-webpack-module-works).
 >
 
 ## Webpack module federation
