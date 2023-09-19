@@ -57,7 +57,7 @@ Lastly, note that for the manifest option to work you need:
 
 > **Warning**
 >
-> Both links on the home page of the shell app dynamically load the SAME mfe1 app. If you alternate clicking between those links it might seem that nothing is happening but notice that the path is changes between `mfe1-dynamic` and `mfe1-manifest`.
+> Both links on the home page of the shell app dynamically load the SAME mfe1 app. If you alternate clicking between those links it might seem that nothing is happening but notice that the path on the URL changes between `/mfe1-dynamic` and `/mfe1-manifest`.
 >
 
 ## Webpack module federation
