@@ -48,7 +48,7 @@ Both routes use the `loadRemoteModule` from the `@angular-architects/module-fede
 
 > **Note**
 >
-> This is an example app, and though you can mix the approaches to dynamically load a webpack module you would usually choose to either use a manifest file or not.
+> This is an example app and though you can mix the approaches to dynamically load a webpack module you would usually choose to either use a manifest file or not.
 
 Lastly, note that for the manifest option to work you need:
 
