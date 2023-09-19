@@ -5,7 +5,6 @@
 - [MFE1 app](#mfe1-app)
 - [Shell app](#shell-app)
 - [Webpack module federation](#webpack-module-federation)
-- [@angular-architects/module-federation](#angular-architectsmodule-federation)
 
 ## Description
 
@@ -53,24 +52,4 @@ The `/mfe1` route added to the `AppRoutingModule` uses an import to lazy load th
 
 ## Webpack module federation
 
-The setup was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package:
-
-- first the package was installed on both the shell and mfe1 with:
-```
-npm i -D @angular-architects/module-federation
-```
-- the mfe1 project was configured to act as a remote via:
-```
-ng g @angular-architects/module-federation:init --project mfe1-ng16 --port 4201 --type remote
-```
-- the shell project was configured to act as a host via:
-```
-ng g @angular-architects/module-federation:init --project shell-ng16 --port 4200 --type host
-```
-- lastly the webpack configuration file for both the shell and the mfe1 apps was updated so that the mfe1 exposed the `my-feature.module.ts` and the shell consumed the mfe1 module at `http://localhost:4201/remoteEntry.js`.
-
-## @angular-architects/module-federation
-
-The `@angular-architects/module-federation` npm package does a lot of work for us when configuring webpack module federation for angular. Everything listed in the [Webpack module federation](/basic-ng16/README.md#webpack-module-federation), the [Webpack configuration file](/basic-ng16/README.md#webpack-configuration-file) and the [Angular configuration file](/basic-ng16/README.md#angular-configuration-file) sections of the README for the [basic-ng16](/basic-ng16/README.md) example is done by this package.
-
-The webpack configuration file is streamlined with the help of functions such as the `withModuleFederationPlugin` and `shareAll` functions. 
+The setup of webpack module federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
