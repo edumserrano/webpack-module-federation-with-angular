@@ -166,5 +166,5 @@ In this example we loaded an angular module because that is what the remote was 
 
 > **Note**
 > 
-> You can see all this implemented in an angular app on the [basic-ng16](/basic-ng16/README.md) example.
+> You can see all this implemented in an angular app on the [basic-ng16](../basic-ng16/README.md) example.
 >
