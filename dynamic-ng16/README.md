@@ -20,8 +20,8 @@ This example uses the [@angular-architects/module-federation](https://www.npmjs.
 
 ## How to run
 
-1) Go to `/angular-architects-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
-2) Go to `/angular-architects-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
+1) Go to `/dynamic-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
+2) Go to `/dynamic-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
 
 To see the mfe1 app loaded into the shell go to the shell's URL and click the `load my-feature angular module from mfe1` link. 
 
@@ -30,17 +30,17 @@ Both apps are very simple and mainly consist of a bit of text inside a styled `d
 ## MFE1 app
 
 The mfe1 app contains three angular modules:
-- the default [AppModule](/angular-architects-ng16/mfe1-ng16/src/app/app.module.ts) created as part of doing `ng new`.
-- the default [AppRoutingModule](/angular-architects-ng16/mfe1-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
-- a feature module named [MyFeatureModule](/angular-architects-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) which was created to represent the micro front that we want to expose via module federation. This module is imported by the `AppModule`.
+- the default [AppModule](/dynamic-ng16/mfe1-ng16/src/app/app.module.ts) created as part of doing `ng new`.
+- the default [AppRoutingModule](/dynamic-ng16/mfe1-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
+- a feature module named [MyFeatureModule](/dynamic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) which was created to represent the micro front that we want to expose via module federation. This module is imported by the `AppModule`.
 
-The `MyFeatureModule` angular module contains a route that loads the [MyComponent](/angular-architects-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent`.
+The `MyFeatureModule` angular module contains a route that loads the [MyComponent](/dynamic-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent`.
 
 ## Shell app
 
 The shell app is able to consume the angular module exposed by the mfe1 app and display it. It consists of a two angular modules:
-- the default [AppModule](/angular-architects-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
-- the default [AppRoutingModule](/angular-architects-ng16/shell-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
+- the default [AppModule](/dynamic-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
+- the default [AppRoutingModule](/dynamic-ng16/shell-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
 
 Two routes were added to the `AppRoutingModule` and both of them dynamically load the same `MyFeatureModule` from the mfe1 app. Dynamically meaning that the remote location does not need to be specified in the shell's webpack configuration file. The difference between the routes is that one uses a manifest file and one does not. but one of them dynamically uses a using the information provided inline.
 
