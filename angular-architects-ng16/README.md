@@ -42,7 +42,7 @@ The shell app is able to consume the angular module exposed by the mfe1 app and 
 
 A route was added to the `AppRoutingModule` that lazy loads the mfe1 app on the `/mfe1` path. You can load the mfe1 app by selecting the `load my-feature angular module from mfe1` link.
 
-The `/mfe1` route added to the `AppRoutingModule` uses an import to lazy load the `MyFeatureModule` from the mfe1 app. The lazy load is done via the `loadChildren` function which imports the external webpack module `mfe1/my-feature-module` at runtime and then accesses the `MyFeatureModule` angular module from the mfe1 app. Also note that for typescript to be ok with the import we must tell it that the module `mfe1/my-feature-module` exists and we do that by declaring it in the [remote-module.d.ts](/basic-ng16/shell-ng16/src/app/remote-modules.d.ts) file.
+The `/mfe1` route added to the `AppRoutingModule` uses an import to lazy load the `MyFeatureModule` from the mfe1 app. The lazy load is done via the `loadChildren` function which imports the external webpack module `mfe1/my-feature-module` at runtime and then accesses the `MyFeatureModule` angular module from the mfe1 app. Also note that for typescript to be ok with the import we must tell it that the module `mfe1/my-feature-module` exists and we do that by declaring it in the [remote-module.d.ts](/angular-architects-ng16/shell-ng16/src/app/remote-modules.d.ts) file.
 
 > **Note**
 > 
