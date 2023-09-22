@@ -12,7 +12,9 @@ const routes: Routes = [
         exposedModule: './my-feature-module',
       })
         .then((m) => m.MyFeatureModule)
-        .catch((err) => console.error('Error lazy loading mfe1 for mfe1-dynamic path', err)),
+        .catch((err) =>
+          console.error('Error lazy loading mfe1 for mfe1-dynamic path', err)
+        ),
   },
   {
     path: 'mfe1-manifest',
@@ -23,7 +25,9 @@ const routes: Routes = [
         exposedModule: './my-feature-module',
       })
         .then((m) => m.MyFeatureModule)
-        .catch((err) => console.error('Error lazy loading mfe1 for mfe1-manifest path', err)),
+        .catch((err) =>
+          console.error('Error lazy loading mfe1 for mfe1-manifest path', err)
+        ),
   },
 ];
 

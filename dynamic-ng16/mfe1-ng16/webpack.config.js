@@ -5,6 +5,7 @@ const {
 
 module.exports = withModuleFederationPlugin({
   name: "mfe1-ng16",
+  filename: "remoteEntry.js", // this doesn't need to be set, if not specified it defaults to remoteEntry.js. Setting it here just for demo purposes.
   exposes: {
     "./my-feature-module": "./src/app/my-feature/my-feature.module.ts",
   },

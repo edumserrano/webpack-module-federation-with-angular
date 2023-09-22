@@ -11,8 +11,8 @@
 This shows an example of how to setup webpack module federation using angular 16 where the remote webpack module is loaded dynamically instead of being declared in the shell's webpack configuration. 
 
 This project consists of two angular 16 apps:
-- shell-ng16: this app is used as the shell and is able to load the mfe1-ng16 app.
-- mfe1-ng16: this app represents a micro frontend that you want to consume on another app.
+- shell-ng16: this app is used as the shell and uses angular routing to lazy load an angular module from the mfe1-ng16 app. 
+- mfe1-ng16: this app represents a micro frontend that is consumed by the shell-ng16 app.
 
 This example uses the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which aims to streamline the setup of webpack module federation for angular projects. For more information read:
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
@@ -32,7 +32,7 @@ Both apps are very simple and mainly consist of a bit of text inside a styled `d
 The mfe1 app contains three angular modules:
 - the default [AppModule](/dynamic-ng16/mfe1-ng16/src/app/app.module.ts) created as part of doing `ng new`.
 - the default [AppRoutingModule](/dynamic-ng16/mfe1-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
-- a feature module named [MyFeatureModule](/dynamic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) which was created to represent the micro front that we want to expose via module federation. This module is imported by the `AppModule`.
+- a feature module named [MyFeatureModule](/dynamic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) which was created to represent the micro front that we want to expose via module federation.
 
 The `MyFeatureModule` angular module contains a route that loads the [MyComponent](/dynamic-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent`.
 
