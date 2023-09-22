@@ -36,6 +36,14 @@ The mfe1 app contains three angular modules:
 
 The `MyFeatureModule` angular module contains a route that loads the [MyComponent](/dynamic-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent`.
 
+> **Note**
+>
+> To debug the mfe1 app:
+> 1) go to http://localhost:4201.
+> 2) open your browser's dev tools, usually accessible via F12.
+> 3) go to your sources tab and locate the folder webpack:///src
+> 4) add breakpoints to any file under this folder help you step through and understand the code.
+
 ## Shell app
 
 The shell app is able to consume the angular module exposed by the mfe1 app and display it. It consists of a two angular modules:
@@ -59,6 +67,14 @@ Lastly, note that for the manifest option to work you need:
 >
 > Both links on the home page of the shell app dynamically load the SAME mfe1 app. If you alternate clicking between those links it might seem that nothing is happening but notice that the path on the URL changes between `/mfe1-dynamic` and `/mfe1-manifest`.
 >
+
+> **Note**
+>
+> To debug the shell app:
+> 1) go to http://localhost:4200.
+> 2) open your browser's dev tools, usually accessible via F12.
+> 3) go to the sources tab and locate the file at webpack:///src/app/app.component.ts 
+> 4) add breakpoints to help you step through and understand the code.
 
 ## Webpack module federation
 
