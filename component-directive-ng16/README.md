@@ -53,7 +53,7 @@ The shell app shows how to load an angular component that is declared in an angu
 
 > **Note**
 >
-> The implementation of the directive is based on the `loadV4` method shown in the [component-ng16](/component-ng16/README.md) example. For more information inspect that example, and all the comments on the `loadV4` method at [/component-ng16/shell-ng16/src/app/app.component.ts](/component-ng16/shell-ng16/src/app/app.component.ts).
+> The implementation of the directive is based on the `loadV4` method shown in the [component-ng16](../component-ng16/README.md) example. For more information inspect that example, and all the comments on the `loadV4` method at [/component-ng16/shell-ng16/src/app/app.component.ts](../component-ng16/shell-ng16/src/app/app.component.ts).
 
 ## Webpack module federation
 
