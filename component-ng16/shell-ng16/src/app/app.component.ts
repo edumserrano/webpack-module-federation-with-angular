@@ -266,7 +266,7 @@ export class AppComponent {
 
     // Second, we create an instance of the angular module where the 'MyComponent' angular component is declared.
     //
-    // Note that 'MyFeatureModule'  is the name of the angular module exposed by the mfe1 app that maps to the exposed
+    // Note that 'MyFeatureModule' is the name of the angular module exposed by the mfe1 app that maps to the exposed
     // webpack module with the key './my-feature-module'.
     // If you check /component-ng16/mfe1-ng16/webpack.config.js, you can see that './my-feature-module' maps
     // to the './src/app/my-feature/my-feature.module.ts' file, which contains an angular feature module named
