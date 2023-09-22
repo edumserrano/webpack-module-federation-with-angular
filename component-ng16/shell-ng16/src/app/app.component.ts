@@ -87,11 +87,11 @@ export class AppComponent {
     // would keep appending instances of the component.
     this._viewContainerRef.clear();
 
-    // first we use the loadRemoteModule from the @angular-architects/module-federation to load the
+    // First, we use the loadRemoteModule from the @angular-architects/module-federation to load the
     // remote webpack module from the mfe1 app.
     const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
       type: 'module',
-      // exposedModule: this is the name of the webpack module exposed by the mfe1 app.
+      // exposedModule: this is the name of one of the webpack modules exposed by the mfe1 app.
       // See /component-ng16/mfe1-ng16/webpack.config.js
       exposedModule: './my-feature-module',
       // remoteEntry: this is the URL where the webpack module from mfe1 app can be fetched from.
@@ -164,11 +164,11 @@ export class AppComponent {
     // would keep appending instances of the component.
     this._viewContainerRef.clear();
 
-    // first we use the loadRemoteModule from the @angular-architects/module-federation to load the
+    // First, we use the loadRemoteModule from the @angular-architects/module-federation to load the
     // remote webpack module from the mfe1 app.
     const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
       type: 'module',
-      // exposedModule: this is the name of the webpack module exposed by the mfe1 app.
+      // exposedModule: this is the name of one of the webpack modules exposed by the mfe1 app.
       // See /component-ng16/mfe1-ng16/webpack.config.js
       exposedModule: './my-feature-module',
       // remoteEntry: this is the URL where the webpack module from mfe1 app can be fetched from.
@@ -249,11 +249,11 @@ export class AppComponent {
     // would keep appending instances of the component.
     this._viewContainerRef.clear();
 
-    // first we use the loadRemoteModule from the @angular-architects/module-federation to load the
+    // First, we use the loadRemoteModule from the @angular-architects/module-federation to load the
     // remote webpack module from the mfe1 app.
     const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
       type: 'module',
-      // exposedModule: this is the name of the webpack module exposed by the mfe1 app.
+      // exposedModule: this is the name of one of the webpack modules exposed by the mfe1 app.
       // See /component-ng16/mfe1-ng16/webpack.config.js
       exposedModule: './my-feature-module',
       // remoteEntry: this is the URL where the webpack module from mfe1 app can be fetched from.
@@ -283,6 +283,65 @@ export class AppComponent {
     // The 'setInput' method is the recommended way to set the input to dinamically created components since angular 14.
     // However, you can also set the input by casting componentRef.instance to any and setting the input property like:
     // (componentRef.instance as any).inputText = 'loaded v3';
+
+    // In some cases you might need to force angular change detection to run when settings inputs. If you're setting your input and it's not working
+    // then you can "trigger" angular's change detection by using one of the following:
+    // 1) componentRef.changeDetectorRef.detectChanges();
+    // 2) componentRef.changeDetectorRef.markForCheck();
+  }
+
+  /**
+   * Loads the MyComponent angular componenent that is part of the
+   * MyFeatureModule that has been loaded from the external mfe1 app webpack module.
+   *
+   * As opposed to loadV2 and loadV3, this version does NOT rely on specific code on the remote to help instantiate
+   * the remote component. This is only possible because this version does not consume the './my-feature-module'
+   * webpack module from the remote which exposes an angular module. It consumes the './my-component' webpack module
+   * which exposes the component we want to instantiate.
+   *
+   * For this version we need to know the name of the angular component that is exposed by the remote.
+   *
+   */
+  public async loadV4(): Promise<void> {
+    if (!this._viewContainerRef) {
+      // if there's no element that can be find with the template variable named 'mfe'
+      // then we abort.
+      return;
+    }
+
+    // we clear the _viewContainerRef at start because we will be creating and
+    // inserting a component on it. If we don't clear then multiple runs of this code
+    // would keep appending instances of the component.
+    this._viewContainerRef.clear();
+
+    // First, we use the loadRemoteModule from the @angular-architects/module-federation to load the
+    // remote webpack module from the mfe1 app.
+    const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
+      type: 'module',
+      // exposedModule: this is the name of one of the webpack modules exposed by the mfe1 app.
+      // See /component-ng16/mfe1-ng16/webpack.config.js
+      exposedModule: './my-component',
+      // remoteEntry: this is the URL where the webpack module from mfe1 app can be fetched from.
+      // The mfe1 app is set to run on port 4201 and the filename remoteEntry.js is defined on the
+      // webpack configuration file for mfe1 app.
+      // See /component-ng16/mfe1-ng16/webpack.config.js
+      remoteEntry: 'http://localhost:4201/remoteEntry.js',
+    };
+    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+
+    // Lastly, we use the ViewContainerRef to create an instance of the angular component named 'MyComponent'.
+    //
+    // Note that 'MyComponent' is the name of the angular component exposed by the mfe1 app that maps to the exposed
+    // webpack module with the key './my-component'.
+    // If you check /component-ng16/mfe1-ng16/webpack.config.js, you can see that './my-component' maps
+    // to the './src/app/my-feature/my-component/my-component.component.ts' file, which contains an angular component
+    // named MyComponent.
+    const componentRef: ComponentRef<unknown> = this._viewContainerRef.createComponent(webpackModule.MyComponent);
+    componentRef.setInput('inputText','loaded v4'); // optional is case you want to set inputs
+
+    // The 'setInput' method is the recommended way to set the input to dinamically created components since angular 14.
+    // However, you can also set the input by casting componentRef.instance to any and setting the input property like:
+    // (componentRef.instance as any).inputText = 'loaded v4';
 
     // In some cases you might need to force angular change detection to run when settings inputs. If you're setting your input and it's not working
     // then you can "trigger" angular's change detection by using one of the following:

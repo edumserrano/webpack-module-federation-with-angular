@@ -10,7 +10,7 @@
 
 This shows an example of how to setup webpack module federation using angular 16 where the remote webpack module is loaded dynamically instead of being declared in the shell's webpack configuration. 
 
-Furthermore, this example does NOT use angular routing to remotely load the exposed angular module. In this example, the shell app shows 3 different ways to instantiate an angular component that is declared in an angular module exposed by a remote. It also shows how to pass inputs to the angular component.
+Furthermore, this example does NOT use angular routing to remotely load the exposed angular module. In this example, the shell app shows 4 different ways to instantiate an angular component that is declared in an angular module exposed by a remote. It also shows how to pass inputs to the angular component.
 
 This project consists of two angular 16 apps:
 - shell-ng16: this app is used as the shell and is able to load a component from the mfe1-ng16 app.
@@ -43,7 +43,7 @@ The `MyFeatureModule` angular module contains a route that loads the [MyComponen
 The shell app is able to consume the angular module exposed by the mfe1 app and display it. It consists of a single angular module:
 - the default [AppModule](/component-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
 
-The shell app shows 3 different ways to instantiate an angular component that is declared in an angular module exposed by a remote. Each version has comments in the code to help understand all the steps to dynamically load a component declared on an angular module that is exposed by remote webpack module.
+The shell app shows 4 different ways to instantiate an angular component that is declared in an angular module exposed by a remote. Each version has comments in the code to help understand all the steps to dynamically load a component declared on an angular module that is exposed by remote webpack module.
 
 > **Note**
 >

@@ -8,6 +8,7 @@ module.exports = withModuleFederationPlugin({
   filename: "remoteEntry.js", // this doesn't need to be set, if not specified it defaults to remoteEntry.js. Setting it here just for demo purposes.
   exposes: {
     "./my-feature-module": "./src/app/my-feature/my-feature.module.ts",
+    "./my-component": "./src/app/my-feature/my-component/my-component.component.ts",
   },
   shared: {
     ...shareAll({
