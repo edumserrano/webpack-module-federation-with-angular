@@ -2,6 +2,7 @@
 
 - [Description](#description)
 - [Example's list](#examples-list)
+- [Debug](#debug)
 
 ## Description 
 
@@ -18,3 +19,17 @@ If you are not familiar with webpack module federation it's recommended that you
 3) [dynamic-ng16](/dynamic-ng16/README.md): how to setup webpack module federation where the shell lazy loads an angular module using angular routing. This example is called dynamic because it does NOT require the remote to be declared in the shell's webpack configuration. Both shell and remote app use angular 16. 
  
 4) [component-ng16](/component-ng16/README.md): how to setup webpack module federation where the shell dynamically instantiates and adds to the DOM an angular component. This example does NOT use angular routing. It does show how to pass inputs to the angular component. Both shell and remote app use angular 16. 
+
+5) [component-directive-ng16](/component-directive-ng16/README.md): how to setup webpack module federation where the shell dynamically instantiates and adds to the DOM an angular component using an angular directive. Both shell and remote app use angular 16. 
+
+## Debug
+
+To debug any of the apps in the examples:
+1) go to apps's URL and open your browser's dev tools (usually accessible via F12). Usually the examples will at least have the shell at http://localhost:4200 and one remote at http://localhost:4201.
+2) go to the sources tab and locate the files under webpack:///src.
+3) add breakpoints to help you step through and understand the code.
+
+> **Note**
+>
+> You can also debug the remote from the shell. Go to the shell's URL, open the browser's dev tools and **once the remote has been loaded into the shell** you will find the code of the remote under webpack:///src as well.
+> 

@@ -45,7 +45,6 @@ export class AppComponent {
   ) { }
 
   public readonly version: string = VERSION.full;
-  public componentLoaded: boolean = false;
 
   /**
    * Removes the instance of the MyComponent angular component that is part of the
@@ -77,7 +76,7 @@ export class AppComponent {
    */
   public async loadV1(): Promise<void> {
     if (!this._viewContainerRef) {
-      // if there's no element that can be find with the template variable named 'mfe'
+      // if there's no element that can be found with the template variable named 'mfe'
       // then we abort.
       return;
     }
@@ -154,7 +153,7 @@ export class AppComponent {
    */
   public async loadV2(): Promise<void> {
     if (!this._viewContainerRef) {
-      // if there's no element that can be find with the template variable named 'mfe'
+      // if there's no element that can be found with the template variable named 'mfe'
       // then we abort.
       return;
     }
@@ -239,7 +238,7 @@ export class AppComponent {
    */
   public async loadV3(): Promise<void> {
     if (!this._viewContainerRef) {
-      // if there's no element that can be find with the template variable named 'mfe'
+      // if there's no element that can be found with the template variable named 'mfe'
       // then we abort.
       return;
     }
@@ -304,7 +303,7 @@ export class AppComponent {
    */
   public async loadV4(): Promise<void> {
     if (!this._viewContainerRef) {
-      // if there's no element that can be find with the template variable named 'mfe'
+      // if there's no element that can be found with the template variable named 'mfe'
       // then we abort.
       return;
     }

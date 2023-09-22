@@ -10,7 +10,7 @@
 
 This shows an example of how to setup webpack module federation using angular 16 where the remote webpack module is loaded dynamically instead of being declared in the shell's webpack configuration. 
 
-Furthermore, this example does NOT use angular routing to remotely load the exposed angular module. In this example, the shell app shows 4 different ways to instantiate an angular component that is declared in an angular module exposed by a remote. It also shows how to pass inputs to the angular component.
+Furthermore, this example does NOT use angular routing to remotely load the angular component. In this example, the shell app shows 4 different ways to instantiate an angular component from a remote webpack module and it also shows how to pass inputs to the component.
 
 This project consists of two angular 16 apps:
 - shell-ng16: this app is used as the shell and is able to load a component from the mfe1-ng16 app.
@@ -38,32 +38,16 @@ The mfe1 app contains three angular modules:
 
 The `MyFeatureModule` angular module contains a route that loads the [MyComponent](/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) angular component on `/my-component`. However, note that this is only used for local development of the mfe1 app. When integrating into the shell app, the shell will dynamically load the component and does NOT rely on any routes from the remote.
 
-> **Note**
->
-> To debug the mfe1 app:
-> 1) go to http://localhost:4201.
-> 2) open your browser's dev tools, usually accessible via F12.
-> 3) go to your sources tab and locate the folder webpack:///src
-> 4) add breakpoints to any file under this folder help you step through and understand the code.
-
 ## Shell app
 
 The shell app is able to consume the angular module exposed by the mfe1 app and display it. It consists of a single angular module:
 - the default [AppModule](/component-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
 
-The shell app shows 4 different ways to instantiate an angular component that is declared in an angular module exposed by a remote. Each version has comments in the code to help understand all the steps to dynamically load a component declared on an angular module that is exposed by remote webpack module.
+The shell app shows 4 different ways to instantiate an angular component from a remote webpack module. Each versio has step-by-step comments in the code to help understand how the component is dynamically loaded by the shell.
 
 > **Note**
 >
-> This is an example app and though you can mix the approaches to dynamically load an angular component from a remote, you would either choose one of the presented approaches or a variation.
-
-> **Note**
->
-> To debug the shell app:
-> 1) go to http://localhost:4200.
-> 2) open your browser's dev tools, usually accessible via F12.
-> 3) go to the sources tab and locate the file at webpack:///src/app/app.component.ts 
-> 4) add breakpoints to help you step through and understand the code.
+> This is an example app and though you can mix the approaches to dynamically load an angular component from a remote, you would either choose one of the presented approaches or implement a variation.
 
 ## Webpack module federation
 
