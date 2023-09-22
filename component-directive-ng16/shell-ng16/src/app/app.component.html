@@ -1,0 +1,19 @@
+<div class="card">
+  Shell running Angular {{ version }}
+  <p>
+    <button (click)="reload()">Reload</button>
+  </p>
+  <p *ngIf="!componentLoaded">Loading component from remote...</p>
+  <p *ngIf="componentLoaded">MyComponent has been loaded from remote!</p>
+  <ng-container
+    loadRemoteComponent
+    remoteEntry="http://localhost:4201/remoteEntry.js"
+    exposedModule="./my-component"
+    componentName="MyComponent"
+    [inputData]="{
+      inputText1: 'loaded via loadRemoteComponent directive',
+      inputText2: 'this is the second input value'
+    }"
+    (loaded)="componentLoadedHandler()"
+  ></ng-container>
+</div>
