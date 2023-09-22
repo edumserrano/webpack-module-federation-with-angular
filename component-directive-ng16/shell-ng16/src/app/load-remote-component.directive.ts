@@ -17,9 +17,15 @@ export class LoadRemoteComponentDirective implements AfterContentInit {
   @Input({required: true})
   public componentName!: string;
 
+  // Used to pass input values to the component
+  // This is a map where the keys are of type string and map to the input property name and
+  // the values can be anything which is why their type is unknown
   @Input()
   public inputData?: { [key: string]: unknown; };
 
+  // This is an optional output from the directive which let's you know when
+  // the component has been loaded. Not necessarily for loading the remote
+  // component
   @Output()
   public loaded: EventEmitter<void> = new EventEmitter<void>();
 
