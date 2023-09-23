@@ -1,0 +1,51 @@
+<div class="card">
+  Shell running Angular {{ version }}
+  <p>
+    <a routerLink="/">Go to home page</a>
+  </p>
+  <p>
+    <a routerLink="/my-standalone-component"
+      >load MyStandaloneComponent from mfe1 using angular routing v1</a
+    >
+  </p>
+  <p>
+    <a routerLink="/another-standalone-component"
+      >load AnotherStandaloneComponent from mfe1 using angular routing v1</a
+    >
+  </p>
+  <p>
+    <a routerLink="/standalone/my"
+      >load MyStandaloneComponent from mfe1 using angular routing v2</a
+    >
+  </p>
+  <p>
+    <a routerLink="/standalone/another"
+      >load AnotherStandaloneComponent from mfe1 using angular routing v2</a
+    >
+  </p>
+  <div>
+    standalone component remotely loaded from mfe1 app using angular routing
+    will show below
+    <router-outlet></router-outlet>
+  </div>
+  <p>
+    <button type="button" (click)="RemoveComponent()">
+      remove dynamically loaded standalone component
+    </button>
+  </p>
+  <p>
+    <button type="button" (click)="loadMyStandalone()">
+      dynamically load MyStandaloneComponent
+    </button>
+  </p>
+  <p>
+    <button type="button" (click)="loadAnotherStandalone()">
+      dynamically load AnotherStandaloneComponent
+    </button>
+  </p>
+  <div>
+    standalone component remotely loaded from mfe1 app using dynamic component
+    loading will show below
+    <ng-container #mfe></ng-container>
+  </div>
+</div>
