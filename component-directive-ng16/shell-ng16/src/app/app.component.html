@@ -5,7 +5,7 @@
   </p>
   <p *ngIf="!componentLoaded">Loading component from remote...</p>
   <p *ngIf="componentLoaded">MyComponent has been loaded from remote!</p>
-  <ng-container
+  <ng-template
     loadRemoteComponent
     remoteEntry="http://localhost:4201/remoteEntry.js"
     exposedModule="./my-component"
@@ -15,5 +15,5 @@
       inputText2: 'this is the second input value'
     }"
     (loaded)="componentLoadedHandler()"
-  ></ng-container>
+  ></ng-template>
 </div>
