@@ -20,6 +20,14 @@ This example uses the [@angular-architects/module-federation](https://www.npmjs.
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
 - [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)
 
+
+> **Note**
+>
+> For more information about angular standalone components see:
+> - [Getting started with standalone components](https://angular.io/guide/standalone-components)
+> - [Migrate an existing Angular project to standalone](https://angular.io/guide/standalone-migration)
+> - [Why Migrate to Angular Standalone Components](https://medium.com/angular-gems/angular-standalone-components-590b3076d48a)
+>
 ## How to run
 
 1) Go to `/component-standalone-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
