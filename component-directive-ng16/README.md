@@ -20,6 +20,11 @@ This example uses the [@angular-architects/module-federation](https://www.npmjs.
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
 - [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)
 
+> **Note**
+>
+> The implementation of the directive to load angular components is an extension/variation of the guidance provided by the angular docs for [Dynamic component loading](https://angular.io/guide/dynamic-component-loader#dynamic-component-loading).
+>
+
 ## How to run
 
 1) Go to `/component-directive-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
