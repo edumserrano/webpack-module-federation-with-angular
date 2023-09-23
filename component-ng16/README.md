@@ -43,7 +43,7 @@ The `MyFeatureModule` angular module contains a route that loads the [MyComponen
 The shell app is able to consume the angular module exposed by the mfe1 app and display it. It consists of a single angular module:
 - the default [AppModule](/component-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
 
-The shell app shows 4 different ways to instantiate an angular component from a remote webpack module. Each versio has step-by-step comments in the code to help understand how the component is dynamically loaded by the shell.
+The shell app shows 4 different ways to instantiate an angular component from a remote webpack module. Each version has step-by-step comments in the code to help understand how the component is dynamically loaded by the shell.
 
 > **Note**
 >
