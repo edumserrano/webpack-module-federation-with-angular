@@ -24,6 +24,8 @@ If you are not familiar with webpack module federation it's recommended that you
 
 6) [component-standalone-ng16](/component-standalone-ng16/README.md): how to setup webpack module federation where the shell loads standalone angular components from a remote using angular routing or by dynamically loading the component. This also shows how a remote can expose angular routes and how to consume them in the shell app. Both shell and remote app use angular 16.
 
+7) [web-component-ng16](/web-component-ng16/README.md): how to setup webpack module federation where the shell loads a standalone angular component that is exposed as a web component. Both shell and remote app use angular 16.
+
 ## Debug
 
 To debug any of the apps in the examples:

@@ -23,7 +23,7 @@ This example uses the [@angular-architects/module-federation](https://www.npmjs.
 
 To see the mfe1 app loaded into the shell go to the shell's URL and click the `load my-feature angular module from mfe1` link. 
 
-Both apps are very simple and mainly consist of a bit of text inside a styled `div` which indicates if it's part of the shell or the mfe1 app. The shell renders in a red coloured `div` whilst the mfe1 app renders in a blue coloured `div`. In addition both apps display the version of angular being used.
+Both apps are very simple and consist mainly of a bit of text inside a styled `div` which indicates if it's part of the shell or the mfe1 app. The shell renders in a red coloured `div` whilst the mfe1 app renders in a blue coloured `div`. In addition both apps display the version of angular being used.
 
 ## MFE1 app
 

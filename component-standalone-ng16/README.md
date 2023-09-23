@@ -35,7 +35,7 @@ This example uses the [@angular-architects/module-federation](https://www.npmjs.
 
 To see the standalone components from the mfe1 app loaded into the shell go to the shell's URL and click on any of the load links or buttons. 
 
-Both apps are very simple and mainly consist of a bit of text inside a styled `div` which indicates if it's part of the shell or the mfe1 app. The shell renders in a red coloured `div` whilst the standalone components from the mfe1 app render in a blue or green coloured `div`. In addition both apps display the version of angular being used.
+Both apps are very simple and consist mainly of a bit of text inside a styled `div` which indicates if it's part of the shell or the mfe1 app. The shell renders in a red coloured `div` whilst the standalone components from the mfe1 app render in a blue or green coloured `div`. In addition both apps display the version of angular being used.
 
 ## MFE1 app
 
@@ -45,7 +45,7 @@ The mfe1 app contains two angular modules:
 
 It also contains two standalone angular components, one named `MyStandaloneComponent` and the other named `AnotherStandaloneComponent`, and a set of routes defined at [/component-standalone-ng16/mfe1-ng16/src/app/standalone-component.route.ts](/component-standalone-ng16/mfe1-ng16/src/app/standalone-component.route.ts).
 
-The `MyFeatureModule` angular module contains a set of routes that load the two standalone components:
+The `AppRoutingModule` angular module contains a set of routes that load the two standalone components:
 - `/my-standalone-component`: loads the `MyStandaloneComponent`.
 - `/another-standalone-component`: loads the `AnotherStandaloneComponent`.
 - `/standalone`: loads the routes defined at [standalone-component.route.ts](/component-standalone-ng16/mfe1-ng16/src/app/standalone-component.route.ts). So:
