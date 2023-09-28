@@ -12,9 +12,7 @@ This shows an example of how to setup webpack module federation using Angular 16
 - shell-ng16: this app is used as the shell and uses Angular routing to lazy load an Angular module from the mfe1-ng16 app. 
 - mfe1-ng16: this app represents a micro frontend that is consumed by the shell-ng16 app.
 
-This example uses the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which aims to streamline the setup of webpack module federation for Angular projects. For more information read:
-- [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
-- [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)
+This example uses the [@angular-architects/module-federation](#webpack-module-federation) npm package which aims to streamline the setup of webpack module federation for Angular projects.
 
 ## How to run
 
@@ -53,3 +51,7 @@ The `/mfe1` route added to the `AppRoutingModule` uses an import to lazy load th
 ## Webpack module federation
 
 The setup of webpack module federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
+
+Also, read the official docs at:
+- [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
+- [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)

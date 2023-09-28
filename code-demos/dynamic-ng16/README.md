@@ -5,6 +5,7 @@
 - [MFE1 app](#mfe1-app)
 - [Shell app](#shell-app)
 - [Webpack module federation](#webpack-module-federation)
+  - [How to use a manifest file](#how-to-use-a-manifest-file)
 
 ## Description
 
@@ -14,9 +15,7 @@ This project consists of two Angular 16 apps:
 - shell-ng16: this app is used as the shell and uses Angular routing to lazy load an Angular module from the mfe1-ng16 app. 
 - mfe1-ng16: this app represents a micro frontend that is consumed by the shell-ng16 app.
 
-This example uses the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which aims to streamline the setup of webpack module federation for Angular projects. For more information read:
-- [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
-- [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)
+This example uses the [@angular-architects/module-federation](#webpack-module-federation) npm package which aims to streamline the setup of webpack module federation for Angular projects.
 
 ## How to run
 
@@ -64,10 +63,17 @@ Lastly, note that for the manifest option to work you need:
 
 The setup of webpack module federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
 
-If you want to use a manifest file you can configure your shell as shown in [webpack module federation setup](/docs/basics-angular-architects.md#webpack-module-federation-setup) but use `--type dynamic-host` instead of `--type host`:
+Also, read the official docs at:
+- [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
+- [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)
+
+### How to use a manifest file
+
+If you want to use a manifest file, you can configure your shell as shown in [webpack module federation setup](/docs/basics-angular-architects.md#webpack-module-federation-setup) but use `--type dynamic-host` instead of `--type host`:
 
 ```
 ng g @angular-architects/module-federation:init --project shell-ng16 --port 4200 --type dynamic-host
 ```
 
 This will create a manifest file and update the `main.ts` to load the manifest when the app is starting.
+

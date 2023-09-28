@@ -17,9 +17,7 @@ This project consists of two Angular 16 apps:
 - shell-ng16: this app is used as the shell and is able to load the standalone components from the mfe1-ng16 app.
 - mfe1-ng16: this app represents a micro frontend that contains two Angular standalone components that are consumed by the shell app.
 
-This example uses the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which aims to streamline the setup of webpack module federation for Angular projects. For more information read:
-- [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
-- [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)
+This example uses the [@angular-architects/module-federation](#webpack-module-federation) npm package which aims to streamline the setup of webpack module federation for Angular projects.
 
 ## How to run
 
@@ -77,6 +75,10 @@ Lastly, note that the approach used to load the components using Angular dynamic
 ## Webpack module federation
 
 The setup of webpack module federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
+
+Also, read the official docs at:
+- [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
+- [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)
 
 ## Angular standalone components
 
