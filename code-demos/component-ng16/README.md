@@ -16,8 +16,6 @@ This project consists of two Angular 16 apps:
 - shell-ng16: this app is used as the shell and is able to load a component from the mfe1-ng16 app.
 - mfe1-ng16: this app represents a micro frontend that contains an Angular component that is consumed by the shell app.
 
-This example uses the [@angular-architects/module-federation](#webpack-module-federation) npm package which aims to streamline the setup of webpack module federation for Angular projects.
-
 ## How to run
 
 1) Go to `/component-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.

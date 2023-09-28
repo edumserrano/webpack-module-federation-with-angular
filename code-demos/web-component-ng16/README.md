@@ -19,8 +19,6 @@ This project consists of two Angular 16 apps:
 - shell-ng16: this app is used as the shell and is able the web component from the mfe1-ng16 app.
 - mfe1-ng16: this app represents a micro frontend that contains an Angular standalone component that is exposed as a web component and consumed by the shell app.
 
-This example uses the [@angular-architects/module-federation](#webpack-module-federation) npm package which aims to streamline the setup of webpack module federation for Angular projects.
-
 > **Note**
 >
 > Although the mfe1 app is using an Angular standalone component, the same could be achieved without using a standalone component. You do NOT have to use Angular standalone components to export Angular components as web components.

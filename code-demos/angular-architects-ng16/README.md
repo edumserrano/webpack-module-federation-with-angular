@@ -12,7 +12,7 @@ This shows an example of how to setup webpack module federation using Angular 16
 - shell-ng16: this app is used as the shell and uses Angular routing to lazy load an Angular module from the mfe1-ng16 app. 
 - mfe1-ng16: this app represents a micro frontend that is consumed by the shell-ng16 app.
 
-This example uses the [@angular-architects/module-federation](#webpack-module-federation) npm package which aims to streamline the setup of webpack module federation for Angular projects.
+This example uses the `@angular-architects/module-federation` npm package which aims to streamline the setup of webpack module federation for Angular projects.
 
 ## How to run
 
