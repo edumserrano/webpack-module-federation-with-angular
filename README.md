@@ -6,7 +6,7 @@
 
 ## Description 
 
-This repo came about as a result of my journey about learning [webpack module federation](https://webpack.js.org/concepts/module-federation/).
+This repo came about as a result of my journey to learn how to use [webpack module federation](https://webpack.js.org/concepts/module-federation/).
 
 There's a learning curve required to understand how to work with webpack module federation, which is even higher if you're not confortable with frontend development, and so I thought it would be useful to consolidate my learnings, code experiments and research articles into one place. 
 
