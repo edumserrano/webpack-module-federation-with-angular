@@ -22,7 +22,7 @@ Some of the code demos are variations of a concept where the main difference is 
 
 This might seem like something obvious but if you understand this then you understand that there are infinite ways to expose Angular/Vue/React/etc apps/components as webpack modules and equally infinite ways to consume them. 
 
-**There is no single best way to do things, some ways might enable functionality that others don't but in the end it's up to you to decide what's good enough/best for your use case.**
+**There is no single best way to do things, some ways might enable functionality that others don't but in the end it's up to you to decide what you prefer for your use case.**
 
 > **Warning**
 >
@@ -30,11 +30,11 @@ This might seem like something obvious but if you understand this then you under
 > 
 > **Webpack module federation is **just** a mechanism for integrating webpack modules at runtime. It does NOT take care of any frontend technology or javascript specific concern.** This means that you might have to do code so that when the remote is loaded into the host everything works as expected. Scenarios where you might have to do extra code apart from setting up webpack module federation:
 > 
-> - if both your host and your remote use Angular and both use routing. Otherwise, you might find that routing changes in the remote don't affect the shell or vice versa as you expect. 
-> - if you want to load 2 different Angular versions. If you simply try to run two different versions of Angular you will get an error about the fact that Angular Platform can only be instantiated once.
+> - if both your host and your remote use Angular and both use routing. Otherwise, you might find that routing changes in the remote don't affect the shell as you expect or vice versa. 
+> - if you want to load different Angular versions. If you simply try to more than one different version of Angular you will get an error about the fact that Angular Platform can only be instantiated once.
 > - if want to have your host/shell consuming remotes implemented in different frontend technologies (Angular/Vue/React/etc).  
 >
-> And the list goes on... Don't be afraid though, the [code demos section](#code-demos) gives you plenty of examples to get started and hopefully enough so that you can then adjust to any scenario that might not be listed here. 
+> And the list goes on... Don't be afraid though, there's always a way to get things to work. Just don't expect that everything will work out of the box. The [code demos section](#code-demos) gives you plenty of examples to get started and hopefully enough so that you can then adjust to any scenario that might not be listed here. 
 >
 
 ## Code demos
