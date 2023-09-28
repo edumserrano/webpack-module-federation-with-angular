@@ -43,6 +43,7 @@ This might seem like something obvious but if you understand this then you under
 >
 > The examples are mainly focused on using module federation with Angular apps but several concepts explained here are applicable regardless of the frontend technology used.
 >
+> If you are not familiar with webpack module federation it's recommended that you start by reading and exploring the [basic-ng16](/basic-ng16/README.md) code demo. Although this example uses Angular, it goes over the basics for setting up webpack module federation which is useful regardless of the frontend technology used.
 
 1) [basic-ng16](/code-demos/basic-ng16/README.md): the most bare-bones possible example of how to setup webpack module federation where the shell lazy loads an Angular module using Angular routing. This code demo does NOT make use of the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which is usually used to setup module federation for Angular projects. The main idea is to show the basics for learning purposes. Both shell and remote app use Angular 16. 
    
