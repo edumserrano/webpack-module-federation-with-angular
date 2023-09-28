@@ -30,17 +30,17 @@ Both apps are very simple and consist mainly of a bit of text inside a styled `d
 ## MFE1 app
 
 The mfe1 app contains three angular modules:
-- the default [AppModule](/dynamic-ng16/mfe1-ng16/src/app/app.module.ts) created as part of doing `ng new`.
-- the default [AppRoutingModule](/dynamic-ng16/mfe1-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
-- a feature module named [MyFeatureModule](/dynamic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) which was created to represent the micro front that we want to expose via module federation.
+- the default [AppModule](/code-demos/dynamic-ng16/mfe1-ng16/src/app/app.module.ts) created as part of doing `ng new`.
+- the default [AppRoutingModule](/code-demos/dynamic-ng16/mfe1-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
+- a feature module named [MyFeatureModule](/code-demos/dynamic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) which was created to represent the micro front that we want to expose via module federation.
 
-The `MyFeatureModule` angular module contains a route that loads the [MyComponent](/dynamic-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent`.
+The `MyFeatureModule` angular module contains a route that loads the [MyComponent](/code-demos/dynamic-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent`.
 
 ## Shell app
 
 The shell app is able to consume the angular module exposed by the mfe1 app and display it. It consists of a two angular modules:
-- the default [AppModule](/dynamic-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
-- the default [AppRoutingModule](/dynamic-ng16/shell-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
+- the default [AppModule](/code-demos/dynamic-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
+- the default [AppRoutingModule](/code-demos/dynamic-ng16/shell-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
 
 Two routes were added to the `AppRoutingModule` and both of them dynamically load the same `MyFeatureModule` from the mfe1 app. Dynamically meaning that the remote location does not need to be specified in the shell's webpack configuration file. The difference between the routes is that one uses a manifest file and one does not. but one of them dynamically uses a using the information provided inline.
 
@@ -52,8 +52,8 @@ Both routes use the `loadRemoteModule` from the `@angular-architects/module-fede
 
 Lastly, note that for the manifest option to work you need:
 
-1) a manifest file which can be found at [dynamic-ng16/shell-ng16/src/assets/mf.manifest.json](/dynamic-ng16/shell-ng16/src/assets/mf.manifest.json). 
-2) load the manifest file data so that the `loadRemoteModule` from the `@angular-architects/module-federation` can access it. This is done at the [main.ts](/dynamic-ng16/shell-ng16/src/main.ts) file.
+1) a manifest file which can be found at [dynamic-ng16/shell-ng16/src/assets/mf.manifest.json](/code-demos/dynamic-ng16/shell-ng16/src/assets/mf.manifest.json). 
+2) load the manifest file data so that the `loadRemoteModule` from the `@angular-architects/module-federation` can access it. This is done at the [main.ts](/code-demos/dynamic-ng16/shell-ng16/src/main.ts) file.
 
 > **Warning**
 >

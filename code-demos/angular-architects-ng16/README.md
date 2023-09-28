@@ -28,21 +28,21 @@ Both apps are very simple and consist mainly of a bit of text inside a styled `d
 ## MFE1 app
 
 The mfe1 app contains three angular modules:
-- the default [AppModule](/angular-architects-ng16/mfe1-ng16/src/app/app.module.ts) created as part of doing `ng new`.
-- the default [AppRoutingModule](/angular-architects-ng16/mfe1-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
-- a feature module named [MyFeatureModule](/angular-architects-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) which was created to represent the micro front that we want to expose via module federation.
+- the default [AppModule](/code-demos/angular-architects-ng16/mfe1-ng16/src/app/app.module.ts) created as part of doing `ng new`.
+- the default [AppRoutingModule](/code-demos/angular-architects-ng16/mfe1-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
+- a feature module named [MyFeatureModule](/code-demos/angular-architects-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) which was created to represent the micro front that we want to expose via module federation.
 
-The `MyFeatureModule` angular module contains a route that loads the [MyComponent](/angular-architects-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent`.
+The `MyFeatureModule` angular module contains a route that loads the [MyComponent](/code-demos/angular-architects-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent`.
 
 ## Shell app
 
 The shell app is able to consume the angular module exposed by the mfe1 app and display it. It consists of a two angular modules:
-- the default [AppModule](/angular-architects-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
-- the default [AppRoutingModule](/angular-architects-ng16/shell-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
+- the default [AppModule](/code-demos/angular-architects-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
+- the default [AppRoutingModule](/code-demos/angular-architects-ng16/shell-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
 
 A route was added to the `AppRoutingModule` that lazy loads the mfe1 app on the `/mfe1` path. You can load the mfe1 app by selecting the `load my-feature angular module from mfe1` link.
 
-The `/mfe1` route added to the `AppRoutingModule` uses an import to lazy load the `MyFeatureModule` from the mfe1 app. The lazy load is done via the `loadChildren` function which imports the external webpack module `mfe1/my-feature-module` at runtime and then accesses the `MyFeatureModule` angular module from the mfe1 app. Also note that for typescript to be ok with the import we must tell it that the module `mfe1/my-feature-module` exists and we do that by declaring it in the [remote-module.d.ts](/angular-architects-ng16/shell-ng16/src/app/remote-modules.d.ts) file.
+The `/mfe1` route added to the `AppRoutingModule` uses an import to lazy load the `MyFeatureModule` from the mfe1 app. The lazy load is done via the `loadChildren` function which imports the external webpack module `mfe1/my-feature-module` at runtime and then accesses the `MyFeatureModule` angular module from the mfe1 app. Also note that for typescript to be ok with the import we must tell it that the module `mfe1/my-feature-module` exists and we do that by declaring it in the [remote-module.d.ts](/code-demos/angular-architects-ng16/shell-ng16/src/app/remote-modules.d.ts) file.
 
 > **Note**
 > 

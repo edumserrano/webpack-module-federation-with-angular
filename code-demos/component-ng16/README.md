@@ -32,16 +32,16 @@ Both apps are very simple and consist mainly of a bit of text inside a styled `d
 ## MFE1 app
 
 The mfe1 app contains three angular modules:
-- the default [AppModule](/component-ng16/mfe1-ng16/src/app/app.module.ts) created as part of doing `ng new`.
-- the default [AppRoutingModule](/component-ng16/mfe1-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
-- a feature module named [MyFeatureModule](/component-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) where the angular component we want to remotely instantiate is declared.
+- the default [AppModule](/code-demos/component-ng16/mfe1-ng16/src/app/app.module.ts) created as part of doing `ng new`.
+- the default [AppRoutingModule](/code-demos/component-ng16/mfe1-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
+- a feature module named [MyFeatureModule](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) where the angular component we want to remotely instantiate is declared.
 
-The `MyFeatureModule` angular module contains a route that loads the [MyComponent](/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) angular component on `/my-component`. However, note that this is only used for local development of the mfe1 app. When integrating into the shell app, the shell will dynamically load the component and does NOT rely on any routes from the remote.
+The `MyFeatureModule` angular module contains a route that loads the [MyComponent](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) angular component on `/my-component`. However, note that this is only used for local development of the mfe1 app. When integrating into the shell app, the shell will dynamically load the component and does NOT rely on any routes from the remote.
 
 ## Shell app
 
 The shell app is able to consume the angular module exposed by the mfe1 app and display it. It consists of a single angular module:
-- the default [AppModule](/component-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
+- the default [AppModule](/code-demos/component-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
 
 The shell app shows 4 different ways to instantiate an angular component from a remote webpack module. Each version has step-by-step comments in the code to help understand how the component is dynamically loaded by the shell.
 
