@@ -5,7 +5,7 @@ const {
 
 module.exports = withModuleFederationPlugin({
   remotes: {
-    // no need to declare remotes as they are dynamically loaded. See src/app/app-routing.module.ts
+    // no need to declare remotes as they are dynamically loaded.
   },
   shared: {
     ...shareAll({
