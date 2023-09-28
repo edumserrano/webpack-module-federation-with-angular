@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   })
   private readonly _viewContainerRef?: ViewContainerRef;
 
-  // The correct way to interact with the document object in angular is to use the DOCUMENT
+  // The correct way to interact with the document object in Angular is to use the DOCUMENT
   // injection token https://angular.io/api/common/DOCUMENT
   public constructor(@Inject(DOCUMENT) private readonly _document: Document) {}
 
