@@ -17,10 +17,10 @@ There's a learning curve required to understand how to work with webpack module 
 
 Some of the code demos are variations of a concept where the main difference is how a remote webpack module is exposed. The main thing to keep in mind is that, at a high level, all of the code demos consist of:
 
-1) An app that exposes a webpack module, usually named a remote. The exposed webpack module can be anything: an Angular module, an Angular component, an Angular standalone component, a set of Angular routes, a web component, a function, etc. 
-2) An app that consumes a webpack module at runtime. Usually named a host/shell. The way the app shell consumes the remote webpack module depends on what is exposed on that module. For instance, consuming an Angular module is slightly different than consuming an Angular component.
+1) An app that exposes a webpack module (a remote). The exposed webpack module can be anything: an Angular module, an Angular component, an Angular standalone component, a set of Angular routes, a web component, a function, etc. 
+2) An app that consumes a webpack module at runtime (a host/shell). The way the host consumes the remote webpack module depends on what is exposed on that module. For instance, consuming an Angular module is slightly different from consuming an Angular component.
 
-This might seem like something obvious but if you understand this then you understand that there are infinite ways to expose Angular/Vue/React/etc apps as webpack modules and equally infinite ways to consume them. 
+This might seem like something obvious but if you understand this then you understand that there are infinite ways to expose Angular/Vue/React/etc apps/components as webpack modules and equally infinite ways to consume them. 
 
 **There is no single best way to do things, some ways might enable functionality that others don't but in the end it's up to you to decide what's good enough/best for your use case.**
 
