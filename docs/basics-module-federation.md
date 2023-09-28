@@ -15,12 +15,12 @@ This document aims to clarify how webpack module federation allows exposing and 
 
 > **Note**
 > 
-> Although there are references to angular in this documention, the majority of the information here is agnostic to the frontend technology used. It's valid as long as you're using Webpack.
+> Although there are references to Angular in this documention, the majority of the information here is agnostic to the frontend technology used. It's valid as long as you're using Webpack.
 >
 
 ## Webpack configuration file
 
-The below shows an example of the **minimum** configuration required to get webpack module federation working for **angular apps**. For more information see:
+The below shows an example of the **minimum** configuration required to get webpack module federation working for **Angular apps**. For more information see:
 
 - [webpack official documentation](https://webpack.js.org/configuration/)
 - [gist with Module Federation options, usage, hints](https://gist.github.com/zfeher/201f55c057553078fe5b0aac1dad6969)
@@ -115,7 +115,7 @@ experiments: {
 ```
 
 - [output.publicPath](https://webpack.js.org/configuration/output/#outputpublicpath): you will likely always have this on `auto` which in short points to wherever the app is being served from.
-- [optimization.runtimeChunk](https://webpack.js.org/configuration/optimization/#optimizationruntimechunk): for **angular apps** at least this should always be disabled. If enabled it will cause the module federation solution to break, which is related to a bug. I couldn't find which bug but I when I tried to turn on for the shell app, it stopped working. The angular app just didn't get rendered and no errors on console were visible.
+- [optimization.runtimeChunk](https://webpack.js.org/configuration/optimization/#optimizationruntimechunk): for **Angular apps** at least this should always be disabled. If enabled it will cause the module federation solution to break, which is related to a bug. I couldn't find which bug but I when I tried to turn on for the shell app, it stopped working. The Angular app just didn't get rendered and no errors on console were visible.
 - [experiments.outputModule](https://webpack.js.org/configuration/experiments/#experimentsoutputmodule): when enabled, webpack will output ECMAScript module syntax whenever possible.
 
 Now let's take a look at the configuration values for the `ModuleFederationPlugin` plugin. Some of these are usually only used on the remote app and some are only used on the shell app:
@@ -156,15 +156,15 @@ The following import statement loads the external webpack module from `http://lo
 import('mfe1/my-feature-module')
 ```
 
-Once the `import` function completes we can access whatever is exposed in that webpack module. In this example, the remote app is exposing an angular module named `MyFeatureModule` defined in the file `./src/app/my-feature/my-feature.module.ts`. This means that we can access it by doing the following:
+Once the `import` function completes we can access whatever is exposed in that webpack module. In this example, the remote app is exposing an Angular module named `MyFeatureModule` defined in the file `./src/app/my-feature/my-feature.module.ts`. This means that we can access it by doing the following:
 
 ```js
 import('mfe1/my-feature-module').then((m) => m.MyFeatureModule);
 ```
 
-In this example we loaded an angular module because that is what the remote was exposing but the remote can expose anything, such as simple functions.
+In this example we loaded an Angular module because that is what the remote was exposing but the remote can expose anything, such as simple functions.
 
 > **Note**
 > 
-> You can see all this implemented in an angular app on the [basic-ng16](../basic-ng16/README.md) example.
+> You can see all this implemented in an Angular app on the [basic-ng16](../basic-ng16/README.md) example.
 >
