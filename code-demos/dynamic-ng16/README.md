@@ -15,7 +15,7 @@ This example shows how to setup webpack module federation without having to decl
 
 Despite not being part of this example, it would be simple to extend it and have the remote webpack module location fetched at runtime via an HTTP call.
 
-The remote webpack module contains an Angular module which the shell loads using Angular routing.                                              |
+The remote webpack module contains an Angular module which the shell loads using Angular routing.
 
 ## How to run
 
