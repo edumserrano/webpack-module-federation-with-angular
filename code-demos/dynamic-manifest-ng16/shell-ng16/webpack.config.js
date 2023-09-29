@@ -5,7 +5,7 @@ const {
 
 module.exports = withModuleFederationPlugin({
   remotes: {
-    mfe1: "http://localhost:4201/remoteEntry.js",
+    // no need to declare remotes as they are dynamically loaded.
   },
   shared: {
     ...shareAll({

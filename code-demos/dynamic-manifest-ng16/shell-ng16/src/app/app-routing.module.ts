@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { loadRemoteModule } from '@angular-architects/module-federation';
 
 const routes: Routes = [
   {
     path: 'mfe1',
     loadChildren: () =>
-      import('mfe1/my-feature-module')
+      loadRemoteModule({
+        type: 'manifest',
+        remoteName: 'mfe1',
+        exposedModule: './my-feature-module',
+      })
         .then((m) => m.MyFeatureModule)
-        .catch((err) => console.error('Error lazy loading mfe1', err)),
+        .catch((err) => console.error('Error lazy loading mfe1 app', err)),
   },
 ];
 
