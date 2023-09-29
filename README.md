@@ -3,6 +3,7 @@
 - [Description](#description)
 - [Read me before exploring the code demos](#read-me-before-exploring-the-code-demos)
 - [Code demos](#code-demos)
+  - [Live Reload](#live-reload)
   - [Debug](#debug)
   - [Console errors](#console-errors)
   - [Why are all the Angular code demos done using either Angular 12 or Angular 16?](#why-are-all-the-angular-code-demos-done-using-either-angular-12-or-angular-16)
@@ -57,6 +58,10 @@ This might seem like something obvious but if you understand this then you under
 | [component-directive-ng16](/code-demos/component-directive-ng16/README.md) </br></br> Both shell and remote app use Angular 16.   | Same as the [component-ng16](/code-demos/component-ng16/README.md) example but using an Angular directive. This example also shows how to pass inputs to the Angular component. </br></br> The remote webpack module contains an Angular component which the shell dynamically loads without using Angular routing.                                                                                                                                                                                                                                                                                                                                            |
 | [component-standalone-ng16](/code-demos/component-standalone-ng16/README.md) </br></br> Both shell and remote app use Angular 16. | The shell dynamically instantiates and adds to the DOM an Angular standalone component. This also shows how a remote can expose Angular routes and how to consume them in the shell app. <br></br> TODO: needs review                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | [web-component-ng16](/code-demos/web-component-ng16/README.md) </br></br>  Both shell and remote app use Angular 16.              | Shows how to setup module federation where the shell loads a web component created from an Angular standalone component. <br></br> TODO: needs review                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+
+### Live Reload
+
+Live reload works as expected. After you start both the shell app and the mfe app, if you make changes to the mfe app then the shell app will automatically refresh and load the changes from the mfe app.
 
 ### Debug
 
