@@ -28,8 +28,8 @@ This project consists of two Angular 16 apps:
 
 ## How to run
 
-1) Go to `/web-component-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
-2) Go to `/web-component-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
+1) Go to `/code-demos/web-component-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
+2) Go to `/code-demos/web-component-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
 
 The shell will load the web component from the mfe1 app on page load. It loads it twice to show two different ways of doing it. 
 

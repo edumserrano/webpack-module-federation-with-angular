@@ -17,8 +17,8 @@ This project consists of two Angular 16 apps:
 
 ## How to run
 
-1) Go to `/dynamic-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
-2) Go to `/dynamic-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
+1) Go to `/code-demos/dynamic-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
+2) Go to `/code-demos/dynamic-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
 
 To see the mfe1 app loaded into the shell go to the shell's URL and click the `load my-feature Angular module from mfe1` link. 
 
