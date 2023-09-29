@@ -5,7 +5,7 @@ module.exports = {
     publicPath: "auto",
   },
   optimization: {
-    runtimeChunk: true,
+    runtimeChunk: false,
   },
   experiments: {
     outputModule: true,

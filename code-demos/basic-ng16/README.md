@@ -3,56 +3,62 @@
 - [Description](#description)
 - [How to run](#how-to-run)
 - [MFE1 app](#mfe1-app)
+  - [Dev platform](#dev-platform)
 - [Shell app](#shell-app)
+  - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
 - [Webpack module federation](#webpack-module-federation)
   - [Webpack configuration file](#webpack-configuration-file)
   - [Angular configuration file](#angular-configuration-file)
 
 ## Description
 
-This shows an example of how to setup webpack module federation using Angular 16. This project consists of two Angular 16 apps:
-- shell-ng16: this app is used as the shell and uses Angular routing to lazy load an Angular module from the mfe1-ng16 app. 
-- mfe1-ng16: this app represents a micro frontend that is consumed by the shell-ng16 app.
+The most bare-bones possible example of how to setup webpack module federation where the shell lazy loads an Angular module using Angular routing.
 
 This project does NOT make use of the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which is usually used to setup module federation for Angular projects. The main idea is to show the basics for learning purposes.
 
+The remote webpack module exposed by the mfe1 app contains an Angular module which the shell loads using Angular routing.
+
 ## How to run
 
-1) Go to `/basic-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
-2) Go to `/basic-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
+1) Go to `/code-demos/basic-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
+2) Go to `/code-demos/basic-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
 
-To see the mfe1 app loaded into the shell go to the shell's URL and click the `load my-feature Angular module from mfe1` link. 
+To see the mfe1 app loaded into the shell go to the shell's URL and click the `Load Angular module named MyFeatureModule from mfe1` link. 
 
 Both apps are very simple and consist mainly of a bit of text inside a styled `div` which indicates if it's part of the shell or the mfe1 app. The shell renders in a red coloured `div` whilst the mfe1 app renders in a blue coloured `div`. In addition both apps display the version of Angular being used.
 
 ## MFE1 app
 
-The mfe1 app contains three Angular modules:
-- the default [AppModule](/code-demos/basic-ng16/mfe1-ng16/src/app/app.module.ts) created as part of doing `ng new`.
-- the default [AppRoutingModule](/code-demos/basic-ng16/mfe1-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
-- a feature module named [MyFeatureModule](/code-demos/basic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) which was created to represent the micro front that we want to expose via module federation.
+The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/basic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), which was created to represent the micro front that we want to expose via webpack module federation.
 
-The `MyFeatureModule` Angular module contains a route that loads the [MyComponent](/code-demos/basic-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent`.
+The `MyFeatureModule` Angular module contains a route that loads the [MyComponent](/code-demos/basic-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent` Angular component.
+
+### Dev platform
+
+When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the `MyFeatureModule` Angular feature module is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyFeatureModule` Angular feature module.
 
 ## Shell app
 
-The shell app is able to consume the Angular module exposed by the mfe1 app and display it. It consists of a two Angular modules:
-- the default [AppModule](/code-demos/basic-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
-- the default [AppRoutingModule](/code-demos/basic-ng16/shell-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
+The shell app is an Angular 16 app that loads the Angular module exposed by the mfe1 app. You can test this by selecting the `Load Angular module named MyFeatureModule from mfe1` link which navigates to the `/mfe1/my-component` route.
 
-A route was added to the `AppRoutingModule` that lazy loads the mfe1 app on the `/mfe1` path. You can load the mfe1 app by selecting the `load my-feature Angular module from mfe1` link.
+### How the remote is loaded into the shell
 
-The `/mfe1` route added to the `AppRoutingModule` uses an import to lazy load the `MyFeatureModule` from the mfe1 app. The lazy load is done via the `loadChildren` function which imports the external webpack module `mfe1/my-feature-module` at runtime and then accesses the `MyFeatureModule` Angular module from the mfe1 app. Also note that for typescript to be ok with the import we must tell it that the module `mfe1/my-feature-module` exists and we do that by declaring it in the [remote-module.d.ts](/code-demos/basic-ng16/shell-ng16/src/app/remote-modules.d.ts) file.
+The shell app loads the Angular module exposed by the mfe1 app using Angular routing.
+
+The `/mfe1` route added to the [AppRoutingModule](/code-demos/basic-ng16/shell-ng16/src/app/app-routing.module.ts) uses an `import` to [lazy load](https://angular.io/guide/lazy-loading-ngmodules) the `MyFeatureModule` Angular feature module from the mfe1 app. The lazy load is done via the [loadChildren function](https://angular.io/api/router/LoadChildren) which imports the external webpack module `mfe1/my-feature-module` at runtime and then accesses the `MyFeatureModule` Angular module from the mfe1 app. At this point, the `loadChildren` function loads the routes available from the `MyFeatureModule` Angular module which means we can access the `MyComponent` Angular component from the mfe1 app by going to `/mfe1/my-component` path.
+
+Also note that for typescript to be ok with the `import('mfe1/my-feature-module')` we must tell it that the module `mfe1/my-feature-module` exists and we do that by declaring it in the [remote-module.d.ts](/code-demos/basic-ng16/shell-ng16/src/app/remote-modules.d.ts) file.
 
 > **Note**
 > 
 > For a better understanding of how the external webpack module from mfe1 is loaded into the shell see [How the loading of an external webpack module works
-](../docs/basics-module-federation.md#how-the-loading-of-an-external-webpack-module-works).
+](../../docs/basics-module-federation.md#how-the-loading-of-an-external-webpack-module-works).
 >
 
 ## Webpack module federation
 
-To setup webpack module federation we had to:
+To setup webpack module federation we had to do the steps below for both the shell and mfe1 apps:
+
 - add a `bootstrap.ts` file. The code that originally is on `main.ts` moves to this file and the code on `main.ts` just imports the `bootrap.ts` file.
 - add a `webpack.config.js` and a `webpack.prof.config.js`. These are used to extend angular's webpack configuration and configure module federation for the apps.
 - change the builders used by `ng build` and `ng serve` commands. For this we installed the [ngx-build-plus](https://www.npmjs.com/package/ngx-build-plus) package with `npm i -D ngx-build-plus` and then we updated the `angular.json` file. These changes allow us to tell Angular to use the `webpack.config.js` files we created when building and serving and therefore apply the module federation settings.
@@ -69,7 +75,7 @@ The only difference between the shell's webpack configuration and the mfe1's web
 
 > **Note**
 > 
-> For a better understanding of the settings defined in the webpack configuration file see  [Basics of webpack module federation](../docs/basics-module-federation.md). 
+> For a better understanding of the settings defined in the webpack configuration file see  [Basics of webpack module federation](../../docs/basics-module-federation.md). 
 >
 
 ### Angular configuration file
