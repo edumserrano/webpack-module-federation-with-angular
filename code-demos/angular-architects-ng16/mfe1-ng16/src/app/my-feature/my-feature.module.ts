@@ -10,13 +10,13 @@ const routes: Routes = [
   },
 ];
 
+// The webpack configuration file at /angular-architects-ng16/mfe1-ng16/webpack.config.js
+// exposes a webpack module which contains this Angular feature module
 @NgModule({
-  declarations: [
-    MyComponent
-  ],
+  declarations: [MyComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
-  ]
+    RouterModule.forChild(routes), // see https://angular.io/guide/lazy-loading-ngmodules#forroot-and-forchild
+  ],
 })
-export class MyFeatureModule { }
+export class MyFeatureModule {}
