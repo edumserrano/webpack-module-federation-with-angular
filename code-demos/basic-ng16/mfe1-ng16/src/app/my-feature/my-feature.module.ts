@@ -10,6 +10,8 @@ const routes: Routes = [
   },
 ];
 
+// The webpack configuration file at /basic-ng16/mfe1-ng16/webpack.config.js
+// exposes a webpack module which contains this Angular feature module
 @NgModule({
   declarations: [MyComponent],
   imports: [

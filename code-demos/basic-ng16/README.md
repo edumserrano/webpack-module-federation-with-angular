@@ -3,6 +3,7 @@
 - [Description](#description)
 - [How to run](#how-to-run)
 - [MFE1 app](#mfe1-app)
+  - [Exposed webpack module](#exposed-webpack-module)
   - [Dev platform](#dev-platform)
 - [Shell app](#shell-app)
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
@@ -32,6 +33,18 @@ Both apps are very simple and consist mainly of a bit of text inside a styled `d
 The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/basic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), which was created to represent the micro front that we want to expose via webpack module federation.
 
 The `MyFeatureModule` Angular module contains a route that loads the [MyComponent](/code-demos/basic-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent` Angular component.
+
+### Exposed webpack module
+
+On the [webpack configuration file for mfe1 app](./mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
+
+```
+exposes: {
+  "./my-feature-module": "./src/app/my-feature/my-feature.module.ts",
+},
+```
+
+The above defines a webpack module that is named `my-feature-module` and that is mapped to the [./src/app/my-feature/my-feature.module.ts](/code-demos/basic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) file, which is where the `MyFeatureModule` Angular module is defined. 
 
 ### Dev platform
 
