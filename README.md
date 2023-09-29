@@ -43,10 +43,9 @@ This might seem like something obvious but if you understand this then you under
 
 > **Note**
 >
-> The examples are mainly focused on using module federation with Angular apps but several concepts explained here are applicable regardless of the frontend technology used.
+> The examples are mainly focused on using module federation with Angular apps but a lot of the concepts explained here are applicable regardless of the frontend technology used.
 > 
->
-> If you are not familiar with webpack module federation it's recommended that you start by reading and exploring the [basic-ng16](/basic-ng16/README.md) code demo. Although this example uses Angular, it goes over the basics for setting up webpack module federation which is useful regardless of the frontend technology used.
+> If you are not familiar with webpack module federation it's recommended that you start by exploring the [basic-ng16](/basic-ng16/README.md) code demo.
 >
 
 | Demo                                                                                                                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
