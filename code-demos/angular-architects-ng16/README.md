@@ -1,4 +1,4 @@
-# angular-architects-ng16
+# angular-architects-ng16 code demo
 
 - [Description](#description)
 - [How to run](#how-to-run)

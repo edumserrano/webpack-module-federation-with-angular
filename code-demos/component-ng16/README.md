@@ -1,4 +1,4 @@
-# component-ng16
+# component-ng16 code demo
 
 - [Description](#description)
 - [How to run](#how-to-run)

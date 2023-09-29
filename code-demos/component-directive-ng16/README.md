@@ -1,4 +1,4 @@
-# component-directive-ng16
+# component-directive-ng16 code demo
 
 - [Description](#description)
 - [How to run](#how-to-run)
