@@ -8,6 +8,7 @@
 - [Shell app](#shell-app)
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
 - [Webpack module federation](#webpack-module-federation)
+- [Learn more](#learn-more)
 
 ## Description
 
@@ -71,3 +72,7 @@ The setup of webpack module federation was done using the [@angular-architects/m
 Also, read the official docs at:
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
 - [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)
+
+## Learn more
+
+This example was based on the [The Microfrontend Revolution: Module Federation with Angular](https://www.angulararchitects.io/blog/the-microfrontend-revolution-part-2-module-federation-with-angular/) article.

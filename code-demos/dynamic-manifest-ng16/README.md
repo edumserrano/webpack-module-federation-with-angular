@@ -9,6 +9,7 @@
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
   - [Why use a manifest file?](#why-use-a-manifest-file)
 - [Webpack module federation](#webpack-module-federation)
+- [Learn more](#learn-more)
 
 ## Description
 
@@ -79,6 +80,11 @@ This way:
 - when building and deploying to the non-production environment the remotes defined on the non-production manifest file are used;
 - when building and deploying to the production environment, the remotes defined on the production manifest file are used.
 
+> **Note**
+>
+> You can still have the location of the remotes defined per environment without using a manifest file. You can implement the `fileReplacement` strategy and use environment files and environment variables in your code to achieve the same.
+>
+
 ## Webpack module federation
 
 The setup of webpack module federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of webpack module federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
@@ -95,4 +101,6 @@ Also, read the official docs at:
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
 - [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)
 
+## Learn more
 
+This example is based on [Dynamic Module Federation with Angular](https://www.angulararchitects.io/blog/dynamic-module-federation-with-angular/). The article goes on to show a way to extend the information on the manifest file and dynamically create the Angular routes from it.
