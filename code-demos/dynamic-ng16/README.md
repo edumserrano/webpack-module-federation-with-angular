@@ -28,7 +28,7 @@ Both apps are very simple and consist mainly of a bit of text inside a styled `d
 
 ## MFE1 app
 
-The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/dynamic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), which was created to represent the micro front that we want to expose via webpack module federation.
+The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/dynamic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), which was created to represent the micro frontend that we want to expose via webpack module federation.
 
 The `MyFeatureModule` Angular module contains a route that loads the [MyComponent](/code-demos/dynamic-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent` Angular component.
 e mfe1 app to load the `MyComponent` Angular component.
