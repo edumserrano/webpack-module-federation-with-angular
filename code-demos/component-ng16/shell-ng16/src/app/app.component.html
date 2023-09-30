@@ -1,22 +1,23 @@
 <div class="card">
   Shell running Angular {{ version }}
   <p>
-    <button type="button" (click)="RemoveComponent()">remove MyComponent</button>
+    <button type="button" (click)="RemoveComponent()">
+      Remove MyComponent
+    </button>
   </p>
   <p>
-    <button type="button" (click)="loadV1()">load MyComponent v1</button>
+    <button type="button" (click)="loadV1()">Load MyComponent v1</button>
   </p>
   <p>
-    <button type="button" (click)="loadV2()">load MyComponent v2</button>
+    <button type="button" (click)="loadV2()">Load MyComponent v2</button>
   </p>
   <p>
-    <button type="button" (click)="loadV3()">load MyComponent v3</button>
+    <button type="button" (click)="loadV3()">Load MyComponent v3</button>
   </p>
   <p>
-    <button type="button" (click)="loadV4()">load MyComponent v4</button>
+    <button type="button" (click)="loadV4()">Load MyComponent v4</button>
   </p>
   <div>
-    MyComponent remotely loaded from mfe1 app will show below
     <ng-container #mfe></ng-container>
   </div>
 </div>

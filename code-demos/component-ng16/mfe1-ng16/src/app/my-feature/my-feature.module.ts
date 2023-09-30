@@ -14,7 +14,7 @@ const routes: Routes = [
   declarations: [MyComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes), // see https://angular.io/guide/lazy-loading-ngmodules#forroot-and-forchild
   ],
 })
 export class MyFeatureModule {

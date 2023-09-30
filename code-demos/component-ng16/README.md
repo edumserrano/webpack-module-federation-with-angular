@@ -3,47 +3,72 @@
 - [Description](#description)
 - [How to run](#how-to-run)
 - [MFE1 app](#mfe1-app)
+  - [Exposed webpack module](#exposed-webpack-module)
+  - [Dev platform](#dev-platform)
 - [Shell app](#shell-app)
+  - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
 - [Webpack module federation](#webpack-module-federation)
 
 ## Description
 
-This shows an example of how to setup webpack module federation using Angular 16 where the remote webpack module is loaded dynamically instead of being declared in the shell's webpack configuration. 
+This example shows how to setup webpack module federation where the shell dynamically instantiates an Angular component and adds it to the DOM. It also shows how to pass inputs to the Angular component.
 
-Furthermore, this example does NOT use Angular routing to remotely load the Angular component. In this example, the shell app shows 4 different ways to instantiate an Angular component from a remote webpack module and it also shows how to pass inputs to the component.
-
-This project consists of two Angular 16 apps:
-- shell-ng16: this app is used as the shell and is able to load a component from the mfe1-ng16 app.
-- mfe1-ng16: this app represents a micro frontend that contains an Angular component that is consumed by the shell app.
+The remote webpack module contains an Angular component which the shell dynamically loads without using Angular routing. It shows 4 different ways to load the component.  
 
 ## How to run
 
 1) Go to `/code-demos/component-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
 2) Go to `/code-demos/component-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
 
-To see the Angular component from the mfe1 app loaded into the shell go to the shell's URL and click on any of the `load MyComponent` buttons. 
+To see the Angular component from the mfe1 app loaded into the shell go to the shell's URL and click on any of the `Load MyComponent ...` buttons. 
 
 Both apps are very simple and consist mainly of a bit of text inside a styled `div` which indicates if it's part of the shell or the mfe1 app. The shell renders in a red coloured `div` whilst the mfe1 app renders in a blue coloured `div`. In addition both apps display the version of Angular being used.
 
 ## MFE1 app
 
-The mfe1 app contains three Angular modules:
-- the default [AppModule](/code-demos/component-ng16/mfe1-ng16/src/app/app.module.ts) created as part of doing `ng new`.
-- the default [AppRoutingModule](/code-demos/component-ng16/mfe1-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
-- a feature module named [MyFeatureModule](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) where the Angular component we want to remotely instantiate is declared.
+The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), where the [MyComponent](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component component is declared. This component represents the micro frontend that we want to expose via webpack module federation.
 
-The `MyFeatureModule` Angular module contains a route that loads the [MyComponent](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component on `/my-component`. However, note that this is only used for local development of the mfe1 app. When integrating into the shell app, the shell will dynamically load the component and does NOT rely on any routes from the remote.
+The `MyFeatureModule` Angular module contains a route that loads the [MyComponent](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent` Angular component.
+
+### Exposed webpack module
+
+On the [webpack configuration file for mfe1 app](./mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
+
+```
+exposes: {
+  "./my-feature-module": "./src/app/my-feature/my-feature.module.ts",
+  "./my-component": "./src/app/my-feature/my-component/my-component.component.ts",
+},
+```
+
+The above defines two webpack modules:
+1) one named `my-feature-module` and that is mapped to the [./src/app/my-feature/my-feature.module.ts](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) file, which is where the `MyFeatureModule` Angular module is defined. 
+2) one named `my-component` and that is mapped to the [./src/app/my-feature/my-component/my-component.component.ts](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) file, which is where the `MyFeatureModule` Angular module is defined. 
+
+This example is exposing two webpack modules to show different ways of loading the `MyComponent` Angular component on the shell.
+
+### Dev platform
+
+When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the `MyFeatureModule` Angular feature module or the `MyComponent` Angular component are. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `NyComponent` Angular component.
 
 ## Shell app
 
-The shell app is able to consume the Angular module exposed by the mfe1 app and display it. It consists of a single Angular module:
-- the default [AppModule](/code-demos/component-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
-
-The shell app shows 4 different ways to instantiate an Angular component from a remote webpack module. Each version has step-by-step comments in the code to help understand how the component is dynamically loaded by the shell.
+The shell app is an Angular 16 app that dynamically instantiates an Angular Component and adds it to the DOM. the Angular module exposed by the mfe1 app. You can test this by clicking on any of the `Load MyComponent ...` buttons. All of the load buttons produce the same end result through slighlty different code.
 
 > **Note**
 >
-> This is an example app and though you can mix the approaches to dynamically load an Angular component from a remote, you would either choose one of the presented approaches or implement a variation.
+> The different versions are just to show some of the possible ways to dynamically load an Angular component without using Angular routing. None of them is significantly better than the other, you should choose the one that works best for you or implement your own variation.
+> 
+
+### How the remote is loaded into the shell
+
+The load buttons will:
+
+1) load the remote webpack module from the mfe1 app using the `loadRemoteModule` function from the `@angular-architects/module-federation` npm package. Version 1, Version 2 and Version 3 will load the exposed Angular module whilst Version 4 will load the exposed Angular component.
+2) the versions that load the exposed Angular module use different ways to instantiate the Angular module and then instantiate and attach to the DOM the `MyComponent` Angular component.
+3) the version that loads the exposed Angular component instantiates and attach to the DOM the `MyComponent` Angular component without having to create an Angular Module.
+
+The code contains detailed comments to explain each step on all four versions.
 
 ## Webpack module federation
 
