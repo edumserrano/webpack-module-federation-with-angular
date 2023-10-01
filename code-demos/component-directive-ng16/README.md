@@ -60,6 +60,8 @@ The shell app is an Angular 16 app that dynamically instantiates an Angular comp
 
 In addition to remotely loading the Angular component, the `LoadRemoteComponentDirective` Angular directive will also trigger an event/output when the component has been loaded into the shell. You could extend this example and also add an output for when the component fails to load for any reason. With these kind of outputs you could then add loading indicators to the shell as well as information messages if the components fail to load. 
 
+Lastly, at [app.component.ts](/code-demos/component-directive-ng16/shell-ng16/src/app/app.component.ts), the shell app declares the inputs and outputs to use with the remotely loaded component. Click on the `Send message` button from the remotely loaded component and see the message produced by that component be displayed on the shell.
+
 > **Note**
 >
 > There are many ways to dynamically instantiate an Angular component, this example just shows one possible way. It is similar to the `loadV4` method at [/code-demos/component-ng16/shell-ng16/src/app/app.component.ts](../component-ng16/shell-ng16/src/app/app.component.ts) from the [component-ng16](../component-ng16/README.md) example, as well as the approach shown in the [component-standalone-ng16](../component-standalone-ng16/README.md).
