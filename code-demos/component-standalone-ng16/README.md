@@ -94,9 +94,9 @@ This way also sets the component input. See the line with `inputText: 'Hello!'` 
 The `loadMyStandalone` at [app.component.ts](/code-demos/component-standalone-ng16/shell-ng16/src/app/app.component.ts):
 
 1) loads the remote webpack module from the mfe1 app using the `loadRemoteModule` function from the `@angular-architects/module-federation` npm package. 
-2) create an instance of the component and attach it to the DOM using the `ViewContainerRef.createComponent` method.
-3) use the `ComponentRef.setInput` method to set the inputs of the component.
-4) use the `ComponentRef.instance` object to subscribe to the outputs of the component.
+2) creates an instance of the component and attach it to the DOM using the `ViewContainerRef.createComponent` method.
+3) uses the `ComponentRef.setInput` method to set the inputs of the component.
+4) uses the `ComponentRef.instance` object to subscribe to the outputs of the component.
 
 ## Webpack module federation
 
