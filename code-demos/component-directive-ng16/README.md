@@ -23,7 +23,7 @@ The shell app is rendered in a red colored background and the remotely loaded mf
 1) Go to `/code-demos/component-directive-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
 2) Go to `/code-demos/component-directive-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
 
-The Angular directive will load the Angular component from the mfe1 app on page.
+The Angular directive will load the Angular component from the mfe1 app on page load.
 
 ## MFE1 app
 
