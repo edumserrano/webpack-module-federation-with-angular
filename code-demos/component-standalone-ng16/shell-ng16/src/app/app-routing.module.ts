@@ -15,37 +15,20 @@ const routes: Routes = [
         .catch((err) =>
           console.error('Error lazy loading my-standalone-component', err)
         ),
-  },
-  {
-    path: 'another-standalone-component',
-    loadComponent: () =>
-      loadRemoteModule({
-        type: 'module',
-        remoteEntry: 'http://localhost:4201/remoteEntry.js',
-        exposedModule: './another-standalone-component',
-      })
-        .then((m) => m.AnotherStandaloneComponent)
-        .catch((err) =>
-          console.error('Error lazy loading another-standalone-component', err)
-        ),
-  },
-  {
-    path: 'standalone',
-    loadChildren: () =>
-      loadRemoteModule({
-        type: 'module',
-        remoteEntry: 'http://localhost:4201/remoteEntry.js',
-        exposedModule: './standalone-routes',
-      })
-        .then((m) => m.STANDALONE_COMPONENTS_ROUTES)
-        .catch((err) =>
-          console.error('Error lazy loading standalone-routes', err)
-        ),
+    data: {
+      // This works as a way to pass input to the component because the bindToComponentInputs opton is set to true below
+      // For more info see:
+      // - https://angular.io/api/router/ExtraOptions
+      // - https://indepth.dev/posts/1519/router-data-as-components-inputs-in-angular-v16
+      // - https://www.freecodecamp.org/news/use-input-for-angular-route-parameters/
+      // - https://itnext.io/bind-route-info-to-component-inputs-new-router-feature-1d747e559dc4
+      inputText: 'Hello!',
+    },
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

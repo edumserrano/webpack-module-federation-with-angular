@@ -5,6 +5,7 @@ import {
 import {
   Component,
   ComponentRef,
+  EventEmitter,
   VERSION,
   ViewChild,
   ViewContainerRef,
@@ -16,18 +17,15 @@ import {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-
   @ViewChild('mfe', { read: ViewContainerRef, static: true })
   private readonly _viewContainerRef?: ViewContainerRef;
 
   public readonly version: string = VERSION.full;
 
-  public RemoveComponent() : void {
-    if (!this._viewContainerRef) {
-      return;
-    }
+  public messageFromComponent: string = "";
 
-    this._viewContainerRef.clear();
+  public RemoveComponent(): void {
+    this._viewContainerRef?.clear();
   }
 
   public async loadMyStandalone(): Promise<void> {
@@ -35,6 +33,7 @@ export class AppComponent {
       return;
     }
 
+    // load the component
     this._viewContainerRef.clear();
     const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
       type: 'module',
@@ -42,21 +41,24 @@ export class AppComponent {
       remoteEntry: 'http://localhost:4201/remoteEntry.js',
     };
     const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
-    const componentRef: ComponentRef<unknown> = this._viewContainerRef.createComponent(webpackModule.MyStandaloneComponent);
+    const componentRef: ComponentRef<any> = this._viewContainerRef.createComponent(webpackModule.MyStandaloneComponent);
+
+    // set component input and subscribe to component outputs
+    // componentRef.instance.inputText = "Hello!"; // this also works but for inputs the setInput method shown in the line below is the preferred way
+    componentRef.setInput("inputText", "Hello!");
+    (componentRef.instance.loadedEvent as EventEmitter<string>).subscribe(x=>{
+      this.onComponentLoaded(x);
+    });
+    (componentRef.instance.destroyedEvent as EventEmitter<string>).subscribe(x=>{
+      this.onComponentDestroyed(x);
+    });
   }
 
-  public async loadAnotherStandalone(): Promise<void> {
-    if (!this._viewContainerRef) {
-      return;
-    }
+  private onComponentLoaded(message: string) {
+    this.messageFromComponent = message;
+  }
 
-    this._viewContainerRef.clear();
-    const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
-      type: 'module',
-      exposedModule: './another-standalone-component',
-      remoteEntry: 'http://localhost:4201/remoteEntry.js',
-    };
-    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
-    const componentRef: ComponentRef<unknown> = this._viewContainerRef.createComponent(webpackModule.AnotherStandaloneComponent);
+  private onComponentDestroyed(message: string) {
+    this.messageFromComponent = message;
   }
 }

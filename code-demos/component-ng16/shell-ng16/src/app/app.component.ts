@@ -273,7 +273,7 @@ export class AppComponent {
     const ngModule = createNgModule(webpackModule.MyFeatureModule, this._injector);
 
     // Third, we use the factory method that is on the remote Angular module to instantiate the component
-    const componentRef: ComponentRef<unknown> = (ngModule as any).instance.getEntryComponent();
+    const componentRef: ComponentRef<any> = (ngModule as any).instance.getEntryComponent();
 
     // Lastly, we insert the component on the DOM using the ViewContainerRef
     this._viewContainerRef.insert(componentRef.hostView);
@@ -335,7 +335,7 @@ export class AppComponent {
     // If you check /component-ng16/mfe1-ng16/webpack.config.js, you can see that './my-component' maps
     // to the './src/app/my-feature/my-component/my-component.component.ts' file, which contains an Angular component
     // named MyComponent.
-    const componentRef: ComponentRef<unknown> = this._viewContainerRef.createComponent(webpackModule.MyComponent);
+    const componentRef: ComponentRef<any> = this._viewContainerRef.createComponent(webpackModule.MyComponent);
     componentRef.setInput('inputText','loaded v4'); // optional is case you want to set inputs
 
     // The 'setInput' method is the recommended way to set the input to dinamically created components since Angular 14.

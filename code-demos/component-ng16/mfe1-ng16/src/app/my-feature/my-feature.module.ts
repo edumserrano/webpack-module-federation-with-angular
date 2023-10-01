@@ -21,8 +21,14 @@ export class MyFeatureModule {
 
   public constructor(private readonly _environmentInjector : EnvironmentInjector) { }
 
+  // this is used by one of the 4 methods that the shell uses to dynamically
+  // instantiate the MyComponent Angular component from this mfe1 app.
+  // See the `loadV2` method at /code-demos/component-ng16/shell-ng16/src/app/app.component.ts
   public static readonly entryComponentType: typeof MyComponent = MyComponent;
 
+  // this is used by one of the 4 methods that the shell uses to dynamically
+  // instantiate the MyComponent Angular component from this mfe1 app.
+  // See the `loadV3` method at /code-demos/component-ng16/shell-ng16/src/app/app.component.ts
   public getEntryComponent() : ComponentRef<MyComponent>
   {
     const createComponentOptions = {

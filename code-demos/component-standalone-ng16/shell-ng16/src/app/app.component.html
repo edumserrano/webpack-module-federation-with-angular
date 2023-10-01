@@ -5,47 +5,34 @@
   </p>
   <p>
     <a routerLink="/my-standalone-component"
-      >load MyStandaloneComponent from mfe1 using Angular routing v1</a
+      >Load Angular standalone component named MyStandaloneComponent from
+      mfe1</a
     >
   </p>
-  <p>
-    <a routerLink="/another-standalone-component"
-      >load AnotherStandaloneComponent from mfe1 using Angular routing v1</a
-    >
-  </p>
-  <p>
-    <a routerLink="/standalone/my"
-      >load MyStandaloneComponent from mfe1 using Angular routing v2</a
-    >
-  </p>
-  <p>
-    <a routerLink="/standalone/another"
-      >load AnotherStandaloneComponent from mfe1 using Angular routing v2</a
-    >
-  </p>
-  <div>
-    standalone component remotely loaded from mfe1 app using Angular routing
-    will show below
-    <router-outlet></router-outlet>
-  </div>
-  <p>
-    <button type="button" (click)="RemoveComponent()">
-      remove dynamically loaded standalone component
-    </button>
-  </p>
+  <hr />
+  Standalone Angular component remotely loaded from mfe1 app using Angular
+  routing will show here
+  <router-outlet></router-outlet>
+  <hr />
   <p>
     <button type="button" (click)="loadMyStandalone()">
-      dynamically load MyStandaloneComponent
+      Dynamically load Angular standalone component named MyStandaloneComponent
+      from mfe1
     </button>
   </p>
   <p>
-    <button type="button" (click)="loadAnotherStandalone()">
-      dynamically load AnotherStandaloneComponent
+    <button type="button" (click)="RemoveComponent()">
+      Remove dynamically loaded Angular standalone component
     </button>
   </p>
-  <div>
-    standalone component remotely loaded from mfe1 app using dynamic component
-    loading will show below
-    <ng-container #mfe></ng-container>
-  </div>
+  <hr />
+  Standalone Angular component remotely loaded from mfe1 app using dynamic
+  component instantiaton will show here
+  <ng-container #mfe></ng-container>
+  <hr />
+  Output messages received by the shell from the Standalone Angular component
+  remotely loaded from mfe1 app using dynamic component instantiaton will show
+  here
+  <p>{{ messageFromComponent }}</p>
+  <hr />
 </div>

@@ -13,7 +13,7 @@
 
 This example shows how to setup webpack module federation where the shell dynamically instantiates an Angular component and adds it to the DOM. It also shows how to pass inputs to the Angular component.
 
-The remote webpack module contains an Angular component which the shell dynamically loads without using Angular routing. It shows 4 different ways to load the component.  
+The remote webpack module contains an Angular component which the shell dynamically loads without using Angular routing. It shows 4 different ways to load the component.
 
 ## How to run
 
@@ -53,7 +53,7 @@ When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to 
 
 ## Shell app
 
-The shell app is an Angular 16 app that dynamically instantiates an Angular Component and adds it to the DOM. the Angular module exposed by the mfe1 app. You can test this by clicking on any of the `Load MyComponent ...` buttons. All of the load buttons produce the same end result through slighlty different code.
+The shell app is an Angular 16 app that dynamically instantiates an Angular component exposed by the mfe1 app and adds it to the DOM. You can test this by clicking on any of the `Load MyComponent ...` buttons. All of the load buttons produce the same end result through slighlty different code.
 
 > **Note**
 >

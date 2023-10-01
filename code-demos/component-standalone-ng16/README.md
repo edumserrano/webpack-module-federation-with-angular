@@ -3,61 +3,76 @@
 - [Description](#description)
 - [How to run](#how-to-run)
 - [MFE1 app](#mfe1-app)
+  - [Exposed webpack module](#exposed-webpack-module)
+  - [Dev platform](#dev-platform)
 - [Shell app](#shell-app)
+  - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
+    - [Using Angular routing](#using-angular-routing)
+    - [Using Angular dynamic component loading](#using-angular-dynamic-component-loading)
 - [Webpack module federation](#webpack-module-federation)
-- [Angular standalone components](#angular-standalone-components)
+- [Learn more](#learn-more)
 
 ## Description
 
-This shows an example of how to setup webpack module federation where the shell loads standalone Angular components from a remote using Angular routing or by dynamically loading the component. This also shows how a remote can expose Angular routes and how to consume them in the shell app. Both shell and remote app use Angular 16.
+This example shows how to setup webpack module federation where the shell loads an Angular standalone component by using Angular routing and by dynamically instantiates an Angular standalone component and adding it to the DOM.
 
-In this example, the shell app either uses Angular routing or dynamically component loading to load the remote standalone component. Furthermore, this example also shows how a remote can expose Angular routes and how the shell can consume them.
+This example also shows how to pass inputs to the Angular component and subscribe to its outputs.
 
-This project consists of two Angular 16 apps:
-- shell-ng16: this app is used as the shell and is able to load the standalone components from the mfe1-ng16 app.
-- mfe1-ng16: this app represents a micro frontend that contains two Angular standalone components that are consumed by the shell app.
+The remote webpack module contains an Angular standalone component.
 
 ## How to run
 
 1) Go to `/code-demos/component-standalone-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
 2) Go to `/code-demos/component-standalone-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
 
-To see the standalone components from the mfe1 app loaded into the shell go to the shell's URL and click on any of the load links or buttons. 
+To see the Angular standalone component from the mfe1 app loaded into the shell go to the shell's URL and click the `Load Angular standalone component named MyStandaloneComponent from mfe1` link to load the component using routing or use the `Dynamically load Angular standalone component named MyStandaloneComponent from mfe1` button to load the component by dynamically instantiating it.
 
-Both apps are very simple and consist mainly of a bit of text inside a styled `div` which indicates if it's part of the shell or the mfe1 app. The shell renders in a red coloured `div` whilst the standalone components from the mfe1 app render in a blue or green coloured `div`. In addition both apps display the version of Angular being used.
+Both apps are very simple and consist mainly of a bit of text inside a styled `div` which indicates if it's part of the shell or the mfe1 app. The shell renders in a red coloured `div` whilst the mfe1 app renders in a blue coloured `div`. In addition both apps display the version of Angular being used.
 
 ## MFE1 app
 
-The mfe1 app contains two Angular modules:
-- the default [AppModule](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/app.module.ts) created as part of doing `ng new`.
-- the default [AppRoutingModule](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/app-routing.module.ts) created as part of doing `ng new`.
+The mfe1 app is an Angular 16 app that contains an Angular standalone component named [MyStandaloneComponent](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts), which represents the micro frontend that we want to expose via webpack module federation.
 
-It also contains two standalone Angular components, one named `MyStandaloneComponent` and the other named `AnotherStandaloneComponent`, and a set of routes defined at [/code-demos/component-standalone-ng16/mfe1-ng16/src/app/standalone-component.route.ts](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/standalone-component.route.ts).
+The [AppRoutingModule](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/app-routing.module.ts) Angular module contains a route that loads the `MyStandaloneComponent` on `/my-standalone-component`. You can use the `Go to my-standalone-component` link on the mfe1 app to load the `MyStandaloneComponent` Angular component.
 
-The `AppRoutingModule` Angular module contains a set of routes that load the two standalone components:
-- `/my-standalone-component`: loads the `MyStandaloneComponent`.
-- `/another-standalone-component`: loads the `AnotherStandaloneComponent`.
-- `/standalone`: loads the routes defined at [standalone-component.route.ts](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/standalone-component.route.ts). So:
-  - `/standalone/my`: loads the `MyStandaloneComponent`.
-  - `/standalone/another`: loads the `AnotherStandaloneComponent`.
+### Exposed webpack module
 
-The Angular modules defined by the mfe1 app are only used for development purposes when running the mfe1 app locally. The shell does not use any of the modules. Look at the [webpack configuration](/code-demos/component-standalone-ng16/mfe1-ng16/webpack.config.js) file for the mfe1 app and notice that it exposes 3 webpack modules:
-- `./my-standalone-component` which maps to the `MyStandaloneComponent` Angular standalone component.
-- `./another-standalone-component` which maps to the `AnotherStandaloneComponent` Angular standalone component.
-- `./standalone-routes` which maps to an array of Angular routes defined at [standalone-component.route.ts](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/standalone-component.route.ts). These routes are able to load both the `MyStandaloneComponent` and the `AnotherStandaloneComponent` Angular standalone components.
+On the [webpack configuration file for mfe1 app](./mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
+
+```
+exposes: {
+  "./my-standalone-component": "./src/app/my-standalone-component/my-standalone-component.component.ts",
+},
+```
+
+The above defines a webpack module that is named `my-standalone-component` and that is mapped to the [./src/app/my-standalone-component/my-standalone-component.component.ts](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts) file, which is where the `MyStandaloneComponent` Angular standalone component is defined. 
+
+### Dev platform
+
+When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the `MyStandaloneComponent` Angular standalone component is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` Angular component.
+
+> **Note**
+>
+> The `MyStandaloneComponent` Angular component has some inputs and outputs which aren't used on the mfe1 app. Only the shell is setting the input and consuming the output events.
+>
+> We could have added more code to the mfe1 app that would exercise the inputs and outputs and without causing any side effect to the `MyStandaloneComponent` when exported. However, this wasn't done with the sole reason of keeping the mfe1 app as simple as possible.
+>
 
 ## Shell app
 
-The shell app is able to consume the Angular standalone components exposed by the mfe1 app and display them. It consists of a single Angular module:
-- the default [AppModule](/code-demos/component-standalone-ng16/shell-ng16/src/app/app.module.ts) created as part of doing `ng new`.
+The shell app is an Angular 16 app that dynamically instantiates an Angular standalone component exposed by the mfe1 app. You can test this in two ways:
 
-The shell app shows several ways to load a standalone Angular component from a remote webpack module:
-- The "load X from mfe1..." links use Angular routing to load either the `MyStandaloneComponent` or the `AnotherStandaloneComponent`. The v1 load links load the components by accessing the remotely exposed webpack module that contains the desired component. The v2 load links load the components by accessing the remotely exposed webpack module that contains a set of Angular routes that them load the components.
-- The "dynamically load X" buttons load the standalone components in similar way as the v1 load links but instead of using Angular routing to do it, it uses Angular dynamic component loading.
+- via the `Load Angular standalone component named MyStandaloneComponent from mfe1` link which will load the component using Angular routing.
+- via the `Dynamically load Angular standalone component named MyStandaloneComponent from mfe1` button which will dinamically instantiate the component and add it to the DOM.
 
-The shell is implemented to mimic the same routes as the mfe1 app but that is NOT necessary. The shell can decide to display the standalone components in different routes, except when importing from the exposed Angular routes. In this case, the root shell route can be chosen but the imported child routes cannot be changed.
+> **Note**
+>
+> There are many ways to dinamically instantiate an Angular component, this example just shows one possible way. 
+> 
+> Also note that the approach using Angular dynamic component loading is the same as the one used by the `loadV4` method shown in the [component-ng16](../component-ng16/README.md) example. For more information inspect that example, and all the comments on the `loadV4` method at [/code-demos/component-ng16/shell-ng16/src/app/app.component.ts](../component-ng16/shell-ng16/src/app/app.component.ts).
+> 
 
-Lastly, note that the approach used to load the components using Angular dynamic component loading is the same as the one used by the `loadV4` method shown in the [component-ng16](/code-demos/component-ng16/README.md) example. For more information inspect that example, and all the comments on the `loadV4` method at [/code-demos/component-ng16/shell-ng16/src/app/app.component.ts](/code-demos/component-ng16/shell-ng16/src/app/app.component.ts).
+### How the remote is loaded into the shell
 
 > **Note**
 >
@@ -66,9 +81,22 @@ Lastly, note that the approach used to load the components using Angular dynamic
 > Furthermore, you can also use the Angular directive aproach shown in the [component-directive-ng16](../component-directive-ng16/README.md) example to load Angular standalone components.
 >
 
-> **Note**
->
-> This is an example app and though you can mix the approaches to load an Angular standalone component from a remote, you would either choose one of the presented approaches or implement a variation.
+#### Using Angular routing
+
+The `/my-standalone-component` route added to the [AppRoutingModule](/code-demos/component-standalone-ng16/shell-ng16/src/app/app-routing.module.ts) [lazy loads](https://angular.io/guide/lazy-loading-ngmodules) the `MyStandaloneComponent` Angular standalone component from the mfe1 app. This route uses the `loadRemoteModule` function to load the webpack module. 
+
+Once the webpack module is loaded from the remote we return the exposed Angular standalone component from the mfe1 app named `MyStandaloneComponent` to the `loadComponent` function, which then loads the Angular component into the DOM.
+
+This way also sets the component input. See the line with `inputText: 'Hello!'` at [app-routing.module.ts](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/app-routing.module.ts).
+
+#### Using Angular dynamic component loading
+
+The `loadMyStandalone` at [app.component.ts](/code-demos/component-standalone-ng16/shell-ng16/src/app/app.component.ts):
+
+1) loads the remote webpack module from the mfe1 app using the `loadRemoteModule` function from the `@angular-architects/module-federation` npm package. 
+2) create an instance of the component and attach it to the DOM using the `ViewContainerRef.createComponent` method.
+3) use the `ComponentRef.setInput` method to set the inputs of the component.
+4) use the `ComponentRef.instance` object to subscribe to the outputs of the component.
 
 ## Webpack module federation
 
@@ -78,10 +106,11 @@ Also, read the official docs at:
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
 - [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)
 
-## Angular standalone components
+## Learn more
 
-For more information about Angular standalone components see:
+For more information about Angular standalone components and dynamic component loading see:
 
 - [Getting started with standalone components](https://angular.io/guide/standalone-components)
 - [Migrate an existing Angular project to standalone](https://angular.io/guide/standalone-migration)
+- [Dynamic component loader](https://angular.io/guide/dynamic-component-loader)
 - [Why Migrate to Angular Standalone Components](https://medium.com/angular-gems/angular-standalone-components-590b3076d48a)

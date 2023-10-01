@@ -62,7 +62,7 @@ export class LoadRemoteComponentDirective implements AfterContentInit {
 
     // Second, we use the ViewContainerRef to create an instance of the Angular component
     // and add it to the DOM where this directive is applied to.
-    const componentRef: ComponentRef<unknown> = this._viewContainerRef.createComponent(webpackModule[this.componentName]);
+    const componentRef: ComponentRef<any> = this._viewContainerRef.createComponent(webpackModule[this.componentName]);
 
     // Third, we set inputs
     for (const inputPropertyName in this.inputData) {
