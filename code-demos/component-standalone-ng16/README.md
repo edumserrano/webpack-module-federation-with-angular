@@ -108,9 +108,10 @@ Also, read the official docs at:
 
 ## Learn more
 
-For more information about Angular standalone components and dynamic component loading see:
+For more information see:
 
 - [Getting started with standalone components](https://angular.io/guide/standalone-components)
 - [Migrate an existing Angular project to standalone](https://angular.io/guide/standalone-migration)
 - [Dynamic component loader](https://angular.io/guide/dynamic-component-loader)
 - [Why Migrate to Angular Standalone Components](https://medium.com/angular-gems/angular-standalone-components-590b3076d48a)
+- [Sharing data between child and parent directives and components](https://angular.io/guide/inputs-outputs): this is useful to understand Angular inputs and outputs.

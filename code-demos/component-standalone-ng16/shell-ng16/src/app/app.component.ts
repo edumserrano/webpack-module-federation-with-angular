@@ -2,10 +2,12 @@ import {
   LoadRemoteModuleOptions,
   loadRemoteModule,
 } from '@angular-architects/module-federation';
+import { DOCUMENT } from '@angular/common';
 import {
   Component,
   ComponentRef,
   EventEmitter,
+  Inject,
   VERSION,
   ViewChild,
   ViewContainerRef,
@@ -23,6 +25,14 @@ export class AppComponent {
   public readonly version: string = VERSION.full;
 
   public messageFromComponent: string = "";
+
+  // The correct way to interact with the document object in Angular is to use the DOCUMENT
+  // injection token https://angular.io/api/common/DOCUMENT
+  public constructor(@Inject(DOCUMENT) private readonly _document: Document) { }
+
+  public reset(): void {
+    this._document.location.href = "/";
+  }
 
   public RemoveComponent(): void {
     this._viewContainerRef?.clear();
