@@ -29,7 +29,7 @@ export class MyStandaloneComponent implements OnDestroy, OnInit {
   // See https://angular.io/errors/NG0100.
   //
   // This error happens because of three things:
-  // 1) the shell will dinamically instante and add this component to the DOM which triggers Angular's change detection cycle.
+  // 1) the shell will dynamically instante and add this component to the DOM which triggers Angular's change detection cycle.
   // 2) the loadedEvent is triggered from the OnInit lifecycle hook of this component
   // 3) the subscribe handler `onComponentLoaded` on the shell tries to update the `messageFromComponent` which is binded
   // to the view (app.component.html on the shell). This together with the the previous two steps, means that

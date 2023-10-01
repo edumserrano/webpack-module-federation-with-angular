@@ -22,7 +22,7 @@ const routes: Routes = [
       // - https://indepth.dev/posts/1519/router-data-as-components-inputs-in-angular-v16
       // - https://www.freecodecamp.org/news/use-input-for-angular-route-parameters/
       // - https://itnext.io/bind-route-info-to-component-inputs-new-router-feature-1d747e559dc4
-      inputText: 'Hello!',
+      inputText: 'Hello the shell!',
     },
   },
 ];

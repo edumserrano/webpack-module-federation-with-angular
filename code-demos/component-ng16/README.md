@@ -15,18 +15,18 @@ This example shows how to setup webpack module federation where the shell dynami
 
 The remote webpack module contains an Angular component which the shell dynamically loads without using Angular routing. It shows 4 different ways to load the component.
 
+The shell app is rendered in a red colored background and the remotely loaded mfe1 app is rendered in a blue colored background.
+
 ## How to run
 
 1) Go to `/code-demos/component-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
 2) Go to `/code-demos/component-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
 
-To see the Angular component from the mfe1 app loaded into the shell go to the shell's URL and click on any of the `Load MyComponent ...` buttons. 
-
-Both apps are very simple and consist mainly of a bit of text inside a styled `div` which indicates if it's part of the shell or the mfe1 app. The shell renders in a red coloured `div` whilst the mfe1 app renders in a blue coloured `div`. In addition both apps display the version of Angular being used.
+To see the Angular component from the mfe1 app loaded into the shell go to the shell's URL and click on any of the `Load MyComponent ...` buttons.
 
 ## MFE1 app
 
-The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), where the [MyComponent](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component component is declared. This component represents the micro frontend that we want to expose via webpack module federation.
+The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), where the [MyComponent](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component is declared. This component represents the micro frontend that we want to expose via webpack module federation.
 
 The `MyFeatureModule` Angular module contains a route that loads the [MyComponent](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent` Angular component.
 
@@ -49,7 +49,7 @@ This example is exposing two webpack modules to show different ways of loading t
 
 ### Dev platform
 
-When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the `MyFeatureModule` Angular feature module or the `MyComponent` Angular component are. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `NyComponent` Angular component.
+When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the `MyFeatureModule` Angular feature module or the `MyComponent` Angular component are. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyComponent` Angular component.
 
 ## Shell app
 

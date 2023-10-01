@@ -1,4 +1,6 @@
-import { Component, VERSION } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, EventEmitter, Inject, VERSION } from '@angular/core';
+import { InputData, OutputData } from './load-remote-component.directive';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +10,25 @@ import { Component, VERSION } from '@angular/core';
 export class AppComponent {
   public readonly version: string = VERSION.full;
   public componentLoaded: boolean = false;
+  public message: string = '';
+
+  public readonly inputData: InputData = {
+    inputText: 'loaded via loadRemoteComponent directive',
+  };
+
+  public readonly outputData: OutputData = {
+    messageSentEvent: (output: EventEmitter<any>) => {
+      output.subscribe((msg: string) => (this.message = msg));
+    },
+  };
+
+  public constructor(@Inject(DOCUMENT) private readonly _document: Document) {}
 
   public componentLoadedHandler(): void {
     this.componentLoaded = true;
   }
 
   public reload(): void {
-    window.location.reload();
+    this._document.location.reload();
   }
 }

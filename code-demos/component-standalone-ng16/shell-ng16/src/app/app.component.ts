@@ -54,8 +54,8 @@ export class AppComponent {
     const componentRef: ComponentRef<any> = this._viewContainerRef.createComponent(webpackModule.MyStandaloneComponent);
 
     // set component input and subscribe to component outputs
-    // componentRef.instance.inputText = "Hello!"; // this also works but for inputs the setInput method shown in the line below is the preferred way
-    componentRef.setInput("inputText", "Hello!");
+    // componentRef.instance.inputText = "Hello from the shell!"; // this also works but for inputs the setInput method shown in the line below is the preferred way
+    componentRef.setInput("inputText", "Hello from the shell!");
     (componentRef.instance.loadedEvent as EventEmitter<string>).subscribe(x=>{
       this.onComponentLoaded(x);
     });

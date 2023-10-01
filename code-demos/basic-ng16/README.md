@@ -13,20 +13,18 @@
 
 ## Description
 
-The most bare-bones possible example of how to setup webpack module federation where the shell lazy loads an Angular module using Angular routing.
-
-This project does NOT make use of the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which is usually used to setup module federation for Angular projects. The main idea is to show the basics for learning purposes.
+The most bare-bones possible example of how to setup webpack module federation where the shell lazy loads an Angular module using Angular routing. This project does NOT make use of the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which is usually used to setup module federation for Angular projects. The main idea is to show the basics for learning purposes.
 
 The remote webpack module exposed by the mfe1 app contains an Angular module which the shell loads using Angular routing.
+
+The shell app is rendered in a red colored background and the remotely loaded mfe1 app is rendered in a blue colored background.
 
 ## How to run
 
 1) Go to `/code-demos/basic-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
 2) Go to `/code-demos/basic-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
 
-To see the mfe1 app loaded into the shell go to the shell's URL and click the `Load Angular module named MyFeatureModule from mfe1` link. 
-
-Both apps are very simple and consist mainly of a bit of text inside a styled `div` which indicates if it's part of the shell or the mfe1 app. The shell renders in a red coloured `div` whilst the mfe1 app renders in a blue coloured `div`. In addition both apps display the version of Angular being used.
+To see the mfe1 app loaded into the shell go to the shell's URL and click the `Load Angular module named MyFeatureModule from mfe1` link.
 
 ## MFE1 app
 

@@ -125,7 +125,7 @@ export class AppComponent {
     const componentRef : ComponentRef<any> = this._viewContainerRef.createComponent(componentFactory);
     componentRef.setInput('inputText','loaded v1'); // optional is case you want to set inputs
 
-    // The 'setInput' method is the recommended way to set the input to dinamically created components since Angular 14.
+    // The 'setInput' method is the recommended way to set the input to dynamically created components since Angular 14.
     // However, you can also set the input by casting componentRef.instance to any and setting the input property like:
     // (componentRef.instance as any).inputText = 'loaded v1';
 
@@ -210,7 +210,7 @@ export class AppComponent {
     const componentRef = this._viewContainerRef.createComponent(componentType, createComponentOptions);
     componentRef.setInput('inputText','loaded v2'); // optional is case you want to set inputs
 
-    // The 'setInput' method is the recommended way to set the input to dinamically created components since Angular 14.
+    // The 'setInput' method is the recommended way to set the input to dynamically created components since Angular 14.
     // However, you can also set the input by casting componentRef.instance to any and setting the input property like:
     // (componentRef.instance as any).inputText = 'loaded v2';
 
@@ -279,7 +279,7 @@ export class AppComponent {
     this._viewContainerRef.insert(componentRef.hostView);
     componentRef.setInput('inputText','loaded v3'); // optional is case you want to set inputs
 
-    // The 'setInput' method is the recommended way to set the input to dinamically created components since Angular 14.
+    // The 'setInput' method is the recommended way to set the input to dynamically created components since Angular 14.
     // However, you can also set the input by casting componentRef.instance to any and setting the input property like:
     // (componentRef.instance as any).inputText = 'loaded v3';
 
@@ -338,7 +338,7 @@ export class AppComponent {
     const componentRef: ComponentRef<any> = this._viewContainerRef.createComponent(webpackModule.MyComponent);
     componentRef.setInput('inputText','loaded v4'); // optional is case you want to set inputs
 
-    // The 'setInput' method is the recommended way to set the input to dinamically created components since Angular 14.
+    // The 'setInput' method is the recommended way to set the input to dynamically created components since Angular 14.
     // However, you can also set the input by casting componentRef.instance to any and setting the input property like:
     // (componentRef.instance as any).inputText = 'loaded v4';
 

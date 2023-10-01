@@ -20,14 +20,14 @@ This example also shows how to pass inputs to the Angular component and subscrib
 
 The remote webpack module contains an Angular standalone component.
 
+The shell app is rendered in a red colored background and the remotely loaded mfe1 app is rendered in a blue colored background.
+
 ## How to run
 
 1) Go to `/code-demos/component-standalone-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
 2) Go to `/code-demos/component-standalone-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
 
 To see the Angular standalone component from the mfe1 app loaded into the shell go to the shell's URL and click the `Load Angular standalone component named MyStandaloneComponent from mfe1` link to load the component using routing or use the `Dynamically load Angular standalone component named MyStandaloneComponent from mfe1` button to load the component by dynamically instantiating it.
-
-Both apps are very simple and consist mainly of a bit of text inside a styled `div` which indicates if it's part of the shell or the mfe1 app. The shell renders in a red coloured `div` whilst the mfe1 app renders in a blue coloured `div`. In addition both apps display the version of Angular being used.
 
 ## MFE1 app
 
@@ -63,11 +63,11 @@ When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to 
 The shell app is an Angular 16 app that dynamically instantiates an Angular standalone component exposed by the mfe1 app. You can test this in two ways:
 
 - via the `Load Angular standalone component named MyStandaloneComponent from mfe1` link which will load the component using Angular routing.
-- via the `Dynamically load Angular standalone component named MyStandaloneComponent from mfe1` button which will dinamically instantiate the component and add it to the DOM.
+- via the `Dynamically load Angular standalone component named MyStandaloneComponent from mfe1` button which will dynamically instantiate the component and add it to the DOM.
 
 > **Note**
 >
-> There are many ways to dinamically instantiate an Angular component, this example just shows one possible way. 
+> There are many ways to dynamically instantiate an Angular component, this example just shows one possible way. 
 > 
 > Also note that the approach using Angular dynamic component loading is the same as the one used by the `loadV4` method shown in the [component-ng16](../component-ng16/README.md) example. For more information inspect that example, and all the comments on the `loadV4` method at [/code-demos/component-ng16/shell-ng16/src/app/app.component.ts](../component-ng16/shell-ng16/src/app/app.component.ts).
 > 
@@ -87,7 +87,7 @@ The `/my-standalone-component` route added to the [AppRoutingModule](/code-demos
 
 Once the webpack module is loaded from the remote we return the exposed Angular standalone component from the mfe1 app named `MyStandaloneComponent` to the `loadComponent` function, which then loads the Angular component into the DOM.
 
-This way also sets the component input. See the line with `inputText: 'Hello!'` at [app-routing.module.ts](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/app-routing.module.ts).
+This way also sets the component input. See the line with `inputText: 'Hello from the shell!'` at [app-routing.module.ts](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/app-routing.module.ts).
 
 #### Using Angular dynamic component loading
 
@@ -112,6 +112,6 @@ For more information see:
 
 - [Getting started with standalone components](https://angular.io/guide/standalone-components)
 - [Migrate an existing Angular project to standalone](https://angular.io/guide/standalone-migration)
-- [Dynamic component loader](https://angular.io/guide/dynamic-component-loader)
+- [Dynamic component loading](https://angular.io/guide/dynamic-component-loader#dynamic-component-loading)
 - [Why Migrate to Angular Standalone Components](https://medium.com/angular-gems/angular-standalone-components-590b3076d48a)
 - [Sharing data between child and parent directives and components](https://angular.io/guide/inputs-outputs): this is useful to understand Angular inputs and outputs.

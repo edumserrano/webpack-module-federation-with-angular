@@ -10,10 +10,10 @@
     remoteEntry="http://localhost:4201/remoteEntry.js"
     exposedModule="./my-component"
     componentName="MyComponent"
-    [inputData]="{
-      inputText1: 'loaded via loadRemoteComponent directive',
-      inputText2: 'this is the second input value'
-    }"
+    [inputData]="inputData"
+    [outputData]="outputData"
     (loaded)="componentLoadedHandler()"
   ></ng-template>
+  <p>Message received by the shell from the component:</p>
+  <p>{{ message }}</p>
 </div>
