@@ -1,27 +1,8 @@
 MFE1 dev platform
-
-<div>
-  <p>
-    <a routerLink="/">Go home</a>
-  </p>
-  <p>
-    <a routerLink="/my-standalone-component">Go to my standalone component</a>
-  </p>
-  component loaded via routing shows below
-  <router-outlet></router-outlet>
-</div>
-
-<div>
-  <p>
-    <button type="button" (click)="mountWebComponentAsync()">
-      mount web component
-    </button>
-  </p>
-  <p>
-    <button type="button" (click)="unmountWebComponentAsync()">
-      unmount web component
-    </button>
-  </p>
-  component loaded via web component shows below
-  <div #webComponentContainer></div>
-</div>
+<p>
+  <a routerLink="/">Go to home page</a>
+</p>
+<p>
+  <a routerLink="/my-standalone-component">Go to /my-standalone-component</a>
+</p>
+<router-outlet></router-outlet>

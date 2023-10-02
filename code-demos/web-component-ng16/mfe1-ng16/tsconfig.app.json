@@ -6,7 +6,6 @@
   },
   "files": [
     "src/main.ts",
-    "src/app/my-standalone-component/my-standalone-component-bootstrap.ts",
   ],
   "include": [
     "src/**/*.d.ts"

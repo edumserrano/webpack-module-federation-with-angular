@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
 
   public readonly version: string = VERSION.full;
 
+  public message: string = "";
+
   public async ngOnInit(): Promise<void> {
     const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
       type: 'module',
@@ -25,5 +27,9 @@ export class AppComponent implements OnInit {
     };
     const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
     await webpackModule.bootstrapMyComponentAsync();
+  };
+
+  public onMessageSent(event: Event): void {
+    this.message = (event as CustomEvent).detail;
   }
 }

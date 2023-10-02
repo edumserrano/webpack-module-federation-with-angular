@@ -1,1 +1,7 @@
-<div class="card">my standalone component running Angular {{ version }}</div>
+<div class="card">
+  My standalone Angular component running Angular {{ version }}
+  <p>
+    <button (click)="sendMessage()">Send message</button>
+  </p>
+  <p>Input value is: {{ inputText }}</p>
+</div>
