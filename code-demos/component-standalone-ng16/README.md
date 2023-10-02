@@ -115,3 +115,4 @@ For more information see:
 - [Dynamic component loading](https://angular.io/guide/dynamic-component-loader#dynamic-component-loading)
 - [Why Migrate to Angular Standalone Components](https://medium.com/angular-gems/angular-standalone-components-590b3076d48a)
 - [Sharing data between child and parent directives and components](https://angular.io/guide/inputs-outputs): this is useful to understand Angular inputs and outputs.
+- [Module Federation with Angular’s Standalone Components](https://www.angulararchitects.io/blog/module-federation-with-angulars-standalone-components/): specifically the section named `Alternative: Dynamic Shell` which also shows a code example similar to this one.

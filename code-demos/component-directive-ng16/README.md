@@ -94,3 +94,4 @@ For more information see:
 
 - [Dynamic component loading](https://angular.io/guide/dynamic-component-loader#dynamic-component-loading)
 - [Angular Directive to load a federated remote module](https://itnext.io/angular-directive-to-load-a-federated-remote-module-512dbc214405): the directive in this code demo was based on the idea from this article.
+- [Module Federation with Angular’s Standalone Components](https://www.angulararchitects.io/blog/module-federation-with-angulars-standalone-components/): specifically the section named `Bonus: Programmatic Loading` which also shows code for how to load a component. The code from this article is similar to the code implemented by the directive in this code demo.
