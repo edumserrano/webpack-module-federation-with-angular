@@ -54,6 +54,11 @@ The above defines a webpack module that is named `standalone-component-as-web-co
 > The Angular component is converted to a Web component using the `createCustomElement` function from `@angular/elements`. For more info see [Angular elements overview](https://angular.io/guide/elements).
 >
 
+> **Note**
+>
+> In the [tsconfig.app.json](../web-component-directive-ng16/mfe1-ng16/tsconfig.app.json) config file we added the `src/app/my-standalone-component/remote-bootstrap.ts` entry to the `files` array to avoid a Typescript compilation error saying `<filename> is missing from the TypeScript compilation. Please make sure it is in your tsconfig via the 'files' or 'include' property`.
+>
+
 ### Dev platform
 
 When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the [remote-bootstrap.ts](/code-demos/web-component-directive-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component-bootstrap.ts) file that executes the `bootstrapMyComponentAsync` function is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` Angular component.
