@@ -18,6 +18,6 @@ export class MyStandaloneComponent {
   public messageSentEvent: EventEmitter<string> = new EventEmitter<string>();
 
   public sendMessage(): void {
-    this.messageSentEvent.emit(`message sent from MyComponent loaded from the mfe1 app at ${new Date()}`);
+    this.messageSentEvent.emit(`message sent from MyStandaloneComponent loaded from the mfe1 app at ${new Date()}`);
   }
 }
