@@ -106,11 +106,11 @@ In this example app, the `ViewEncapsulation` configuration would be applied to t
 For more info see:
 
 - [Angular elements overview](https://angular.io/guide/elements): everything in here is important to read but note that the section `Mapping` explains how the Angular Inputs and Outputs are mapped to custom element properties and custom events.
-- [MDN web docs on Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
-- [Micro Apps with Web Components using Angular Elements](https://www.angulararchitects.io/en/blog/micro-apps-with-web-components-using-angular-elements/)
 - [Export Angular components as Custom Elements with Angular Elements](https://medium.com/vincent-ogloblinsky/export-angular-components-as-custom-elements-with-angular-elements-a2a0bfcd7f8a)
-- [@angular-architects/module-federation-tools](https://www.npmjs.com/package/@angular-architects/module-federation-tools): this package provides helper functions and on this README page it also shows how to use the package to get web components and webpack module federation working.
+- [Learn how Angular Elements transmits Component’s @Outputs outside Angular](https://medium.com/angular-in-depth/how-angular-elements-uses-custom-events-mechanism-to-transmit-components-outputs-outside-angular-7b469386f6e2)
+- [Handling data with Web Components](https://itnext.io/handling-data-with-web-components-9e7e4a452e6e)   
 - [How to use routing in Angular web components](https://medium.com/@timon.grassl/how-to-use-routing-in-angular-web-components-c6a76449cdb)
 - [Getting to Know the createApplication API in Angular](https://netbasal.com/getting-to-know-the-createapplication-api-in-angular-f1c0a2685047)
-- [Handling data with Web Components](https://itnext.io/handling-data-with-web-components-9e7e4a452e6e)
+- [MDN web docs on Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
+- [Micro Apps with Web Components using Angular Elements](https://www.angulararchitects.io/en/blog/micro-apps-with-web-components-using-angular-elements/)
 - [The Best Way To Lazy Load Angular Elements](https://tomastrajan.medium.com/the-best-way-to-lazy-load-angular-elements-97a51a5c2007): this talks about a library named [@angular-extensions/elements](https://angular-extensions.github.io/elements/home) to facilitate loading Angular elements. I haven't tried it and I also don't know if it works well with module federation. Still worth a reading. 
