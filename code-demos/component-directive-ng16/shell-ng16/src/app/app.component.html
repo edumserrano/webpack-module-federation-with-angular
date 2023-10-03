@@ -1,6 +1,6 @@
 <div class="card">
   Shell running Angular {{ version }}
-  <p>
+  <p *ngIf="componentLoaded">
     <button (click)="reload()">Reload</button>
   </p>
   <p *ngIf="!componentLoaded">Loading component from remote...</p>
@@ -14,6 +14,6 @@
     [outputData]="outputData"
     (loaded)="componentLoadedHandler()"
   ></ng-template>
-  <p>Message received by the shell from the component:</p>
-  <p>{{ message }}</p>
+  <p *ngIf="componentLoaded">Message received by the shell from the component:</p>
+  <p *ngIf="componentLoaded">{{ message }}</p>
 </div>
