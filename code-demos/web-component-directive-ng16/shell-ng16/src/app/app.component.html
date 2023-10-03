@@ -1,0 +1,18 @@
+<div class="card">
+  Shell running Angular {{ version }}
+  <p *ngIf="componentLoaded">
+    <button (click)="reload()">Reload</button>
+  </p>
+  <p *ngIf="!componentLoaded">Loading component from remote...</p>
+  <p *ngIf="componentLoaded">MyComponent has been loaded from remote!</p>
+  <my-mfe-element
+    loadRemoteWebComponent
+    exposedModule="./standalone-component-as-web-component"
+    remoteEntry="http://localhost:4201/remoteEntry.js"
+    (loaded)="componentLoadedHandler()"
+    input-text="Hello from shell!"
+    (messageSentEvent)="onMessageSent($event)"
+  ></my-mfe-element>
+  <p *ngIf="componentLoaded">Message received by the shell from the Web component:</p>
+  <p *ngIf="componentLoaded">{{ message }}</p>
+</div>
