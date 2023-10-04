@@ -1,8 +1,8 @@
 import { LoadRemoteModuleOptions, loadRemoteModule } from '@angular-architects/module-federation';
 import { AfterContentInit, ComponentRef, Directive, EventEmitter, Input, Output, ViewContainerRef } from '@angular/core';
 
-export type InputData = { [key: string]: unknown; };
-export type OutputData = { [key: string]: (output: EventEmitter<any>) => void; };
+export type InputData = { [key: string]: unknown };
+export type OutputData = { [key: string]: (output: EventEmitter<any>) => void };
 
 @Directive({
   selector: '[loadRemoteComponent]',

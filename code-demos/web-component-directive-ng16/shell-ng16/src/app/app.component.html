@@ -4,7 +4,7 @@
     <button (click)="reload()">Reload</button>
   </p>
   <p *ngIf="!componentLoaded">Loading component from remote...</p>
-  <p *ngIf="componentLoaded">MyComponent has been loaded from remote!</p>
+  <p *ngIf="componentLoaded">Web component has been loaded from remote!</p>
   <my-mfe-element
     loadRemoteWebComponent
     exposedModule="./standalone-component-as-web-component"
