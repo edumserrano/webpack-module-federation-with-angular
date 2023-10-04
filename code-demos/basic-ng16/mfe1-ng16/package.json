@@ -2,11 +2,7 @@
   "name": "mfe1-ng16",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start": "ng serve"
   },
   "private": true,
   "dependencies": {
