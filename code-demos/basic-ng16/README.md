@@ -100,7 +100,7 @@ Using the Shell's Angular configuration file as an example, what was changed was
 "builder": "ngx-build-plus:browser",
 ```
 
-- Extra default options were added for `ng build` at `projects.shell-ng16.architect.build`: 
+- Extra default options were added for `ng build` at `projects.shell-ng16.architect.build.options`: 
 ```json
 "extraWebpackConfig": "webpack.config.js",
 "commonChunk": false
@@ -116,7 +116,7 @@ Using the Shell's Angular configuration file as an example, what was changed was
 "builder": "ngx-build-plus:dev-server",
 ```
 
-- Extra default options were added for `ng serve` at `projects.shell-ng16.architect.serve`: 
+- Extra default options were added for `ng serve` at `projects.shell-ng16.architect.serve.options`: 
 ```json
 "options": {
     "port": 4200,
