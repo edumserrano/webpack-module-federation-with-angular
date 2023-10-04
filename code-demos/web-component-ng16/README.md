@@ -13,7 +13,7 @@
 
 ## Description
 
-This example shows how to setup webpack module federation where the shell loads an Angular standalone component that is exposed as a [Web component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components). This example also shows how to pass inputs to the Web component and subscribe to its events.
+This example shows how to setup webpack module federation where the shell loads an Angular standalone component that is exposed as a [Web component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components). This example also shows how to set properties on the Web component and listen to its events.
 
 The remote webpack module contains a function that converts an Angular standalone component to a Web component.
 
@@ -60,14 +60,14 @@ When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to 
 
 > **Note**
 >
-> The `MyStandaloneComponent` Angular component an input and an output which aren't used on the mfe1 app. Only the shell is setting the input and consuming the output event.
+> The `MyStandaloneComponent` Angular component has an input and an output which aren't used on the mfe1 app. Only the shell is setting the input and consuming the output event.
 >
 > We could have added more code to the mfe1 app that would exercise the inputs and outputs and without causing any side effect to the `MyStandaloneComponent` when exported. However, this wasn't done with the sole reason of keeping the mfe1 app as simple as possible.
 >
 
 ## Shell app
 
-The shell app is an Angular 16 app that programatically loads a Web component exposed by the mfe1 app on page load. This is done on the `ngOnInit` method at [app.component.ts](/code-demos/web-component-ng16/shell-ng16/src/app/app.component.ts). Furthermore, at the [app.component.html](/code-demos/web-component-ng16/shell-ng16/src/app/app.component.html) you can see how the input to the Web component is being set, as well as the subscription to its custom event.
+The shell app is an Angular 16 app that programatically loads a Web component exposed by the mfe1 app on page load. This is done on the `ngOnInit` method at [app.component.ts](/code-demos/web-component-ng16/shell-ng16/src/app/app.component.ts). Furthermore, at the [app.component.html](/code-demos/web-component-ng16/shell-ng16/src/app/app.component.html) you can see how the Web component properties are being set and how its events are being consumed.
 
 Click on the `Send message` button from the remotely loaded component and see the message produced by the Web component be displayed on the shell.
 

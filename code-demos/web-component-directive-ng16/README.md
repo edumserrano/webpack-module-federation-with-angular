@@ -13,7 +13,7 @@
 
 ## Description
 
-This example shows how to setup webpack module federation where the shell loads an Angular standalone component that is exposed as a [Web component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) by using an Angular directive. This example also shows how to pass inputs to the Web component and subscribe to its events.
+This example shows how to setup webpack module federation where the shell loads an Angular standalone component that is exposed as a [Web component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) by using an Angular directive. This example also shows how to set properties and listen to events from the Web component.
 
 The remote webpack module executes a function that converts an Angular standalone component to a Web component.
 
@@ -47,7 +47,7 @@ exposes: {
 },
 ```
 
-The above defines a webpack module that is named `standalone-component-as-web-component` and that is mapped to the [./src/app/my-standalone-component/remote-bootstrap.ts](/code-demos/web-component-directive-ng16/mfe1-ng16/src/app/my-standalone-component/remote-bootstrap.ts) file, which executes the `bootstrapMyComponentAsync` function that converts the `MyStandaloneComponent` Angular standalone component to a Web component is defined. 
+The above defines a webpack module that is named `standalone-component-as-web-component` and that is mapped to the [./src/app/my-standalone-component/remote-bootstrap.ts](/code-demos/web-component-directive-ng16/mfe1-ng16/src/app/my-standalone-component/remote-bootstrap.ts) file, which executes the `bootstrapMyComponentAsync` function that converts the `MyStandaloneComponent` Angular standalone component to a Web component. 
 
 > **Note**
 >
@@ -61,11 +61,11 @@ The above defines a webpack module that is named `standalone-component-as-web-co
 
 ### Dev platform
 
-When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the [remote-bootstrap.ts](/code-demos/web-component-directive-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component-bootstrap.ts) file that executes the `bootstrapMyComponentAsync` function is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` Angular component.
+When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the [remote-bootstrap.ts](/code-demos/web-component-directive-ng16/mfe1-ng16/src/app/my-standalone-component/remote-bootstrap.ts) file that executes the [bootstrapMyComponentAsync](/code-demos/web-component-directive-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component-bootstrap.ts) function is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` Angular component.
 
 > **Note**
 >
-> The `MyStandaloneComponent` Angular component an input and an output which aren't used on the mfe1 app. Only the shell is setting the input and consuming the output event.
+> The `MyStandaloneComponent` Angular component has an input and an output which aren't used on the mfe1 app. Only the shell is setting the input and consuming the output event.
 >
 > We could have added more code to the mfe1 app that would exercise the inputs and outputs and without causing any side effect to the `MyStandaloneComponent` when exported. However, this wasn't done with the sole reason of keeping the mfe1 app as simple as possible.
 >
@@ -76,7 +76,7 @@ The shell app is an Angular 16 app that programatically loads a Web component ex
 
 In addition to bootstraping the Web component, the `LoadRemoteWebComponentDirective` Angular directive will also trigger an event/output when the component has been loaded into the shell. You could extend this example and also add an output for when the component fails to load for any reason. With these kind of outputs you could then add loading indicators to the shell as well as information messages if the components fail to load.
 
-See the [app.component.html](/code-demos/web-component-directive-ng16/shell-ng16/src/app/app.component.html) which is where the [LoadRemoteWebComponentDirective](/code-demos/web-component-directive-ng16/shell-ng16/src/app/load-remote-web-component.directive.ts) Angular directive is used. In the `app.component.html` file you can also see how the input to the Web component is being set, as well as the subscription to its custom event.
+See the [app.component.html](/code-demos/web-component-directive-ng16/shell-ng16/src/app/app.component.html) which is where the [LoadRemoteWebComponentDirective](/code-demos/web-component-directive-ng16/shell-ng16/src/app/load-remote-web-component.directive.ts) Angular directive is used. In the `app.component.html` file you can also see how the Web component properties are being set and how its events are being consumed.
 
 Click on the `Send message` button from the remotely loaded component and see the message produced by the Web component be displayed on the shell.
 
