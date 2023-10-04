@@ -1,0 +1,24 @@
+<div class="card">
+  Shell running Angular {{ version }}
+  <p>
+    <button (click)="reset()">Reset page</button>
+  </p>
+  <hr />
+  <p>
+    Web component loaded using the WebComponentWrapper on the html
+    <mft-wc-wrapper
+      [options]="mfe1WebComponentOptions"
+      [props]="mfe1WebComponentProps"
+      [events]="mfe1WebComponentEvents"
+    ></mft-wc-wrapper>
+  </p>
+  <p>Message received by the shell from the Web component:</p>
+  <p>{{ message }}</p>
+  <hr />
+  <p>
+    <a routerLink="/mfe1">Load Web component from mfe1</a>
+  </p>
+  Web component loaded using the WebComponentWrapper with Angular routing
+  <router-outlet></router-outlet>
+  <hr />
+</div>
