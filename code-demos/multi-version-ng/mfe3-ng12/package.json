@@ -2,7 +2,8 @@
   "name": "mfe3-ng12",
   "version": "0.0.0",
   "scripts": {
-    "start": "ng serve"
+    "start": "ng serve",
+    "start:mfe": "ng serve --configuration mfe"
   },
   "private": true,
   "dependencies": {

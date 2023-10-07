@@ -14,7 +14,10 @@ code-demos\multi-version-ng\mfe3-ng12\tsconfig.json -> resolveJsonModule and all
 webpack.config.js files -> talk about the diffs, different ng versions have differnt setups. More importantly is the share bit
 
 
-code-demos\multi-version-ng\mfe3-ng12\package.json -> start:local-web-component
+code-demos\multi-version-ng\mfe3-ng12\package.json -> "start:mfe": "ng serve --configuration mfe"
+
+
+code-demos\multi-version-ng\mfe3-ng12\src\bootstrap.ts -> talk about bootstrapModule
 
 
 code-demos\multi-version-ng\mfe3-ng12\src\app\my-feature\remote-bootstrap.ts -> bootstrapMyComponentAsyncV2
@@ -41,3 +44,7 @@ code-demos\multi-version-ng\mfe3-ng12\src\app\app.module.ts
 
 
 Maybe change the ngDoBootstrap signature to take in the appref? What makes more sense? check docs on bgDoBootstrap overloads?
+
+
+add note about using `npm i -D @angular-architects/module-federation-tools@appropriate-version`: "@angular-architects/module-federation-tools": "^16.0.4",
+instead of the custom platform bootstrap, note that the same custom platform bootstrap is used on the remote bootstrap file

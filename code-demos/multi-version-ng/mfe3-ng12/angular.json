@@ -58,6 +58,20 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "mfe": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.mfe.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -71,6 +85,9 @@
             },
             "development": {
               "browserTarget": "mfe3-ng12:build:development"
+            },
+            "mfe": {
+              "browserTarget": "mfe3-ng12:build:mfe"
             }
           },
           "defaultConfiguration": "development",
