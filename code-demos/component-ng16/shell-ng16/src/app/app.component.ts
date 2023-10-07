@@ -270,10 +270,10 @@ export class AppComponent {
     // If you check /component-ng16/mfe1-ng16/webpack.config.js, you can see that './my-feature-module' maps
     // to the './src/app/my-feature/my-feature.module.ts' file, which contains an Angular feature module named
     // MyFeatureModule.
-    const ngModule = createNgModule(webpackModule.MyFeatureModule, this._injector);
+    const ngModule: NgModuleRef<any> = createNgModule(webpackModule.MyFeatureModule, this._injector);
 
     // Third, we use the factory method that is on the remote Angular module to instantiate the component
-    const componentRef: ComponentRef<any> = (ngModule as any).instance.getEntryComponent();
+    const componentRef: ComponentRef<any> = ngModule.instance.getEntryComponent();
 
     // Lastly, we insert the component on the DOM using the ViewContainerRef
     this._viewContainerRef.insert(componentRef.hostView);

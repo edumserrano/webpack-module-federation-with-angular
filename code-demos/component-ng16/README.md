@@ -13,7 +13,7 @@
 
 This example shows how to setup webpack module federation where the shell dynamically instantiates an Angular component and adds it to the DOM. It also shows how to pass inputs to the Angular component.
 
-The remote webpack module contains an Angular component which the shell dynamically loads without using Angular routing. It shows 4 different ways to load the component.
+The remote webpack modules contains an Angular module and an Angular component which the shell dynamically loads without using Angular routing. It shows 4 different ways to load the Angular module/component.
 
 The shell app is rendered in a red colored background and the remotely loaded mfe1 app is rendered in a blue colored background.
 
