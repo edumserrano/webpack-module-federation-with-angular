@@ -8,7 +8,7 @@
   "files": [
     "src/main.ts",
     "src/polyfills.ts",
-    "src/app/my-feature/remote-bootstrap.ts"
+    "src/mfe-platform/remote-bootstrap.ts"
   ],
   "include": [
     "src/**/*.d.ts"

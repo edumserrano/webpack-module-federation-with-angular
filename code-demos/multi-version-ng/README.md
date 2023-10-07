@@ -40,3 +40,4 @@ code-demos\multi-version-ng\mfe3-ng12\src\app\app.module.ts
 // Because of this we don't add anything to the boostrap array and we do some logic in the ngDoBootstrap function which gets called if the bootstrap array is empty (check this, link to article).
 
 
+Maybe change the ngDoBootstrap signature to take in the appref? What makes more sense? check docs on bgDoBootstrap overloads?

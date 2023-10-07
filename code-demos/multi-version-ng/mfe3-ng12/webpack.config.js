@@ -26,7 +26,7 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "mfe3",
       exposes: {
-        "./remote-bootstrap": "./src/app/my-feature/remote-bootstrap.ts",
+        "./remote-bootstrap": "./src/mfe-platform/remote-bootstrap.ts",
       },
       library: { type: "var", name: "mfe3" },
       filename: "remoteEntry.js",

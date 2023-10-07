@@ -58,20 +58,6 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
-            },
-            "local-web-component": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.local-web-component.ts"
-                }
-              ]
             }
           },
           "defaultConfiguration": "production"
@@ -85,9 +71,6 @@
             },
             "development": {
               "browserTarget": "mfe3-ng12:build:development"
-            },
-            "local-web-component": {
-              "browserTarget": "mfe3-ng12:build:local-web-component"
             }
           },
           "defaultConfiguration": "development",

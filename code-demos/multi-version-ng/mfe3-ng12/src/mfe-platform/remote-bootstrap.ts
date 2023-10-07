@@ -1,12 +1,11 @@
 import { Compiler, ComponentFactory, ComponentRef, Injector, ModuleWithComponentFactories, PlatformRef } from '@angular/core';
-import { AppModule } from '../app.module';
 import { platformBrowser } from '@angular/platform-browser';
-import packageJson from '../../../package.json';
-import { MyFeatureModule } from './my-feature.module';
+import packageJson from 'package.json';
+import { MfePlatformModule } from './mfe-platform.module';
 
 export async function bootstrapMyComponentAsync(): Promise<void> {
   const platform = getAngularPlatform();
-  platform.bootstrapModule(AppModule);
+  platform.bootstrapModule(MfePlatformModule);
 }
 
 // This function doesn't quite work.
@@ -16,7 +15,7 @@ export async function bootstrapMyComponentAsync(): Promise<void> {
 export async function bootstrapMyComponentAsyncV2(parentInjector: Injector, node: HTMLElement): Promise<void> {
   const ngComponentName = 'MyComponent';
   const compiler = new Compiler();
-  const moduleWithComponentFactories: ModuleWithComponentFactories<unknown> = await compiler.compileModuleAndAllComponentsAsync(MyFeatureModule);
+  const moduleWithComponentFactories: ModuleWithComponentFactories<unknown> = await compiler.compileModuleAndAllComponentsAsync(MfePlatformModule);
   const componentFactory: ComponentFactory<any> | undefined = moduleWithComponentFactories.componentFactories.find(x => x.componentType.name === ngComponentName);
   if (!componentFactory) {
     return;

@@ -2,8 +2,7 @@
   "name": "mfe3-ng12",
   "version": "0.0.0",
   "scripts": {
-    "start": "ng serve",
-    "start:local-web-component": "ng serve --configuration local-web-component"
+    "start": "ng serve"
   },
   "private": true,
   "dependencies": {
