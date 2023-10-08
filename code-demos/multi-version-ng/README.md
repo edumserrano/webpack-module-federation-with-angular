@@ -27,6 +27,9 @@ code-demos\multi-version-ng\shell-ng16\src\app\app.component.html -> html has 2 
 code-demos\multi-version-ng\shell-ng16\src\bootstrap.ts -> show both bootstrap ways, perhaps with environment variable?
 
 
+code-demos\multi-version-ng\shell-ng16\src\app\app.component.html -> some mfe container elements are div some are an ng-container. explain why
+
+
 code-demos\multi-version-ng\mfe3-ng12\src\app\app.module.ts
 // bootstrap: [AppComponent],
 //
