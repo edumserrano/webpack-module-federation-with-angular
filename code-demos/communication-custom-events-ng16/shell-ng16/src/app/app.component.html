@@ -1,0 +1,80 @@
+<div
+  class="card"
+  (greet-message)="onGreet2($event)"
+  (messageSentEvent)="onMessageSent2($event)"
+>
+  Shell running Angular {{ version }}
+  <my-mfe-element
+    #mfe1
+    input-text="Hello from shell!"
+    (messageSentEvent)="onMessageSent($event)"
+    (greet-message)="onGreet($event)"
+  ></my-mfe-element>
+  <p>
+    Messages received by the shell from the Web component will show below in an
+    orange color
+  </p>
+  <ng-container *ngIf="showMessages">
+    <hr />
+    This message came from the `@Output messageSentEvent` Angular output. The
+    subscription to this was done DECLARATIVELY ON THE HTML AT THE
+    my-mfe-element custom element.
+    <p class="messageFromMfe">{{ messageFromAngularOutputAtHtml }}</p>
+    <hr />
+    <hr />
+    This message came from the `@Output messageSentEvent` Angular output. The
+    subscription to this was done DECLARATIVELY ON THE HTML OUTSIDE OF THE
+    my-mfe-element custom element.
+    <p class="messageFromMfe">{{ messageFromAngularOutputAtHtml2 }}</p>
+    <p>
+      This is not bugged, there is no message because the custom events
+      converted from Angular outputs using Angular custom elements do NOT bubble
+      up.
+    </p>
+    <hr />
+    <hr />
+    This message came from the `@Output messageSentEvent` Angular output. The
+    subscription to this was done PROGRAMMATICALLY ON THE INSTANCE OF THE
+    my-mfe-element custom element.
+    <p class="messageFromMfe">{{ messageFromAngularOutputAtComponent }}</p>
+    <hr />
+    <hr />
+    This message came from the `@Output messageSentEvent` Angular output. The
+    subscription to this was done PROGRAMMATICALLY ON THE DOCUMENT instance.
+    <p>
+      This is not bugged, there is no message because the custom events
+      converted from Angular outputs using Angular custom elements do NOT bubble
+      up.
+    </p>
+    <p class="messageFromMfe">{{ messageFromAngularOutputAtDocument }}</p>
+    <hr />
+    <hr />
+    This message came from the `greet-message` custom event which was manually
+    dispatched from the Angular component. The subscription to this was done
+    DECLARATIVELY ON THE HTML AT THE my-mfe-element custom element.
+    <p class="messageFromMfe">{{ messageFromManualCustomEventAtHtml }}</p>
+    <hr />
+    <hr />
+    This message came from the `greet-message` custom event which was manually
+    dispatched from the Angular component. The subscription to this was done
+    DECLARATIVELY ON THE HTML OUTSIDE OF THE my-mfe-element custom element.
+    <p class="messageFromMfe">{{ messageFromManualCustomEventAtHtml2 }}</p>
+    <hr />
+    <hr />
+    This message came from the `greet-message` custom event which was manually
+    dispatched from the Angular component. The subscription to this was done
+    PROGRAMMATICALLY ON THE INSTANCE OF THE my-mfe-element custom element.
+    <p class="messageFromMfe">{{ messageFromManualCustomEventAtComponent }}</p>
+    <hr />
+    <hr />
+    This message came from the `greet-message` custom event which was manually
+    dispatched from the Angular component. The subscription to this was done
+    PROGRAMMATICALLY ON THE DOCUMENT instance.
+    <p>
+      Note that now we are able to listen to the custom event at a document
+      level.
+    </p>
+    <p class="messageFromMfe">{{ messageFromManualCustomEventAtDocument }}</p>
+    <hr />
+  </ng-container>
+</div>
