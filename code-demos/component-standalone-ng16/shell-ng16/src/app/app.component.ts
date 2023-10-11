@@ -50,7 +50,7 @@ export class AppComponent {
       exposedModule: './my-standalone-component',
       remoteEntry: 'http://localhost:4201/remoteEntry.js',
     };
-    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+    const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
     const componentRef: ComponentRef<any> = this._viewContainerRef.createComponent(webpackModule.MyStandaloneComponent);
 
     // set component input and subscribe to component outputs

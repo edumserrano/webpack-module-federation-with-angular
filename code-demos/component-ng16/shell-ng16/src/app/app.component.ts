@@ -99,7 +99,7 @@ export class AppComponent {
       // See /component-ng16/mfe1-ng16/webpack.config.js
       remoteEntry: 'http://localhost:4201/remoteEntry.js',
     };
-    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+    const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
 
     // ngModuleName is the name of the Angular module exposed by the mfe1 app that maps to the exposed
     // webpack module with the key './my-feature-module'.
@@ -176,7 +176,7 @@ export class AppComponent {
       // See /component-ng16/mfe1-ng16/webpack.config.js
       remoteEntry: 'http://localhost:4201/remoteEntry.js',
     };
-    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+    const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
 
     // ngModuleName is the name of the Angular module exposed by the mfe1 app that maps to the exposed
     // webpack module with the key './my-feature-module'.
@@ -261,7 +261,7 @@ export class AppComponent {
       // See /component-ng16/mfe1-ng16/webpack.config.js
       remoteEntry: 'http://localhost:4201/remoteEntry.js',
     };
-    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+    const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
 
     // Second, we create an instance of the Angular module where the 'MyComponent' Angular component is declared.
     //
@@ -326,7 +326,7 @@ export class AppComponent {
       // See /component-ng16/mfe1-ng16/webpack.config.js
       remoteEntry: 'http://localhost:4201/remoteEntry.js',
     };
-    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+    const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
 
     // Lastly, we use the ViewContainerRef to create an instance of the Angular component named 'MyComponent'.
     //

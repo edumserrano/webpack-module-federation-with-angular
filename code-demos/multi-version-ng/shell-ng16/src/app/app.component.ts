@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
       exposedModule: './my-standalone-component',
       remoteEntry: 'http://localhost:4201/remoteEntry.js',
     };
-    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+    const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
     this._mfe1ViewContainerRef.createComponent(webpackModule.MyStandaloneComponent);
   }
 
@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
       exposedModule: './remote-bootstrap',
       remoteEntry: 'http://localhost:4202/remoteEntry.js',
     };
-    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+    const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
     await webpackModule.bootstrapMyComponentAsync(this._mfe2ViewContainerRef.element);
   }
 
@@ -83,7 +83,7 @@ export class AppComponent implements OnInit {
       exposedModule: './remote-bootstrap',
       remoteEntry: 'http://localhost:4203/remoteEntry.js',
     };
-    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+    const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
     await webpackModule.bootstrapMyComponentAsync("mfe3-element", this._mfe3ViewContainerRef.element.nativeElement, this._injector);
     // await webpackModule.bootstrapMyComponentAsyncV2(this._injector,this._mfe3ViewContainerRef.element.nativeElement);
   }
@@ -100,7 +100,7 @@ export class AppComponent implements OnInit {
       exposedModule: './my-component',
       remoteEntry: 'http://localhost:4204/remoteEntry.js',
     };
-    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+    const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
     this._mfe4ViewContainerRef.createComponent(webpackModule.MyComponent);
   }
 }

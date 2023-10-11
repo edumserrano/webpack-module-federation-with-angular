@@ -34,7 +34,7 @@ export class LoadRemoteWebComponentDirective implements AfterContentInit {
       // remoteEntry: this is the URL where the webpack module from the remote app can be fetched from.
        remoteEntry: remoteEntry,
     };
-    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+    const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
     // Lastly, we trigger the output indicating the component has been loaded
     this.loaded.emit();
   }

@@ -68,7 +68,7 @@ export class LoadRemoteComponentDirective implements AfterContentInit {
       // remoteEntry: this is the URL where the webpack module from the remote app can be fetched from.
        remoteEntry: remoteEntry,
     };
-    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+    const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
 
     // Second, we use the ViewContainerRef to create an instance of the Angular component
     // and add it to the DOM where this directive is applied to.

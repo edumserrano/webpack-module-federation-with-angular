@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
       exposedModule: './standalone-component-as-web-component',
       remoteEntry: 'http://localhost:4201/remoteEntry.js',
     };
-    const webpackModule = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+    const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
     await webpackModule.bootstrapMyComponentAsync();
   };
 
