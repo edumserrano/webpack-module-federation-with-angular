@@ -1,0 +1,28 @@
+<div class="card">
+  Shell running Angular {{ version }}
+  <p>
+    <a routerLink="/">Go to home page</a>
+  </p>
+  <p>
+    <a routerLink="/checkout">Go to checkout</a>
+  </p>
+  <p>
+    <a routerLink="/payment">Go to payment</a>
+  </p>
+  <hr />
+
+  <!-- <my-mfe-element
+    input-text="Hello from shell!"
+    (messageSentEvent)="onMessageSent($event)"
+  ></my-mfe-element> -->
+
+  <!-- this requires import on module and it's not lazy loaded-->
+  <!-- <app-my-standalone-component1></app-my-standalone-component1> -->
+
+  <!-- this requires import on module and it's not lazy loaded -->
+  <!-- <app-my-standalone-component2 inputText="Hello" (messageSentEvent)="onMessageSent($event)"></app-my-standalone-component2> -->
+
+  <router-outlet></router-outlet>
+  <!-- <p>Message received by the shell from the Web component:</p>
+  <p>{{ message }}</p> -->
+</div>
