@@ -2,6 +2,7 @@ import {
   RemoteModuleLoaded,
   RemoteModuleLoading,
   RemoteModuleFailed,
+  RemoteModuleEvent,
 } from './remote-module-events';
 import {
   AfterContentInit,
@@ -31,19 +32,8 @@ export class remoteModuleDirective implements AfterContentInit {
   @Input()
   public loadRemoteModuleCallback?: (webpackModule: any) => void | Promise<void>;
 
-  // This is an optional output from the directive which let's you know when
-  // the component has been loaded.
   @Output()
-  public loading: EventEmitter<RemoteModuleLoading> =
-    new EventEmitter<RemoteModuleLoading>();
-
-  @Output()
-  public loaded: EventEmitter<RemoteModuleLoaded> =
-    new EventEmitter<RemoteModuleLoaded>();
-
-  @Output()
-  public failed: EventEmitter<RemoteModuleFailed> =
-    new EventEmitter<RemoteModuleFailed>();
+  public remoteModuleEvents: EventEmitter<RemoteModuleEvent> = new EventEmitter<RemoteModuleEvent>();
 
   public async ngAfterContentInit(): Promise<void> {
     this.triggerLoadingEvents();
@@ -62,6 +52,7 @@ export class remoteModuleDirective implements AfterContentInit {
         this.triggerFailedEvents(result.error);
         break;
       default:
+        // see https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking
         const _exhaustiveCheck: never = result;
         return _exhaustiveCheck;
     }
@@ -69,16 +60,16 @@ export class remoteModuleDirective implements AfterContentInit {
 
   private triggerLoadingEvents(): void {
     const event = new RemoteModuleLoading();
-    this.loading.emit(event);
+    this.remoteModuleEvents.emit(event);
   }
 
   private triggerLoadedEvents(): void {
     const event = new RemoteModuleLoaded();
-    this.loaded.emit(event);
+    this.remoteModuleEvents.emit(event);
   }
 
   private triggerFailedEvents(error: Error): void {
     const event = new RemoteModuleFailed(error);
-    this.failed.emit(event);
+    this.remoteModuleEvents.emit(event);
   }
 }

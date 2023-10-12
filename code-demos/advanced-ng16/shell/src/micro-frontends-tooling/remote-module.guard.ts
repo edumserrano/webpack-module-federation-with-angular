@@ -1,6 +1,9 @@
 import { inject } from '@angular/core';
-import { CanActivateFn } from '@angular/router';
-import { RemoteModuleResultTypes, RemoteModuleService } from './remote-module.service';
+import { ActivatedRoute, CanActivateFn } from '@angular/router';
+import {
+  RemoteModuleResultTypes,
+  RemoteModuleService,
+} from './remote-module.service';
 
 export type remoteModuleGuardOptions = {
   remoteEntry: string;
@@ -20,6 +23,7 @@ export function remoteModuleGuard(options: remoteModuleGuardOptions): CanActivat
   // example we use the Promise<boolean>
   return async (): Promise<boolean> => {
     const remoteModuleService = inject(RemoteModuleService);
+    const route = inject(ActivatedRoute);
     // TODO: the callback param is only needed because I'm using the service in multiple ways
     // this param could not be needed.
     const callback = function (_: any) {};
@@ -29,12 +33,13 @@ export function remoteModuleGuard(options: remoteModuleGuardOptions): CanActivat
       callback
     );
 
-    switch(result.type) {
+    switch (result.type) {
       case RemoteModuleResultTypes.Loaded:
         return true;
       case RemoteModuleResultTypes.Failed:
         return false;
       default:
+        // see https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking
         const _exhaustiveCheck: never = result;
         return _exhaustiveCheck;
     }

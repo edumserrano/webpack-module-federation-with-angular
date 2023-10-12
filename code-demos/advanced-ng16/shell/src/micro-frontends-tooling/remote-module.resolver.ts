@@ -43,6 +43,7 @@ export function remoteModuleResolver(options: remoteModuleResolverOptions): Reso
         // router.navigateByUrl(currentRoute.snapshot.url, navOptions);
         return null;
       default:
+        // see https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking
         const _exhaustiveCheck: never = result;
         return _exhaustiveCheck;
     }

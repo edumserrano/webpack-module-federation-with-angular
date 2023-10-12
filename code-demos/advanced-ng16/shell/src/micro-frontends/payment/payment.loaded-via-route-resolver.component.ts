@@ -7,36 +7,11 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { remoteModuleDirective as RemoteModuleDirective } from 'src/micro-frontends-tooling/remote-module.directive';
-import { ActivatedRoute, Routes, provideRouter } from '@angular/router';
+import { ActivatedRoute, Routes } from '@angular/router';
 import { remoteModuleResolver } from 'src/micro-frontends-tooling/remote-module.resolver';
 
-// loadRemoteModule
-// exposedModule="./payment"
-// remoteEntry="http://localhost:4202/remoteEntry.js"
-// [loadRemoteModuleCallback]="loadRemoteModuleHandler"
-
-// TODO: note about not having an .html and using the templateUrl prop. if it's simple you can consider not having a separate file but usually it's better to have that and the styleUrls
-// TODO: add note about the `.bind(this)` at [loadRemoteModuleCallback]="loadRemoteModuleHandler.bind(this)"
-//       say it's about the this context or else this._mfePaymentViewContainerRef is always undefined because this would refer to the LoadRemoteModuleDirective
-
-export const MFE_PAYMENT_ROUTES_2: Routes = [
-  {
-    path: '**',
-    loadComponent: async () => {
-      const localModule = await import('./payment2.component');
-      return localModule.Payment2Component;
-    },
-    resolve: {
-      remoteModule: remoteModuleResolver({
-        remoteEntry: "http://localhost:4202/remoteEntry.js",
-        exposedModule: "./payment2",
-      }),
-    },
-  },
-]
-
 @Component({
-  selector: 'mfe-payment-2',
+  selector: 'app-payment-mfe',
   standalone: true,
   imports: [CommonModule, RemoteModuleDirective],
   template: `
@@ -44,7 +19,7 @@ export const MFE_PAYMENT_ROUTES_2: Routes = [
   `,
   styleUrls: [],
 })
-export class Payment2Component {
+export class PaymentComponent {
   @ViewChild('mfePayment', { read: ViewContainerRef, static: true })
   private readonly _mfePaymentViewContainerRef?: ViewContainerRef;
 
@@ -61,3 +36,16 @@ export class Payment2Component {
     const mfePaymentComponentRef: ComponentRef<any> = this._mfePaymentViewContainerRef.createComponent(paymentComponentType);
   }
 }
+
+export const MFE_PAYMENT_ROUTES: Routes = [
+  {
+    path: '**',
+    component: PaymentComponent,
+    resolve: {
+      remoteModule: remoteModuleResolver({
+        remoteEntry: "http://localhost:4202/remoteEntry.js",
+        exposedModule: "./payment",
+      }),
+    },
+  },
+]
