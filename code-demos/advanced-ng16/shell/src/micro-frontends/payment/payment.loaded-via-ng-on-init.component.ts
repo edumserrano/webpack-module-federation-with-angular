@@ -11,7 +11,6 @@ import { RemoteModuleResultTypes, RemoteModuleService } from 'src/micro-frontend
 @Component({
   selector: 'app-payment-mfe',
   standalone: true,
-  host: {'unique-description': 'payment component loaded via ngOnInit'},
   template: '<ng-container #mfePayment></ng-container>',
 })
 export class PaymentComponent {
