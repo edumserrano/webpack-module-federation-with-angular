@@ -48,19 +48,6 @@ export class RemoteModuleService {
 
   public readonly events$ = this._events.asObservable();
 
-  public async loadAsync(
-    id: string,
-    exposedModule: string,
-    remoteEntry: string,
-  ): Promise<RemoteModuleResult>;
-
-  public async loadAsync(
-    id: string,
-    exposedModule: string,
-    remoteEntry: string,
-    loadRemoteModuleCallback: (webpackModule: any) => void | Promise<void>
-  ): Promise<RemoteModuleResult>;
-
   // TODO: we could do if NOT in prod do some console logs here to know what is being
   // loaded and from where
   // should also log the webpack module for easier debugging. should only log if not prod and some other
@@ -69,20 +56,15 @@ export class RemoteModuleService {
     id: string,
     exposedModule: string,
     remoteEntry: string,
-    loadRemoteModuleCallback?: (webpackModule: any) => void | Promise<void>
   ): Promise<RemoteModuleResult> {
     try {
-      loadRemoteModuleCallback = loadRemoteModuleCallback ?? function (_: any): void {};
       this.triggerLoading(id, exposedModule, remoteEntry);
-
       const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
         type: 'module',
         exposedModule: exposedModule,
         remoteEntry: remoteEntry,
       };
       const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
-      await loadRemoteModuleCallback(webpackModule);
-
       this.triggerLoaded(id, exposedModule, remoteEntry, webpackModule);
       return new RemoteModuleLoadedResult(webpackModule);
     } catch (error: unknown) {

@@ -40,11 +40,8 @@ export class CheckoutComponent {
 
     // TODO: note about the elementName on the directive matching the declared
     // custom element
-    // TODO consider creating a type to define webpackModule.mountAsync instead of
-    // using any? Does Zod help?
-    // check how at https://sergiodxa.com/articles/using-zod-to-safely-read-env-variables
-    // and https://jfranciscosousa.com/blog/validating-environment-variables-with-zod/
-
+    // TODO: explain that the handler doesn't need to be used, you could use
+    // a subscription to the loaded event and pick up the webpack module from there
     const elementName = "mfe-checkout";
     await webpackModule.mountAsync(elementName);
    }

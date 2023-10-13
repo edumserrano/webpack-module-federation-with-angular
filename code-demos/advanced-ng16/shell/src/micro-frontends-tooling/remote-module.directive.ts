@@ -1,6 +1,7 @@
 import { AfterContentInit, Directive, Input } from '@angular/core';
 import {
   RemoteModuleResult,
+  RemoteModuleResultTypes,
   RemoteModuleService,
 } from './remote-module.service';
 
@@ -26,13 +27,23 @@ export class RemoteModuleDirective implements AfterContentInit {
   public loadRemoteModuleCallback?: (webpackModule: any) => void | Promise<void>;
 
   public async ngAfterContentInit(): Promise<void> {
-    // if this.loadRemoteModuleCallback is not defined then use a callback function that does nothing
-    const callback = this.loadRemoteModuleCallback ?? function (_: any): void {};
-    const _: RemoteModuleResult = await this._remoteModuleService.loadAsync(
+    const result: RemoteModuleResult = await this._remoteModuleService.loadAsync(
       this.remoteModuleId,
       this.exposedModule,
       this.remoteEntry,
-      callback,
     );
+    switch (result.type) {
+      case RemoteModuleResultTypes.Loaded:
+        // if this.loadRemoteModuleCallback is not defined then use a callback function that does nothing
+        const callback = this.loadRemoteModuleCallback ?? function (_: any): void {};
+        await callback(result.webpackModule);
+        break;
+      case RemoteModuleResultTypes.Failed:
+        break;
+      default:
+        // see https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking
+        const _exhaustiveCheck: never = result;
+        return _exhaustiveCheck;
+    }
   }
 }

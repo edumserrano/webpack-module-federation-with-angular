@@ -5,10 +5,17 @@ import {
   RemoteModuleService,
 } from 'src/micro-frontends-tooling/remote-module.service';
 
+// TODO explain the host: {} binding used in both checkout and payment load via ng on init
+// used to avoid the error show at https://angular.io/errors/NG0912
+// only needed because of the clash between the component loaded via ng on init and the resolver one
+// The error only shows up in the first place because all the wrapper components use the same selector.
+// Usually you don't need to use this host setting.
+
 @Component({
   selector: 'app-checkout-mfe',
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  host: {'unique-description': 'checkout component loaded via ngOnInit'},
   template: '<mfe-checkout></mfe-checkout>',
 })
 export class CheckoutComponent implements OnInit {
