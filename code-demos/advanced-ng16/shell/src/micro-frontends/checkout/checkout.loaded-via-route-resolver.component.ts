@@ -31,6 +31,7 @@ export const MFE_CHECKOUT_ROUTES: Routes = [
     component: CheckoutComponent,
     resolve: {
       remoteModule: remoteModuleResolver({
+        id: CheckoutComponent.name,
         remoteEntry: "http://localhost:4201/remoteEntry.js",
         exposedModule: "./checkout",
       }),

@@ -6,6 +6,7 @@ import {
 } from './remote-module.service';
 
 export type remoteModuleGuardOptions = {
+  id: string;
   remoteEntry: string;
   exposedModule: string;
 };
@@ -24,6 +25,7 @@ export function remoteModuleGuard(options: remoteModuleGuardOptions): CanActivat
   return async (): Promise<boolean> => {
     const remoteModuleService = inject(RemoteModuleService);
     const result = await remoteModuleService.loadAsync(
+      options.id,
       options.exposedModule,
       options.remoteEntry,
     );

@@ -6,7 +6,6 @@ import {
   runInInjectionContext
 } from '@angular/core';
 import { RemoteModuleEvent } from './remote-module-events';
-// import { RemoteModuleEventsService } from './remote-module-events.service';
 import { REMOTE_MODULE_EVENTS } from './remote-module.service';
 
 // based on the withNavigationErrorHandler Angular approach
@@ -22,7 +21,6 @@ export function withRemoteModuleEventsHandler(
     multi: true,
     useValue: () => {
       const injector: EnvironmentInjector = inject(EnvironmentInjector);
-      // const loadRemoteWebComponentEventsService = inject(RemoteModuleEventsService);
       const remoteModuleEvents$ = inject(REMOTE_MODULE_EVENTS);
       remoteModuleEvents$.subscribe((event) => {
         runInInjectionContext(injector, () => fn(event));

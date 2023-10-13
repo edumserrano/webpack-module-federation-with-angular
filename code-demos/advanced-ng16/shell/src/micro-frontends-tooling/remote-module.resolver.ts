@@ -6,6 +6,7 @@ import {
 } from './remote-module.service';
 
 export type remoteModuleResolverOptions = {
+  id: string;
   remoteEntry: string;
   exposedModule: string;
 };
@@ -21,9 +22,8 @@ export type remoteModuleResolverOptions = {
 export function remoteModuleResolver(options: remoteModuleResolverOptions): ResolveFn<any> {
   return async (): Promise<any> => {
     const remoteModuleService = inject(RemoteModuleService);
-    // TODO: the callback param is only needed because I'm using the service in multiple ways
-    // this param could not be needed.
-    const result = await remoteModuleService.loadAsync(
+      const result = await remoteModuleService.loadAsync(
+      options.id,
       options.exposedModule,
       options.remoteEntry,
     );
@@ -32,12 +32,6 @@ export function remoteModuleResolver(options: remoteModuleResolverOptions): Reso
       case RemoteModuleResultTypes.Loaded:
         return result.webpackModule;
       case RemoteModuleResultTypes.Failed:
-        // TODO any note about this? or just delete?
-        // const currentRoute = router.routerState;
-        // const navOptions: NavigationBehaviorOptions = {
-        //   skipLocationChange: true,
-        // };
-        // router.navigateByUrl(currentRoute.snapshot.url, navOptions);
         return null;
       default:
         // see https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking

@@ -6,17 +6,34 @@ export const enum RemoteModuleEventTypes {
 
 export type RemoteModuleEvent = RemoteModuleLoading | RemoteModuleLoaded | RemoteModuleFailed;
 
-// TODO define properties for each event
 export class RemoteModuleLoading {
+  public constructor(
+    public readonly id: string,
+    public readonly exposedModule: string,
+    public readonly remoteEntry: string,
+  ) { }
+
   public readonly type = RemoteModuleEventTypes.Loading;
 }
 
 export class RemoteModuleLoaded {
+  public constructor(
+    public readonly id: string,
+    public readonly exposedModule: string,
+    public readonly remoteEntry: string,
+    public readonly webpackModule: any,
+  ) { }
+
   public readonly type = RemoteModuleEventTypes.Loaded;
 }
 
 export class RemoteModuleFailed  {
-  public constructor(public readonly error: Error) {}
+  public constructor(
+    public readonly id: string,
+    public readonly exposedModule: string,
+    public readonly remoteEntry: string,
+    public readonly error: Error,
+  ) { }
 
   public readonly type = RemoteModuleEventTypes.Failed;
 }

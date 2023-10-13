@@ -49,11 +49,13 @@ export class RemoteModuleService {
   public readonly events$ = this._events.asObservable();
 
   public async loadAsync(
+    id: string,
     exposedModule: string,
     remoteEntry: string,
   ): Promise<RemoteModuleResult>;
 
   public async loadAsync(
+    id: string,
     exposedModule: string,
     remoteEntry: string,
     loadRemoteModuleCallback: (webpackModule: any) => void | Promise<void>
@@ -64,13 +66,14 @@ export class RemoteModuleService {
   // should also log the webpack module for easier debugging. should only log if not prod and some other
   // env variable like remoteModuleDebug=true
   public async loadAsync(
+    id: string,
     exposedModule: string,
     remoteEntry: string,
     loadRemoteModuleCallback?: (webpackModule: any) => void | Promise<void>
   ): Promise<RemoteModuleResult> {
     try {
       loadRemoteModuleCallback = loadRemoteModuleCallback ?? function (_: any): void {};
-      this.triggerLoading();
+      this.triggerLoading(id, exposedModule, remoteEntry);
 
       const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
         type: 'module',
@@ -80,30 +83,55 @@ export class RemoteModuleService {
       const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
       await loadRemoteModuleCallback(webpackModule);
 
-      this.triggerLoaded();
+      this.triggerLoaded(id, exposedModule, remoteEntry, webpackModule);
       return new RemoteModuleLoadedResult(webpackModule);
     } catch (error: unknown) {
       if (!(error instanceof Error)) {
         throw error; //should always be of type Error but if not rethrow
       }
 
-      this.triggerFailed(error);
+      this.triggerFailed(id, exposedModule, remoteEntry, error);
       return new RemoteModuleFailedResult(error);
     }
   }
 
-  private triggerLoading() {
-    const event = new RemoteModuleLoading();
+  private triggerLoading(
+    id: string,
+    exposedModule: string,
+    remoteEntry: string,
+  ) {
+    const event = new RemoteModuleLoading(
+      id,
+      exposedModule,
+      remoteEntry);
     this._events.next(event);
   }
 
-  private triggerLoaded() {
-    const event = new RemoteModuleLoaded();
+  private triggerLoaded(
+    id: string,
+    exposedModule: string,
+    remoteEntry: string,
+    webpackModule: any,
+  ) {
+    const event = new RemoteModuleLoaded(
+      id,
+      exposedModule,
+      remoteEntry,
+      webpackModule);
     this._events.next(event);
   }
 
-  private triggerFailed(error: Error) {
-    const event = new RemoteModuleFailed(error);
+  private triggerFailed(
+    id: string,
+    exposedModule: string,
+    remoteEntry: string,
+    error: Error
+  ) {
+    const event = new RemoteModuleFailed(
+      id,
+      exposedModule,
+      remoteEntry,
+      error);
     this._events.next(event);
   }
 }

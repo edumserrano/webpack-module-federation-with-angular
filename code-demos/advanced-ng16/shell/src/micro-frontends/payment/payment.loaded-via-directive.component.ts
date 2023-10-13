@@ -20,10 +20,10 @@ import { RemoteModuleEvent } from 'src/micro-frontends-tooling/remote-module-eve
     <ng-container
       #mfePayment
       remoteModule
+      [remoteModuleId]="remoteModuleId"
       exposedModule="./payment"
       remoteEntry="http://localhost:4202/remoteEntry.js"
       [loadRemoteModuleCallback]="loadRemoteModuleHandler.bind(this)"
-      (remoteModuleEvents)="remoteModuleEventsHandler($event)"
     ></ng-container>
   `,
 })
@@ -31,10 +31,7 @@ export class PaymentComponent {
   @ViewChild('mfePayment', { read: ViewContainerRef, static: true })
   private readonly _mfePaymentViewContainerRef?: ViewContainerRef;
 
-   // TODO talk about this handlers being OPTIONAL and specific for this remote module load
-  public remoteModuleEventsHandler(event: RemoteModuleEvent): void {
-    console.log("mfe-payment remote module event:", event);
-  }
+  public readonly remoteModuleId: string = PaymentComponent.name;
 
   // TODO use `bind(this)` on HTML or declare it as an arrow function like this
   // public loadRemoteModuleHandler = async (webpackModule: any): Promise<void> => {

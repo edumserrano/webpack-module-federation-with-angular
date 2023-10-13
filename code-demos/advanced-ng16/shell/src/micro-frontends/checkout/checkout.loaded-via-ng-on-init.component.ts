@@ -16,6 +16,7 @@ export class CheckoutComponent implements OnInit {
 
   public async ngOnInit(): Promise<void> {
     const result = await this._remoteModuleService.loadAsync(
+      CheckoutComponent.name,
       './checkout',
       'http://localhost:4201/remoteEntry.js',
     );

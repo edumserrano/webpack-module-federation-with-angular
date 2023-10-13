@@ -16,6 +16,7 @@ export const MFE_CHECKOUT_ROUTES: Routes = [
     component: CheckoutComponent,
     canActivate: [
       remoteModuleGuard({
+        id: CheckoutComponent.name,
         remoteEntry: "http://localhost:4201/remoteEntry.js",
         exposedModule: "./checkout-auto",
       })

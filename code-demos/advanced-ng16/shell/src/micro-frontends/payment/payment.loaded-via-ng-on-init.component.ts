@@ -25,6 +25,7 @@ export class PaymentComponent {
     }
 
     const result = await this._remoteModuleService.loadAsync(
+      PaymentComponent.name,
       './payment',
       'http://localhost:4202/remoteEntry.js',
     );

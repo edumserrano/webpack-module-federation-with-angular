@@ -1,7 +1,10 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, Inject } from '@angular/core';
 import { Routes } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RemoteModuleEvent } from 'src/micro-frontends-tooling/remote-module-events';
 import { RemoteModuleDirective } from 'src/micro-frontends-tooling/remote-module.directive';
+import { REMOTE_MODULE_EVENTS, RemoteModuleEvents } from 'src/micro-frontends-tooling/remote-module.service';
+import { filter } from 'rxjs';
 
 // TODO: note about not having an .html and using the templateUrl prop. if it's simple
 // you can consider not having a separate file but usually it's better to have that and
@@ -17,19 +20,20 @@ import { RemoteModuleDirective } from 'src/micro-frontends-tooling/remote-module
   template: `
     <mfe-checkout
       remoteModule
+      [remoteModuleId]="remoteModuleId"
       exposedModule="./checkout"
       remoteEntry="http://localhost:4201/remoteEntry.js"
       [loadRemoteModuleCallback]="loadRemoteModuleHandler"
-      (remoteModuleEvents)="remoteModuleEventsHandler($event)"
     ></mfe-checkout>
   `,
  })
 export class CheckoutComponent {
 
-  // TODO talk about this handler being OPTIONAL and specific for this remote module load
-  public remoteModuleEventsHandler(event: RemoteModuleEvent): void {
-    console.log("mfe-checkout remote module event:", event);
+  public constructor(@Inject(REMOTE_MODULE_EVENTS) remoteModuleEvents$: RemoteModuleEvents) {
+    this.subscribeToEvents(remoteModuleEvents$);
   }
+
+  public readonly remoteModuleId: string = CheckoutComponent.name;
 
   public async loadRemoteModuleHandler(webpackModule: any): Promise<void> {
     // call whatever is needed to mount your mfe
@@ -44,6 +48,18 @@ export class CheckoutComponent {
     const elementName = "mfe-checkout";
     await webpackModule.mountAsync(elementName);
    }
+
+  // TODO talk about this example
+  private subscribeToEvents(remoteModuleEvents$: RemoteModuleEvents): void {
+    remoteModuleEvents$
+      .pipe(
+        takeUntilDestroyed(),
+        filter((event: RemoteModuleEvent) => event.id === CheckoutComponent.name),
+      )
+      .subscribe(x => {
+        console.log("mfe-checkout remote module event:", x)
+      })
+  }
 }
 
 export const MFE_CHECKOUT_ROUTES: Routes = [
