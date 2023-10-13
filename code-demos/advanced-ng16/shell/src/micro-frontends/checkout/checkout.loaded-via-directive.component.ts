@@ -1,14 +1,13 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { RemoteModuleEvent } from 'src/micro-frontends-tooling/remote-module-events';
-import { remoteModuleDirective as RemoteModuleDirective } from 'src/micro-frontends-tooling/remote-module.directive';
+import { RemoteModuleDirective } from 'src/micro-frontends-tooling/remote-module.directive';
 
 // TODO: note about not having an .html and using the templateUrl prop. if it's simple
 // you can consider not having a separate file but usually it's better to have that and
 // the styleUrls
 // TODO: add note about naming checkout.<loaded via>.component.ts, this is not some kind of pattern, it's only
 // a way to differentiate the different ways of loading remote modules
-// TODO CUSTOM_ELEMENTS_SCHEMA doesnt seem necessary when the template is declared inline for standalone components
 
 @Component({
   selector: 'app-checkout-mfe',

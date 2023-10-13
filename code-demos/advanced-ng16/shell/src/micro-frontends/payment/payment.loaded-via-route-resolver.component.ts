@@ -5,19 +5,15 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { remoteModuleDirective as RemoteModuleDirective } from 'src/micro-frontends-tooling/remote-module.directive';
 import { ActivatedRoute, Routes } from '@angular/router';
 import { remoteModuleResolver } from 'src/micro-frontends-tooling/remote-module.resolver';
 
 @Component({
   selector: 'app-payment-mfe',
   standalone: true,
-  imports: [CommonModule, RemoteModuleDirective],
   template: `
     <ng-container #mfePayment></ng-container>
   `,
-  styleUrls: [],
 })
 export class PaymentComponent {
   @ViewChild('mfePayment', { read: ViewContainerRef, static: true })
@@ -34,6 +30,8 @@ export class PaymentComponent {
     const webpackModule: any = this._route.snapshot.data["remoteModule"];
     const paymentComponentType: Type<any> = webpackModule.PaymentComponent;
     const mfePaymentComponentRef: ComponentRef<any> = this._mfePaymentViewContainerRef.createComponent(paymentComponentType);
+    // to set inputs use componentRef.setInput method
+    // to subscribe to outputs use componentRef.instance.<output>.subscribe(...)
   }
 }
 

@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { ActivatedRoute, CanActivateFn } from '@angular/router';
+import { CanActivateFn } from '@angular/router';
 import {
   RemoteModuleResultTypes,
   RemoteModuleService,
@@ -23,14 +23,9 @@ export function remoteModuleGuard(options: remoteModuleGuardOptions): CanActivat
   // example we use the Promise<boolean>
   return async (): Promise<boolean> => {
     const remoteModuleService = inject(RemoteModuleService);
-    const route = inject(ActivatedRoute);
-    // TODO: the callback param is only needed because I'm using the service in multiple ways
-    // this param could not be needed.
-    const callback = function (_: any) {};
-    const result = await remoteModuleService.load(
+    const result = await remoteModuleService.loadAsync(
       options.exposedModule,
       options.remoteEntry,
-      callback
     );
 
     switch (result.type) {

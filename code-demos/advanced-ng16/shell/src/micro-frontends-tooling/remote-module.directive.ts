@@ -19,7 +19,7 @@ import { RemoteModuleResultTypes, RemoteModuleService } from './remote-module.se
   selector: '[remoteModule]',
   standalone: true,
 })
-export class remoteModuleDirective implements AfterContentInit {
+export class RemoteModuleDirective implements AfterContentInit {
 
   public constructor(private readonly _remoteModuleService: RemoteModuleService) {}
 
@@ -32,6 +32,10 @@ export class remoteModuleDirective implements AfterContentInit {
   @Input()
   public loadRemoteModuleCallback?: (webpackModule: any) => void | Promise<void>;
 
+  // TODO
+  // consider deleting this and subscribing to the REMOTE_MODULE_EVENTS injection token
+  // BUT for that to work I first need to have a way to identify which component produced the
+  // event so that I can filter only for the component I want, perhaps pass the component type? or some id?
   @Output()
   public remoteModuleEvents: EventEmitter<RemoteModuleEvent> = new EventEmitter<RemoteModuleEvent>();
 
@@ -39,8 +43,8 @@ export class remoteModuleDirective implements AfterContentInit {
     this.triggerLoadingEvents();
 
     // if this.loadRemoteModuleCallback is not set then use a function that does nothing
-    const callback = this.loadRemoteModuleCallback ?? function(_: any) { };
-    const result = await this._remoteModuleService.load(
+    const callback = this.loadRemoteModuleCallback ?? function(_: any): void { };
+    const result = await this._remoteModuleService.loadAsync(
       this.exposedModule,
       this.remoteEntry,
       callback);

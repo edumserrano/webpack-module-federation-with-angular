@@ -5,8 +5,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { remoteModuleDirective as RemoteModuleDirective } from 'src/micro-frontends-tooling/remote-module.directive';
+import { RemoteModuleDirective } from 'src/micro-frontends-tooling/remote-module.directive';
 import { Routes } from '@angular/router';
 import { RemoteModuleEvent } from 'src/micro-frontends-tooling/remote-module-events';
 
@@ -16,7 +15,7 @@ import { RemoteModuleEvent } from 'src/micro-frontends-tooling/remote-module-eve
 @Component({
   selector: 'app-payment-mfe',
   standalone: true,
-  imports: [CommonModule, RemoteModuleDirective],
+  imports: [RemoteModuleDirective],
   template: `
     <ng-container
       #mfePayment
@@ -27,7 +26,6 @@ import { RemoteModuleEvent } from 'src/micro-frontends-tooling/remote-module-eve
       (remoteModuleEvents)="remoteModuleEventsHandler($event)"
     ></ng-container>
   `,
-  styleUrls: [],
 })
 export class PaymentComponent {
   @ViewChild('mfePayment', { read: ViewContainerRef, static: true })
@@ -58,6 +56,8 @@ export class PaymentComponent {
     this._mfePaymentViewContainerRef.clear();
     const paymentComponentType: Type<any> = webpackModule.PaymentComponent;
     const mfePaymentComponentRef: ComponentRef<any> = this._mfePaymentViewContainerRef.createComponent(paymentComponentType);
+    // to set inputs use componentRef.setInput method
+    // to subscribe to outputs use componentRef.instance.<output>.subscribe(...)
   }
 }
 

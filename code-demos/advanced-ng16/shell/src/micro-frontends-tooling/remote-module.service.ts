@@ -11,6 +11,7 @@ import {
 } from './remote-module-events';
 import { Observable, Subject } from 'rxjs';
 
+// TODO explain this with link to injection token magic article
 export type RemoteModuleEvents = Observable<RemoteModuleEvent>;
 export const REMOTE_MODULE_EVENTS = new InjectionToken<RemoteModuleEvents>(
   'Remote module events',
@@ -47,17 +48,30 @@ export class RemoteModuleService {
 
   public readonly events$ = this._events.asObservable();
 
+  public async loadAsync(
+    exposedModule: string,
+    remoteEntry: string,
+  ): Promise<RemoteModuleResult>;
+
+  public async loadAsync(
+    exposedModule: string,
+    remoteEntry: string,
+    loadRemoteModuleCallback: (webpackModule: any) => void | Promise<void>
+  ): Promise<RemoteModuleResult>;
+
   // TODO: we could do if NOT in prod do some console logs here to know what is being
   // loaded and from where
   // should also log the webpack module for easier debugging. should only log if not prod and some other
   // env variable like remoteModuleDebug=true
-  public async load(
+  public async loadAsync(
     exposedModule: string,
     remoteEntry: string,
-    loadRemoteModuleCallback: (webpackModule: any) => void | Promise<void>
+    loadRemoteModuleCallback?: (webpackModule: any) => void | Promise<void>
   ): Promise<RemoteModuleResult> {
     try {
+      loadRemoteModuleCallback = loadRemoteModuleCallback ?? function (_: any): void {};
       this.triggerLoading();
+
       const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
         type: 'module',
         exposedModule: exposedModule,
@@ -65,6 +79,7 @@ export class RemoteModuleService {
       };
       const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
       await loadRemoteModuleCallback(webpackModule);
+
       this.triggerLoaded();
       return new RemoteModuleLoadedResult(webpackModule);
     } catch (error: unknown) {

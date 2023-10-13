@@ -5,12 +5,10 @@ import { remoteModuleGuard } from 'src/micro-frontends-tooling/remote-module.gua
 @Component({
   selector: 'app-checkout-mfe',
   standalone: true,
-  imports: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <mfe-checkout></mfe-checkout>
   `,
-  styleUrls: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CheckoutComponent implements OnInit {
 

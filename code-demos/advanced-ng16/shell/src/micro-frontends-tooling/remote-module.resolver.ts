@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { NavigationBehaviorOptions, ResolveFn, Router } from '@angular/router';
+import { ResolveFn } from '@angular/router';
 import {
   RemoteModuleResultTypes,
   RemoteModuleService,
@@ -21,21 +21,18 @@ export type remoteModuleResolverOptions = {
 export function remoteModuleResolver(options: remoteModuleResolverOptions): ResolveFn<any> {
   return async (): Promise<any> => {
     const remoteModuleService = inject(RemoteModuleService);
-    const router = inject(Router);
-
     // TODO: the callback param is only needed because I'm using the service in multiple ways
     // this param could not be needed.
-    const callback = function (_: any) {};
-    const result = await remoteModuleService.load(
+    const result = await remoteModuleService.loadAsync(
       options.exposedModule,
       options.remoteEntry,
-      callback
     );
 
     switch (result.type) {
       case RemoteModuleResultTypes.Loaded:
         return result.webpackModule;
       case RemoteModuleResultTypes.Failed:
+        // TODO any note about this? or just delete?
         // const currentRoute = router.routerState;
         // const navOptions: NavigationBehaviorOptions = {
         //   skipLocationChange: true,
