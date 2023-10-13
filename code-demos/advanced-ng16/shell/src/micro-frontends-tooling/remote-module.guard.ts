@@ -1,6 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
 import {
+  RemoteModuleLoadOptions,
   RemoteModuleResultTypes,
   RemoteModuleService,
 } from './remote-module.service';
@@ -11,7 +12,7 @@ export type remoteModuleGuardOptions = {
   exposedModule: string;
 };
 
-export function remoteModuleGuard(options: remoteModuleGuardOptions): CanActivateFn {
+export function remoteModuleGuard(guardOptions: remoteModuleGuardOptions): CanActivateFn {
   // export declare type CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree;
   //
   // note that we are returning the type of CanActivateFn
@@ -24,12 +25,12 @@ export function remoteModuleGuard(options: remoteModuleGuardOptions): CanActivat
   // example we use the Promise<boolean>
   return async (): Promise<boolean> => {
     const remoteModuleService = inject(RemoteModuleService);
-    const result = await remoteModuleService.loadAsync(
-      options.id,
-      options.exposedModule,
-      options.remoteEntry,
-    );
-
+    const remoteModuleLoadOptions: RemoteModuleLoadOptions = {
+      id: guardOptions.id,
+      exposedModule: guardOptions.exposedModule,
+      remoteEntry: guardOptions.remoteEntry,
+    };
+    const result = await remoteModuleService.loadAsync(remoteModuleLoadOptions);
     switch (result.type) {
       case RemoteModuleResultTypes.Loaded:
         return true;

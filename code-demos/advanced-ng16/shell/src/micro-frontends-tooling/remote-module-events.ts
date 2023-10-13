@@ -6,6 +6,12 @@ export const enum RemoteModuleEventTypes {
 
 export type RemoteModuleEvent = RemoteModuleLoading | RemoteModuleLoaded | RemoteModuleFailed;
 
+// TODO: explain that you could augment the data on the events to include
+// more helpful stuff like source and target elements, anything that you feel
+// would help provide a better debug experience.
+// The only "extra" field we added was id to be able to filter events for
+// specific components. The id should be unique.
+
 export class RemoteModuleLoading {
   public constructor(
     public readonly id: string,

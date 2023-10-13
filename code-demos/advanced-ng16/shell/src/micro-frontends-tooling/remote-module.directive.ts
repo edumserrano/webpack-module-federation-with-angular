@@ -1,5 +1,6 @@
 import { AfterContentInit, Directive, Input } from '@angular/core';
 import {
+  RemoteModuleLoadOptions,
   RemoteModuleResult,
   RemoteModuleResultTypes,
   RemoteModuleService,
@@ -27,11 +28,12 @@ export class RemoteModuleDirective implements AfterContentInit {
   public loadRemoteModuleCallback?: (webpackModule: any) => void | Promise<void>;
 
   public async ngAfterContentInit(): Promise<void> {
-    const result: RemoteModuleResult = await this._remoteModuleService.loadAsync(
-      this.remoteModuleId,
-      this.exposedModule,
-      this.remoteEntry,
-    );
+    const remoteModuleLoadOptions: RemoteModuleLoadOptions = {
+      id: this.remoteModuleId,
+      exposedModule: this.exposedModule,
+      remoteEntry: this.remoteEntry,
+    };
+    const result: RemoteModuleResult = await this._remoteModuleService.loadAsync(remoteModuleLoadOptions);
     switch (result.type) {
       case RemoteModuleResultTypes.Loaded:
         // if this.loadRemoteModuleCallback is not defined then use a callback function that does nothing
