@@ -6,9 +6,7 @@ import { remoteModuleResolver } from 'src/micro-frontends-tooling/remote-module.
   selector: 'app-checkout-mfe',
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  template: `
-    <mfe-checkout></mfe-checkout>
-  `,
+  template: '<mfe-checkout></mfe-checkout>',
 })
 export class CheckoutComponent implements OnInit {
 

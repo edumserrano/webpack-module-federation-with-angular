@@ -9,7 +9,7 @@ import {
   selector: 'app-checkout-mfe',
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  template: ` <mfe-checkout></mfe-checkout> `,
+  template: '<mfe-checkout></mfe-checkout>',
 })
 export class CheckoutComponent implements OnInit {
   public constructor(private readonly _remoteModuleService: RemoteModuleService) {}

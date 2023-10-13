@@ -11,9 +11,7 @@ import { RemoteModuleResultTypes, RemoteModuleService } from 'src/micro-frontend
 @Component({
   selector: 'app-payment-mfe',
   standalone: true,
-  template: `
-    <ng-container #mfePayment></ng-container>
-  `,
+  template: '<ng-container #mfePayment></ng-container>',
 })
 export class PaymentComponent {
   @ViewChild('mfePayment', { read: ViewContainerRef, static: true })
