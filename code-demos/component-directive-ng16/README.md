@@ -31,6 +31,8 @@ The mfe1 app is an Angular 16 app that contains an Angular feature module named 
 
 The `MyFeatureModule` Angular module contains a route that loads the [MyComponent](/code-demos/component-directive-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent` Angular component.
 
+The mfe1 app will [set the input](/code-demos/component-directive-ng16/mfe1-ng16/src/app/app-routing.module.ts) of the `MyComponent` to `test input value from dev platform` and [subscribe to the output of the component](/code-demos/component-directive-ng16/mfe1-ng16/src/app/app.component.ts) which logs to the console when the `Send message` button is clicked.
+
 ### Exposed webpack module
 
 On the [webpack configuration file for mfe1 app](./mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
@@ -47,12 +49,7 @@ The above defines a webpack module that is named `my-component` and that is mapp
 
 When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the `MyComponent` Angular component is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyComponent` Angular component.
 
-> **Note**
->
-> The `MyComponent` Angular component has an input and an output which aren't used on the mfe1 app. Only the shell is setting the input and consuming the output event.
->
-> We could have added more code to the mfe1 app that would exercise the inputs and outputs and without causing any side effect to the `MyComponent` when exported. However, this wasn't done with the sole reason of keeping the mfe1 app as simple as possible.
->
+This means that the input value `test input value from dev platform` set by the dev platform is not part of the exported component, neither is the subscription of the component's output that logs to the console when the `Send message` is clicked.
 
 ## Shell app
 
