@@ -40,7 +40,7 @@ The mfe1 app is an Angular 16 app that contains an Angular standalone component 
 
 The [AppRoutingModule](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/app-routing.module.ts) Angular module contains a route that loads the `MyStandaloneComponent` on `/my-standalone-component`. You can use the `Go to /my-standalone-component` link on the mfe1 app to load the `MyStandaloneComponent` Angular component.
 
-The mfe1 app will [set the input](/code-demos/web-component-ng16/mfe1-ng16/src/app/app-routing.module.ts) of the `MyStandaloneComponent` to `test input value from dev platform` and [subscribe to the output of the component](/code-demos/web-component-ng16/mfe1-ng16/src/app/app.component.ts) which logs to the console when the `Send message` button is clicked.
+The mfe1 app will [set the input](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/app-routing.module.ts) of the `MyStandaloneComponent` to `test input value from dev platform` and [subscribe to the output of the component](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/app.component.ts) which logs to the console when the `Send message` button is clicked.
 
 ### Exposed webpack module
 
