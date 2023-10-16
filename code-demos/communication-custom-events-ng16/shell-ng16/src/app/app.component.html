@@ -17,13 +17,13 @@
   <ng-container *ngIf="showMessages">
     <hr />
     This message came from the `@Output messageSentEvent` Angular output. The
-    subscription to this was done DECLARATIVELY ON THE HTML AT THE
+    subscription to the event was done DECLARATIVELY ON THE HTML AT THE
     my-mfe-element custom element.
     <p class="messageFromMfe">{{ messageFromAngularOutputAtHtml }}</p>
     <hr />
     <hr />
     This message came from the `@Output messageSentEvent` Angular output. The
-    subscription to this was done DECLARATIVELY ON THE HTML OUTSIDE OF THE
+    subscription to the event was done DECLARATIVELY ON THE HTML OUTSIDE OF THE
     my-mfe-element custom element.
     <p class="messageFromMfe">{{ messageFromAngularOutputAtHtml2 }}</p>
     <p>
@@ -34,13 +34,14 @@
     <hr />
     <hr />
     This message came from the `@Output messageSentEvent` Angular output. The
-    subscription to this was done PROGRAMMATICALLY ON THE INSTANCE OF THE
+    subscription to the event was done PROGRAMMATICALLY ON THE INSTANCE OF THE
     my-mfe-element custom element.
     <p class="messageFromMfe">{{ messageFromAngularOutputAtComponent }}</p>
     <hr />
     <hr />
     This message came from the `@Output messageSentEvent` Angular output. The
-    subscription to this was done PROGRAMMATICALLY ON THE DOCUMENT instance.
+    subscription to the event was done PROGRAMMATICALLY ON THE DOCUMENT
+    instance.
     <p>
       This is not bugged, there is no message because the custom events
       converted from Angular outputs using Angular custom elements do NOT bubble

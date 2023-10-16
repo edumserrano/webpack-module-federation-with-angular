@@ -7,7 +7,8 @@
 
 ## TODO
 
-explain that this is based on the web-components-ng16 example. Check those docs to understand more about the solution setup. This readme will focus on the custom events/communication.
+
+explain that this is based on the web-components-ng16 example. Check those docs to understand more about the solution setup. This readme will focus on the custom events/communication. (does it talk about the tsconfig.app.json referene to bootstrap file)
 explain the bubble up, angular outputs conversion, manual dispatch etc
 
 add code comments or explain in the readme that im not sure what's best in terms of just using the manual custom event or leave both the manual one and the output one.

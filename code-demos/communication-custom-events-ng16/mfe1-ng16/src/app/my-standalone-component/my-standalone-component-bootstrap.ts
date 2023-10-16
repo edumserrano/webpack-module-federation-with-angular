@@ -3,7 +3,7 @@ import { createApplication } from '@angular/platform-browser';
 import { MyStandaloneComponent } from './my-standalone-component.component';
 import { ApplicationConfig, ApplicationRef } from '@angular/core';
 
-// The webpack configuration file at /web-component-ng16/mfe1-ng16/webpack.config.js
+// The webpack configuration file at /communication-custom-events-ng16/mfe1-ng16/webpack.config.js
 // exposes a webpack module which contains this function
 export async function bootstrapMyComponentAsync(): Promise<void> {
   // This converts the Angular component to a Web component.
