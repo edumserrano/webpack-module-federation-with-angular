@@ -5,4 +5,4 @@ MFE1 dev platform
 <p>
   <a routerLink="/my-standalone-component">Go to my-standalone-component</a>
 </p>
-<router-outlet></router-outlet>
+<router-outlet (activate)="routerActivateHandler($event)"></router-outlet>

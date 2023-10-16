@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'my-standalone-component',
-    loadComponent: () => 
+    loadComponent: () =>
       loadRemoteModule({
         type: 'module',
         remoteEntry: 'http://localhost:4201/remoteEntry.js',
@@ -16,13 +16,13 @@ const routes: Routes = [
           console.error('Error lazy loading my-standalone-component', err)
         ),
     data: {
-      // This works as a way to pass input to the component because the bindToComponentInputs opton is set to true below
+      // This works as a way to pass input to the component because the bindToComponentInputs option is set to true below
       // For more info see:
       // - https://angular.io/api/router/ExtraOptions
       // - https://indepth.dev/posts/1519/router-data-as-components-inputs-in-angular-v16
       // - https://www.freecodecamp.org/news/use-input-for-angular-route-parameters/
       // - https://itnext.io/bind-route-info-to-component-inputs-new-router-feature-1d747e559dc4
-      inputText: 'Hello the shell!',
+      inputText: 'Hello from the shell!',
     },
   },
 ];

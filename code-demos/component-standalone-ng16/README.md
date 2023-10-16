@@ -33,7 +33,9 @@ To see the Angular standalone component from the mfe1 app loaded into the shell 
 
 The mfe1 app is an Angular 16 app that contains an Angular standalone component named [MyStandaloneComponent](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts), which represents the micro frontend that we want to expose via webpack module federation.
 
-The [AppRoutingModule](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/app-routing.module.ts) Angular module contains a route that loads the `MyStandaloneComponent` on `/my-standalone-component`. You can use the `Go to my-standalone-component` link on the mfe1 app to load the `MyStandaloneComponent` Angular component.
+The [AppRoutingModule](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/app-routing.module.ts) Angular module contains a route that loads the `MyStandaloneComponent` on `/my-standalone-component`. 
+
+The mfe1 app will [set the input](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/app-routing.module.ts) of the `MyStandaloneComponent` to `test input value from dev platform` and subscribe to the outputs of the component which log messages to the console when the [component is loaded or destroyed](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/app.component.ts). Use the `Go to my-standalone-component` link to load the component and use the `Go to home page` link to destroy it.
 
 ### Exposed webpack module
 
@@ -51,12 +53,7 @@ The above defines a webpack module that is named `my-standalone-component` and t
 
 When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the `MyStandaloneComponent` Angular standalone component is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` Angular component.
 
-> **Note**
->
-> The `MyStandaloneComponent` Angular component has some inputs and outputs which aren't used on the mfe1 app. Only the shell is setting the input and consuming the output events.
->
-> We could have added more code to the mfe1 app that would exercise the inputs and outputs and without causing any side effect to the `MyStandaloneComponent` when exported. However, this wasn't done with the sole reason of keeping the mfe1 app as simple as possible.
->
+This means that the input value `test input value from dev platform` set by the dev platform is not part of the exported component, neither is the subscription of the component's outputs that log to the console when the component is loaded or destroyed.
 
 ## Shell app
 
@@ -88,6 +85,11 @@ The `/my-standalone-component` route added to the [AppRoutingModule](/code-demos
 Once the webpack module is loaded from the remote we return the exposed Angular standalone component from the mfe1 app named `MyStandaloneComponent` to the `loadComponent` function, which then loads the Angular component into the DOM.
 
 This way also sets the component input. See the line with `inputText: 'Hello from the shell!'` at [app-routing.module.ts](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/app-routing.module.ts).
+
+> **Note**
+>
+> This approach is not subscribing to the component's outputs because it would require a bit of extra code to do it. You could do it like it's done in the mfe1 app dev platform which subscribes to the `activate` event from the `router-outlet` or a better approach would be to create a wrapper component and then create an Angular service to share the data. You can take a look at the [advanced-ng16](../advanced-ng16/README.md) code demo to see how to create a wrapper component.
+>
 
 #### Using Angular dynamic component loading
 
