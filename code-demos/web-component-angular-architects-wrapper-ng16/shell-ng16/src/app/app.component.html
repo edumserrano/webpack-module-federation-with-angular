@@ -19,6 +19,6 @@
     <a routerLink="/mfe1">Load Web component from mfe1</a>
   </p>
   Web component loaded using the WebComponentWrapper with Angular routing
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="routerActivateHandler($event)"></router-outlet>
   <hr />
 </div>

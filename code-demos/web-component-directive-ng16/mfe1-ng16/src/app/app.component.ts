@@ -18,7 +18,7 @@ export class AppComponent {
   //
   // The second approach is what would normally be used for a situation where the
   // component is loaded using Angular routing. However, is this code demo the
-  // MyStandaloneComponent  is going to be remotely consumed by another app and we
+  // MyStandaloneComponent is going to be remotely consumed by another app and we
   // don't want to expose any additional services with it.
   //
   // As such, to be able to subscribe to the outputs from the MyStandaloneComponent

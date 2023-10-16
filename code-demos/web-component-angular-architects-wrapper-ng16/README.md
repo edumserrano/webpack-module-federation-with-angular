@@ -40,6 +40,8 @@ The mfe1 app is an Angular 16 app that contains an Angular standalone component 
 
 The [AppRoutingModule](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/app-routing.module.ts) Angular module contains a route that loads the `MyStandaloneComponent` on `/my-standalone-component`. You can use the `Go to /my-standalone-component` link on the mfe1 app to load the `MyStandaloneComponent` Angular component.
 
+The mfe1 app will [set the input](/code-demos/web-component-ng16/mfe1-ng16/src/app/app-routing.module.ts) of the `MyStandaloneComponent` to `test input value from dev platform` and [subscribe to the output of the component](/code-demos/web-component-ng16/mfe1-ng16/src/app/app.component.ts) which logs to the console when the `Send message` button is clicked.
+
 ### Exposed webpack module
 
 On the [webpack configuration file for mfe1 app](./mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
@@ -66,20 +68,15 @@ The above defines a webpack module that is named `standalone-component-as-web-co
 
 When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the [remote-bootstrap.ts](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/my-standalone-component/remote-bootstrap.ts) file that executes the [bootstrapMyComponentAsync](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component-bootstrap.ts) function is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` Angular component.
 
-> **Note**
->
-> The `MyStandaloneComponent` Angular component has an input and an output which aren't used on the mfe1 app. Only the shell is setting the input and consuming the output event.
->
-> We could have added more code to the mfe1 app that would exercise the inputs and outputs and without causing any side effect to the `MyStandaloneComponent` when exported. However, this wasn't done with the sole reason of keeping the mfe1 app as simple as possible.
->
+This means that the input value `test input value from dev platform` set by the dev platform is not part of the exported component, neither is the subscription of the component's output that logs to the console when the `Send message` is clicked.
 
 ## Shell app
 
 The shell app is an Angular 16 app that loads a Web component exposed by the mfe1 app by using a generic Angular component that acts as a wrapper. The wrapper component is named [WebComponentWrapper ](https://github.com/angular-architects/module-federation-plugin/blob/53a9aa740475b87f689a5781847d418e66b44226/libs/mf-tools/src/lib/web-components/web-component-wrapper.ts) and is provided by the [@angular-architects/module-federation-tools](https://www.npmjs.com/package/@angular-architects/module-federation-tools) npm package.
 
 The shell uses the `WebComponentWrapper` in two ways:
-- `directly on HTML`: the web component is loaded on the shell's page load. This way allows us to set properties and consume the events from the Web component. Note that the `Input value` has a value and that clicking on the `Send message` button produces a message that is displayed on the shell.
-- `with Angular routing`: the web component will load when navigating to `/mfe1`. This way does NOT allow us to set properties or consume events from the Web component. That's why when this component is loaded the `Input value` is blank and clicking its `Send message` button does nothing. 
+- `directly on HTML`: the web component is loaded on the shell's page load. This way also allows easily setting the inputs and outputs.
+- `with Angular routing`: the web component will load when navigating to `/mfe1`. You can also set inputs and outputs using the `WebComponentWrapper` in this way but it's more limited, not so straightforward.
 
 ### How the remote is loaded into the shell
 
