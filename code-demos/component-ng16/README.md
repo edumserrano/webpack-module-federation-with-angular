@@ -51,6 +51,8 @@ This example is exposing two webpack modules to show different ways of loading t
 
 When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the `MyFeatureModule` Angular feature module or the `MyComponent` Angular component are. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyComponent` Angular component.
 
+This means that the input value `test input value from dev platform` set by the dev platform is not part of the exported component.
+
 ## Shell app
 
 The shell app is an Angular 16 app that dynamically instantiates an Angular component exposed by the mfe1 app and adds it to the DOM. You can test this by clicking on any of the `Load MyComponent ...` buttons. All of the load buttons produce the same end result through slighlty different code.
