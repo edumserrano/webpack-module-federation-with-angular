@@ -9,6 +9,9 @@
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
 - [Webpack module federation](#webpack-module-federation)
 - [Web components and Angular styling](#web-components-and-angular-styling)
+- [Bonus](#bonus)
+  - [Add strict type information to remotely imported web components](#add-strict-type-information-to-remotely-imported-web-components)
+  - [Add IDE auto-completion on HTML for web components](#add-ide-auto-completion-on-html-for-web-components)
 - [Learn more](#learn-more)
 
 ## Description
@@ -95,6 +98,72 @@ Also, read the official docs at:
 Beware of issues with styling when using web components. If styles from your Angular component that you have exposed as a Web component using `@angular/elements` are bleeding out, then you might need to set your [ViewEncapsulation](https://angular.io/api/core/ViewEncapsulation) to `ViewEncapsulation.ShadowDom`, which uses the ShadowDOM specification, on the Angular component which is being passed to `createCustomElement`. 
 
 In this example app, the `ViewEncapsulation` configuration would be applied to the [MyStandaloneComponent](/code-demos/web-component-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts) component.
+
+## Bonus
+
+This section is not directly related with working with Webpack module federation and  it's not needed to get this code demo running nor to understand its concepts. Feel free to skip this `Bonus` section if you're not interested in knowing how to provide type information or improving the IDE support for externally imported Web components.
+
+### Add strict type information to remotely imported web components
+
+When using the remotely imported web component from the mfe1 app you do not have any type information. However, you can create a [type declaration file `.d.ts`](https://medium.com/@ohansemmanuel/what-is-a-d-ts-file-in-typescript-2e2d90d58eca#:~:text=TLDR-,.,information%20used%20for%20type%20checking), whose purpose is to describe the shape of the mfe1 module and only contains type information used for type checking. The [mfe1.d.ts](/code-demos/web-component-ng16/shell-ng16/src/app/mfe1.d.ts) shows how you can do that. 
+
+With the `mfe1.d.ts` type declaration file you can programmatically instantiate the web component from the mfe1 app and add it to the DOM and get strict type checking whilst doing it:
+
+```ts
+// Import the MyMfeElement interface declaration for the 
+import { MyMfeElement } from './mfe1'; 
+
+// Create an instance of the MyMfeElement web component programmatically
+const myMfeElement: MyMfeElement = document.createElement("my-mfe-element");
+
+// Set web component inputs
+myMfeElement.inputText = "some input text"; // set input using a property
+// Alternatively you could set the same input using the attribute 'input-text'.
+// However, I don't think there is strict type support for attributes:
+myMfeElement.setAttribute("input-text","some input text"); // set input using an attribute
+myMfeElement.setAttribute("input-text2","some input text 2"); // no error but wouldn't have any effect
+
+// Trying to set an non-existing property would give an error
+myMfeElement.inputText2 = "some input text"; // error, property does not exist
+
+// Subscribe to web component events
+myMfeElement.addEventListener("messageSentEvent", (ev: CustomEvent<string>) => console.log(ev.detail));
+
+// Trying to subscribe to an non-existing event would give an error
+myMfeElement.addEventListener("messageSentEvent2", (ev: Event) => console.log(ev.detail)); // error, event does not exist
+
+// Lastly, add the web component to the DOM
+const root: HTMLElement | null = document.getElementById(...);
+root?.appendChild(myMfeElement);
+```
+
+Notice how the above code snippet:
+
+1) knows that when you create a custom HTML element named `my-mfe-element` it will be of type `MyMfeElement`
+2) knows which properties and events are valid for the type `MyMfeElement`.
+3) knows the right type for the `messageSentEvent` custom event. Without the type declaration file, if you tried to subscribe to the `messageSentEvent` event and the subscription handler had an input of type `CustomEvent<string>` you would get an error saying `Argument of type 'Event' is not assignable to parameter of type 'CustomEvent<string>'.`. This is because by default all events from HTML elements generate an object of type `Event` and, without further information, Typescript cannot deviate from that. You would have to declare the subscription handler with an input of type `Event` and then you cast it to `CustomEvent<string>`.
+
+### Add IDE auto-completion on HTML for web components
+
+The declaration file explained in the previous section only affects type checking for Typescript files, which means it only helps when working with remote web components programmatically. When you declare a web component directly on HTML you don't have any type checking or code-completion aid.
+
+As of writing this, I don't think there is a standard way to provide this information that all code editors accept. There is an effort to create a standard from the web components org named [custom-elements-manifest](https://github.com/webcomponents/custom-elements-manifest) but it hasn't been adopted by code editors yet. There is an open issue on the WICG[^1] repo where ths is being discussed. See [Editor support for WebComponents](https://github.com/WICG/webcomponents/issues/776). 
+
+For `VS Code`, this is being supported via [VS Code Custom Data](https://github.com/microsoft/vscode-custom-data). Custom data enhances VS Code's understanding of HTML/CSS. For example, with these HTML/CSS JSON contributions, VS Code could provide completion and hover for the custom HTML tag/attribute and CSS property/pseudoClass. For more info see:
+
+- [Web Components support in HTML files](https://github.com/Microsoft/vscode/issues/62976)
+- [Custom Data for HTML Language Service](https://github.com/Microsoft/vscode-html-languageservice/blob/main/docs/customData.md)
+
+For `JetBrains'` editors see [web-types](https://github.com/JetBrains/web-types).
+
+Also note that there is some tooling comming up from the community to let you automate the creation of the custom elements manifest and also convert it to IDE specific formats. See:
+
+- [Custom Elements Manifest](https://custom-elements-manifest.open-wc.org/): Codegen for Web Components
+- [Custom Element (Web Component) VS Code Integration](https://www.npmjs.com/package/custom-element-vs-code-integration): This package generates custom data config files for VS Code using the Custom Element Manifest.
+- [Custom Element (Web Component) JetBrains Integration](https://www.npmjs.com/package/custom-element-jet-brains-integration)
+- [CEM Tools](https://github.com/break-stuff/cem-tools): This is a collection of tools based off the Custom Elements Manifest. Each tool is designed to provide a better development experience when working with custom elements. This repo has a [demo app](https://github.com/break-stuff/cem-tools/tree/main/demo/lit-app) which shows a [custom element manifest file](https://github.com/break-stuff/cem-tools/blob/main/demo/lit-app/custom-elements.json) for a custom element named `radio-group` and its conversation to [VS Code custom data file](https://github.com/break-stuff/cem-tools/blob/main/demo/lit-app/vscode.html-custom-data.json) and [JetBrains web-type file](https://github.com/break-stuff/cem-tools/blob/main/demo/lit-app/web-types.json).
+
+[^1]: The Web Incubator Community Group (WICG) is a community group of the World Wide Web Consortium (W3C) that incubates new web platform features.
 
 ## Learn more
 
