@@ -50,7 +50,7 @@ export class CheckoutComponent {
   private subscribeToEvents(remoteModuleEvents$: RemoteModuleEvents): void {
     remoteModuleEvents$
       .pipe(
-        takeUntilDestroyed(),
+        takeUntilDestroyed(), // see https://indepth.dev/posts/1518/takeuntildestroy-in-angular-v16
         filter((event: RemoteModuleEvent) => event.id === CheckoutComponent.name),
       )
       .subscribe(x => {
