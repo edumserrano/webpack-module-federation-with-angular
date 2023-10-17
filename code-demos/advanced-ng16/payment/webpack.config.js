@@ -3,7 +3,7 @@ const {
   withModuleFederationPlugin,
 } = require("@angular-architects/module-federation/webpack");
 
-const moduleFederationConfig = withModuleFederationPlugin({
+module.exports = withModuleFederationPlugin({
   name: "payment",
   filename: "remoteEntry.js", // this doesn't need to be set, if not specified it defaults to remoteEntry.js. Setting it here just for demo purposes.
   exposes: {
@@ -17,13 +17,3 @@ const moduleFederationConfig = withModuleFederationPlugin({
     }),
   },
 });
-
-const webpackConfig = {
-  ...moduleFederationConfig,
-  experiments: {
-    ...moduleFederationConfig.experiments,
-    topLevelAwait: true,
-  },
-}
-
-module.exports = webpackConfig;

@@ -3,6 +3,8 @@ import { createApplication } from '@angular/platform-browser';
 import { createCustomElement } from '@angular/elements';
 import { CheckoutComponent } from './checkout.component';
 
+// The webpack configuration file at /advanced-ng16/checkout/webpack.config.js
+// exposes a webpack module which contains this function.
 export async function mountAsync(customElementName: string): Promise<void> {
   const customElementCtor: CustomElementConstructor | undefined = customElements.get(customElementName);
   if(customElementCtor) {
