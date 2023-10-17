@@ -33,6 +33,19 @@ export class CheckoutComponent implements OnInit {
   @Output()
   public checkoutRequested: EventEmitter<string> = new EventEmitter<string>();
 
+  // TODO explain in readme that a simple version of a wrapper could be like this
+  // add the imports as well
+  // public async ngOnInit(): Promise<void> {
+  //   const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
+  //     type: 'module',
+  //     exposedModule: './checkout',
+  //     remoteEntry: 'http://localhost:4201/remoteEntry.js',
+  //   };
+  //   const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+  //   const elementName = "mfe-checkout";
+  //   await webpackModule.mountAsync(elementName);
+  // }
+
   public async ngOnInit(): Promise<void> {
     const remoteModuleLoadOptions: RemoteModuleLoadOptions = {
       id: CheckoutComponent.name,
