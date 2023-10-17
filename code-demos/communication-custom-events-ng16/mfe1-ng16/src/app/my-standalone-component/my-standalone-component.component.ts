@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, VERSION } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, VERSION } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -21,7 +21,7 @@ export class MyStandaloneComponent {
 
     // You can create a custom event like just by doing 'new CustomEvent' but it's
     // better if you type your events and do like it's shown below using the pattern
-    // shown by the GreetMessageEvent type.
+    // demonstrated by the GreetMessageEvent type.
     //
     // const manualCustomEvent = new CustomEvent('greet-message', {
     //   bubbles: true,
@@ -32,7 +32,7 @@ export class MyStandaloneComponent {
     //   }
     // });
 
-    const greet = {
+    const greet: Greet = {
       greet: "Hello",
       time: new Date(),
     };
