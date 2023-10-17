@@ -1,4 +1,7 @@
 mfe-checkout dev platform
 <hr />
-<app-checkout></app-checkout>
+<app-checkout
+  basketValue="555"
+  (checkoutRequested)="checkoutHandler($event)"
+></app-checkout>
 <hr />

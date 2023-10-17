@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  // TODO pass input and subscribe to output for dev platform purposes
+  public checkoutHandler(message: string): void {
+    console.log(message);
+  }
 }

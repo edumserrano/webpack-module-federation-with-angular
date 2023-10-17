@@ -1,10 +1,11 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, Inject } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Routes } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RemoteModuleEvent } from 'src/micro-frontends-tooling/remote-module-events';
 import { RemoteModuleDirective } from 'src/micro-frontends-tooling/remote-module.directive';
 import { REMOTE_MODULE_EVENTS, RemoteModuleEvents } from 'src/micro-frontends-tooling/remote-module.service';
 import { filter } from 'rxjs';
+import { CheckoutService } from './checkout.service';
 
 // TODO: note about not having an .html and using the templateUrl prop. if it's simple
 // you can consider not having a separate file but usually it's better to have that and
@@ -24,14 +25,25 @@ import { filter } from 'rxjs';
       exposedModule="./checkout"
       remoteEntry="http://localhost:4201/remoteEntry.js"
       [loadRemoteModuleCallback]="loadRemoteModuleHandler"
+      [basketValue]="basketValue"
+      (checkoutRequested)="checkoutHandler($event)"
     ></mfe-checkout>
   `,
  })
 export class CheckoutComponent {
 
-  public constructor(@Inject(REMOTE_MODULE_EVENTS) remoteModuleEvents$: RemoteModuleEvents) {
+  public constructor(
+    @Inject(REMOTE_MODULE_EVENTS) remoteModuleEvents$: RemoteModuleEvents,
+    private readonly _checkoutService: CheckoutService,
+  ) {
     this.subscribeToEvents(remoteModuleEvents$);
   }
+
+  @Input()
+  public basketValue?: string;
+
+  @Output()
+  public checkoutRequested: EventEmitter<string> = new EventEmitter<string>();
 
   public readonly remoteModuleId: string = CheckoutComponent.name;
 
@@ -44,7 +56,22 @@ export class CheckoutComponent {
     // a subscription to the loaded event and pick up the webpack module from there
     const elementName = "mfe-checkout";
     await webpackModule.mountAsync(elementName);
-   }
+  }
+
+  public checkoutHandler(event: Event): void {
+    const checkoutEvent = event as CustomEvent<string>;
+    const checkoutMessage= checkoutEvent.detail;
+
+    // We don't need to both emit the checkout message and share it via
+    // the checkout service. Usually, you would choose one of them depending
+    // on how this mfe is used.
+    //
+    // Using the 'emit' function only allows the output to be consumed via
+    // parent HTML elements, whilst using a service to share the data doesn't
+    // have that limitation
+    this.checkoutRequested.emit(checkoutMessage);
+    this._checkoutService.triggerCheckoutRequested(checkoutMessage);
+  }
 
   // TODO talk about this example
   private subscribeToEvents(remoteModuleEvents$: RemoteModuleEvents): void {

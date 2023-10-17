@@ -27,19 +27,14 @@
     <a routerLink="/payment-via-route-resolver">Load payment mfe via a route resolver</a>
   </p>
   <hr />
-
-  <!-- <my-mfe-element
-    input-text="Hello from shell!"
-    (messageSentEvent)="onMessageSent($event)"
-  ></my-mfe-element> -->
-
-  <!-- this requires import on module and it's not lazy loaded-->
-  <!-- <app-my-standalone-component1></app-my-standalone-component1> -->
-
-  <!-- this requires import on module and it's not lazy loaded -->
-  <!-- <app-my-standalone-component2 inputText="Hello" (messageSentEvent)="onMessageSent($event)"></app-my-standalone-component2> -->
-
+  MFEs loaded using Angular routing show here
   <router-outlet></router-outlet>
-  <!-- <p>Message received by the shell from the Web component:</p>
-  <p>{{ message }}</p> -->
+  <hr />
+  checkout MFE loaded via HTML declaration
+  <!-- this requires import on module and it's not lazy loaded-->
+  <app-checkout-mfe basketValue="123" (checkoutRequested)="checkoutHandler($event)" ></app-checkout-mfe>
+  <hr />
+  payment MFE loaded via HTML declaration
+  <!-- this requires import on module and it's not lazy loaded-->
+  <app-payment-mfe></app-payment-mfe>
 </div>
