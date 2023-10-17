@@ -1,13 +1,13 @@
 <div
   class="card"
   (greet-message)="onGreet2($event)"
-  (messageSentEvent)="onMessageSent2($event)"
+  (message-sent)="onMessageSent2($event)"
 >
   Shell running Angular {{ version }}
   <my-mfe-element
     #mfe1
     input-text="Hello from shell!"
-    (messageSentEvent)="onMessageSent($event)"
+    (message-sent)="onMessageSent($event)"
     (greet-message)="onGreet($event)"
   ></my-mfe-element>
   <p>
@@ -16,13 +16,13 @@
   </p>
   <ng-container *ngIf="showMessages">
     <hr />
-    This message came from the `@Output messageSentEvent` Angular output. The
+    This message came from the `@Output("message-sent") messageSentEvent` Angular output. The
     subscription to the event was done DECLARATIVELY ON THE HTML AT THE
     my-mfe-element custom element.
     <p class="messageFromMfe">{{ messageFromAngularOutputAtHtml }}</p>
     <hr />
     <hr />
-    This message came from the `@Output messageSentEvent` Angular output. The
+    This message came from the `@Output("message-sent") messageSentEvent` Angular output. The
     subscription to the event was done DECLARATIVELY ON THE HTML OUTSIDE OF THE
     my-mfe-element custom element.
     <p class="messageFromMfe">{{ messageFromAngularOutputAtHtml2 }}</p>
@@ -33,13 +33,13 @@
     </p>
     <hr />
     <hr />
-    This message came from the `@Output messageSentEvent` Angular output. The
+    This message came from the `@Output("message-sent") messageSentEvent` Angular output. The
     subscription to the event was done PROGRAMMATICALLY ON THE INSTANCE OF THE
     my-mfe-element custom element.
     <p class="messageFromMfe">{{ messageFromAngularOutputAtComponent }}</p>
     <hr />
     <hr />
-    This message came from the `@Output messageSentEvent` Angular output. The
+    This message came from the `@Output("message-sent") messageSentEvent` Angular output. The
     subscription to the event was done PROGRAMMATICALLY ON THE DOCUMENT
     instance.
     <p>

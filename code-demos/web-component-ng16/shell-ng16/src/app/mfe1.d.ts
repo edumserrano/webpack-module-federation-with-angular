@@ -16,7 +16,7 @@
 
 // Define custom event types and details here
 interface MyMfeElementEventMap {
-  'messageSentEvent': CustomEvent<string>;
+  'message-sent': CustomEvent<string>;
 }
 
 export interface MyMfeElementCombinedEventMap  extends HTMLElementEventMap, MyMfeElementEventMap {}

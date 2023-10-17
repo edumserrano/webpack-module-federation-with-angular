@@ -26,7 +26,7 @@ import { CheckoutService } from './checkout.service';
       remoteEntry="http://localhost:4201/remoteEntry.js"
       [loadRemoteModuleCallback]="loadRemoteModuleHandler"
       [basketValue]="basketValue"
-      (checkoutRequested)="checkoutHandler($event)"
+      (checkout-requested)="checkoutHandler($event)"
     ></mfe-checkout>
   `,
  })

@@ -31,7 +31,7 @@ export class AppComponent {
   };
 
   public readonly mfe1WebComponentEvents: { [key: string]: (event: Event) => void } = {
-    messageSentEvent: (event: Event) => {
+    'message-sent': (event: Event) => {
       this.message = (event as CustomEvent).detail;
     },
   };
@@ -57,7 +57,7 @@ export class AppComponent {
     if(component instanceof WebComponentWrapper) {
       // outputs on the WebComponentWrapper are exposed by its events property
       component.events = {
-        messageSentEvent: (event: Event) => {
+        'message-sent': (event: Event) => {
           this.message = (event as CustomEvent).detail;
         },
       };

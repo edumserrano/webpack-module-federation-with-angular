@@ -7,6 +7,8 @@
 
 ## TODO
 
+The example here is mainly using the event bus to pass outputs from one component to another but you could do the same to set inputs. Component-A could trigger an event that Component-B subscribes to and updates what would be an input.
+
 
 explain that this is based on the web-components-ng16 example. Check those docs to understand more about the solution setup. This readme will focus on the custom events/communication. (does it talk about the tsconfig.app.json referene to bootstrap file)
 explain the bubble up, angular outputs conversion, manual dispatch etc

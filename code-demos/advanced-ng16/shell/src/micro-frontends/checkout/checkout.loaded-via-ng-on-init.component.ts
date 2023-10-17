@@ -14,7 +14,7 @@ import { CheckoutService } from './checkout.service';
   template: `
     <mfe-checkout
       [basketValue]="basketValue"
-      (checkoutRequested)="checkoutHandler($event)">
+      (checkout-requested)="checkoutHandler($event)">
     </mfe-checkout>
   `,
 })

@@ -12,7 +12,7 @@ export class CheckoutComponent {
   @Input()
   public basketValue?: string;
 
-  @Output()
+  @Output("checkout-requested")
   public checkoutRequested: EventEmitter<string> = new EventEmitter<string>();
 
   public checkoutHandler(): void {

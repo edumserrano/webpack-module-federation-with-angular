@@ -67,13 +67,13 @@ export class AppComponent implements OnInit {
     }
 
     const myMfeElement: HTMLElement = this._mfe1ElementRef.nativeElement;
-    // programatically subscribe to the messageSentEvent event at the my-mfe-element web component level
-    myMfeElement.addEventListener('messageSentEvent', (event: Event) => {
+    // programatically subscribe to the message-sent event at the my-mfe-element web component level
+    myMfeElement.addEventListener('message-sent', (event: Event) => {
       const messageSentEvent = event as CustomEvent<string>;
       this.messageFromAngularOutputAtComponent = messageSentEvent.detail;
     });
-    // programatically subscribe to the messageSentEvent event at the document level
-    this._document.addEventListener('messageSentEvent', (event: Event) => {
+    // programatically subscribe to the message-sent event at the document level
+    this._document.addEventListener('message-sent', (event: Event) => {
       const messageSentEvent = event as CustomEvent<string>;
       this.messageFromAngularOutputAtDocument = messageSentEvent.detail;
     });
@@ -89,7 +89,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // Handler from the declarative HTML subscription to the messageSentEvent event.
+  // Handler from the declarative HTML subscription to the message-sent event.
   // Subscription declared at the my-mfe-element web component level.
   public onMessageSent(event: Event): void {
     // this.showMessages property controls the visibility of all messages bound to the
@@ -111,7 +111,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  // Handler from the declarative HTML subscription to the messageSentEvent event.
+  // Handler from the declarative HTML subscription to the message-sent event.
   // Subscription declared at the document level.
   public onMessageSent2(event: Event): void {
     const messageSentEvent = event as CustomEvent<string>;

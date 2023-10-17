@@ -14,7 +14,7 @@ export class MyStandaloneComponent {
   @Input()
   public inputText?: string;
 
-  @Output()
+  @Output("message-sent")
   public messageSentEvent: EventEmitter<string> = new EventEmitter<string>();
 
   public sendMessage(): void {

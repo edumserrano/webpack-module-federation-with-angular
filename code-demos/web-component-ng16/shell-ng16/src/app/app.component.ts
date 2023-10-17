@@ -30,12 +30,12 @@ export class AppComponent implements OnInit {
   };
 
   // Without the /src/app/mfe1.d.ts type declaration file the handler for the
-  // messageSentEvent event must have an input of type Event and then you need
+  // 'message-sent' event must have an input of type Event and then you need
   // to cast it to CustomEvent<string>.
   //
   // With the /src/app/mfe1.d.ts type declaration file you can subscribe
-  // to the messageSentEvent event and take in the type CustomEvent<string>
-  // as the input
+  // to the 'message-sent' event and take in the type CustomEvent<string>
+  // as the input. Like this:
   //
   // public onMessageSent(event: CustomEvent<string>): void {
   //   this.message = event.detail;

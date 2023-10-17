@@ -11,7 +11,7 @@
     remoteEntry="http://localhost:4201/remoteEntry.js"
     (loaded)="componentLoadedHandler()"
     input-text="Hello from shell!"
-    (messageSentEvent)="onMessageSent($event)"
+    (message-sent)="onMessageSent($event)"
   ></my-mfe-element>
   <p *ngIf="componentLoaded">Message received by the shell from the Web component:</p>
   <p *ngIf="componentLoaded">{{ message }}</p>

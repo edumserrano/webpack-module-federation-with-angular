@@ -13,7 +13,7 @@ export class MyStandaloneComponent {
 
   public constructor(private readonly _elementRef: ElementRef) {}
 
-  @Output()
+  @Output("message-sent")
   public messageSentEvent: EventEmitter<string> = new EventEmitter<string>();
 
   public sendMessage(): void {

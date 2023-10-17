@@ -124,10 +124,10 @@ myMfeElement.setAttribute("input-text2","some input text 2"); // no error but wo
 myMfeElement.inputText2 = "some input text"; // error, property does not exist
 
 // Subscribe to web component events
-myMfeElement.addEventListener("messageSentEvent", (ev: CustomEvent<string>) => console.log(ev.detail));
+myMfeElement.addEventListener("message-sent", (ev: CustomEvent<string>) => console.log(ev.detail));
 
 // Trying to subscribe to an non-existing event would give an error
-myMfeElement.addEventListener("messageSentEvent2", (ev: Event) => console.log(ev.detail)); // error, event does not exist
+myMfeElement.addEventListener("message-sent-2", (ev: Event) => console.log(ev.detail)); // error, event does not exist
 
 // Lastly, add the web component to the DOM
 const root: HTMLElement | null = document.getElementById(...);
@@ -138,7 +138,7 @@ Notice how the above code snippet:
 
 1) knows that when you create a custom HTML element named `my-mfe-element` it will be of type `MyMfeElement`
 2) knows which properties and events are valid for the type `MyMfeElement`.
-3) knows the right type for the `messageSentEvent` custom event. Without the type declaration file, if you tried to subscribe to the `messageSentEvent` event and the subscription handler had an input of type `CustomEvent<string>` you would get an error saying `Argument of type 'Event' is not assignable to parameter of type 'CustomEvent<string>'.`. This is because by default all events from HTML elements generate an object of type `Event` and, without further information, Typescript cannot deviate from that. You would have to declare the subscription handler with an input of type `Event` and then you cast it to `CustomEvent<string>`.
+3) knows the right type for the `message-sent` custom event. Without the type declaration file, if you tried to subscribe to the `message-sent` event and the subscription handler had an input of type `CustomEvent<string>` you would get an error saying `Argument of type 'Event' is not assignable to parameter of type 'CustomEvent<string>'.`. This is because by default all events from HTML elements generate an object of type `Event` and, without further information, Typescript cannot deviate from that. You would have to declare the subscription handler with an input of type `Event` and then you cast it to `CustomEvent<string>`.
 
 ### Add IDE auto-completion on HTML for web components
 
