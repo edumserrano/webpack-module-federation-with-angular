@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
       this.messageFromAngularOutputAtComponent = messageSentEvent.detail;
     });
     // programatically subscribe to the messageSentEvent event at the document level
-    this._document.addEventListener('greet', (event: Event) => {
+    this._document.addEventListener('messageSentEvent', (event: Event) => {
       const messageSentEvent = event as CustomEvent<string>;
       this.messageFromAngularOutputAtDocument = messageSentEvent.detail;
     });
