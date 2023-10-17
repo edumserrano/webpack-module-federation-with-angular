@@ -1,15 +1,16 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { NgElementConfig, createCustomElement } from '@angular/elements';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppModule } from 'src/app/app.module';
 import { MyComponent } from 'src/app/my-component/my-component.component';
 
 @NgModule({
   declarations: [],
-  imports: [AppModule],
+  imports: [BrowserModule, AppModule],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [],
-  // bootstrap: [MfeEntryComponent],
+  // bootstrap: [MfeEntryComponent], // TODO explain why there's no bootstrap
 })
 export class MfePlatformModule {
 
