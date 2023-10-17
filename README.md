@@ -1,4 +1,4 @@
-# Webpack module federation examples
+# A guide to Webpack module federation using Angular
 
 - [Description](#description)
 - [Read me before exploring the code demos](#read-me-before-exploring-the-code-demos)
