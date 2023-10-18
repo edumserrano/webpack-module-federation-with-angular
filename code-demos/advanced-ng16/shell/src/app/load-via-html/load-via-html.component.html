@@ -1,0 +1,11 @@
+<hr />
+checkout MFE
+<!-- this requires an import on app.module.ts and it's not lazy loaded-->
+<app-checkout-mfe
+  basketValue="123"
+  (checkoutRequested)="checkoutHandler($event)"
+></app-checkout-mfe>
+<hr />
+payment MFE
+<!-- this requires an import on app.module.ts and it's not lazy loaded-->
+<app-payment-mfe></app-payment-mfe>

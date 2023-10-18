@@ -14,3 +14,9 @@ This means the subscription done by the dev platform of the component's output t
 
 
 When clicking on the `Checkout` button on the checkout component loaded using angular routing we get two alerts because code-demos\advanced-ng16\shell\src\app\app.component.ts has 2 subscriptions, one to the output on the HTML, one using the checkout events on the app.component.ts. This is only happening because this code demo is trying to show several things in one.
+
+
+- https://stackoverflow.com/questions/42094152/targeting-named-outlet-via-routerlink-adds-extraneous
+- https://lukeliutingchun.medium.com/angular-introduction-to-named-router-outlet-and-a-hack-for-custom-url-6ca1cd11fd2a
+- https://blog.devgenius.io/the-art-of-nested-router-outlets-in-angular-dafb38245a30
+- https://angular.io/api/router/RouterLink#relative-link-paths

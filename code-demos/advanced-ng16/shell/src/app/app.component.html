@@ -3,38 +3,11 @@
   <p>
     <a routerLink="/">Go to home page</a>
   </p>
-  <hr />
   <p>
-    <a routerLink="/checkout-via-ng-on-init">Load checkout mfe via an ngOnInit</a>
+    <a routerLink="/mfes-via-routing">Go to MFEs loaded via routing page</a>
   </p>
   <p>
-    <a routerLink="/checkout-via-directive">Load checkout mfe via an Angular directive</a>
+    <a routerLink="/mfes-via-html">Go to MFEs loaded via HTML page</a>
   </p>
-  <p>
-    <a routerLink="/checkout-via-route-resolver">Load checkout mfe via a route resolver</a>
-  </p>
-  <p>
-    <a routerLink="/checkout-via-route-guard">Load checkout mfe via a route guard</a>
-  </p>
-  <hr />
-  <p>
-    <a routerLink="/payment-via-ng-on-init">Load payment mfe via an ngOnInit</a>
-  </p>
-  <p>
-    <a routerLink="/payment-via-directive">Load payment mfe via an Angular directive</a>
-  </p>
-  <p>
-    <a routerLink="/payment-via-route-resolver">Load payment mfe via a route resolver</a>
-  </p>
-  <hr />
-  MFEs loaded using Angular routing show here
   <router-outlet></router-outlet>
-  <hr />
-  checkout MFE loaded via HTML declaration
-  <!-- this requires import on module and it's not lazy loaded-->
-  <app-checkout-mfe basketValue="123" (checkoutRequested)="checkoutHandler($event)" ></app-checkout-mfe>
-  <hr />
-  payment MFE loaded via HTML declaration
-  <!-- this requires import on module and it's not lazy loaded-->
-  <app-payment-mfe></app-payment-mfe>
 </div>
