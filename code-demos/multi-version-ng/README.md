@@ -51,3 +51,10 @@ Maybe change the ngDoBootstrap signature to take in the appref? What makes more 
 
 add note about using `npm i -D @angular-architects/module-federation-tools@appropriate-version`: "@angular-architects/module-federation-tools": "^16.0.4",
 instead of the custom platform bootstrap, note that the same custom platform bootstrap is used on the remote bootstrap file
+
+
+
+Angular 12 version of Angular architects (comment about javascript vs module). Around  pages 51 and 52 of Angular book
+
+
+- https://www.npmjs.com/package/@angular-architects/module-federation-tools.
