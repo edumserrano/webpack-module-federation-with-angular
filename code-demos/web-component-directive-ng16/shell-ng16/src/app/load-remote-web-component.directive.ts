@@ -21,10 +21,10 @@ export class LoadRemoteWebComponentDirective implements AfterContentInit {
     // the call to sleepAsync is for demo purposes ONLY. It's being done to be able to see the loading text before the component is loaded.
     // it's simulating a slow network fetching the remote webpack modules and or slow operations done by the component upon creation.
     await this.sleepAsync(2000);
-    await this.loadRemotecomponent(this.exposedModule, this.remoteEntry);
+    await this.loadRemotecomponentAsync(this.exposedModule, this.remoteEntry);
   }
 
-  public async loadRemotecomponent(exposedModule: string, remoteEntry: string): Promise<void> {
+  private async loadRemotecomponentAsync(exposedModule: string, remoteEntry: string): Promise<void> {
     // First, we use the loadRemoteModule from the @angular-architects/module-federation to load the
     // remote webpack module from the mfe1 app.
     const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
@@ -39,7 +39,7 @@ export class LoadRemoteWebComponentDirective implements AfterContentInit {
     this.loaded.emit();
   }
 
-  public sleepAsync(ms: number) : Promise<void> {
+  private sleepAsync(ms: number) : Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 }

@@ -35,13 +35,13 @@ export class AppComponent implements OnInit {
   public constructor(private readonly _injector: Injector) { }
 
   public async ngOnInit(): Promise<void> {
-    await this.loadMfe1();
-    await this.loadMfe2();
-    await this.loadMfe3();
-    await this.loadMfe4();
+    await this.loadMfe1Async();
+    await this.loadMfe2Async();
+    await this.loadMfe3Async();
+    await this.loadMfe4Async();
   }
 
-  public async loadMfe1(): Promise<void> {
+  private async loadMfe1Async(): Promise<void> {
     if (!this._mfe1ViewContainerRef) {
       return;
     }
@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
     this._mfe1ViewContainerRef.createComponent(webpackModule.MyStandaloneComponent);
   }
 
-  public async loadMfe2(): Promise<void> {
+  private async loadMfe2Async(): Promise<void> {
     if (!this._mfe2ViewContainerRef) {
       return;
     }
@@ -71,7 +71,7 @@ export class AppComponent implements OnInit {
     await webpackModule.bootstrapMyComponentAsync(this._mfe2ViewContainerRef.element);
   }
 
-  public async loadMfe3(): Promise<void> {
+  private async loadMfe3Async(): Promise<void> {
     if (!this._mfe3ViewContainerRef) {
       return;
     }
@@ -88,7 +88,7 @@ export class AppComponent implements OnInit {
     // await webpackModule.bootstrapMyComponentAsyncV2(this._injector,this._mfe3ViewContainerRef.element.nativeElement);
   }
 
-  public async loadMfe4(): Promise<void> {
+  private async loadMfe4Async(): Promise<void> {
     if (!this._mfe4ViewContainerRef) {
       return;
     }
