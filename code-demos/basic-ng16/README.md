@@ -70,7 +70,14 @@ Also note that for typescript to be ok with the `import('mfe1/my-feature-module'
 
 To setup webpack module federation we had to do the steps below for both the shell and mfe1 apps:
 
-- add a `bootstrap.ts` file. The code that originally is on `main.ts` moves to this file and the code on `main.ts` just imports the `bootrap.ts` file.
+- add a `bootstrap.ts` file. The code that originally is on `main.ts` moves to this file and the code on `main.ts` just imports the `bootrap.ts` file. [This is done because](https://webpack.js.org/concepts/module-federation):
+> Loading remote modules is considered an asynchronous operation. When using a remote module, these asynchronous operations will be placed in the next chunk loading operation(s) that are between the remote module and the entrypoint. It's not possible to use a remote module without a chunk loading operation.
+
+And also because it gives webpack module federation the opportunity to [negotiate which version of shared modules to use](https://github.com/webpack/webpack.js.org/issues/3757):
+> In group of federated builds all parts will agree on the highest version of a shared module.
+On the other hand the version of the shared module will be checked against a version requirement based on semver (lite).
+If allowed, multiple versions of a shared module might exist and will be consumed based on the required version.
+
 - add a `webpack.config.js` and a `webpack.prof.config.js`. These are used to extend angular's webpack configuration and configure module federation for the apps.
 - change the builders used by `ng build` and `ng serve` commands. For this we installed the [ngx-build-plus](https://www.npmjs.com/package/ngx-build-plus) package with `npm i -D ngx-build-plus` and then we updated the `angular.json` file. These changes allow us to tell Angular to use the `webpack.config.js` files we created when building and serving and therefore apply the module federation settings.
 
