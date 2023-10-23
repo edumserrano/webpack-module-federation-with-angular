@@ -29,6 +29,7 @@ https://blog.bitsrc.io/different-patterns-in-communicating-between-web-component
 
 https://github.com/angular/angular/issues/39489
 https://github.com/angular/angular/blob/229331e11b6c214f74c9801aa52eb9cd47d7fc76/packages/elements/src/create-custom-element.ts
+https://github.com/angular/angular/blob/main/packages/elements/src/create-custom-element.ts
 
 
 

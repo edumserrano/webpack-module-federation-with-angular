@@ -155,7 +155,8 @@ For `JetBrains'` editors see [web-types](https://github.com/JetBrains/web-types)
 
 Also note that there is some tooling comming up from the community to let you automate the creation of the custom elements manifest and also convert it to IDE specific formats. See:
 
-- [Custom Elements Manifest](https://custom-elements-manifest.open-wc.org/): Codegen for Web Components
+- [Custom Elements Manifest](https://custom-elements-manifest.open-wc.org/): Codegen for Web Components.
+- [Introducing: Custom Elements Manifest](https://dev.to/open-wc/introducing-custom-elements-manifest-gkk).
 - [Custom Element (Web Component) VS Code Integration](https://www.npmjs.com/package/custom-element-vs-code-integration): This package generates custom data config files for VS Code using the Custom Element Manifest.
 - [Custom Element (Web Component) JetBrains Integration](https://www.npmjs.com/package/custom-element-jet-brains-integration)
 - [CEM Tools](https://github.com/break-stuff/cem-tools): This is a collection of tools based off the Custom Elements Manifest. Each tool is designed to provide a better development experience when working with custom elements. This repo has a [demo app](https://github.com/break-stuff/cem-tools/tree/main/demo/lit-app) which shows a [custom element manifest file](https://github.com/break-stuff/cem-tools/blob/main/demo/lit-app/custom-elements.json) for a custom element named `radio-group` and its conversation to [VS Code custom data file](https://github.com/break-stuff/cem-tools/blob/main/demo/lit-app/vscode.html-custom-data.json) and [JetBrains web-type file](https://github.com/break-stuff/cem-tools/blob/main/demo/lit-app/web-types.json).

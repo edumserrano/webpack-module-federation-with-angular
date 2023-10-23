@@ -114,15 +114,15 @@ experiments: {
 },
 ```
 
-- [output.publicPath](https://webpack.js.org/configuration/output/#outputpublicpath): you will likely always have this on `auto` which in short points to wherever the app is being served from.
+- [output.publicPath](https://webpack.js.org/configuration/output/#outputpublicpath): you will likely always have this on `auto` which in short points to wherever the app is being served from. For more info see [Webpack guide on output.publicPath](https://webpack.js.org/guides/public-path/).
 - [optimization.runtimeChunk](https://webpack.js.org/configuration/optimization/#optimizationruntimechunk): for **Angular apps** at least this should always be disabled. If enabled it will cause the module federation solution to break, which is related to a bug. I couldn't find which bug but I when I tried to turn on for the shell app, it stopped working. The Angular app just didn't get rendered and no errors on console were visible.
 - [experiments.outputModule](https://webpack.js.org/configuration/experiments/#experimentsoutputmodule): when enabled, webpack will output ECMAScript module syntax whenever possible.
 
 Now let's take a look at the configuration values for the `ModuleFederationPlugin` plugin. Some of these are usually only used on the remote app and some are only used on the shell app:
 
-- `name`: the name of the container.
-- `filename`: the filename of the container as relative path inside the `output.path`.
-- `library: { type: "module" }`: the type of library. Types included by default are 'var', 'module', 'assign', 'assign-properties', 'this', 'window', 'self', 'global', 'commonjs', 'commonjs2', 'commonjs-module', 'commonjs-static', 'amd', 'amd-require', 'umd', 'umd2', 'jsonp', 'system', but others might be added by plugins. If not specified it defaults to `{ type: "var", name: containerName }` where `containerName` will be the `ModuleFederationPlugin.name`.
+- `name`: Name is the unique name for the exposed container. Module Federation uses the [ContainerPlugin](https://webpack.js.org/concepts/module-federation/#building-blocks) and when it is initialized, the name you entered will be used as the file name for the container's relative path.
+- `filename`: the filename of the container as relative path inside the `output.path`. It's used to specify the file name for the output bundle that also serves as an entry point to the bundle.
+- `library: { type: "module" }`: library options help determine how the exposed code will be stored and retrieved. The library property has its own set of configuration options that include name and type. Name is the [name of the library](https://webpack.js.org/configuration/output/#outputlibraryname). Type is the [type of library](https://webpack.js.org/configuration/output/#outputlibrarytype) that can be 'var', 'module', 'window', 'self', 'global', etc. If not specified it defaults to `{ type: "var", name: containerName }` where `containerName` will be the `ModuleFederationPlugin.name`..
 - `exposes`: webpack modules that should be exposed by this container. The key is the name of the webpack module and the value is the file that it maps to.
 - `remotes`: container locations and request scopes from which modules should be resolved and loaded at runtime. In this array of key-value types, the key represents the name that will be used to import the webpack module in the shell application and the value defines an external location/url where to fetch the webpack module from.
 - `shared`: the shared section defines modules that are shared dependencies between the shell and the remote module.

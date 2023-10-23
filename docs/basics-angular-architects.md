@@ -36,6 +36,6 @@ ng g @angular-architects/module-federation:init --project shell-ng16 --port 4200
 
 ## What if I want to know what this package is doing for me?
 
-The `@angular-architects/module-federation` npm package does a lot of work for us when configuring webpack module federation for Angular. Everything listed in the [Webpack module federation](/basic-ng16/README.md#webpack-module-federation), the [Webpack configuration file](/basic-ng16/README.md#webpack-configuration-file) and the [Angular configuration file](/basic-ng16/README.md#angular-configuration-file) sections of the README for the [basic-ng16](/basic-ng16/README.md#description) example is done by this package.
+The `@angular-architects/module-federation` npm package does a lot of work for us when configuring webpack module federation for Angular. Everything listed in the [Webpack module federation](/code-demos/basic-ng16/README.md#webpack-module-federation), the [Webpack configuration file](/code-demos/basic-ng16/README.md#webpack-configuration-file) and the [Angular configuration file](/code-demos/basic-ng16/README.md#angular-configuration-file) sections of the README for the [basic-ng16](/code-demos/basic-ng16/README.md#description) example is done by this package.
 
 The webpack configuration file is streamlined with the help of functions such as the `withModuleFederationPlugin` and `shareAll` functions. 

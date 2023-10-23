@@ -31,7 +31,7 @@ https://blog.bitsrc.io/different-patterns-in-communicating-between-web-component
 
 https://github.com/angular/angular/issues/39489
 https://github.com/angular/angular/blob/229331e11b6c214f74c9801aa52eb9cd47d7fc76/packages/elements/src/create-custom-element.ts
-
+https://github.com/angular/angular/blob/main/packages/elements/src/create-custom-element.ts
 
 
 The mfe1 app will [set the input](/code-demos/communication-custom-events-ng16/mfe1-ng16/src/app/app-routing.module.ts) of the `MyStandaloneComponent` to `test input value from dev platform` and [subscribe to the output of the component](/code-demos/communication-custom-events-ng16/mfe1-ng16/src/app/app.component.ts) which logs to the console when the `Send message` button is clicked.

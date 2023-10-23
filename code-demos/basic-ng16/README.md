@@ -112,7 +112,7 @@ Using the Shell's Angular configuration file as an example, what was changed was
 "extraWebpackConfig": "webpack.config.js",
 "commonChunk": false
 ```
-
+`CommonChunk` must be set to `false` to avoid issues when using shared libraries. See [Internal dependency does not emmited to separated chunk](https://github.com/manfredsteyer/module-federation-plugin-example/issues/8) and [singleton shared libs](https://github.com/angular-architects/module-federation-plugin/issues/23).
 - Extra production options were added for `ng build` at `projects.shell-ng16.architect.build.configurations.production`: 
 ```json
 "extraWebpackConfig": "webpack.prod.config.js"
