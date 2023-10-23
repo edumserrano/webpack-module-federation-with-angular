@@ -17,7 +17,7 @@ You can consider this repo as a learning course on webpack module federation. If
 
 > **Note**
 >
-> Before exploring the code demos take a look at the [Code demos overall notes](docs/code-demos-overall-notes.md).
+> Before exploring the code demos take a look at the [Code demos overall notes](./docs/code-demos-overall-notes.md).
 >
 
 | Demo                                                                                                                                                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |

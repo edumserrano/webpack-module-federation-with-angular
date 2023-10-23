@@ -36,7 +36,7 @@ This might seem like something obvious but if you understand this then you under
 > - if you want to load different Angular versions. If you simply try to more than one different version of Angular you will get an error about the fact that Angular Platform can only be instantiated once.
 > - if want to have your host/shell consuming remotes implemented in different frontend technologies (Angular/Vue/React/etc).  
 >
-> And the list goes on... Don't be afraid though, there's always a way to get things to work. Just don't expect that everything will work out of the box. The [code demos section](#code-demos) gives you plenty of examples to get started and hopefully enough so that you can then adjust to any scenario that might not be listed here. 
+> And the list goes on... Don't be afraid though, there's always a way to get things to work. Just don't expect that everything will work out of the box. The [code demos list](../README.md#code-demos) gives you plenty of examples to get started and hopefully enough so that you can then adjust to any scenario that might not be listed here. 
 >
 
 ## Live Reload
