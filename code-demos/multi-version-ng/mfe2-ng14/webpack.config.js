@@ -7,7 +7,7 @@ const shareAll = mf.shareAll;
 // In this version of the @angular-architects/module-federation lib, you register
 // the lib name with the SharedMappings instance.
 //
-// Beginning with version 1.2, the boilerplate for using SharedMappings is generated for you.
+// With newer versions the boilerplate for using SharedMappings is generated for you.
 // See https://www.npmjs.com/package/@angular-architects/module-federation#legacy-syntax-and-version-12-13
 const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(path.join(__dirname, "tsconfig.json"), [
@@ -70,11 +70,11 @@ module.exports = {
       //
       // shared: {
       //   ...shareAll({
-      //     singleton: true,
+      //     singleton: false,
       //     strictVersion: false,
       //     requiredVersion: "auto",
       //   }),
-      //   // ...sharedMappings.getDescriptors(),
+      //   ...sharedMappings.getDescriptors(),
       // },
     }),
     sharedMappings.getPlugin(),
