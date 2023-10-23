@@ -6,7 +6,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { Routes } from '@angular/router';
-import { RemoteModuleLoadOptions, RemoteModuleResultTypes, RemoteModuleService } from 'src/micro-frontends-tooling/remote-module.service';
+import { LoadRemoteModuleOptionsExtended, RemoteModuleResultTypes, RemoteModuleService } from 'src/micro-frontends-tooling/remote-module.service';
 
 @Component({
   selector: 'app-payment-mfe',
@@ -24,12 +24,13 @@ export class PaymentComponent {
       return;
     }
 
-    const remoteModuleLoadOptions: RemoteModuleLoadOptions = {
+    const loadRemoteModuleOptions: LoadRemoteModuleOptionsExtended = {
       id: PaymentComponent.name,
+      type: 'module',
       exposedModule: './payment',
       remoteEntry: 'http://localhost:4202/remoteEntry.js',
     };
-    const result = await this._remoteModuleService.loadAsync(remoteModuleLoadOptions);
+    const result = await this._remoteModuleService.loadAsync(loadRemoteModuleOptions);
     switch (result.type) {
       case RemoteModuleResultTypes.Loaded:
         this._mfePaymentViewContainerRef.clear();

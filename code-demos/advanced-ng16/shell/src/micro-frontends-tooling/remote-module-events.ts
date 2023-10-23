@@ -1,3 +1,5 @@
+import { LoadRemoteModuleOptions } from "@angular-architects/module-federation";
+
 export const enum RemoteModuleEventTypes {
   Loading = 'Loading',
   Loaded = 'Loaded',
@@ -15,8 +17,7 @@ export type RemoteModuleEvent = RemoteModuleLoading | RemoteModuleLoaded | Remot
 export class RemoteModuleLoading {
   public constructor(
     public readonly id: string,
-    public readonly exposedModule: string,
-    public readonly remoteEntry: string,
+    public readonly options: LoadRemoteModuleOptions,
   ) { }
 
   public readonly type = RemoteModuleEventTypes.Loading;
@@ -25,8 +26,7 @@ export class RemoteModuleLoading {
 export class RemoteModuleLoaded {
   public constructor(
     public readonly id: string,
-    public readonly exposedModule: string,
-    public readonly remoteEntry: string,
+    public readonly options: LoadRemoteModuleOptions,
     public readonly webpackModule: any,
   ) { }
 
@@ -36,8 +36,7 @@ export class RemoteModuleLoaded {
 export class RemoteModuleFailed  {
   public constructor(
     public readonly id: string,
-    public readonly exposedModule: string,
-    public readonly remoteEntry: string,
+    public readonly options: LoadRemoteModuleOptions,
     public readonly error: Error,
   ) { }
 

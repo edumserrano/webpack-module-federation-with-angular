@@ -1,15 +1,13 @@
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import {
-  RemoteModuleLoadOptions,
   RemoteModuleResultTypes,
   RemoteModuleService,
 } from './remote-module.service';
+import { LoadRemoteModuleOptions } from '@angular-architects/module-federation';
 
-export type remoteModuleResolverOptions = {
+export type RemoteModuleResolverOptions = LoadRemoteModuleOptions & {
   id: string;
-  remoteEntry: string;
-  exposedModule: string;
 };
 
 // TODO: also add a note about the ResolveFn return type and how to pass router to the
@@ -20,15 +18,12 @@ export type remoteModuleResolverOptions = {
 // so instead ResolveFn<any> you would ResolveFn<WebpackModule>
 // NOT sure I can do this because I still would want to do WebpackModule.ANYTHING without having to cast
 // the WebpackModule to any. ASK DEAN, perhaps there's something that could be done
-export function remoteModuleResolver(resolverOptions: remoteModuleResolverOptions): ResolveFn<any> {
+export function remoteModuleResolver(resolverOptions: RemoteModuleResolverOptions): ResolveFn<any> {
   return async (): Promise<any> => {
     const remoteModuleService = inject(RemoteModuleService);
-    const remoteModuleLoadOptions: RemoteModuleLoadOptions = {
-      id: resolverOptions.id,
-      exposedModule: resolverOptions.exposedModule,
-      remoteEntry: resolverOptions.remoteEntry,
-    };
-    const result = await remoteModuleService.loadAsync(remoteModuleLoadOptions);
+    // RemoteModuleResolverOptions type has the same shape as LoadRemoteModuleOptionsExtended
+    // so I can just flow it into the remoteModuleService.loadAsync call
+    const result = await remoteModuleService.loadAsync(resolverOptions);
     switch (result.type) {
       case RemoteModuleResultTypes.Loaded:
         return result.webpackModule;

@@ -5,9 +5,8 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { RemoteModuleDirective } from 'src/micro-frontends-tooling/remote-module.directive';
+import { RemoteModuleDirective, RemoteModuleDirectiveOptions } from 'src/micro-frontends-tooling/remote-module.directive';
 import { Routes } from '@angular/router';
-import { RemoteModuleEvent } from 'src/micro-frontends-tooling/remote-module-events';
 
 // TODO: add note about the `.bind(this)` at [loadRemoteModuleCallback]="loadRemoteModuleHandler.bind(this)"
 //       say it's about the this context or else this._mfePaymentViewContainerRef is always undefined because this would refer to the LoadRemoteModuleDirective
@@ -20,9 +19,7 @@ import { RemoteModuleEvent } from 'src/micro-frontends-tooling/remote-module-eve
     <ng-container
       #mfePayment
       remoteModule
-      [remoteModuleId]="remoteModuleId"
-      exposedModule="./payment"
-      remoteEntry="http://localhost:4202/remoteEntry.js"
+      [remoteModuleoptions]="remoteModuleOptions",
       [loadRemoteModuleCallback]="loadRemoteModuleHandler.bind(this)"
     ></ng-container>
   `,
@@ -31,7 +28,12 @@ export class PaymentComponent {
   @ViewChild('mfePayment', { read: ViewContainerRef, static: true })
   private readonly _mfePaymentViewContainerRef?: ViewContainerRef;
 
-  public readonly remoteModuleId: string = PaymentComponent.name;
+  public readonly remoteModuleOptions: RemoteModuleDirectiveOptions = {
+    id: PaymentComponent.name,
+    type: "module",
+    exposedModule: "./payment",
+    remoteEntry: "http://localhost:4202/remoteEntry.js",
+  };
 
   // TODO use `bind(this)` on HTML or declare it as an arrow function like this
   // public loadRemoteModuleHandler = async (webpackModule: any): Promise<void> => {

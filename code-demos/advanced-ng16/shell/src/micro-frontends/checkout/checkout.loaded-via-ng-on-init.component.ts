@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Routes } from '@angular/router';
 import {
-  RemoteModuleLoadOptions,
+  LoadRemoteModuleOptionsExtended,
   RemoteModuleResultTypes,
   RemoteModuleService,
 } from 'src/micro-frontends-tooling/remote-module.service';
@@ -47,12 +47,13 @@ export class CheckoutComponent implements OnInit {
   // }
 
   public async ngOnInit(): Promise<void> {
-    const remoteModuleLoadOptions: RemoteModuleLoadOptions = {
+    const loadRemoteModuleOptions: LoadRemoteModuleOptionsExtended = {
       id: CheckoutComponent.name,
+      type: 'module',
       exposedModule: './checkout',
       remoteEntry: 'http://localhost:4201/remoteEntry.js',
     };
-    const result = await this._remoteModuleService.loadAsync(remoteModuleLoadOptions);
+    const result = await this._remoteModuleService.loadAsync(loadRemoteModuleOptions);
     switch (result.type) {
       case RemoteModuleResultTypes.Loaded:
         const elementName = "mfe-checkout";

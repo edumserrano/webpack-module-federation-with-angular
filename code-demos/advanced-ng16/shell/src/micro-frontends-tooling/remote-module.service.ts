@@ -42,10 +42,8 @@ export class RemoteModuleFailedResult {
   public readonly type = RemoteModuleResultTypes.Failed;
 }
 
-export type RemoteModuleLoadOptions = {
+export type LoadRemoteModuleOptionsExtended = LoadRemoteModuleOptions & {
   id: string;
-  remoteEntry: string;
-  exposedModule: string;
 };
 
 @Injectable({ providedIn: 'root' })
@@ -58,15 +56,10 @@ export class RemoteModuleService {
   // loaded and from where
   // should also log the webpack module for easier debugging. should only log if not prod and some other
   // env variable like remoteModuleDebug=true
-  public async loadAsync(options: RemoteModuleLoadOptions): Promise<RemoteModuleResult> {
+  public async loadAsync(options: LoadRemoteModuleOptionsExtended): Promise<RemoteModuleResult> {
     try {
       this.triggerLoading(options);
-      const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
-        type: 'module',
-        exposedModule: options.exposedModule,
-        remoteEntry: options.remoteEntry,
-      };
-      const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
+      const webpackModule: any = await loadRemoteModule(options);
       this.triggerLoaded(options, webpackModule);
       return new RemoteModuleLoadedResult(webpackModule);
     } catch (error: unknown) {
@@ -79,34 +72,42 @@ export class RemoteModuleService {
     }
   }
 
-  private triggerLoading(options: RemoteModuleLoadOptions) {
+  private triggerLoading(options: LoadRemoteModuleOptionsExtended) {
+    if(options.type === 'manifest')
+    {
+      options.remoteName
+    }
+    else if(options.type === 'module') {
+      options.remoteEntry
+    }
+    else if(options.type === 'script') {
+      options.remoteEntry;
+      options.remoteName
+    }
     const event = new RemoteModuleLoading(
       options.id,
-      options.exposedModule,
-      options.remoteEntry);
+      options);
     this._events.next(event);
   }
 
   private triggerLoaded(
-    options: RemoteModuleLoadOptions,
+    options: LoadRemoteModuleOptionsExtended,
     webpackModule: any,
   ) {
     const event = new RemoteModuleLoaded(
       options.id,
-      options.exposedModule,
-      options.remoteEntry,
+      options,
       webpackModule);
     this._events.next(event);
   }
 
   private triggerFailed(
-    options: RemoteModuleLoadOptions,
+    options: LoadRemoteModuleOptionsExtended,
     error: Error
   ) {
     const event = new RemoteModuleFailed(
       options.id,
-      options.exposedModule,
-      options.remoteEntry,
+      options,
       error);
     this._events.next(event);
   }

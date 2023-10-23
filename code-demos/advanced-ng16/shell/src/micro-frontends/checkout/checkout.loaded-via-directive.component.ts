@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Inject, Input, Output 
 import { Routes } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RemoteModuleEvent } from 'src/micro-frontends-tooling/remote-module-events';
-import { RemoteModuleDirective } from 'src/micro-frontends-tooling/remote-module.directive';
+import { RemoteModuleDirective, RemoteModuleDirectiveOptions } from 'src/micro-frontends-tooling/remote-module.directive';
 import { REMOTE_MODULE_EVENTS, RemoteModuleEvents } from 'src/micro-frontends-tooling/remote-module.service';
 import { filter } from 'rxjs';
 import { CheckoutService } from './checkout.service';
@@ -21,9 +21,7 @@ import { CheckoutService } from './checkout.service';
   template: `
     <mfe-checkout
       remoteModule
-      [remoteModuleId]="remoteModuleId"
-      exposedModule="./checkout"
-      remoteEntry="http://localhost:4201/remoteEntry.js"
+      [remoteModuleoptions]="remoteModuleOptions",
       [loadRemoteModuleCallback]="loadRemoteModuleHandler"
       [basketValue]="basketValue"
       (checkout-requested)="checkoutHandler($event)"
@@ -45,7 +43,12 @@ export class CheckoutComponent {
   @Output()
   public checkoutRequested: EventEmitter<string> = new EventEmitter<string>();
 
-  public readonly remoteModuleId: string = CheckoutComponent.name;
+  public readonly remoteModuleOptions: RemoteModuleDirectiveOptions = {
+    id: CheckoutComponent.name,
+    type: "module",
+    exposedModule: "./checkout",
+    remoteEntry: "http://localhost:4201/remoteEntry.js",
+  };
 
   public async loadRemoteModuleHandler(webpackModule: any): Promise<void> {
     // call whatever is needed to mount your mfe

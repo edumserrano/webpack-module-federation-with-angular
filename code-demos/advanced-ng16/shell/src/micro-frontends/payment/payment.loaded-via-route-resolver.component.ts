@@ -40,6 +40,7 @@ export const MFE_PAYMENT_ROUTES: Routes = [
     resolve: {
       remoteModule: remoteModuleResolver({
         id: PaymentComponent.name,
+        type: "module",
         remoteEntry: "http://localhost:4202/remoteEntry.js",
         exposedModule: "./payment",
       }),
