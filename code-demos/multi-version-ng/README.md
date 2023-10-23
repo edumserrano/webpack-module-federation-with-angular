@@ -58,3 +58,9 @@ Angular 12 version of Angular architects (comment about javascript vs module). A
 
 
 - https://www.npmjs.com/package/@angular-architects/module-federation-tools.
+
+
+Note about tsconfig.app.json:
+```
+Error: C:\dev\repos\edumserrano\webpack-module-federation-with-angular\code-demos\web-component-ng16\mfe1-ng16\src\app\my-standalone-component\my-standalone-component-bootstrap.ts is missing from the TypeScript compilation. Please make sure it is in your tsconfig via the 'files' or 'include' property.
+``` 

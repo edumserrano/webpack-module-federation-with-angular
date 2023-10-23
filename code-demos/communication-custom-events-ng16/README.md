@@ -37,3 +37,9 @@ The mfe1 app will [set the input](/code-demos/communication-custom-events-ng16/m
 
 This means the subscription done by the dev platform of the component's output that logs to the console when the `Send message` is clicked, is not part of the exported component.
 
+
+
+Note about tsconfig.app.json:
+```
+Error: C:\dev\repos\edumserrano\webpack-module-federation-with-angular\code-demos\web-component-ng16\mfe1-ng16\src\app\my-standalone-component\my-standalone-component-bootstrap.ts is missing from the TypeScript compilation. Please make sure it is in your tsconfig via the 'files' or 'include' property.
+``` 

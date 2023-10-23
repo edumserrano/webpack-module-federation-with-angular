@@ -3,6 +3,8 @@ import { platformBrowser } from '@angular/platform-browser';
 import packageJson from 'package.json';
 import { MfePlatformModule } from './mfe-platform.module';
 
+// The webpack configuration file at /multi-version-ng/mfe3-ng12/webpack.config.js
+// exposes a webpack module which contains this function.
 export async function bootstrapMyComponentAsync(): Promise<void> {
   const platform = getAngularPlatform();
   platform.bootstrapModule(MfePlatformModule);
@@ -11,7 +13,8 @@ export async function bootstrapMyComponentAsync(): Promise<void> {
 // This function doesn't quite work.
 // If the shell calls this function instead of the `bootstrapMyComponentAsync` above then
 // the component does get rendered but without any CSS. Don't know how to fix this.
-// Leaving here just for demo purposes.
+//
+// Leaving it here just for demo purposes.
 export async function bootstrapMyComponentAsyncV2(parentInjector: Injector, node: HTMLElement): Promise<void> {
   const ngComponentName = 'MyComponent';
   const compiler = new Compiler();

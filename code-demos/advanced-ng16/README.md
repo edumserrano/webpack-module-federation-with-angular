@@ -62,4 +62,9 @@ export class Mfe1HostModule {}
 
 talk about this warning
 > checkout.loaded-via-route-resolver.component.ts:11  NG0912: Component ID generation collision detected. Components 'CheckoutComponent' and 'CheckoutComponent' with selector 'app-checkout-mfe' generated the same component ID. To fix this, you can change the selector of one of those components or add an extra host attribute to force a different ID. Find more at https://angular.io/errors/NG0912
-> 
+
+
+Note about tsconfig.app.json:
+```
+Error: C:\dev\repos\edumserrano\webpack-module-federation-with-angular\code-demos\web-component-ng16\mfe1-ng16\src\app\my-standalone-component\my-standalone-component-bootstrap.ts is missing from the TypeScript compilation. Please make sure it is in your tsconfig via the 'files' or 'include' property.
+``` 
