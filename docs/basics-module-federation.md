@@ -127,6 +127,16 @@ Now let's take a look at the configuration values for the `ModuleFederationPlugi
 - `remotes`: container locations and request scopes from which modules should be resolved and loaded at runtime. In this array of key-value types, the key represents the name that will be used to import the webpack module in the shell application and the value defines an external location/url where to fetch the webpack module from.
 - `shared`: the shared section defines modules that are shared dependencies between the shell and the remote module.
 
+Additionally, you can configure an `output.uniqueName`. Each build needs a unique name to avoid runtime collisions. The default uses `name` from package.json. Example:
+```
+module.exports = {
+  output: {
+    publicPath: "auto",
+    uniqueName: "my-awesome-app"
+  },
+  ...
+```
+
 ## How the loading of an external webpack module works
 
 Consider that the webpack configuration file for a remote app contains the following:
