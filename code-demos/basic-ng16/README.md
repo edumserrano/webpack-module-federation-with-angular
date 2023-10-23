@@ -70,7 +70,7 @@ Also note that for typescript to be ok with the `import('mfe1/my-feature-module'
 
 To setup webpack module federation we had to do the steps below for both the shell and mfe1 apps:
 
-- add a `bootstrap.ts` file. The code that originally is on `main.ts` moves to this file and the code on `main.ts` just imports the `bootrap.ts` file. [This is done because](https://webpack.js.org/concepts/module-federation):
+- add a `bootstrap.ts` file. The code that originally is on `main.ts` moves to this file and the code on `main.ts` just imports the `bootrap.ts` file. This creates an async boundary and [is done because](https://webpack.js.org/concepts/module-federation):
 > Loading remote modules is considered an asynchronous operation. When using a remote module, these asynchronous operations will be placed in the next chunk loading operation(s) that are between the remote module and the entrypoint. It's not possible to use a remote module without a chunk loading operation.
 
 And also because it gives webpack module federation the opportunity to [negotiate which version of shared modules to use](https://github.com/webpack/webpack.js.org/issues/3757):
