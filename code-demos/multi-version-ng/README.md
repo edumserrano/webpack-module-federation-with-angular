@@ -64,3 +64,7 @@ Note about tsconfig.app.json:
 ```
 Error: C:\dev\repos\edumserrano\webpack-module-federation-with-angular\code-demos\web-component-ng16\mfe1-ng16\src\app\my-standalone-component\my-standalone-component-bootstrap.ts is missing from the TypeScript compilation. Please make sure it is in your tsconfig via the 'files' or 'include' property.
 ``` 
+
+## Why are all the Angular code demos done using either Angular 12 or Angular 16?
+
+Beginning with Angular 13, the CLI is emitting EcmaScript modules. This affects module federation setup since it affects how the remote exposes the webpack module and therefore how the shell can consume it. This means that the Angular 16 examples should work down to Angular 13 version, except in some cases where some Angular API to load the component dynamically is being used that might not exist or have changed since Angular 13. For Angular 12 versions we need to adjust the code. 

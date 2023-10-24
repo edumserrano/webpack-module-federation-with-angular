@@ -103,4 +103,4 @@ Also, read the official docs at:
 
 ## Learn more
 
-This example is based on [Dynamic Module Federation with Angular](https://www.angulararchitects.io/blog/dynamic-module-federation-with-angular/). The article goes on to show a way to extend the information on the manifest file and dynamically create the Angular routes from it.
+This example is based on [Dynamic Module Federation with Angular](https://www.angulararchitects.io/blog/dynamic-module-federation-with-angular/). The article goes on to show a way to extend the information on the manifest file and dynamically create the Angular routes from it (see the `Dynamically Creating Routes` section).
