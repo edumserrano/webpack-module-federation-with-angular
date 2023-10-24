@@ -2,7 +2,7 @@
 
 - [Description](#description)
 - [Webpack Module Federation](#webpack-module-federation)
-- [Webpack module federation and multi-frameworks](#webpack-module-federation-and-multi-frameworks)
+- [Webpack Module Federation and multi-frameworks](#webpack-module-federation-and-multi-frameworks)
   - [Example 1](#example-1)
   - [Example 2](#example-2)
   - [Other examples](#other-examples)
@@ -15,8 +15,8 @@
 
 This document contains a collection of resources that help with:
 
-- **learning webpack module federation**.
-- applying webpack module federation to Angular apps.
+- **learning Webpack Module Federation**.
+- applying Webpack Module Federation to Angular apps.
 - learning about some Angular concepts used throught the code demos.
 - learning about micro-frontends.
 
@@ -28,7 +28,7 @@ Some of the resources grouped here are also linked in places where they are rele
 
 ## Webpack Module Federation
 
-- [Webpack module federation documentation](https://webpack.js.org/concepts/module-federation/)
+- [Webpack Module Federation documentation](https://webpack.js.org/concepts/module-federation/)
 - [Webpack ModuleFederationPlugin documentation](https://webpack.js.org/plugins/module-federation-plugin/)
 - [Webpack configuration languages](https://webpack.js.org/configuration/configuration-languages/): Although all the code demos use `Javascript` for webpack configuration files, you can use other languages like `Typescript`.
 - [Module Federation options, usage, hints](https://gist.github.com/zfeher/201f55c057553078fe5b0aac1dad6969)
@@ -36,18 +36,18 @@ Some of the resources grouped here are also linked in places where they are rele
 - [When should you leverage Module Federation, and how?](https://scriptedalchemy.medium.com/when-should-you-leverage-module-federation-and-how-2998b132c840)
 - [Understanding Module Federation: A Deep Dive](https://scriptedalchemy.medium.com/understanding-webpack-module-federation-a-deep-dive-efe5c55bf366)
 - :star: [Module federation examples](https://github.com/module-federation/module-federation-examples)
-- :star: [10 part article series on webpack module federation and Angular](https://www.angulararchitects.io/en/blog/the-microfrontend-revolution-module-federation-in-webpack-5/)
+- :star: [10 part article series on Webpack Module Federation and Angular](https://www.angulararchitects.io/en/blog/the-microfrontend-revolution-module-federation-in-webpack-5/)
 - :star: [angular-architects/module-federation-plugin repo](https://github.com/angular-architects/module-federation-plugin): home for the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) and [@angular-architects/module-federation-tools](https://www.npmjs.com/package/@angular-architects/module-federation-tools) npm packages.   
 - :star: [Module Federation Series Part 1: A Little in-depth](https://vugar-005.medium.com/module-federation-series-part-1-a-little-in-depth-258f331bc11e): contains a good explanation of how shared modules work as well as common errors encountered when they're misconfigured.
 - [Zack Jackson Medium articles](https://scriptedalchemy.medium.com/) and [twitter profile](https://twitter.com/ScriptedAlchemy): Zack Jackson is the creator of Module Federation. He has several articles and tweets on the matter.
 - [Benefits of Module Federation: Unlocking the Power of Software Modularity](https://blog.bitsrc.io/discover-the-benefits-of-module-federation-unlocking-the-power-of-software-modularity-8b1ef62c8c2c)
 - [angular-architects/module-federation-plugin migration guides](https://github.com/angular-architects/module-federation-plugin/blob/main/migration-guide.md)
 
-## Webpack module federation and multi-frameworks
+## Webpack Module Federation and multi-frameworks
 
 ### Example 1
 
-The [README](https://www.npmjs.com/package/@angular-architects/module-federation-tools) for the `@angular-architects/module-federation-tools` package shows an example of how to use webpack module federation in a multi-framework environment. The example can be seem live at https://red-ocean-0fe4c4610.azurestaticapps.net/dashboard.
+The [README](https://www.npmjs.com/package/@angular-architects/module-federation-tools) for the `@angular-architects/module-federation-tools` package shows an example of how to use Webpack Module Federation in a multi-framework environment. The example can be seem live at https://red-ocean-0fe4c4610.azurestaticapps.net/dashboard.
 
 ![Module federation with multi-frameworks](static-assets/module-federation-multi-frameworks.png)
 
@@ -90,7 +90,7 @@ Other examples and guides about multi-framework setups can be found in:
 - [Getting to Know the createApplication API in Angular](https://netbasal.com/getting-to-know-the-createapplication-api-in-angular-f1c0a2685047)
 - [Angular Platforms in depth. Part 1. What are Angular Platforms?](https://angularindepth.com/posts/1027/angular-platforms-in-depth-part-1-what-are-angular-platforms)
 - [Angular Platforms in depth. Part 2. Application bootstrap process](https://angularindepth.com/posts/1144/angular-platforms-in-depth-part-2-application-bootstrap-process)
-- [JavaScript modules vs. NgModules](https://angular.io/guide/ngmodule-vs-jsmodule): the term `module` used in webpack module federation refers to JavaScript modules, not to confuse with Angular modules.
+- [JavaScript modules vs. NgModules](https://angular.io/guide/ngmodule-vs-jsmodule): the term `module` used in Webpack Module Federation refers to JavaScript modules, not to confuse with Angular modules.
 - [8 part article series on Angular's Future with Standalone Components](https://www.angulararchitects.io/en/blog/angulars-future-without-ngmodules-lightweight-solutions-on-top-of-standalone-components/)
 - [Render ngTemplates dynamically using ViewContainerRef in Angular](https://dev.to/railsstudent/render-ngtemplates-dynamically-using-viewcontainerref-in-angular-17lp)
 - [Simplifying Navigation Error Handling with Angular’s Upcoming Feature](https://medium.com/@artur.fedotiew/%EF%B8%8F-simplifying-navigation-error-handling-with-angulars-upcoming-feature-%EF%B8%8F-b55ee04d246a)

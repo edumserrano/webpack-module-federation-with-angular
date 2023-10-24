@@ -9,11 +9,11 @@
 
 ## Description
 
-The code demos are mainly focused on using webpack module federation with Angular apps but a lot of the concepts explained here are applicable regardless of the frontend technology used.
+The code demos are mainly focused on using Webpack Module Federation with Angular apps but a lot of the concepts explained here are applicable regardless of the frontend technology used.
 
-If you are not familiar with webpack module federation it's recommended that you start by exploring the [basic-ng16](/code-demos/basic-ng16/README.md) code demo.
+If you are not familiar with Webpack Module Federation it's recommended that you start by exploring the [basic-ng16](/code-demos/basic-ng16/README.md) code demo.
 
-If you go through the code demos one by one, you will notice that several examples are very similar with minor adjustments on certain things like how webpack module federation is setup or how the remote is loaded by the shell. This is intentional, the code demos are meant to be as small and simple as possible and to introduce a single concept at a time.
+If you go through the code demos one by one, you will notice that several examples are very similar with minor adjustments on certain things like how Webpack Module Federation is setup or how the remote is loaded by the shell. This is intentional, the code demos are meant to be as small and simple as possible and to introduce a single concept at a time.
 
 ## Read me before exploring the code demos
 
@@ -28,9 +28,9 @@ This might seem like something obvious but if you understand this then you under
 
 > **Warning**
 >
-> When working with webpack module federation you are the one that has to guarantee that your final app, the host/shell, will work as expected. 
+> When working with Webpack Module Federation you are the one that has to guarantee that your final app, the host/shell, will work as expected. 
 > 
-> **Webpack module federation is **just** a mechanism for integrating webpack modules at runtime. It does NOT take care of any frontend technology or javascript specific concern.** This means that you might have to do code so that when the remote is loaded into the host everything works as expected. Scenarios where you might have to do extra code apart from setting up webpack module federation:
+> **Webpack Module Federation is **just** a mechanism for integrating webpack modules at runtime. It does NOT take care of any frontend technology or javascript specific concern.** This means that you might have to do code so that when the remote is loaded into the host everything works as expected. Scenarios where you might have to do extra code apart from setting up Webpack Module Federation:
 > 
 > - if both your host and your remote use Angular and both use routing. Otherwise, you might find that routing changes in the remote don't affect the shell as you expect or vice versa. 
 > - if you want to load different Angular versions. If you simply try to more than one different version of Angular you will get an error about the fact that Angular Platform can only be instantiated once.

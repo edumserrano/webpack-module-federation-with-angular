@@ -7,12 +7,12 @@
   - [Dev platform](#dev-platform)
 - [Shell app](#shell-app)
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
-- [Webpack module federation](#webpack-module-federation)
+- [Webpack Module Federation](#webpack-module-federation)
 - [Learn more](#learn-more)
 
 ## Description
 
-Setup of webpack module federation using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package instead of doing everything manually as shown in the [basic-ng16](/code-demos/basic-ng16/README.md) code demo.
+Setup of Webpack Module Federation using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package instead of doing everything manually as shown in the [basic-ng16](/code-demos/basic-ng16/README.md) code demo.
 
 The remote webpack module contains an Angular module which the shell loads using Angular routing.
 
@@ -27,7 +27,7 @@ To see the mfe1 app loaded into the shell go to the shell's URL and click the `L
 
 ## MFE1 app
 
-The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/angular-architects-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), which was created to represent the micro frontend that we want to expose via webpack module federation.
+The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/angular-architects-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), which was created to represent the micro frontend that we want to expose via Webpack Module Federation.
 
 The `MyFeatureModule` Angular module contains a route that loads the [MyComponent](/code-demos/angular-architects-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent` Angular component.
 
@@ -45,7 +45,7 @@ The above defines a webpack module that is named `my-feature-module` and that is
 
 ### Dev platform
 
-When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the `MyFeatureModule` Angular feature module is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyFeatureModule` Angular feature module.
+When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via Webpack Module Federation, only the `MyFeatureModule` Angular feature module is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyFeatureModule` Angular feature module.
 
 ## Shell app
 
@@ -65,9 +65,9 @@ Also note that for typescript to be ok with the `import('mfe1/my-feature-module'
 ](../../docs/basics-module-federation.md#how-the-loading-of-an-external-webpack-module-works).
 >
 
-## Webpack module federation
+## Webpack Module Federation
 
-The setup of webpack module federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of webpack module federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
+The setup of Webpack Module Federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of Webpack Module Federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
 
 Also, read the official docs at:
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)

@@ -7,11 +7,11 @@
   - [Dev platform](#dev-platform)
 - [Shell app](#shell-app)
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
-- [Webpack module federation](#webpack-module-federation)
+- [Webpack Module Federation](#webpack-module-federation)
 
 ## Description
 
-This example shows how to setup webpack module federation where the shell uses Angular routing to load a couple of remote Angular standalone components from the routes that are exposed from the mfe1 app.
+This example shows how to setup Webpack Module Federation where the shell uses Angular routing to load a couple of remote Angular standalone components from the routes that are exposed from the mfe1 app.
 
 The remote webpack module contains a variable that represents an array of Angular routes.
 
@@ -55,7 +55,7 @@ The above defines a webpack module that is named `standalone-routes` and that is
 
 ### Dev platform
 
-When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation. What is exported are the routes that load the two Angular standalone components. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` and `AnotherStandaloneComponent` Angular components.
+When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via Webpack Module Federation. What is exported are the routes that load the two Angular standalone components. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` and `AnotherStandaloneComponent` Angular components.
 
 ## Shell app
 
@@ -75,9 +75,9 @@ The `/mfe1` route added to the [AppRoutingModule](/code-demos/routes-ng16/shell-
 > Since the shell is loading a set of routes, the shell cannot change the path for the loaded routes which means that the children routes `/my` and `/another` are the same in both the shell and on the mfe1 app. However, we can choose the parent route for remotely loaded routes and on the shell this is `/mfe1` whilst on the mfe1 app it's `/standalone`.
 > 
 
-## Webpack module federation
+## Webpack Module Federation
 
-The setup of webpack module federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of webpack module federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
+The setup of Webpack Module Federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of Webpack Module Federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
 
 Also, read the official docs at:
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)

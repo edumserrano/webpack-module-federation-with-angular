@@ -7,13 +7,13 @@
   - [Dev platform](#dev-platform)
 - [Shell app](#shell-app)
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
-- [Webpack module federation](#webpack-module-federation)
+- [Webpack Module Federation](#webpack-module-federation)
 - [Web components and Angular styling](#web-components-and-angular-styling)
 - [Learn more](#learn-more)
 
 ## Description
 
-This example shows how to setup webpack module federation where the shell uses a generic Angular component that acts as a wrapper for the remotely loaded [Web component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components). The wrapper Angular component is provided by the [@angular-architects/module-federation-tools](https://www.npmjs.com/package/@angular-architects/module-federation-tools) npm package and can be used directly on the HTML or via Angular routing. This code demo also shows how to set the properties and consume the events from the Web component.
+This example shows how to setup Webpack Module Federation where the shell uses a generic Angular component that acts as a wrapper for the remotely loaded [Web component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components). The wrapper Angular component is provided by the [@angular-architects/module-federation-tools](https://www.npmjs.com/package/@angular-architects/module-federation-tools) npm package and can be used directly on the HTML or via Angular routing. This code demo also shows how to set the properties and consume the events from the Web component.
 
 The remote webpack module executes a function that converts an Angular standalone component to a Web component.
 
@@ -36,7 +36,7 @@ The shell will load the Web component from the mfe1 in two ways:
 
 ## MFE1 app
 
-The mfe1 app is an Angular 16 app that contains an Angular standalone component named [MyStandaloneComponent](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts), which represents the micro frontend that we want to expose via webpack module federation.
+The mfe1 app is an Angular 16 app that contains an Angular standalone component named [MyStandaloneComponent](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts), which represents the micro frontend that we want to expose via Webpack Module Federation.
 
 The [AppRoutingModule](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/app-routing.module.ts) Angular module contains a route that loads the `MyStandaloneComponent` on `/my-standalone-component`. You can use the `Go to /my-standalone-component` link on the mfe1 app to load the `MyStandaloneComponent` Angular component.
 
@@ -66,7 +66,7 @@ The above defines a webpack module that is named `standalone-component-as-web-co
 
 ### Dev platform
 
-When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the [remote-bootstrap.ts](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/my-standalone-component/remote-bootstrap.ts) file that executes the [bootstrapMyComponentAsync](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component-bootstrap.ts) function is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` Angular component.
+When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via Webpack Module Federation, only the [remote-bootstrap.ts](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/my-standalone-component/remote-bootstrap.ts) file that executes the [bootstrapMyComponentAsync](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component-bootstrap.ts) function is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` Angular component.
 
 This means that the input value `test input value from dev platform` set by the dev platform is not part of the exported component, neither is the subscription of the component's output that logs to the console when the `Send message` is clicked.
 
@@ -84,9 +84,9 @@ The [WebComponentWrapper](https://github.com/angular-architects/module-federatio
 
 Then, the `WebComponentWrapper` creates a custom element in the DOM with the name from `WebComponentWrapperOptions.elementName`, which in this example is set to `my-mfe-element`. Once this is done the Web component gets rendered in this custom element.
 
-## Webpack module federation
+## Webpack Module Federation
 
-The setup of webpack module federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of webpack module federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
+The setup of Webpack Module Federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of Webpack Module Federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
 
 Also, read the official docs at:
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)

@@ -1,4 +1,4 @@
-# A guide to Webpack module federation using Angular
+# A guide to Webpack Module Federation using Angular
 
 - [Description](#description)
 - [Code demos](#code-demos)
@@ -9,20 +9,27 @@
 
 ## Description 
 
-This repo came about as a result of my journey to learn how to use [webpack module federation](https://webpack.js.org/concepts/module-federation/).
+This repo came about as a result of my journey to learn how to use [Webpack Module Federation](https://webpack.js.org/concepts/module-federation/).
 
-You can consider this repo as a learning course on webpack module federation. If you are new to webpack module federation and want to learn more about it then I advise you to go through the code demos one by one. Read their usage documentation, linked articles and explore the code. Do this and your knowledge on webpack module federation will go from zero to hero.
+> Module federation allows a JavaScript application to dynamically load code from another application — in the process, sharing dependencies, if an application consuming a federated module does not have a dependency needed by the federated code — Webpack will download the missing dependency from that federated build origin. [^1]
+>
 
-## Code demos
+[^1]: [Webpack 5 Module Federation: A game-changer in JavaScript architecture](https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669)
+
+**The repo is structured as a learning guide to Webpack Module Federation. I advise you to go through each section in the order they are presented.**
 
 > **Note**
->
-> Before exploring the code demos take a look at the [Code demos overall notes](./docs/code-demos-overall-notes.md).
->
+> 
+> This repo uses Angular as the frontend framework to explore Webpack Module Federation but a lot of the concepts explained are applicable regardless of the frontend framework. 
+> 
+   
+## Code demos
+
+**Read the [Code demos overall notes](/docs/code-demos-overall-notes.md) before exploring the code demos.**
 
 | Demo                                                                                                                                                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [basic-ng16](/code-demos/basic-ng16/README.md) </br></br> Both shell and remote app use Angular 16.                                                                        | The most bare-bones possible example of how to setup webpack module federation where the shell lazy loads an Angular module using Angular routing. This code demo does NOT make use of the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which is usually used to setup module federation for Angular projects. </br></br> The main idea is to show the basics for learning purposes. </br></br> The remote webpack module contains an Angular module which the shell loads using Angular routing. |
+| [basic-ng16](/code-demos/basic-ng16/README.md) </br></br> Both shell and remote app use Angular 16.                                                                        | The most bare-bones possible example of how to setup Webpack Module Federation where the shell lazy loads an Angular module using Angular routing. This code demo does NOT make use of the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which is usually used to setup module federation for Angular projects. </br></br> The main idea is to show the basics for learning purposes. </br></br> The remote webpack module contains an Angular module which the shell loads using Angular routing. |
 | [angular-architects-ng16](/code-demos/angular-architects-ng16/README.md) </br></br> Both shell and remote app use Angular 16.                                              | Same as the [basic-ng16](/code-demos/basic-ng16/README.md) example but instead of manually doing all the module federation setup, it uses the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which is a package that aims to streamline the module federation setup for Angular apps. </br></br> The remote webpack module contains an Angular module which the shell loads using Angular routing.                                                                                                  |
 | [dynamic-ng16](/code-demos/dynamic-ng16/README.md) </br></br> Both shell and remote app use Angular 16.                                                                    | Shows how to setup module federation without having to declare a remote in the shell's webpack configuration file. This code demo is called dynamic because it does NOT require the remote to be declared in the shell's webpack configuration. </br></br> Despite not being part of this example, it would be simple to extend it and have the remote webpack module location fetched at runtime via an HTTP call. </br></br> The remote webpack module contains an Angular module which the shell loads using Angular routing.                                              |
 | [dynamic-manifest-ng16](/code-demos/dynamic-manifest-ng16/README.md) </br></br> Both shell and remote app use Angular 16.                                                  | Same as the [dynamic-ng16](/code-demos/dynamic-ng16/README.md) example but shows how to use a manifest file to hold the configuration of the remotes. </br></br> The remote webpack module contains an Angular module which the shell loads using Angular routing.                                                                                                                                                                                                                                                                                                            |
@@ -52,4 +59,4 @@ TODO
 
 ## Other learning material
 
-[This page](/docs/other-learning-material.md) contains a collection of links that helped me learn webpack module federation and build the [code demos](#code-demos).
+[This page](/docs/other-learning-material.md) contains a collection of links that helped me learn Webpack Module Federation and build the [code demos](#code-demos).

@@ -1,4 +1,4 @@
-# Basics of webpack module federation
+# Basics of Webpack Module Federation
 
 - [Description](#description)
 - [Webpack configuration file](#webpack-configuration-file)
@@ -9,7 +9,7 @@
 
 ## Description
 
-This document aims to clarify how webpack module federation allows exposing and consuming webpack modules at runtime. Check out the official webpack docs for a better understanding of the terms used:
+This document aims to clarify how Webpack Module Federation allows exposing and consuming webpack modules at runtime. Check out the official webpack docs for a better understanding of the terms used:
 - [What is a webpack Module](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
 - [Module Federation](https://webpack.js.org/concepts/module-federation/)
 
@@ -20,7 +20,7 @@ This document aims to clarify how webpack module federation allows exposing and 
 
 ## Webpack configuration file
 
-The below shows an example of the **minimum** configuration required to get webpack module federation working for **Angular apps**. For more information see:
+The below shows an example of the **minimum** configuration required to get Webpack Module Federation working for **Angular apps**. For more information see:
 
 - [webpack official documentation](https://webpack.js.org/configuration/)
 - [gist with Module Federation options, usage, hints](https://gist.github.com/zfeher/201f55c057553078fe5b0aac1dad6969)

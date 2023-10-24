@@ -7,13 +7,13 @@
   - [Dev platform](#dev-platform)
 - [Shell app](#shell-app)
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
-- [Webpack module federation](#webpack-module-federation)
+- [Webpack Module Federation](#webpack-module-federation)
   - [Webpack configuration file](#webpack-configuration-file)
   - [Angular configuration file](#angular-configuration-file)
 
 ## Description
 
-The most bare-bones possible example of how to setup webpack module federation where the shell lazy loads an Angular module using Angular routing. This project does NOT make use of the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which is usually used to setup module federation for Angular projects. The main idea is to show the basics for learning purposes.
+The most bare-bones possible example of how to setup Webpack Module Federation where the shell lazy loads an Angular module using Angular routing. This project does NOT make use of the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which is usually used to setup module federation for Angular projects. The main idea is to show the basics for learning purposes.
 
 The remote webpack module exposed by the mfe1 app contains an Angular module which the shell loads using Angular routing.
 
@@ -28,7 +28,7 @@ To see the mfe1 app loaded into the shell go to the shell's URL and click the `L
 
 ## MFE1 app
 
-The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/basic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), which was created to represent the micro frontend that we want to expose via webpack module federation.
+The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/basic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), which was created to represent the micro frontend that we want to expose via Webpack Module Federation.
 
 The `MyFeatureModule` Angular module contains a route that loads the [MyComponent](/code-demos/basic-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent` Angular component.
 
@@ -46,7 +46,7 @@ The above defines a webpack module that is named `my-feature-module` and that is
 
 ### Dev platform
 
-When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the `MyFeatureModule` Angular feature module is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyFeatureModule` Angular feature module.
+When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via Webpack Module Federation, only the `MyFeatureModule` Angular feature module is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyFeatureModule` Angular feature module.
 
 ## Shell app
 
@@ -66,14 +66,14 @@ Also note that for typescript to be ok with the `import('mfe1/my-feature-module'
 ](../../docs/basics-module-federation.md#how-the-loading-of-an-external-webpack-module-works).
 >
 
-## Webpack module federation
+## Webpack Module Federation
 
-To setup webpack module federation we had to do the steps below for both the shell and mfe1 apps:
+To setup Webpack Module Federation we had to do the steps below for both the shell and mfe1 apps:
 
 - add a `bootstrap.ts` file. The code that originally is on `main.ts` moves to this file and the code on `main.ts` just imports the `bootrap.ts` file. This creates an async boundary and [is done because](https://webpack.js.org/concepts/module-federation):
 > Loading remote modules is considered an asynchronous operation. When using a remote module, these asynchronous operations will be placed in the next chunk loading operation(s) that are between the remote module and the entrypoint. It's not possible to use a remote module without a chunk loading operation.
 
-And also because it gives webpack module federation the opportunity to [negotiate which version of shared modules to use](https://github.com/webpack/webpack.js.org/issues/3757):
+And also because it gives Webpack Module Federation the opportunity to [negotiate which version of shared modules to use](https://github.com/webpack/webpack.js.org/issues/3757):
 > In group of federated builds all parts will agree on the highest version of a shared module.
 On the other hand the version of the shared module will be checked against a version requirement based on semver (lite).
 If allowed, multiple versions of a shared module might exist and will be consumed based on the required version.
@@ -93,7 +93,7 @@ The only difference between the shell's webpack configuration and the mfe1's web
 
 > **Note**
 > 
-> For a better understanding of the settings defined in the webpack configuration file see  [Basics of webpack module federation](../../docs/basics-module-federation.md). 
+> For a better understanding of the settings defined in the webpack configuration file see  [Basics of Webpack Module Federation](../../docs/basics-module-federation.md). 
 >
 
 ### Angular configuration file

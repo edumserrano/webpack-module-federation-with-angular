@@ -8,12 +8,12 @@
 - [Shell app](#shell-app)
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
   - [Why use a manifest file?](#why-use-a-manifest-file)
-- [Webpack module federation](#webpack-module-federation)
+- [Webpack Module Federation](#webpack-module-federation)
 - [Learn more](#learn-more)
 
 ## Description
 
-This example shows how to setup webpack module federation without having to declare a remote in the shell's webpack configuration file. This code demo is called dynamic because it does NOT require the remote to be declared in the shell's webpack configuration. 
+This example shows how to setup Webpack Module Federation without having to declare a remote in the shell's webpack configuration file. This code demo is called dynamic because it does NOT require the remote to be declared in the shell's webpack configuration. 
 
 The remote webpack module contains an Angular module which the shell loads using Angular routing and a manifest file.
 
@@ -28,7 +28,7 @@ To see the mfe1 app loaded into the shell go to the shell's URL and click the `L
 
 ## MFE1 app
 
-The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/dynamic-manifest-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), which was created to represent the micro frontend that we want to expose via webpack module federation.
+The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/dynamic-manifest-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), which was created to represent the micro frontend that we want to expose via Webpack Module Federation.
 
 The `MyFeatureModule` Angular module contains a route that loads the [MyComponent](/code-demos/dynamic-manifest-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component on `/my-component`. You can use the `Go to my-component` link on the mfe1 app to load the `MyComponent` Angular component.
 e mfe1 app to load the `MyComponent` Angular component.
@@ -47,7 +47,7 @@ The above defines a webpack module that is named `my-feature-module` and that is
 
 ### Dev platform
 
-When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the `MyFeatureModule` Angular feature module is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyFeatureModule` Angular feature module.
+When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via Webpack Module Federation, only the `MyFeatureModule` Angular feature module is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyFeatureModule` Angular feature module.
 
 ## Shell app
 
@@ -85,11 +85,11 @@ This way:
 > You can still have the location of the remotes defined per environment without using a manifest file. You can implement the `fileReplacement` strategy and use environment files and environment variables in your code to achieve the same.
 >
 
-## Webpack module federation
+## Webpack Module Federation
 
-The setup of webpack module federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of webpack module federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
+The setup of Webpack Module Federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of Webpack Module Federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
 
-To use a manifest file, you need to configure your shell as shown in [webpack module federation setup](/docs/basics-angular-architects.md#webpack-module-federation-setup) but use `--type dynamic-host` instead of `--type host`:
+To use a manifest file, you need to configure your shell as shown in [Webpack Module Federation setup](/docs/basics-angular-architects.md#webpack-module-federation-setup) but use `--type dynamic-host` instead of `--type host`:
 
 ```
 ng g @angular-architects/module-federation:init --project shell-ng16 --port 4200 --type dynamic-host

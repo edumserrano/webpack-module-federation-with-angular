@@ -7,7 +7,7 @@
   - [Dev platform](#dev-platform)
 - [Shell app](#shell-app)
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
-- [Webpack module federation](#webpack-module-federation)
+- [Webpack Module Federation](#webpack-module-federation)
 - [Web components and Angular styling](#web-components-and-angular-styling)
 - [Bonus](#bonus)
   - [Add strict type information to remotely imported web components](#add-strict-type-information-to-remotely-imported-web-components)
@@ -16,7 +16,7 @@
 
 ## Description
 
-This example shows how to setup webpack module federation where the shell loads an Angular standalone component that is exposed as a [Web component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components). This example also shows how to set properties on the Web component and listen to its events.
+This example shows how to setup Webpack Module Federation where the shell loads an Angular standalone component that is exposed as a [Web component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components). This example also shows how to set properties on the Web component and listen to its events.
 
 The remote webpack module contains a function that converts an Angular standalone component to a Web component.
 
@@ -36,7 +36,7 @@ The shell will load the Web component from the mfe1 app on page load.
 
 ## MFE1 app
 
-The mfe1 app is an Angular 16 app that contains an Angular standalone component named [MyStandaloneComponent](/code-demos/web-component-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts), which represents the micro frontend that we want to expose via webpack module federation.
+The mfe1 app is an Angular 16 app that contains an Angular standalone component named [MyStandaloneComponent](/code-demos/web-component-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts), which represents the micro frontend that we want to expose via Webpack Module Federation.
 
 The [AppRoutingModule](/code-demos/web-component-ng16/mfe1-ng16/src/app/app-routing.module.ts) Angular module contains a route that loads the `MyStandaloneComponent` on `/my-standalone-component`. You can use the `Go to /my-standalone-component` link on the mfe1 app to load the `MyStandaloneComponent` Angular component.
 
@@ -61,7 +61,7 @@ The above defines a webpack module that is named `standalone-component-as-web-co
 
 ### Dev platform
 
-When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the function `bootstrapMyComponentAsync` from the [my-standalone-component-bootstrap.ts](/code-demos/web-component-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component-bootstrap.ts) file is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` Angular component.
+When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via Webpack Module Federation, only the function `bootstrapMyComponentAsync` from the [my-standalone-component-bootstrap.ts](/code-demos/web-component-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component-bootstrap.ts) file is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` Angular component.
 
 This means that the input value `test input value from dev platform` set by the dev platform is not part of the exported component, neither is the subscription of the component's output that logs to the console when the `Send message` is clicked.
 
@@ -82,9 +82,9 @@ The `bootstrapMyComponentAsync` registers a custom element in the `CustomElement
 > To use custom elements like the `my-mfe-element` and avoid Angular complaining that it doesn't know what it is, we make use of the `CUSTOM_ELEMENTS_SCHEMA` schema, which is added to the schema array at [app module](../web-component-ng16/shell-ng16/src/app/app.module.ts) schemas.
 >
 
-## Webpack module federation
+## Webpack Module Federation
 
-The setup of webpack module federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of webpack module federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
+The setup of Webpack Module Federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of Webpack Module Federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
 
 Also, read the official docs at:
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
@@ -98,7 +98,7 @@ In this example app, the `ViewEncapsulation` configuration would be applied to t
 
 ## Bonus
 
-This section is not directly related with working with Webpack module federation and  it's not needed to get this code demo running nor to understand its concepts. Feel free to skip this `Bonus` section if you're not interested in knowing how to provide type information or improving the IDE support for externally imported Web components.
+This section is not directly related with working with Webpack Module Federation and  it's not needed to get this code demo running nor to understand its concepts. Feel free to skip this `Bonus` section if you're not interested in knowing how to provide type information or improving the IDE support for externally imported Web components.
 
 ### Add strict type information to remotely imported web components
 
@@ -146,6 +146,8 @@ The declaration file explained in the previous section only affects type checkin
 
 As of writing this, I don't think there is a standard way to provide this information that all code editors accept. There is an effort to create a standard from the web components org named [custom-elements-manifest](https://github.com/webcomponents/custom-elements-manifest) but it hasn't been adopted by code editors yet. There is an open issue on the WICG[^1] repo where ths is being discussed. See [Editor support for WebComponents](https://github.com/WICG/webcomponents/issues/776). 
 
+[^1]: The Web Incubator Community Group (WICG) is a community group of the World Wide Web Consortium (W3C) that incubates new web platform features.
+
 For `VS Code`, this is being supported via [VS Code Custom Data](https://github.com/microsoft/vscode-custom-data). Custom data enhances VS Code's understanding of HTML/CSS. For example, with these HTML/CSS JSON contributions, VS Code could provide completion and hover for the custom HTML tag/attribute and CSS property/pseudoClass. For more info see:
 
 - [Web Components support in HTML files](https://github.com/Microsoft/vscode/issues/62976)
@@ -160,8 +162,6 @@ Also note that there is some tooling comming up from the community to let you au
 - [Custom Element (Web Component) VS Code Integration](https://www.npmjs.com/package/custom-element-vs-code-integration): This package generates custom data config files for VS Code using the Custom Element Manifest.
 - [Custom Element (Web Component) JetBrains Integration](https://www.npmjs.com/package/custom-element-jet-brains-integration)
 - [CEM Tools](https://github.com/break-stuff/cem-tools): This is a collection of tools based off the Custom Elements Manifest. Each tool is designed to provide a better development experience when working with custom elements. This repo has a [demo app](https://github.com/break-stuff/cem-tools/tree/main/demo/lit-app) which shows a [custom element manifest file](https://github.com/break-stuff/cem-tools/blob/main/demo/lit-app/custom-elements.json) for a custom element named `radio-group` and its conversation to [VS Code custom data file](https://github.com/break-stuff/cem-tools/blob/main/demo/lit-app/vscode.html-custom-data.json) and [JetBrains web-type file](https://github.com/break-stuff/cem-tools/blob/main/demo/lit-app/web-types.json).
-
-[^1]: The Web Incubator Community Group (WICG) is a community group of the World Wide Web Consortium (W3C) that incubates new web platform features.
 
 ## Learn more
 

@@ -7,11 +7,11 @@
   - [Dev platform](#dev-platform)
 - [Shell app](#shell-app)
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
-- [Webpack module federation](#webpack-module-federation)
+- [Webpack Module Federation](#webpack-module-federation)
 
 ## Description
 
-This example shows how to setup webpack module federation where the shell dynamically instantiates an Angular component and adds it to the DOM. It also shows how to pass inputs to the Angular component.
+This example shows how to setup Webpack Module Federation where the shell dynamically instantiates an Angular component and adds it to the DOM. It also shows how to pass inputs to the Angular component.
 
 The remote webpack modules contains an Angular module and an Angular component which the shell dynamically loads without using Angular routing. It shows 4 different ways to load the Angular module/component.
 
@@ -26,7 +26,7 @@ To see the Angular component from the mfe1 app loaded into the shell go to the s
 
 ## MFE1 app
 
-The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), where the [MyComponent](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component is declared. This component represents the micro frontend that we want to expose via webpack module federation.
+The mfe1 app is an Angular 16 app that contains an Angular feature module named [MyFeatureModule](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts), where the [MyComponent](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component is declared. This component represents the micro frontend that we want to expose via Webpack Module Federation.
 
 The mfe1 app will load the [MyComponent](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) Angular component [on page load](/code-demos/component-ng16/mfe1-ng16/src/app/app.component.ts).
 
@@ -49,7 +49,7 @@ This example is exposing two webpack modules to show different ways of loading t
 
 ### Dev platform
 
-When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the `MyFeatureModule` Angular feature module or the `MyComponent` Angular component are. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyComponent` Angular component.
+When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via Webpack Module Federation, only the `MyFeatureModule` Angular feature module or the `MyComponent` Angular component are. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyComponent` Angular component.
 
 This means that the input value `test input value from dev platform` set by the dev platform is not part of the exported component.
 
@@ -72,9 +72,9 @@ The load buttons will:
 
 The code contains detailed comments to explain each step on all four versions.
 
-## Webpack module federation
+## Webpack Module Federation
 
-The setup of webpack module federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of webpack module federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
+The setup of Webpack Module Federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of Webpack Module Federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
 
 Also, read the official docs at:
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)

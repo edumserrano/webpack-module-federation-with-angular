@@ -9,12 +9,12 @@
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
     - [Using Angular routing](#using-angular-routing)
     - [Using Angular dynamic component loading](#using-angular-dynamic-component-loading)
-- [Webpack module federation](#webpack-module-federation)
+- [Webpack Module Federation](#webpack-module-federation)
 - [Learn more](#learn-more)
 
 ## Description
 
-This example shows how to setup webpack module federation where the shell loads an Angular standalone component by using Angular routing and by dynamically instantiates an Angular standalone component and adding it to the DOM.
+This example shows how to setup Webpack Module Federation where the shell loads an Angular standalone component by using Angular routing and by dynamically instantiates an Angular standalone component and adding it to the DOM.
 
 This example also shows how to pass inputs to the Angular component and subscribe to its outputs.
 
@@ -31,7 +31,7 @@ To see the Angular standalone component from the mfe1 app loaded into the shell 
 
 ## MFE1 app
 
-The mfe1 app is an Angular 16 app that contains an Angular standalone component named [MyStandaloneComponent](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts), which represents the micro frontend that we want to expose via webpack module federation.
+The mfe1 app is an Angular 16 app that contains an Angular standalone component named [MyStandaloneComponent](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts), which represents the micro frontend that we want to expose via Webpack Module Federation.
 
 The [AppRoutingModule](/code-demos/component-standalone-ng16/mfe1-ng16/src/app/app-routing.module.ts) Angular module contains a route that loads the `MyStandaloneComponent` on `/my-standalone-component`. 
 
@@ -51,7 +51,7 @@ The above defines a webpack module that is named `my-standalone-component` and t
 
 ### Dev platform
 
-When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via webpack module federation, only the `MyStandaloneComponent` Angular standalone component is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` Angular component.
+When you run the mfe1 app you will see the text `MFE1 dev platform`. This is to call out the fact that the mfe1 app is not exposed in its entirety via Webpack Module Federation, only the `MyStandaloneComponent` Angular standalone component is. Everything else in the mfe1 app is there only with the sole purpose of supporting the local development of the mfe1 app, more specifically, the development of the `MyStandaloneComponent` Angular component.
 
 This means that the input value `test input value from dev platform` set by the dev platform is not part of the exported component, neither is the subscription of the component's outputs that log to the console when the component is loaded or destroyed.
 
@@ -100,9 +100,9 @@ The `loadMyStandalone` at [app.component.ts](/code-demos/component-standalone-ng
 3) uses the `ComponentRef.setInput` method to set the inputs of the component.
 4) uses the `ComponentRef.instance` object to subscribe to the outputs of the component.
 
-## Webpack module federation
+## Webpack Module Federation
 
-The setup of webpack module federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of webpack module federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
+The setup of Webpack Module Federation was done using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, which aims to streamline the setup of Webpack Module Federation for Angular apps. For more info see [Basics of @angular-architects/module-federation npm package](/docs/basics-angular-architects.md).
 
 Also, read the official docs at:
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
