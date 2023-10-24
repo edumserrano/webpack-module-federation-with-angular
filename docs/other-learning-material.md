@@ -2,10 +2,6 @@
 
 - [Description](#description)
 - [Webpack Module Federation](#webpack-module-federation)
-- [Webpack Module Federation and multi-frameworks](#webpack-module-federation-and-multi-frameworks)
-  - [Example 1](#example-1)
-  - [Example 2](#example-2)
-  - [Other examples](#other-examples)
 - [Angular](#angular)
   - [Common errors in Webpack Module Federation](#common-errors-in-webpack-module-federation)
 - [Custom elements aka Web components](#custom-elements-aka-web-components)
@@ -43,43 +39,6 @@ Some of the resources grouped here are also linked in places where they are rele
 - [Benefits of Module Federation: Unlocking the Power of Software Modularity](https://blog.bitsrc.io/discover-the-benefits-of-module-federation-unlocking-the-power-of-software-modularity-8b1ef62c8c2c)
 - [angular-architects/module-federation-plugin migration guides](https://github.com/angular-architects/module-federation-plugin/blob/main/migration-guide.md)
 
-## Webpack Module Federation and multi-frameworks
-
-### Example 1
-
-The [README](https://www.npmjs.com/package/@angular-architects/module-federation-tools) for the `@angular-architects/module-federation-tools` package shows an example of how to use Webpack Module Federation in a multi-framework environment. The example can be seem live at https://red-ocean-0fe4c4610.azurestaticapps.net/dashboard.
-
-![Module federation with multi-frameworks](static-assets/module-federation-multi-frameworks.png)
-
-The setup includes:
-- an Angular shell that loads MFEs that are in the same or different version of Angular, as well as MFEs using different frameworks such as React, Vue and AngularJS. The Angular shell contains the top navbar, as well as the content for the home and the dashboard tabs. The code for the shell is at [manfredsteyer/
-multi-framework-version](https://github.com/manfredsteyer/multi-framework-version). This repo also contains an `mfe1` app which is the micro-frontend for the content of the flights tab.
-- A React mfe app with code at [manfredsteyer/react-app](https://github.com/manfredsteyer/react-app).
-- An Angular1 mfe app with code at [manfredsteyer/angular-app1](https://github.com/manfredsteyer/angular-app1).
-- An Angular2 mfe app with code at [manfredsteyer/angular-app2](https://github.com/manfredsteyer/angular-app2).
-- An Angular3 mfe app with code at [manfredsteyer/angular3-app](https://github.com/manfredsteyer/angular3-app).
-- A Vue mfe app with code at [manfredsteyer/vue-js](https://github.com/manfredsteyer/vue-js).
-- An AngularJS mfe app with code at [manfredsteyer/angularjs-app](https://github.com/manfredsteyer/angularjs-app).
-
-There's also a [tutorial](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf-tools/tutorial/index.md) available for the above setup.
-
-### Example 2
-
-Another example of a multi-framework setup can be found at [manfredsteyer/multi-framework-micro-frontend](https://github.com/manfredsteyer/multi-framework-micro-frontend). This example contains:
-- a shell in Angular 13.
-- a mfe1 app in Angular 13.
-- a mfe2 app in Angular 12.
-- a mfe3 app in Angular 12.
-- a mfe4 app in React 17.
-
-### Other examples
-
-Other examples and guides about multi-framework setups can be found in:
-
-- the [module-federation/module-federation-examples](https://github.com/module-federation/module-federation-examples) repo.
-- the [Let's build together a microfrontends application combining multiple frameworks using Module Federation](https://www.youtube.com/watch?v=libbOCJH6pc) video from the `Devoxx Belgium 2023 Conference`.
-- [Multi-Framework and -Version Micro Frontends with Module Federation: Your 4 Steps Guide](https://www.angulararchitects.io/en/blog/multi-framework-and-version-micro-frontends-with-module-federation-your-4-steps-guide/)
-
 ## Angular
 
 - [How to manually bootstrap an Angular application](https://medium.com/angular-in-depth/how-to-manually-bootstrap-an-angular-application-9a36ccf86429)
@@ -103,6 +62,7 @@ Other examples and guides about multi-framework setups can be found in:
 - [Tutorial on how to implement the Resolver in Angular](https://medium.com/@sandakova.varvara/https-indepth-dev-tutorials-angular-indepth-guide-how-to-implement-resolver-in-angular-13b8005e93b9#:~:text=Resolver%20is%20just%20a%20simple,per%20route%20as%20you%20want.)
 - [angularindepth](https://angularindepth.com/)
 - [https://netbasal.medium.com/](https://netbasal.medium.com/)
+- [angular-architects blog](https://www.angulararchitects.io/en/blog/)
 - [Understanding Angular Resolvers](https://itnext.io/understanding-angular-resolvers-b49f6c227278)
 - [Functional Route Guards in Angular](https://medium.com/ngconf/functional-route-guards-in-angular-8829f0e4ca5c)
 - [Dynamically Add Components in Angular](https://davembush.medium.com/dynamically-add-components-in-angular-7dc62b2a58d3)
