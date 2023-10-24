@@ -4,6 +4,7 @@
 - [Code demos](#code-demos)
 - [Shared Modules](#shared-modules)
 - [Recommendations](#recommendations)
+- [Multi-frameworks with Module Federation](#multi-frameworks-with-module-federation)
 - [Pitfalls](#pitfalls)
 - [Other learning material](#other-learning-material)
 
@@ -50,6 +51,10 @@ This repo came about as a result of my journey to learn how to use [Webpack Modu
 TODO
 
 ## Recommendations
+
+TODO
+
+## Multi-frameworks with Module Federation
 
 TODO
 
