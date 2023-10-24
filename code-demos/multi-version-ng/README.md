@@ -11,6 +11,8 @@ code-demos\multi-version-ng\shell-ng16\tsconfig.json -> resolveJsonModule and al
 code-demos\multi-version-ng\mfe3-ng12\tsconfig.json -> resolveJsonModule and allowSyntheticDefaultImports set to true for the json file import
 
 
+setting up module federation for the ng-12 needs to use old command: Check the readme on the npm package https://www.npmjs.com/package/@angular-architects/module-federation/v/12.5.3. See ng add @angular-architects/module-federation@next. (test again on a new proj to see if it works)
+
 webpack.config.js files -> talk about the diffs, different ng versions have differnt setups. More importantly is the share bit
 
 
