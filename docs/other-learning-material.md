@@ -38,6 +38,7 @@ Some of the resources grouped here are also linked in places where they are rele
 - [Zack Jackson Medium articles](https://scriptedalchemy.medium.com/) and [twitter profile](https://twitter.com/ScriptedAlchemy): Zack Jackson is the creator of Module Federation. He has several articles and tweets on the matter.
 - [Benefits of Module Federation: Unlocking the Power of Software Modularity](https://blog.bitsrc.io/discover-the-benefits-of-module-federation-unlocking-the-power-of-software-modularity-8b1ef62c8c2c)
 - [angular-architects/module-federation-plugin migration guides](https://github.com/angular-architects/module-federation-plugin/blob/main/migration-guide.md)
+- [Micro-frontends and moduliths with angular 5th edition](/docs/micro-frontends-and-moduliths-with-angular-5th-edition.pdf): you can get this PDF by going to TODO and TODO.
 
 ## Angular
 
@@ -67,6 +68,7 @@ Some of the resources grouped here are also linked in places where they are rele
 - [Functional Route Guards in Angular](https://medium.com/ngconf/functional-route-guards-in-angular-8829f0e4ca5c)
 - [Dynamically Add Components in Angular](https://davembush.medium.com/dynamically-add-components-in-angular-7dc62b2a58d3)
 - [Configuring application environments](https://angular.io/guide/build#configuring-application-environments)
+- [Standalone components and APIs 1st edition](/docs/standalone-components-and-APIs-1st-edition.pdf): you can get this PDF by going to TODO and TODO.
 
 ### Common errors in Webpack Module Federation
 
@@ -95,67 +97,3 @@ Some of the resources grouped here are also linked in places where they are rele
 - [billyjov/microfrontend-resources](https://github.com/billyjov/microfrontend-resources): a curated list of resources about Micro frontends grouped by types.
 - [rajasegar/awesome-micro-frontends](https://github.com/rajasegar/awesome-micro-frontends): an awesome list of resources about Micro-Frontends architecture such as tools, books, posts, videos, talks and more.
 - [ChristianUlbrich/awesome-microfrontends](https://github.com/ChristianUlbrich/awesome-microfrontends): a curated and hopefully awe-some list about Micro Frontends.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
