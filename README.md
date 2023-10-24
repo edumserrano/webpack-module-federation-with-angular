@@ -9,7 +9,7 @@
 
 ## Description 
 
-This repo came about as a result of my journey to learn how to use [Webpack Module Federation](https://webpack.js.org/concepts/module-federation/).
+This repo came about as a result of my journey to learn how to use [Webpack Module Federation](https://webpack.js.org/concepts/module-federation/) as a vehicle to implement [micro-frontend architectures](/docs/other-learning-material.md#micro-frontends).
 
 > Module federation allows a JavaScript application to dynamically load code from another application — in the process, sharing dependencies, if an application consuming a federated module does not have a dependency needed by the federated code — Webpack will download the missing dependency from that federated build origin. [^1]
 >
