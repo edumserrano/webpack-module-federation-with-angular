@@ -21,6 +21,8 @@ Some of the code demos are variations of a concept where the main difference is 
 
 This might seem like something obvious but if you understand this then you understand that there are infinite ways to expose Angular/Vue/React/etc apps as webpack modules and equally infinite ways to consume them. 
 
+The code demos explore a variation of methods to expose and consume Angular micro-frontends (MFEs). Angular MFEs can be exposed as an Angular module, Angular component, Angular standalone component, Angular routes, Web Component, etc and they can be consumed by another Angular app by using Angular routing, programatically without Angular routing, by declaring Web Components or Angular wrapper components on the HTML, etc.
+
 **There is no single best way to do things, some ways might enable functionality that others don't but in the end it's up to you to decide what you prefer for your use case.**
 
 > **Warning**
