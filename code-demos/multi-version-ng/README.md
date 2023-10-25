@@ -244,7 +244,7 @@ What you should take into consideration is if you really need to have the specif
 
 Whether or not you can successfully run an app with a different version of shared dependencies depends on the code you are using from those dependencies and if there were any breaking changes between the version of the dependency that you are using and the version of the dependency loaded at runtime by the shell.  
 
-If you have an app that works with different versions of a shared dependency then I don't see why you would go through the trouble of adding extra code to make sure you use the exact version of the dependency used to develop the app.
+**If you have an app that works with different versions of a shared dependency then I don't see why you would go through the trouble of adding extra code to make sure you use the exact version of the dependency used to develop the app.**
 
 ## Webpack Module Federation
 
