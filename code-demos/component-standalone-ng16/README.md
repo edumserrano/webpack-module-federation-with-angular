@@ -39,7 +39,7 @@ The mfe1 app will [set the input](/code-demos/component-standalone-ng16/mfe1-ng1
 
 ### Exposed webpack module
 
-On the [webpack configuration file for mfe1 app](./mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
+On the [webpack configuration file for mfe1 app](/code-demos/component-standalone-ng16//mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
 
 ```
 exposes: {

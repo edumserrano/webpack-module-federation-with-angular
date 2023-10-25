@@ -38,7 +38,7 @@ The [AppRoutingModule](/code-demos/routes-ng16/mfe1-ng16/src/app/app-routing.mod
 
 ### Exposed webpack module
 
-On the [webpack configuration file for mfe1 app](./mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
+On the [webpack configuration file for mfe1 app](/code-demos/routes-ng16/mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
 
 ```
 exposes: {

@@ -5,6 +5,10 @@
   <ng-container #mfe1></ng-container>
   <hr />
   MFE2
+  <!-- The bootstrapMyComponentAsync exposed by the mfe2 app requires an
+  HTML element to mount the Angular component on so we can't use the
+  ng-container tag here. Change the `div` to `ng-container` to be able
+  to see the error. -->
   <div #mfe2></div>
   <hr />
   MFE3

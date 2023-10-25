@@ -44,7 +44,7 @@ The mfe1 app will [set the input](/code-demos/web-component-angular-architects-w
 
 ### Exposed webpack module
 
-On the [webpack configuration file for mfe1 app](./mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
+On the [webpack configuration file for mfe1 app](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
 
 ```
 exposes: {
@@ -100,9 +100,7 @@ In this example app, the `ViewEncapsulation` configuration would be applied to t
 
 ## Learn more
 
-See the the [Learn more](/code-demos/web-component-ng16/README.md#learn-more) section from the `web-component-ng16` code demo.
-
-In addition see:
+For more info see:
 
 - [the readme page for the @angular-architects/module-federation-tools npm package](https://www.npmjs.com/package/@angular-architects/module-federation-tools?activeTab=readme)
 - [the @angular-architects/module-federation-tools tutorial](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf-tools/tutorial/index.md)

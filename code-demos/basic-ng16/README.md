@@ -13,7 +13,7 @@
 
 ## Description
 
-The most bare-bones possible example of how to setup Webpack Module Federation where the shell lazy loads an Angular module using Angular routing. This project does NOT make use of the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which is usually used to setup module federation for Angular projects. The main idea is to show the basics for learning purposes.
+The most bare-bones possible example of how to setup Webpack Module Federation where the shell lazy loads an Angular module using Angular routing. This project does NOT make use of the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package which is usually used to setup module federation for Angular projects. The main idea of this demo is to show the basics for learning purposes.
 
 The remote webpack module exposed by the mfe1 app contains an Angular module which the shell loads using Angular routing.
 
@@ -34,7 +34,7 @@ The `MyFeatureModule` Angular module contains a route that loads the [MyComponen
 
 ### Exposed webpack module
 
-On the [webpack configuration file for mfe1 app](./mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
+On the [webpack configuration file for mfe1 app](/code-demos/basic-ng16/mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
 
 ```
 exposes: {
@@ -78,10 +78,8 @@ And also because it gives Webpack Module Federation the opportunity to [negotiat
 On the other hand the version of the shared module will be checked against a version requirement based on semver (lite).
 If allowed, multiple versions of a shared module might exist and will be consumed based on the required version.
 
-- add a `webpack.config.js` and a `webpack.prof.config.js`. These are used to extend angular's webpack configuration and configure module federation for the apps.
-- change the builders used by `ng build` and `ng serve` commands and add some extra options to these commands. For this we installed the [ngx-build-plus](https://www.npmjs.com/package/ngx-build-plus) package with `npm i -D ngx-build-plus` and then we updated the `angular.json` file. These changes allow us to tell Angular to use the `webpack.config.js` files we created when building and serving and therefore apply the module federation settings.
-
-See the [Webpack configuration file](#webpack-configuration-file) and [Angular configuration file](#angular-configuration-file) sections below for a detailed explanation of what was changed in the webpack and angular configuration files.
+- add a `webpack.config.js` and a `webpack.prof.config.js`. These are used to extend angular's webpack configuration and configure module federation for the apps. See the [Webpack configuration file](#webpack-configuration-file) section below for more details.
+- change the builders used by `ng build` and `ng serve` commands and add some extra options to these commands. For this we installed the [ngx-build-plus](https://www.npmjs.com/package/ngx-build-plus) package with `npm i -D ngx-build-plus` and then we updated the `angular.json` file. These changes allow us to tell Angular to use the `webpack.config.js` files we created when building and serving and therefore apply the module federation settings. See the [Angular configuration file](#angular-configuration-file) section below for more details.
 
 ### Webpack configuration file
 

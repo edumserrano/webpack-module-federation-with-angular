@@ -48,8 +48,6 @@ Some of the resources grouped here are also linked in places where they are rele
 - [bootstrapApplication documentation](https://angular.io/api/platform-browser/bootstrapApplication)
 - [createApplication documentation](https://angular.io/api/platform-browser/createApplication)
 - [Getting to Know the createApplication API in Angular](https://netbasal.com/getting-to-know-the-createapplication-api-in-angular-f1c0a2685047)
-- [Angular Platforms in depth. Part 1. What are Angular Platforms?](https://angularindepth.com/posts/1027/angular-platforms-in-depth-part-1-what-are-angular-platforms)
-- [Angular Platforms in depth. Part 2. Application bootstrap process](https://angularindepth.com/posts/1144/angular-platforms-in-depth-part-2-application-bootstrap-process)
 - [JavaScript modules vs. NgModules](https://angular.io/guide/ngmodule-vs-jsmodule): the term `module` used in Webpack Module Federation refers to JavaScript modules, not to confuse with Angular modules.
 - [8 part article series on Angular's Future with Standalone Components](https://www.angulararchitects.io/en/blog/angulars-future-without-ngmodules-lightweight-solutions-on-top-of-standalone-components/)
 - [Render ngTemplates dynamically using ViewContainerRef in Angular](https://dev.to/railsstudent/render-ngtemplates-dynamically-using-viewcontainerref-in-angular-17lp)

@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { NgElementConfig, createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppModule } from 'src/app/app.module';
@@ -8,18 +8,31 @@ import { MyComponent } from 'src/app/my-component/my-component.component';
   declarations: [],
   imports: [BrowserModule, AppModule],
   providers: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [],
-  // bootstrap: [MfeEntryComponent], // TODO explain why there's no bootstrap
+  // The bootstrap array below is empty because otherwise we would get the following
+  // error https://stackoverflow.com/questions/55143772/error-expected-to-not-be-in-angular-zone-but-it-is
+  // when the shell app is calling the `bootstrapMyComponentAsync` function from the
+  // /mfe3-ng12/src/mfe-platform/remote-bootstrap.ts file.
+  //
+  // The components in the bootstrap array below will try to start Angular Zone.js,
+  // but as the shell app is already running it, it throws an error.
+  //
+  bootstrap: [], // Usually it would be: `bootstrap: [MyComponent]`
 })
 export class MfePlatformModule {
 
   public constructor(private readonly _injector: Injector) {}
 
-  // TODO explain that this ngDoBootstrap method is called in the absence of elements in the bootstrap array
-  // (or review in docs the condition that makes it execute) and is used to bootstrap
-  // the mfe platform module
-  // TODO can I customize the element name somehow? test again passing some providers when bootstrapping the app
+  // Because the `bootstrap` array on line 12 is empty, this `ngDoBootstrap` function
+  // is called when the Angular platform is bootstraping this Module, which
+  // happens:
+  // - at /mfe3-ng12/bootstrap.ts: when running the `npm run start:mfe` command.
+  // - at /mfe3-ng12/src/mfe-platform/remote-bootstrap.ts: when the shell is loading
+  // this mfe by calling the `bootstrapMyComponentAsync` function.
+  //
+  // For more information about bootrapping Angular applications see:
+  // - How to manually bootstrap an Angular application: https://medium.com/angular-in-depth/how-to-manually-bootstrap-an-angular-application-9a36ccf86429
+  // - Ways of Bootstrapping Angular Applications: https://medium.com/learnwithrahul/ways-of-bootstrapping-angular-applications-d379f594f604
+  //
   public ngDoBootstrap() : void {
     const customElementName = "mfe3-element";
     this.bootstrapMyComponentAsWebComponent(customElementName);

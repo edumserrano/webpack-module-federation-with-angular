@@ -84,7 +84,13 @@ export class AppComponent implements OnInit {
       remoteEntry: 'http://localhost:4203/remoteEntry.js',
     };
     const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
-    await webpackModule.bootstrapMyComponentAsync("mfe3-element", this._mfe3ViewContainerRef.element.nativeElement, this._injector);
+    await webpackModule.bootstrapMyComponentAsync();
+
+    // The bootstrapMyComponentAsyncV2 function is the only reason to have the
+    // this._mfe3ViewContainerRef variable. However, I couldn't make this function work
+    // properly and the only reason the function and the this._mfe3ViewContainerRef variable
+    // are in the code is for demo/learning purposes.
+    //
     // await webpackModule.bootstrapMyComponentAsyncV2(this._injector,this._mfe3ViewContainerRef.element.nativeElement);
   }
 

@@ -44,3 +44,8 @@ Note about tsconfig.app.json:
 ```
 Error: C:\dev\repos\edumserrano\webpack-module-federation-with-angular\code-demos\web-component-ng16\mfe1-ng16\src\app\my-standalone-component\my-standalone-component-bootstrap.ts is missing from the TypeScript compilation. Please make sure it is in your tsconfig via the 'files' or 'include' property.
 ``` 
+
+
+There are surely alterntive ways to get an event bus implementation to work. On this way, the we create a wrapper component which then republishes the events to the event bus.
+We could also have the event bus be an abstraction that lets consumers register for events from the document element. For this the mfes woudl have to publish events with bubbles set to true so that they are captured outside of the producing mfe, in the document element in this case. Not sure how to make this typed though...
+TODO, try to implement this approach and show it as event bus 2

@@ -35,7 +35,7 @@ e mfe1 app to load the `MyComponent` Angular component.
 
 ### Exposed webpack module
 
-On the [webpack configuration file for mfe1 app](./mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
+On the [webpack configuration file for mfe1 app](/code-demos/dynamic-manifest-ng16/mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
 
 ```
 exposes: {

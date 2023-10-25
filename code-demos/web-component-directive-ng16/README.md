@@ -9,7 +9,6 @@
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
 - [Webpack Module Federation](#webpack-module-federation)
 - [Web components and Angular styling](#web-components-and-angular-styling)
-- [Learn more](#learn-more)
 
 ## Description
 
@@ -41,7 +40,7 @@ The mfe1 app will [set the input](/code-demos/web-component-directive-ng16/mfe1-
 
 ### Exposed webpack module
 
-On the [webpack configuration file for mfe1 app](./mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
+On the [webpack configuration file for mfe1 app](/code-demos/web-component-directive-ng16/mfe1-ng16/webpack.config.js) you will find the declaration of the webpack modules to expose:
 
 ```
 exposes: {
@@ -101,7 +100,3 @@ Also, read the official docs at:
 Beware of issues with styling when using web components. If styles from your Angular component that you have exposed as a Web component using `@angular/elements` are bleeding out, then you might need to set your [ViewEncapsulation](https://angular.io/api/core/ViewEncapsulation) to `ViewEncapsulation.ShadowDom`, which uses the ShadowDOM specification, on the Angular component which is being passed to `createCustomElement`. 
 
 In this example app, the `ViewEncapsulation` configuration would be applied to the [MyStandaloneComponent](/code-demos/web-component-directive-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts) component.
-
-## Learn more
-
-See the the [Learn more](/code-demos/web-component-ng16/README.md#learn-more) section from the `web-component-ng16` code demo.
