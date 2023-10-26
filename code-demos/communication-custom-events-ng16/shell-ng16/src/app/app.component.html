@@ -10,21 +10,21 @@
     (message-sent)="onMessageSent($event)"
     (greet-message)="onGreet($event)"
   ></my-mfe-element>
-  <p>
-    Messages received by the shell from the Web component will show below in an
-    orange color
-  </p>
   <ng-container *ngIf="showMessages">
+    <p>
+      message-sent events received by the shell from the Web component will show
+      below in an orange color
+    </p>
     <hr />
-    This message came from the `@Output("message-sent") messageSentEvent` Angular output. The
-    subscription to the event was done DECLARATIVELY ON THE HTML AT THE
-    my-mfe-element custom element.
+    This message came from the `@Output("message-sent") messageSentEvent`
+    Angular output. The subscription to the event was done DECLARATIVELY ON THE
+    HTML AT THE my-mfe-element custom element.
     <p class="messageFromMfe">{{ messageFromAngularOutputAtHtml }}</p>
     <hr />
     <hr />
-    This message came from the `@Output("message-sent") messageSentEvent` Angular output. The
-    subscription to the event was done DECLARATIVELY ON THE HTML OUTSIDE OF THE
-    my-mfe-element custom element.
+    This message came from the `@Output("message-sent") messageSentEvent`
+    Angular output. The subscription to the event was done DECLARATIVELY ON THE
+    HTML OUTSIDE OF THE my-mfe-element custom element.
     <p class="messageFromMfe">{{ messageFromAngularOutputAtHtml2 }}</p>
     <p>
       This is not bugged, there is no message because the custom events
@@ -33,15 +33,15 @@
     </p>
     <hr />
     <hr />
-    This message came from the `@Output("message-sent") messageSentEvent` Angular output. The
-    subscription to the event was done PROGRAMMATICALLY ON THE INSTANCE OF THE
-    my-mfe-element custom element.
+    This message came from the `@Output("message-sent") messageSentEvent`
+    Angular output. The subscription to the event was done PROGRAMMATICALLY ON
+    THE INSTANCE OF THE my-mfe-element custom element.
     <p class="messageFromMfe">{{ messageFromAngularOutputAtComponent }}</p>
     <hr />
     <hr />
-    This message came from the `@Output("message-sent") messageSentEvent` Angular output. The
-    subscription to the event was done PROGRAMMATICALLY ON THE DOCUMENT
-    instance.
+    This message came from the `@Output("message-sent") messageSentEvent`
+    Angular output. The subscription to the event was done PROGRAMMATICALLY ON
+    THE DOCUMENT instance.
     <p>
       This is not bugged, there is no message because the custom events
       converted from Angular outputs using Angular custom elements do NOT bubble
@@ -49,6 +49,10 @@
     </p>
     <p class="messageFromMfe">{{ messageFromAngularOutputAtDocument }}</p>
     <hr />
+    <p>
+      greet-message events received by the shell from the Web component will
+      show below in an orange color
+    </p>
     <hr />
     This message came from the `greet-message` custom event which was manually
     dispatched from the Angular component. The subscription to this was done
