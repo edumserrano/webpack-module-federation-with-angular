@@ -16,7 +16,7 @@ The communication in a micro frontend app can be done using [Custom Events](http
 
 > **Note**
 > 
-> The setup of this code demo is the same as the `web-components-ng16`. For more information, please read the [web-components-ng16 README](../code-demos/web-component-ng16/README.md).
+> The setup of this code demo is the same as the `web-components-ng16`. For more information, please read the [web-components-ng16 README](../web-component-ng16/README.md).
 >
 
 ## How to run
