@@ -4,7 +4,7 @@
 - [How to run](#how-to-run)
 - [Angular inputs/outputs mapping](#angular-inputsoutputs-mapping)
 - [MFE1 app](#mfe1-app)
-- [Shell](#shell)
+- [Shell app](#shell-app)
 - [What about multiple micro frontends](#what-about-multiple-micro-frontends)
 - [Learn more](#learn-more)
 
@@ -49,14 +49,14 @@ When using the `createCustomElement` function at [my-standalone-component-bootst
 
 In addition, when the `Send message` button is clicked, the Web component will also produce a `greet-message` custom event. This is being done to demonstrate the difference with relying on the output mapping that Angular does for you by default or manually dispatching a custom event. Outside of a demo app, you'd likely choose one or the other.
 
-Use the `Go to /my-standalone-component` to load the `MyStandaloneComponent` component look for the console for the logs produced when you click the `Send message` button.
+Use the `Go to /my-standalone-component` to load the `MyStandaloneComponent` component and look at the console for the logs produced when you click the `Send message` button.
 
 > **Note**
 > 
-> Even though the mfe1 app is producing messages to the console when the `Send message` button is clicked, this does not happen when the mfe1 app is integrated into the shell. This is because the subscription to the button click happens at the [app.component.ts](../communication-custom-events-ng16/mfe1-ng16/src/app/app.component.ts), which is not part of the exported webpack module, which is the [MyStandaloneComponent](../communication-custom-events-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts) Angular standalone component.
+> Even though the mfe1 app is producing messages to the console when the `Send message` button is clicked, this does not happen when the mfe1 app is integrated into the shell. This is because the subscription to the button click happens at the [app.component.ts](../communication-custom-events-ng16/mfe1-ng16/src/app/app.component.ts) and that is not part of the exported webpack module, which is the [MyStandaloneComponent](../communication-custom-events-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts) Angular standalone component.
 >
 
-## Shell
+## Shell app
 
 The shell app is created to show the difference between subscribing to a custom event that has the `bubbles` property set to `true` and one that has it set to `false`.
 

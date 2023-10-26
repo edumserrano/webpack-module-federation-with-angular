@@ -1,51 +1,46 @@
 # communication-event-bus-ng16 code demo
 
 - [Description](#description)
-- [TODO](#todo)
+- [How to run](#how-to-run)
+- [The event bus](#the-event-bus)
+- [MFE1 app](#mfe1-app)
+- [Shell app](#shell-app)
 
 ## Description
 
-## TODO
+Unlike other demos in this repo, the focus of this demo is not about exploring an aspect of Webpack Module Federation. Instead, it focus on showing how you can create an abstraction on top of the browser Custom Events to act as an [Event Bus/Aggregator](https://martinfowler.com/eaaDev/EventAggregator.html) which you can use throughout the app to subscribe to strongly typed events.
 
-The example here is mainly using the event bus to pass outputs from one component to another but you could do the same to set inputs. Component-A could trigger an event that Component-B subscribes to and updates what would be an input.
+> **Note**
+> 
+> The setup of this code demo is the same as the `web-components-ng16`. For more information, please read the [web-components-ng16 README](../web-component-ng16/README.md).
+>
 
+## How to run
 
-explain that this is based on the web-components-ng16 example. Check those docs to understand more about the solution setup. This readme will focus on the custom events/communication. (does it talk about the tsconfig.app.json referene to bootstrap file)
-explain the bubble up, angular outputs conversion, manual dispatch etc
+1) Go to `/code-demos/communication-event-bus-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
+2) Go to `/code-demos/communication-event-bus-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
 
-add code comments or explain in the readme that im not sure what's best in terms of just using the manual custom event or leave both the manual one and the output one.
+The shell will load the Web component from the mfe1 app on page load.
 
-talk about the host1 -> host2/mfe2 -> mfe3 scenario where:
-- on host1 you want to listen from custom event from mfe3 and then you either
-  - propagate and re-expose the event from mfe3 on the mfe2 app. Then the host1 can subscribe to that event on the mfe2 app
-  - use a manual custom event with bubble up and then you can listen to it on host1
+## The event bus
 
+The event bus is implemented by the [EventBus class](/code-demos/communication-event-bus-ng16/shell-ng16/src/app/event-bus.ts) whose purpose is to allow communicating events between the view components in a strongly typed fashion. 
 
-https://medium.com/angular-in-depth/how-angular-elements-uses-custom-events-mechanism-to-transmit-components-outputs-outside-angular-7b469386f6e2
-https://blog.davidjs.com/2018/02/angular-custom-event-bubbling/
-https://itnext.io/handling-data-with-web-components-9e7e4a452e6e
-https://stackoverflow.com/questions/43061417/how-to-listen-for-custom-events-defined-web-component
-https://www.youtube.com/watch?v=hIv22aTl3-g
-https://blog.bitsrc.io/different-patterns-in-communicating-between-web-components-7ac52771aeb8
+The implementation shown in this code demo makes use of [RxJS](https://rxjs.dev/) but you could implement something similar without it. The choice to use `RxJS` is so that when subscribing to events you can have access to [all the operators](https://rxjs.dev/guide/operators) that `RxJS` offers, which allow you to manipulate, transform, and combine streams of data in a declarative manner. **In many cases, `RxJS` will allow you to easily express complex event subscription conditions that would otherwise be much harder.**
 
+## MFE1 app
 
-https://github.com/angular/angular/issues/39489
-https://github.com/angular/angular/blob/229331e11b6c214f74c9801aa52eb9cd47d7fc76/packages/elements/src/create-custom-element.ts
-https://github.com/angular/angular/blob/main/packages/elements/src/create-custom-element.ts
+The mfe1 app exposes the [MyStandaloneComponent](/code-demos/communication-event-bus-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts) as a Web component. This Web component produces a `message-sent` custom event when the button `Send message` is clicked.
 
+Use the `Go to /my-standalone-component` to load the `MyStandaloneComponent` component and look at the console for the logs produced when you click the `Send message` button.
 
-The mfe1 app will [set the input](/code-demos/communication-custom-events-ng16/mfe1-ng16/src/app/app-routing.module.ts) of the `MyStandaloneComponent` to `test input value from dev platform` and [subscribe to the output of the component](/code-demos/communication-custom-events-ng16/mfe1-ng16/src/app/app.component.ts) which logs to the console when the `Send message` button is clicked.
+> **Note**
+> 
+> Even though the mfe1 app is producing messages to the console when the `Send message` button is clicked, this does not happen when the mfe1 app is integrated into the shell. This is because the subscription to the button click happens at the [app.component.ts](../communication-event-bus-ng16/mfe1-ng16/src/app/app.component.ts) and that is not part of the exported webpack module, which is the [MyStandaloneComponent](../communication-event-bus-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts) Angular standalone component.
+>
 
+## Shell app
 
-This means the subscription done by the dev platform of the component's output that logs to the console when the `Send message` is clicked, is not part of the exported component.
+The shell loads the Web component from the mfe1 app by using a wrapper Angular component named [Mfe1Component](/code-demos/communication-event-bus-ng16/shell-ng16/src/app/mfe1-component/mfe1.component.ts). This component also subscribes to the `message-sent` custom event and republishes it to the Event Bus using the [MessageSentEvent](/code-demos/communication-event-bus-ng16/shell-ng16/src/app/mfe1-component/message-sent-event.ts) class.
 
-
-Note about tsconfig.app.json:
-```
-Error: C:\dev\repos\edumserrano\webpack-module-federation-with-angular\code-demos\web-component-ng16\mfe1-ng16\src\app\my-standalone-component\my-standalone-component-bootstrap.ts is missing from the TypeScript compilation. Please make sure it is in your tsconfig via the 'files' or 'include' property.
-``` 
-
-
-There are surely alterntive ways to get an event bus implementation to work. On this way, the we create a wrapper component which then republishes the events to the event bus.
-We could also have the event bus be an abstraction that lets consumers register for events from the document element. For this the mfes woudl have to publish events with bubbles set to true so that they are captured outside of the producing mfe, in the document element in this case. Not sure how to make this typed though...
-TODO, try to implement this approach and show it as event bus 2
+From here on now, any part of the shell can subscribe in a strongly typed fashion to the `MessageSentEvent` through the Event Bus. For an example see the [OtherComponent](/code-demos/communication-event-bus-ng16/shell-ng16/src/app/other-component/other.component.ts) Angular component.

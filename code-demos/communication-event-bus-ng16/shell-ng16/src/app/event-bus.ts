@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, filter } from 'rxjs';
 @Injectable({providedIn: 'root'})
 // https://martinfowler.com/eaaDev/EventAggregator.html
 // The purpose of this event bus/event aggregator is to allow communicating events
-// between the view components. Example:
+// between the view components in a strongly typed fashion. Example:
 //
 // View one has a button that when clicked should cause an effect on view two.
 // The event bus could be used by view one to publish an event that the
@@ -19,7 +19,6 @@ export class EventBus {
     this._subject.next(event);
   }
 
-  // TODO add this info to the README as well
   // The input param `t: new (...args: any[]) => T` is a construct signature
   // It allows the following syntax:
   // eventBus.GetEvent(PaymentEvent).Subscribe(...)

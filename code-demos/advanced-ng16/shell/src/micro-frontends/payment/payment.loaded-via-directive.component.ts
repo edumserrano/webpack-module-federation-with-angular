@@ -10,6 +10,13 @@ import { Routes } from '@angular/router';
 
 // TODO: add note about the `.bind(this)` at [loadRemoteModuleCallback]="loadRemoteModuleHandler.bind(this)"
 //       say it's about the this context or else this._mfePaymentViewContainerRef is always undefined because this would refer to the LoadRemoteModuleDirective
+// The `.bind` call is required to flow the `this` context
+// when the `messageSentEventHandler` method is executed.
+// Otherwise when the `this.messageSentEventAsJson` line was
+// executed, the `this` variable would be undefined.
+//
+// For more info see "Understanding This, Bind, Call, and Apply in JavaScript":
+// https://www.digitalocean.com/community/conceptual-articles/understanding-this-bind-call-and-apply-in-javascript
 
 @Component({
   selector: 'app-payment-mfe',
