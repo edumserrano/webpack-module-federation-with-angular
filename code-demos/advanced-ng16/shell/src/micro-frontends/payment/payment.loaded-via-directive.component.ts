@@ -5,7 +5,10 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { RemoteModuleDirective, RemoteModuleDirectiveOptions } from 'src/micro-frontends-tooling/remote-module.directive';
+import {
+  RemoteModuleDirective,
+  RemoteModuleDirectiveOptions,
+} from 'src/micro-frontends-tooling/remote-module.directive';
 import { Routes } from '@angular/router';
 
 // TODO: add note about the `.bind(this)` at [loadRemoteModuleCallback]="loadRemoteModuleHandler.bind(this)"

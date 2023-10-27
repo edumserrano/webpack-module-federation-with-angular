@@ -1,4 +1,10 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { Routes } from '@angular/router';
 import { remoteModuleGuard } from 'src/micro-frontends-tooling/remote-module.guard';
 import { CheckoutService } from './checkout.service';

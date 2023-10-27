@@ -7,6 +7,15 @@ import { withNavigationErrorHandler } from 'src/micro-frontends-tooling/with-nav
 import { RemoteModuleEvent } from 'src/micro-frontends-tooling/remote-module-events';
 import { LoadViaRoutingComponent } from './load-via-routing/load-via-routing.component';
 import { LoadViaHtmlComponent } from './load-via-html/load-via-html.component';
+
+// Here we are importing the components with an alias because all the micro-frontends
+// wrappers for the checkout mfe are named CheckoutComponent and all the micro-frontends
+// wrappers for the payment mfe are named PaymentComponent
+//
+// We're import the checkout.loaded-via-ng-on-init.component and payment.loaded-via-ng-on-init.component
+// and we're using them on /advanced-ng16/shell/src/app/load-via-routing/load-via-routing.component.html
+// but we could have done the same with any of the other wrapper components, there's nothing
+// special about the `.loaded-via-ng-on-init.` wrapper components.
 import { CheckoutComponent as CheckoutComponentViaNgOnInit } from 'src/micro-frontends/checkout/checkout.loaded-via-ng-on-init.component';
 import { PaymentComponent as PaymentComponentViaNgOnInit } from 'src/micro-frontends/payment/payment.loaded-via-ng-on-init.component';
 
@@ -19,10 +28,9 @@ import { PaymentComponent as PaymentComponentViaNgOnInit } from 'src/micro-front
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CheckoutComponentViaNgOnInit, // TODO: explain the alias and why using the checkout.loaded-via-ng-on-init.component.ts
-    PaymentComponentViaNgOnInit, // TODO: explain the alias and why using the payment.loaded-via-ng-on-init.component.ts
+    CheckoutComponentViaNgOnInit,
+    PaymentComponentViaNgOnInit,
   ],
-  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     withNavigationErrorHandler((error) => {
       // TODO use inject and call some service

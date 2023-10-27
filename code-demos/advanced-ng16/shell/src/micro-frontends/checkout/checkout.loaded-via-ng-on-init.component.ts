@@ -1,4 +1,11 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Routes } from '@angular/router';
 import {
   LoadRemoteModuleOptionsExtended,
@@ -24,27 +31,11 @@ export class CheckoutComponent implements OnInit {
     private readonly _checkoutService: CheckoutService,
   ) {}
 
-  // TODO: the inputs and outputs are made available in the wrapper component
-  // so that they can be used on the app. This wrapper component is the contract
-  // to use with the app
   @Input()
   public basketValue?: string;
 
   @Output()
   public checkoutRequested: EventEmitter<string> = new EventEmitter<string>();
-
-  // TODO explain in readme that a simple version of a wrapper could be like this
-  // add the imports as well
-  // public async ngOnInit(): Promise<void> {
-  //   const loadRemoteWebpackModuleOptions: LoadRemoteModuleOptions = {
-  //     type: 'module',
-  //     exposedModule: './checkout',
-  //     remoteEntry: 'http://localhost:4201/remoteEntry.js',
-  //   };
-  //   const webpackModule: any = await loadRemoteModule(loadRemoteWebpackModuleOptions);
-  //   const elementName = "mfe-checkout";
-  //   await webpackModule.mountAsync(elementName);
-  // }
 
   public async ngOnInit(): Promise<void> {
     const loadRemoteModuleOptions: LoadRemoteModuleOptionsExtended = {
@@ -56,6 +47,9 @@ export class CheckoutComponent implements OnInit {
     const result = await this._remoteModuleService.loadAsync(loadRemoteModuleOptions);
     switch (result.type) {
       case RemoteModuleResultTypes.Loaded:
+        // The elementName variable passed into `mountAsync` determines the name of the
+        // custom element that is created. This needs to match the custom element that we
+        // use on the html template above <mfe-checkout></mfe-checkout>
         const elementName = "mfe-checkout";
         await result.webpackModule.mountAsync(elementName);
         break;

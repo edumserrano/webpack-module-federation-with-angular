@@ -6,7 +6,11 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { Routes } from '@angular/router';
-import { LoadRemoteModuleOptionsExtended, RemoteModuleResultTypes, RemoteModuleService } from 'src/micro-frontends-tooling/remote-module.service';
+import {
+  LoadRemoteModuleOptionsExtended,
+  RemoteModuleResultTypes,
+  RemoteModuleService,
+} from 'src/micro-frontends-tooling/remote-module.service';
 
 @Component({
   selector: 'app-payment-mfe',

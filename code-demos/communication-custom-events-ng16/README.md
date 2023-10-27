@@ -10,7 +10,7 @@
 
 ## Description
 
-Unlike other demos in this repo, the focus of this demo is not about exploring an aspect of Webpack Module Federation. Instead, it focus on showing how communication between different micro frontend apps and the shell/host app can be implemented. 
+Unlike other demos in this repo, the focus of this demo is not about exploring an aspect of Webpack Module Federation. Instead, it focuses on showing how communication between different micro frontend apps and the shell/host app can be implemented. 
 
 The communication in a micro frontend app can be done using [Custom Events](https://dom.spec.whatwg.org/#customevent). However, in an Angular app there are a few things that you should be aware.
 

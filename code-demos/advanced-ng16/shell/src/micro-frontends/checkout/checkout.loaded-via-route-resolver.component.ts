@@ -1,4 +1,11 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ActivatedRoute, Routes } from '@angular/router';
 import { remoteModuleResolver } from 'src/micro-frontends-tooling/remote-module.resolver';
 import { CheckoutService } from './checkout.service';
@@ -28,12 +35,9 @@ export class CheckoutComponent implements OnInit {
   public checkoutRequested: EventEmitter<string> = new EventEmitter<string>();
 
   public async ngOnInit(): Promise<void> {
-    // TODO: note about the elementName on the directive matching the declared
-    // custom element
-    // TODO consider creating a type to define webpackModule.mountAsync instead of
-    // using any? Does Zod help?
-    // check how at https://sergiodxa.com/articles/using-zod-to-safely-read-env-variables
-    // and https://jfranciscosousa.com/blog/validating-environment-variables-with-zod/
+    // The elementName variable passed into `mountAsync` determines the name of the
+    // custom element that is created. This needs to match the custom element that we
+    // use on the html template above <mfe-checkout></mfe-checkout>
     const webpackModule: any = this._route.snapshot.data["remoteModule"];
     const elementName = "mfe-checkout";
     await webpackModule.mountAsync(elementName);

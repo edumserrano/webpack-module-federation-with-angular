@@ -8,7 +8,7 @@
 
 ## Description
 
-Unlike other demos in this repo, the focus of this demo is not about exploring an aspect of Webpack Module Federation. Instead, it focus on showing how you can create an abstraction on top of the browser Custom Events to act as an [Event Bus/Aggregator](https://martinfowler.com/eaaDev/EventAggregator.html) which you can use throughout the app to subscribe to strongly typed events.
+Unlike other demos in this repo, the focus of this demo is not about exploring an aspect of Webpack Module Federation. Instead, it focuses on showing how you can create an abstraction on top of the browser Custom Events to act as an [Event Bus/Aggregator](https://martinfowler.com/eaaDev/EventAggregator.html) which you can use throughout the app to subscribe to strongly typed events.
 
 > **Note**
 > 
