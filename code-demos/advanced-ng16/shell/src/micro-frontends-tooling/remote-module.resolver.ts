@@ -10,15 +10,27 @@ export type RemoteModuleResolverOptions = LoadRemoteModuleOptions & {
   id: string;
 };
 
-// TODO: also add a note about the ResolveFn return type and how to pass router to the
-// return function, see note about CanActivateFn on remoteModuleGuard
-// export declare type ResolveFn<T> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => Observable<T> | Promise<T> | T;
-
-// TODO create a webpack module type that has nothing but it's used to help provide intent
-// so instead ResolveFn<any> you would ResolveFn<WebpackModule>
-// NOT sure I can do this because I still would want to do WebpackModule.ANYTHING without having to cast
-// the WebpackModule to any. ASK DEAN, perhaps there's something that could be done
 export function remoteModuleResolver(resolverOptions: RemoteModuleResolverOptions): ResolveFn<any> {
+  // Note that we are returning the type of ResolveFn which is declared as:
+  //
+  // export declare type ResolveFn<T> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => Observable<T> | Promise<T> | T;
+  //
+  // Although the ResolveFn type allows for a function with the
+  // (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) inputs, the function we
+  // are returning doesn't have any input params.
+  //
+  // The way this works is that we can return a function with:
+  // - no input parameters.
+  // - some or all of the input parameters from the ResolveFn type. For instance:
+  // `return async (route: ActivatedRouteSnapshot): Promise<boolean> => { }` would be valid
+  // and would give us access to the ActivatedRouteSnapshot.
+  //
+  // If we need access to more types other than the available ones in the ResolveFn we
+  // can use the inject function to retrieve them, just like we are doing with:
+  // `const remoteModuleService = inject(RemoteModuleService)`.
+  //
+  // Also note that the ResolveFn can return many different types, for this implementation
+  // we use the Promise<T> return type.
   return async (): Promise<any> => {
     const remoteModuleService = inject(RemoteModuleService);
     // RemoteModuleResolverOptions type has the same shape as LoadRemoteModuleOptionsExtended

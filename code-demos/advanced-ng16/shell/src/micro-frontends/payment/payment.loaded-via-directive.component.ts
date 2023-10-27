@@ -11,16 +11,6 @@ import {
 } from 'src/micro-frontends-tooling/remote-module.directive';
 import { Routes } from '@angular/router';
 
-// TODO: add note about the `.bind(this)` at [loadRemoteModuleCallback]="loadRemoteModuleHandler.bind(this)"
-//       say it's about the this context or else this._mfePaymentViewContainerRef is always undefined because this would refer to the LoadRemoteModuleDirective
-// The `.bind` call is required to flow the `this` context
-// when the `messageSentEventHandler` method is executed.
-// Otherwise when the `this.messageSentEventAsJson` line was
-// executed, the `this` variable would be undefined.
-//
-// For more info see "Understanding This, Bind, Call, and Apply in JavaScript":
-// https://www.digitalocean.com/community/conceptual-articles/understanding-this-bind-call-and-apply-in-javascript
-
 @Component({
   selector: 'app-payment-mfe',
   standalone: true,
@@ -32,6 +22,18 @@ import { Routes } from '@angular/router';
       [remoteModuleoptions]="remoteModuleOptions",
       [loadRemoteModuleCallback]="loadRemoteModuleHandler.bind(this)"
     ></ng-container>
+    <!--
+    The '.bind' call used in 'loadRemoteModuleHandler.bind(this)' above is required
+    to flow the 'this' context when the 'loadRemoteModuleHandler' method is executed.
+    Otherwise when the 'this._mfePaymentViewContainerRef' line of the
+    'loadRemoteModuleHandler' method is executed, the 'this' variable would be undefined.
+
+    Alternatively to using the '.bind' method, you could implement the 'loadRemoteModuleHandler'
+    as an arrow function. See commented out code below.
+
+    For more info see "Understanding This, Bind, Call, and Apply in JavaScript":
+    https://www.digitalocean.com/community/conceptual-articles/understanding-this-bind-call-and-apply-in-javascript
+    -->
   `,
 })
 export class PaymentComponent {
@@ -45,18 +47,16 @@ export class PaymentComponent {
     remoteEntry: "http://localhost:4202/remoteEntry.js",
   };
 
-  // TODO use `bind(this)` on HTML or declare it as an arrow function like this
+  // On the HTML template above, instead of using the `bind` method on the
+  // `loadRemoteModuleHandler.bind(this)` line, you could have just `loadRemoteModuleHandler`
+  // if you declare it as an arrow function like this:
+  //
   // public loadRemoteModuleHandler = async (webpackModule: any): Promise<void> => {
-  //   if (!this._mfePaymentViewContainerRef) {
-  //     return;
-  //   }
-
-  //   this._mfePaymentViewContainerRef.clear();
-  //   const paymentComponentType: Type<any> = webpackModule.PaymentComponent;
-  //   const mfePaymentComponentRef: ComponentRef<any> = this._mfePaymentViewContainerRef.createComponent(paymentComponentType);
+  //    // in here the `this` variable is not undefined and points
+  //    // to the expected PaymentComponent instance so everything
+  //    // works as intended.
   // }
 
-  // TODO note that the callback can return Promise<void> or void and here we use the void return type
   public loadRemoteModuleHandler(webpackModule: any): void {
     if (!this._mfePaymentViewContainerRef) {
       return;

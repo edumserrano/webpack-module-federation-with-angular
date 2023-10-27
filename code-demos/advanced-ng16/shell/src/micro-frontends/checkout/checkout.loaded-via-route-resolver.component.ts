@@ -54,6 +54,9 @@ export class CheckoutComponent implements OnInit {
     // Using the 'emit' function only allows the output to be consumed via
     // parent HTML elements, whilst using a service to share the data doesn't
     // have that limitation
+    //
+    // Alternatively, you could use an event bus as shown in the
+    // communication-event-bus-ng16 code demo.
     this.checkoutRequested.emit(checkoutMessage);
     this._checkoutService.triggerCheckoutRequested(checkoutMessage);
   }
@@ -61,7 +64,7 @@ export class CheckoutComponent implements OnInit {
 
 export const MFE_CHECKOUT_ROUTES: Routes = [
   {
-    path: '**',
+    path: '**', // https://angular.io/guide/router#setting-up-wildcard-routes
     component: CheckoutComponent,
     resolve: {
       remoteModule: remoteModuleResolver({

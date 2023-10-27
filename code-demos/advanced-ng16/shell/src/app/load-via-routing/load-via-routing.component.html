@@ -1,4 +1,19 @@
 <hr />
+<!--
+Note that all the 'routerLink' attributes start with './'. This is because
+the routes here are nested routes from the '/mfes-via-routing' route defined
+at /shell/src/app/app.component.html.
+
+As explained at https://angular.io/api/router/RouterLink#relative-link-paths:
+"If the first segment begins with ./, or doesn't begin with a slash, the router
+looks in the children of the current activated route."
+
+Once the route is matched, the nearest router outlet is used to execute the route,
+which means that all the routes on this page will execute on the
+'<router-outlet></router-outlet>' defined in this page.
+For more info see 'The Art of Nested Router Outlets in Angular':
+- https://blog.devgenius.io/the-art-of-nested-router-outlets-in-angular-dafb38245a30
+-->
 <p>
   <a routerLink="./checkout-via-ng-on-init"
     >Load checkout mfe via an ngOnInit</a

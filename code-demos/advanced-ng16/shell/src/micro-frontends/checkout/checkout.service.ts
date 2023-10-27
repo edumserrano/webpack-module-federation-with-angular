@@ -1,10 +1,12 @@
 import { Injectable, InjectionToken, inject } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 
-// TODO explain this with link to injection token magic article
+// The CHECKOUT_EVENTS InjectionToken was based on the idea explained in
+// "The Hidden Power of InjectionToken Factory Functions in Angular":
+// - https://netbasal.com/the-hidden-power-of-injectiontoken-factory-functions-in-angular-d42d5575859b
 export type CheckoutEvents = Observable<string>;
 export const CHECKOUT_EVENTS = new InjectionToken<CheckoutEvents>(
-  'Remote module events',
+  'Checkout events',
   {
     factory() {
       const checkoutService = inject(CheckoutService);

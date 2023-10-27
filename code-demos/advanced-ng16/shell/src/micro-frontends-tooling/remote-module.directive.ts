@@ -10,8 +10,6 @@ export type RemoteModuleDirectiveOptions = LoadRemoteModuleOptions & {
   id: string;
 };
 
-// TODO: this directive can be used to load standalone, non-standalone/module,
-// web component etc because the loadRemoteModuleCallback let's you do whatever code you want
 @Directive({
   selector: '[remoteModule]',
   standalone: true,

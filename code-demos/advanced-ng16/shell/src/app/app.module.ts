@@ -33,11 +33,9 @@ import { PaymentComponent as PaymentComponentViaNgOnInit } from 'src/micro-front
   ],
   providers: [
     withNavigationErrorHandler((error) => {
-      // TODO use inject and call some service
       console.log(`nav error handler: `, error);
     }),
     withRemoteModuleEventsHandler((event: RemoteModuleEvent) => {
-      // TODO use inject and call some service
       console.log(`remote module events: `, event);
     }),
   ],

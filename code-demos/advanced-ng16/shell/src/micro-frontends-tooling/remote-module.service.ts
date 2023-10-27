@@ -11,7 +11,9 @@ import {
 } from './remote-module-events';
 import { Observable, Subject } from 'rxjs';
 
-// TODO explain this with link to injection token magic article
+// The REMOTE_MODULE_EVENTS InjectionToken was based on the idea explained in
+// "The Hidden Power of InjectionToken Factory Functions in Angular":
+// - https://netbasal.com/the-hidden-power-of-injectiontoken-factory-functions-in-angular-d42d5575859b
 export type RemoteModuleEvents = Observable<RemoteModuleEvent>;
 export const REMOTE_MODULE_EVENTS = new InjectionToken<RemoteModuleEvents>(
   'Remote module events',
@@ -52,10 +54,6 @@ export class RemoteModuleService {
 
   public readonly events$ = this._events.asObservable();
 
-  // TODO: we could do if NOT in prod do some console logs here to know what is being
-  // loaded and from where
-  // should also log the webpack module for easier debugging. should only log if not prod and some other
-  // env variable like remoteModuleDebug=true
   public async loadAsync(options: LoadRemoteModuleOptionsExtended): Promise<RemoteModuleResult> {
     try {
       this.triggerLoading(options);

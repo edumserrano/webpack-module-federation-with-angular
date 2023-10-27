@@ -104,6 +104,11 @@ The shell app consists of a couple of pages:
 
 Use the `Go to MFEs loaded via routing page` and `Go to MFEs loaded via HTML page` buttons to explore the different ways the shell is loading the micro frontend apps.
 
+> **Note** 
+> 
+> The shell app contains one [RouterOutlet](https://angular.io/api/router/RouterOutlet) at [app.component.html](./shell/src/app/app.component.html) and another at [load-via-routing.component.html](./shell/src/app/load-via-routing/load-via-routing.component.html). To understand how nested routers work see [The Art of Nested Router Outlets in Angular](https://blog.devgenius.io/the-art-of-nested-router-outlets-in-angular-dafb38245a30).
+> 
+
 ### How to structure your micro frontends
 
 This code demo creates a wrapper Angular standalone component for each micro frontend app. See the [/advanced-ng16/shell/src/micro-frontends folder](/code-demos/advanced-ng16/shell/src/micro-frontends/). Because this is a demo app, each micro frontend app actually has several wrapper components to show different ways to load them into the wrapper Angular component.
@@ -126,7 +131,26 @@ The main goal of using an Angular wrapper component is to brige the gap between 
 Let's also talk about a few points regarding the implementation of the wrapper components:
 
 - all the wrapper components were placed in the same `/shell/src/micro-frontends` folder but you can organize them however you want.
-- even though the wrapper components are all Angular standalone components, you could do the same with non-standalone components, it just requires a bit more code because you need to create an Angular feature module for each wrapper component as well. 
+- even though the wrapper components are all Angular standalone components, you could do the same with non-standalone components, it just requires a bit more code because you need to create an Angular feature module for each wrapper component as well. Here's an example of how an Angular module could look like for the `checkout.loaded-via-ng-on-init.component.ts` if it wasn't a standalone component:
+
+```ts
+@NgModule({
+  declarations: [
+    CheckoutComponent
+  ],
+  imports: [
+    RouterModule.forChild([
+      {
+        path: '**',
+        component: CheckoutComponent,
+      },
+    ]),
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+})
+export class CheckoutHostModule {}
+```
+
 - the html for the wrapper components is so simple that it's declared inline. This is also just a choice, you can have a separate `.html` file for the wrapper components just as you normally do for any Angular component.
 - the naming of the wrapper components includes a description of how the wrapper component is loading the remote mfe. This is done just for demo purposes and because we're loading the same mfe in different ways. Usually you'd only do it in one way and therefore you'd name the wrapper component something like `checkout.component.ts` instead of `checkout.<loaded via>.component.ts`.
 - the wrapper components implemented in this code demo might look a bit complex because they are using the tooling from the [micro-frontends-tooling folder](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling) but you can create one very easily just by using the functions from the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package. Take this example of a wrapper for the checkout mfe:
@@ -155,7 +179,16 @@ export class CheckoutComponent implements OnInit {
 
 > **Note**
 > 
-> There isn't an example of loading the `payment` component using a functional guard because that requires an exposed module that when imported will register a Web component and, although we could mimic what was done on the checkout app, the payment app does not expose a module like that. 
+> There isn't an example of loading the `payment` component using a functional guard because that requires an exposed module that when imported will register a Web component and, although we could mimic what was done on the checkout app, the payment app does not expose a module like that.
+>
+
+> **Note**
+> 
+> You can ignore the following console warning:
+> 
+> `Component ID generation collision detected. Components '<component name>' and '<component name>' with selector '<selector>' generated the same component ID. To fix this, you can change the selector of one of those components or add an extra host attribute to force a different ID. Find more at https://angular.io/errors/NG0912`
+>
+> This happens because this code demo is using the same selector for all the checkout and payment wrapper components.
 >
 
 ## Micro frontends tooling used by the shell
@@ -164,7 +197,17 @@ The shell contains a set of utilities that can be reused to load remote JavaScri
 
 ### RemoteModuleService and RemoteModuleEvent
 
+explain that you could augment the data on the events to include more helpful stuff like source and target elements, anything that you feel would help provide a better debug experience. The only "extra" field we added was id to be able to filter events for
+specific components. The id should be unique.
+
 ### RemoteModuleDirective
+
+explain the directive:
+- this is a simple yet flexible version, you could customize it as you see fit
+note that the directive on the component-directive is made specifically to load angular components and even allow for passing the component input/outputs via the directive. This one you would use the loadRemoteModuleCallback to set them 
+- The callback is the only way to have a directive that works well no matter how you
+export the remote, as a web component/ng component/module. However the callback is not really necessary if using the events from the remote module service because we could subscribe to the loaded event and filter by the id we want.
+
 
 Still wondering if this callback should exist. The callback provides a quick way to
 access the loaded webpack module in case you need to do further operations with it.
@@ -172,7 +215,10 @@ However, you can get access to the webpack module by subscribing to the
 RemoteModuleEvents and filter by the id and RemoteModuleLoaded event. 
 See subscribeToEvents method at advanced-ng16\shell\src\micro-frontends\checkout\checkout.loaded-via-directive.component.ts for an example.
 
-  
+Note that the callback can return Promise<void> or void and here we use the void return type
+ 
+This directive can be used to load standalone, non-standalone/module, web component etc because the loadRemoteModuleCallback let's you do whatever code you want
+
 ### remoteModuleGuard
 
 ### remoteModuleResolver
@@ -181,9 +227,13 @@ See subscribeToEvents method at advanced-ng16\shell\src\micro-frontends\checkout
 
 the fact that this has multi true means you can use several instances of it. One can process the event for logging purposes, another can process the fail to load event and display an error popup.
 
+// TODO use inject and call some service
+
 ### withNavigationErrorHandler
 
 the fact that this has multi true means you can use several instances of it. One can process the event for logging purposes, another can process the error and navigate to an error page.
+
+// TODO use inject and call some service
 
 ## Webpack Module Federation
 
@@ -197,5 +247,5 @@ Also, read the official docs at:
 
 For more info see:
 
-- []()
+- [Web Component-based Micro Frontends with Angular](https://www.youtube.com/watch?v=ee17YczpCpU): great video showing how to structure your micro-frontend apps. This is where I first came across the idea of creating a wrapper component for mfe apps. In the video they don't use Webpack Module Federation but all the concepts shown are great and applicable when you're using Webpack Module Federation. The code for the video can be found at [fboeller/microfrontends-with-angular](https://github.com/fboeller/microfrontends-with-angular/tree/recording) on the `recording` branch.
 - []()
