@@ -111,7 +111,7 @@ Use the `Go to MFEs loaded via routing page` and `Go to MFEs loaded via HTML pag
 
 ### How to structure your micro frontends
 
-This code demo creates a wrapper Angular standalone component for each micro frontend app. See the [/advanced-ng16/shell/src/micro-frontends folder](/code-demos/advanced-ng16/shell/src/micro-frontends/). Because this is a demo app, each micro frontend app actually has several wrapper components to show different ways to load them into the wrapper Angular component.
+This code demo creates a wrapper Angular standalone component for each micro frontend app. See the [/advanced-ng16/shell/src/micro-frontends folder](/code-demos/advanced-ng16/shell/src/micro-frontends/). Because this is a demo app, each micro frontend app has several wrapper components where each one shows a different way to load the mfe into the wrapper Angular component.
 
 The payment component has the following wrappers:
 
@@ -193,9 +193,13 @@ export class CheckoutComponent implements OnInit {
 
 ## Micro frontends tooling used by the shell
 
-The shell contains a set of utilities that can be reused to load remote JavaScript modules exposed via Webpack Module Federation. See the [advanced-ng16/shell/src/micro-frontends-tooling folder](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling).
+The shell contains a set of utilities that can be reused to load remote JavaScript modules exposed via Webpack Module Federation. See the [advanced-ng16/shell/src/micro-frontends-tooling folder](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling). 
+
+The following sections provide a detailed description for each of the utilities.
 
 ### RemoteModuleService and RemoteModuleEvent
+
+These are the core of the mfe tooling.
 
 explain that you could augment the data on the events to include more helpful stuff like source and target elements, anything that you feel would help provide a better debug experience. The only "extra" field we added was id to be able to filter events for
 specific components. The id should be unique.
