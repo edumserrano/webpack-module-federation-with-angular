@@ -97,8 +97,7 @@ export class AppComponent implements OnInit {
     // No special reason to do it here, this is just code to help with the demo, don't pay
     // much attention to it.
     this.showMessages = true;
-
-    //
+    
     const messageSentEvent = event as CustomEvent<string>;
     this.messageFromAngularOutputAtHtml = messageSentEvent.detail;
   }
