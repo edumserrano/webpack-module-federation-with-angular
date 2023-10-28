@@ -199,45 +199,99 @@ The following sections provide a detailed description for each of the utilities.
 
 ### RemoteModuleService and RemoteModuleEvent
 
-These are the core of the mfe tooling.
+These are the core of the mfe tooling. The [RemoteModuleService](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling/remote-module.service.ts) builds on top of the `loadRemoteModule` from the `@angular-architects/module-federation` npm package and besides loading a remote JS module it triggers events for when the remote is loading, for when it has loaded and for when it fails to load. See [RemoteModuleEvent](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling/remote-module-events.ts).
 
-explain that you could augment the data on the events to include more helpful stuff like source and target elements, anything that you feel would help provide a better debug experience. The only "extra" field we added was id to be able to filter events for
-specific components. The id should be unique.
+When using the `RemoteModuleService`, you can subscribe to the `RemoteModuleEvent` events by using the `REMOTE_MODULE_EVENTS` injection token. See example at [checkout.loaded-via-directive.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/checkout/checkout.loaded-via-directive.component.ts). You can use these events for things like:
+
+- show a loading indicator whilst the remote is being fetched.
+- hide a loading indicator when the remote has been loaded.
+- show an error message to the user if the remote has failed to load.
+- implement some retry logic if the remote has failed to load.
+- logging about the remotes when in development mode.
+- etc.
+
+The `RemoteModuleEvent` events contains an `id` property which is provided when invoking the `RemoteModuleService.loadAsync` method. This `id` should be unique among the entire application because it's a way to easily filter on the `RemoteModuleEvent` events for a specific remote JS module. Note the `filter((event: RemoteModuleEvent) => event.id === CheckoutComponent.name)` in the example usage at [checkout.loaded-via-directive.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/checkout/checkout.loaded-via-directive.component.ts).
 
 ### RemoteModuleDirective
 
-explain the directive:
-- this is a simple yet flexible version, you could customize it as you see fit
-note that the directive on the component-directive is made specifically to load angular components and even allow for passing the component input/outputs via the directive. This one you would use the loadRemoteModuleCallback to set them 
-- The callback is the only way to have a directive that works well no matter how you
-export the remote, as a web component/ng component/module. However the callback is not really necessary if using the events from the remote module service because we could subscribe to the loaded event and filter by the id we want.
+The [RemoteModuleDirective](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling/remote-module.directive.ts) provides a way to load remote JS modules using an Angular directive. See example usages at:
 
+- [checkout.loaded-via-directive.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/checkout/checkout.loaded-via-directive.component.ts)
+- [payment.loaded-via-directive.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/payment/payment.loaded-via-directive.component.ts)
 
-Still wondering if this callback should exist. The callback provides a quick way to
-access the loaded webpack module in case you need to do further operations with it.
-However, you can get access to the webpack module by subscribing to the
-RemoteModuleEvents and filter by the id and RemoteModuleLoaded event. 
-See subscribeToEvents method at advanced-ng16\shell\src\micro-frontends\checkout\checkout.loaded-via-directive.component.ts for an example.
+The directive takes two inputs:
 
-Note that the callback can return Promise<void> or void and here we use the void return type
- 
-This directive can be used to load standalone, non-standalone/module, web component etc because the loadRemoteModuleCallback let's you do whatever code you want
+- `remoteModuleoptions`: required input with the data needed to load a remote JS module.
+- `loadRemoteModuleCallback`: optional input where you can define a function that takes in the loaded JS module so that you can do further operations with it if required.
+
+The `RemoteModuleDirective` also produces `RemoteModuleEvent` events because it uses the `RemoteModuleService`.
+
+> **Note**
+>
+> The `loadRemoteModuleCallback` input could be deleted from the Angular directive as one can use the `RemoteModuleEvent` events to get the same functionality by subscribing to them and then filtering by the `RemoteModuleLoaded` event with the `id` used in the `remoteModuleoptions` input.
+>
+> The `loadRemoteModuleCallback` is really just a shortcut for this.
+> 
 
 ### remoteModuleGuard
 
+The [remoteModuleGuard](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling/remote-module.guard.ts) provides a way to load remote JS modules using an Angular functional guard. See example usage at [checkout.loaded-via-route-guard.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/checkout/checkout.loaded-via-route-guard.component.ts).
+
+This guard is meant to be used with the [canActivate](https://angular.io/api/router/CanActivateFn) property of an Angular route and it will only let the navigation proceed to the route if the remote JS module is loaded successfully. Otherwise, if the remote JS module fails to load then the route is not activated.
+
+This guard is only useful if the remote JS module that you are loading doesn't need any extra processing to get the mfe mounted into the DOM. For instance, when the remote module is a piece of code that registers a Web component when loaded. In this case, there's no further processing required on top of the loaded remote JS module, you'd only need to use the Web component tag on the HTML and the mfe will be mounted there. An example of this is the remote exposed by [remote-bootstrap-auto.ts](/code-demos/advanced-ng16/checkout/src/app/checkout/remote-bootstrap-auto.ts) and the shell consuming it at [checkout.loaded-via-route-guard.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/checkout/checkout.loaded-via-route-guard.component.ts).
+
+The `remoteModuleGuard` guard also produces `RemoteModuleEvent` events because it uses the `RemoteModuleService`.
+
 ### remoteModuleResolver
+
+The [remoteModuleResolver](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling/remote-module.resolver.ts) provides a way to load remote JS modules using an Angular functional resolver. See example usages at:
+
+- [checkout.loaded-via-route-guard.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/checkout/checkout.loaded-via-route-resolver.component.ts).
+- [payment.loaded-via-route-resolver.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/payment/payment.loaded-via-route-resolver.component.ts).
+
+This resolver is meant to be used with the [resolve](https://angular.io/api/router/ResolveFn) property of an Angular route and it will only let the navigation proceed to the route if the remote JS module is loaded successfully. Otherwise, if the remote JS module fails to load then a [RemoteModuleResolverError](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling/remote-module.resolver.ts) error is thrown and the navigation is aborted.
+
+Furthermore, and this is the main difference between the `remoteModuleGuard` and the `remoteModuleResolver`, when the resolver is able to load the remote JS module it makes the module available in the route data via the `remoteModule` key. This allows you to do further operations using the remote module in order to initialize it and mount it to the DOM. Note the `const webpackModule: any = this._route.snapshot.data["remoteModule"];` line and follow up lines in the [payment.loaded-via-route-resolver.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/payment/payment.loaded-via-route-resolver.component.ts). 
+
+The `remoteModuleResolver` resolver also produces `RemoteModuleEvent` events because it uses the `RemoteModuleService`.
 
 ### withRemoteModuleEventsHandler
 
-the fact that this has multi true means you can use several instances of it. One can process the event for logging purposes, another can process the fail to load event and display an error popup.
+The [withRemoteModuleEventsHandler](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling/with-remote-module-events-handler.ts) provides a way to setup global handlers for the `RemoteModuleEvent` events. See usage at [app.module.ts](/code-demos/advanced-ng16/shell/src/app/app.module.ts) where this handler is used to log the events to the console when the shell is running in development mode.
 
-// TODO use inject and call some service
+You can provide multiple instances of the `withRemoteModuleEventsHandler` provider in the `providers` array of an Angular [module](https://angular.io/guide/architecture-modules)/[bootstrapApplication](https://angular.io/api/platform-browser/bootstrapApplication) and separate the behavior each instance is responsible for. 
+
+You can use this to centralize app behaviors for:
+
+- showing loading indications whilst the remote is being fetched.
+- hiding loading indications when the remote has been loaded.
+- showing errors if the remote has failed to load.
+- retries if the remote has failed to load.
+- logging about the remotes when in development mode.
+- etc
 
 ### withNavigationErrorHandler
 
-the fact that this has multi true means you can use several instances of it. One can process the event for logging purposes, another can process the error and navigate to an error page.
+The [withNavigationErrorHandler](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling/with-navigation-error-handler.ts) provides a way to setup global handlers for when Angular navigation fails and the Angular router emits a `NavigationError` event. See usage at [app.module.ts](/code-demos/advanced-ng16/shell/src/app/app.module.ts) where this handler is used to log the errors to the console when the shell is running in development mode.
 
-// TODO use inject and call some service
+You can provide multiple instances of the `withNavigationErrorHandler` provider in the `providers` array of an Angular [module](https://angular.io/guide/architecture-modules)/[bootstrapApplication](https://angular.io/api/platform-browser/bootstrapApplication) and separate the behavior each instance is responsible for. 
+
+You can use this to centralize app behaviors, like showing an error message, when a navigation fails.
+
+> **Note**
+> 
+> To simulate a navigation error and trigger the `withNavigationErrorHandler` function go to [payment.loaded-via-route-resolver.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/payment/payment.loaded-via-route-resolver.component.ts) and change the `exposedModule: "./payment"` to `exposedModule: "./i-dont-exist"`. Then try to load this component:
+>
+> - click the `Go to MFEs loaded via routing page` link.
+> - click the `Load payment mfe via a route resolver` link.
+> - see the `navigation error handler` log in the console. 
+>
+
+> **Note**
+> 
+> This implementation is essentially a copy of the [withNavigationErrorHandler](https://github.com/angular/angular/blob/c2b1a242e8db0ef8e03f7ee85ffa1f82562fd735/packages/router/src/provide_router.ts#L637-L652) router feature that can be used when using Angular standalone components. See [Simplifying Navigation Error Handling with Angular’s Upcoming Feature](https://medium.com/@artur.fedotiew/%EF%B8%8F-simplifying-navigation-error-handling-with-angulars-upcoming-feature-%EF%B8%8F-b55ee04d246a).
+>
 
 ## Webpack Module Federation
 
@@ -251,5 +305,13 @@ Also, read the official docs at:
 
 For more info see:
 
-- [Web Component-based Micro Frontends with Angular](https://www.youtube.com/watch?v=ee17YczpCpU): great video showing how to structure your micro-frontend apps. This is where I first came across the idea of creating a wrapper component for mfe apps. In the video they don't use Webpack Module Federation but all the concepts shown are great and applicable when you're using Webpack Module Federation. The code for the video can be found at [fboeller/microfrontends-with-angular](https://github.com/fboeller/microfrontends-with-angular/tree/recording) on the `recording` branch.
-- []()
+- :star: [Web Component-based Micro Frontends with Angular](https://www.youtube.com/watch?v=ee17YczpCpU): great video showing how to structure your micro-frontend apps. This is where I first came across the idea of creating a wrapper component for mfe apps. In the video they don't use Webpack Module Federation but all the concepts shown are great and applicable when you're using Webpack Module Federation. The code for the video can be found at [fboeller/microfrontends-with-angular](https://github.com/fboeller/microfrontends-with-angular/tree/recording) on the `recording` branch.
+- [InjectionToken Angular docs](https://angular.io/api/core/InjectionToken)
+- [The Hidden Power of InjectionToken Factory Functions in Angular](https://netbasal.com/the-hidden-power-of-injectiontoken-factory-functions-in-angular-d42d5575859b)
+- [Provide function with InjectionToken in Angular](https://gist.github.com/eneajaho/28c4ef1d75bf1d8733cec23e54068c0a)
+- [Functional Route Guards in Angular](https://medium.com/ngconf/functional-route-guards-in-angular-8829f0e4ca5c)
+- [Understanding Angular Resolvers](https://itnext.io/understanding-angular-resolvers-b49f6c227278)
+- [How To Use Route Resolvers with Angular Router](https://www.digitalocean.com/community/tutorials/angular-route-resolvers)
+- [Tutorial on how to implement the Resolver in Angular](https://medium.com/@sandakova.varvara/https-indepth-dev-tutorials-angular-indepth-guide-how-to-implement-resolver-in-angular-13b8005e93b9#:~:text=Resolver%20is%20just%20a%20simple,per%20route%20as%20you%20want.)
+- [Angular Router Standalone APIs](https://angularexperts.io/blog/angular-router-standalone-apis)
+- [Working with providers in Angular](https://sergeygultyayev.medium.com/working-with-providers-in-angular-eeb493151446) 
