@@ -7,6 +7,8 @@ import { withNavigationErrorHandler } from 'src/micro-frontends-tooling/with-nav
 import { RemoteModuleEvent } from 'src/micro-frontends-tooling/remote-module-events';
 import { LoadViaRoutingComponent } from './load-via-routing/load-via-routing.component';
 import { LoadViaHtmlComponent } from './load-via-html/load-via-html.component';
+import { environment } from 'src/environments/environment';
+import { NavigationError } from '@angular/router';
 
 // Here we are importing the components with an alias because all the micro-frontends
 // wrappers for the checkout mfe are named CheckoutComponent and all the micro-frontends
@@ -18,6 +20,7 @@ import { LoadViaHtmlComponent } from './load-via-html/load-via-html.component';
 // special about the `.loaded-via-ng-on-init.` wrapper components.
 import { CheckoutComponent as CheckoutComponentViaNgOnInit } from 'src/micro-frontends/checkout/checkout.loaded-via-ng-on-init.component';
 import { PaymentComponent as PaymentComponentViaNgOnInit } from 'src/micro-frontends/payment/payment.loaded-via-ng-on-init.component';
+
 
 @NgModule({
   declarations: [
@@ -32,11 +35,15 @@ import { PaymentComponent as PaymentComponentViaNgOnInit } from 'src/micro-front
     PaymentComponentViaNgOnInit,
   ],
   providers: [
-    withNavigationErrorHandler((error) => {
-      console.log(`nav error handler: `, error);
+    withNavigationErrorHandler((error: NavigationError) => {
+      if(environment.enableNavigationErrorsLogging) {
+        console.log("navigation error handler:", error);
+      }
     }),
     withRemoteModuleEventsHandler((event: RemoteModuleEvent) => {
-      console.log(`remote module events: `, event);
+      if(environment.enableRemoteModuleEventsLogging) {
+        console.log("remote module events:", event);
+      }
     }),
   ],
   bootstrap: [AppComponent],
