@@ -9,7 +9,7 @@ const moduleFederationConfig = withModuleFederationPlugin({
   exposes: {
     "./checkout": "./src/app/checkout/remote-bootstrap.ts",
     "./checkout-auto": "./src/app/checkout/remote-bootstrap-auto.ts",
- },
+  },
   shared: {
     ...shareAll({
       singleton: true,
@@ -38,6 +38,6 @@ const webpackConfig = {
     ...moduleFederationConfig.experiments,
     topLevelAwait: true,
   },
-}
+};
 
 module.exports = webpackConfig;
