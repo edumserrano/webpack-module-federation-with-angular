@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Routes } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RemoteModuleEvent } from 'src/micro-frontends-tooling/remote-module-events';
+import { RemoteModuleEvent, RemoteModuleLoaded } from 'src/micro-frontends-tooling/remote-module-events';
 import {
   RemoteModuleDirective,
   RemoteModuleDirectiveOptions,
@@ -98,11 +98,9 @@ export class CheckoutComponent {
         takeUntilDestroyed(), // see https://indepth.dev/posts/1518/takeuntildestroy-in-angular-v16
         filter((event: RemoteModuleEvent) => event.id === CheckoutComponent.name),
       )
-      .subscribe(remoteModuleEvent => {
-        console.log("mfe-checkout remote module event:", remoteModuleEvent);
+      .subscribe(async remoteModuleEvent => {
+        // Uncomment he code below to replace the loadRemoteModuleHandler method.
 
-        // The code below could replace the loadRemoteModuleHandler method above.
-        //
         // if(remoteModuleEvent instanceof RemoteModuleLoaded) {
         //   const elementName = "mfe-checkout";
         //   await remoteModuleEvent.webpackModule.mountAsync(elementName);

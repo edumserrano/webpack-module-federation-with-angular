@@ -57,7 +57,13 @@ export class CheckoutComponent implements OnInit {
     //
     // Alternatively, you could use an event bus as shown in the
     // communication-event-bus-ng16 code demo.
+
+    // This is used for the checkout component that is loaded via HTML declaration.
+    // The subscription is at shell/src/app/load-via-html/load-via-html.component.ts.
     this.checkoutRequested.emit(checkoutMessage);
+
+    // This is used for the checkout components that are loaded via routing.
+    // The subscription is at shell/src/app/load-via-routing/load-via-routing.component.ts
     this._checkoutService.triggerCheckoutRequested(checkoutMessage);
   }
 }
