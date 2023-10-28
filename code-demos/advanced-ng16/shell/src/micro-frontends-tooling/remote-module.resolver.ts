@@ -10,6 +10,16 @@ export type RemoteModuleResolverOptions = LoadRemoteModuleOptions & {
   id: string;
 };
 
+export class RemoteModuleResolverError extends Error {
+  public constructor(
+    public readonly resolverOptions: RemoteModuleResolverOptions,
+    public readonly remoteModuleError: Error,
+  ) {
+    super(`remoteModuleResolver failed to load remote module with id ${resolverOptions.id} because ${remoteModuleError.message}`);
+    this.cause = remoteModuleError.cause;
+  }
+}
+
 export function remoteModuleResolver(resolverOptions: RemoteModuleResolverOptions): ResolveFn<any> {
   // Note that we are returning the type of ResolveFn which is declared as:
   //
@@ -40,7 +50,7 @@ export function remoteModuleResolver(resolverOptions: RemoteModuleResolverOption
       case RemoteModuleResultTypes.Loaded:
         return result.webpackModule;
       case RemoteModuleResultTypes.Failed:
-        return null;
+        throw new RemoteModuleResolverError(resolverOptions, result.error);
       default:
         // see https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking
         const _exhaustiveCheck: never = result;
