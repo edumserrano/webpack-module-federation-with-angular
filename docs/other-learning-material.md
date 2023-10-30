@@ -31,7 +31,7 @@ Some of the resources grouped here are also linked in places where they are rele
 - [Webpack 5 Module Federation: A game-changer in JavaScript architecture](https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669)
 - [When should you leverage Module Federation, and how?](https://scriptedalchemy.medium.com/when-should-you-leverage-module-federation-and-how-2998b132c840)
 - [Understanding Module Federation: A Deep Dive](https://scriptedalchemy.medium.com/understanding-webpack-module-federation-a-deep-dive-efe5c55bf366)
-- :star: [Module federation examples](https://github.com/module-federation/module-federation-examples)
+- :star: [Module federation examples](https://github.com/module-federation/module-federation-examples): Implementation examples of module federation , by the creators of module federation
 - :star: [10 part article series on Webpack Module Federation and Angular](https://www.angulararchitects.io/en/blog/the-microfrontend-revolution-module-federation-in-webpack-5/)
 - :star: [angular-architects/module-federation-plugin repo](https://github.com/angular-architects/module-federation-plugin): home for the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) and [@angular-architects/module-federation-tools](https://www.npmjs.com/package/@angular-architects/module-federation-tools) npm packages.   
 - :star: [Module Federation Series Part 1: A Little in-depth](https://vugar-005.medium.com/module-federation-series-part-1-a-little-in-depth-258f331bc11e): contains a good explanation of how shared modules work as well as common errors encountered when they're misconfigured.

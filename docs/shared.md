@@ -1,4 +1,4 @@
-# Shared
+# Shared modules in Webpack Module Federation
 
 - [Intro](#intro)
 - [Quick overview](#quick-overview)
@@ -10,7 +10,7 @@
 
 The [shared section](https://webpack.js.org/plugins/module-federation-plugin/#sharing-libraries) of the `ModuleFederationPlugin` configuration let's you define libraries that are shared between your federated modules. This allows you to prevent the same library from being loaded several times.
 
-Shared dependencies isn't something that is properly explored in the [code demos](#code-demos). The code demos use the [shareAll](https://www.npmjs.com/package/@angular-architects/module-federation#shareall) and [share](https://www.npmjs.com/package/@angular-architects/module-federation#share-helper) helpers from the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package to share all the possible dependencies between shell and remotes.
+Shared dependencies isn't something that is properly explored in the [code demos](/README.md#code-demos). The code demos use the [shareAll](https://www.npmjs.com/package/@angular-architects/module-federation#shareall) and [share](https://www.npmjs.com/package/@angular-architects/module-federation#share-helper) helpers from the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package to share all the possible dependencies between shell and remotes.
 
 Angular, an likely many other frontend frameworks, wasn't made with a micro frontend architecture in mind and therefore might not work well when multiple versions of Angular are loaded. So whilst, on the one hand, you can use the shared configuration to optimize the number of dependencies that are loaded; on the other, you **must** use it to share some packages that will make your app fail if loaded twice. In an Angular app you should **at least** share `@angular/core`, `@angular/common` and `@angular/router` or apply workarounds to allow multiple versions of Angular to co-exist.
 

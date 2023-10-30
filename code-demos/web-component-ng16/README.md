@@ -8,7 +8,7 @@
 - [Shell app](#shell-app)
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
 - [Webpack Module Federation](#webpack-module-federation)
-- [Web components and Angular styling](#web-components-and-angular-styling)
+- [Web components and styling](#web-components-and-styling)
 - [Bonus](#bonus)
   - [Add strict type information to remotely imported web components](#add-strict-type-information-to-remotely-imported-web-components)
   - [Add IDE auto-completion on HTML for web components](#add-ide-auto-completion-on-html-for-web-components)
@@ -90,7 +90,7 @@ Also, read the official docs at:
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
 - [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)
 
-## Web components and Angular styling
+## Web components and styling
 
 Beware of issues with styling when using web components. If styles from your Angular component that you have exposed as a Web component using `@angular/elements` are bleeding out, then you might need to set your [ViewEncapsulation](https://angular.io/api/core/ViewEncapsulation) to `ViewEncapsulation.ShadowDom`, which uses the ShadowDOM specification, on the Angular component which is being passed to `createCustomElement`. 
 

@@ -3,9 +3,9 @@
 - [Description](#description)
 - [Code demos](#code-demos)
 - [Shared dependencies](#shared-dependencies)
-- [Recommendations](#recommendations)
 - [Multi-frameworks with Module Federation](#multi-frameworks-with-module-federation)
 - [Pitfalls](#pitfalls)
+- [Recommendations](#recommendations)
 - [Other learning material](#other-learning-material)
 
 ## Description 
@@ -54,19 +54,21 @@ This repo came about as a result of my journey to learn how to use [Webpack Modu
 
 The [shared section](https://webpack.js.org/plugins/module-federation-plugin/#sharing-libraries) of the `ModuleFederationPlugin` configuration let's you define libraries that are shared between your federated modules. This means you can, among other things, prevent the same library from being loaded several times.
 
-For more information see the [shared documentation page](/docs/shared.md).
+For more information see the [Shared modules in Webpack Module Federation](/docs/shared.md) documentation page.
+
+## Multi-frameworks with Module Federation
+
+The code demos in this repo focus on Angular apps. If you're interested in a multiple framework setup, where you can use different frameworks like Angular, Vue, React, etc on a single app then check the [Webpack Module Federation and multi-frameworks](/docs/multi-frameworks.md) documentation page.
+
+## Pitfalls
+
+TODO
 
 ## Recommendations
 
 TODO
 
-## Multi-frameworks with Module Federation
 
-TODO
-
-## Pitfalls
-
-TODO
 
 ## Other learning material
 
