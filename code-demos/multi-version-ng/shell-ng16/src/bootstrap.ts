@@ -30,7 +30,7 @@ platform.bootstrapModule(AppModule);
 function getAngularPlatform(): PlatformRef {
   // for the packageJson import to work we have to set `resolveJsonModule` and
   // `allowSyntheticDefaultImports` to true on the /shell-ng16/tsconfig.json
-  const ngVersion = packageJson.dependencies['@angular/core'];
+  const ngVersion = packageJson.dependencies['@angular/core']; // it would be better to just take the major version
   (window as any).platform = (window as any).platform || {};
   let platform: PlatformRef = (window as any).platform[ngVersion];
   if (!platform) {

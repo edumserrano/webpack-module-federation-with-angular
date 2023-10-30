@@ -9,7 +9,7 @@ module.exports = withModuleFederationPlugin({
   },
   shared: {
     ...shareAll({
-      singleton: true,
+      singleton: false,
       strictVersion: false,
       requiredVersion: "auto",
     }),

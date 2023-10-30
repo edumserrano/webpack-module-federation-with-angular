@@ -45,7 +45,7 @@ function getAngularPlatform(): PlatformRef {
   // `allowSyntheticDefaultImports` to true on the /mfe3-ng12/tsconfig.json
   const ngVersion = packageJson.dependencies['@angular/core'];
   (window as any).platform = (window as any).platform || {};
-  let platform: PlatformRef = (window as any).platform[ngVersion];
+  let platform: PlatformRef = (window as any).platform[ngVersion]; // it would be better to just take the major version
   if (!platform) {
     console.log('creating angular platform with version', ngVersion);
     platform = platformBrowser();
