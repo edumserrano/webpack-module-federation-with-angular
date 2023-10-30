@@ -6,7 +6,7 @@
 
 ## Description
 
-The [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package aims to streamline the setup of Webpack Module Federation for Angular projects. For more information read:
+The [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package, whose source code is at [github.com/angular-architects/module-federation-plugin](https://github.com/angular-architects/module-federation-plugin), aims to streamline the setup of Webpack Module Federation for Angular projects. For more information read:
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
 - [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)
 

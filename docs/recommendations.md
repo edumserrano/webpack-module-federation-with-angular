@@ -16,3 +16,13 @@ Talk about what I believe are best practices
     If somehow possible, load the remoteEntry upfront. This allows Module Federation to take the remote's metadata in consideration when negotiating the versions of the shared libraries.
     ```
     2) Explain that without doing this if you had for instance  a shell using ng-15 and an mfe1 using ng-16 then the version of angular loaded would be ng-15 because that's the higher version that module federation knows about that is required. Calling loadRemoteEntry when loading modules dynamically or declaring your remotes statically in the webpack config remotes entry, let's module federation know about other shared packages and then it choose ng-16 as the highest angular version required. (Assuming angular is shared with strict false and singleton true).
+
+
+communicating via custom events, web sockets (?), APIs
+
+Add a note about sub-routes, when mfes also have routing, to the recommended section? https://www.npmjs.com/package/@angular-architects/module-federation-tools#sub-routes
+
+Add note on recommended about the loadremoteentry on the test-demo I have. Also talk about what happens if the remote is not running when the app is starting. The same problem exists when using static remote declaration but not on dynamic remote declaration.
+
+
+on a static shell if remotes aren't up, everything fails, same with the calling the loadremoteentry for all at start unless you ignore errors?
