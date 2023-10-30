@@ -14,14 +14,14 @@ If you're learning about Webpack Module Federation, then I advise you to through
 
 ## Read me before exploring the code demos
 
-Some of the code demos are variations of a concept where the main difference is how a remote webpack module is exposed. The main thing to keep in mind is that, at a high level, all of the code demos consist of:
+Each code demo is meant to be a completely isolated example for a usage of Webpack Module Federation but build upon the knowledge gained from the previous demo. At a high level, all of the code demos consist of:
 
-1) An app that exposes a webpack module (a remote). The exposed webpack module can be anything: an Angular module, an Angular component, an Angular standalone component, a set of Angular routes, a Web component, a function, etc. 
-2) An app that consumes a webpack module at runtime (a host/shell). The way the host consumes the remote webpack module depends on what is exposed on that module. For instance, consuming an Angular module is slightly different from consuming an Angular component.
-
-This might seem like something obvious but if you understand this then you understand that there are infinite ways to expose Angular/Vue/React/etc apps as webpack modules and equally infinite ways to consume them. 
+1) At least one app, a remote, that exposes a webpack module. The exposed webpack module can be anything: an Angular module, an Angular component, an Angular standalone component, a set of Angular routes, a Web component, a function, etc. 
+2) One app, a shell/host, that consumes a webpack module at runtime. The way the host consumes the remote webpack module depends on what is exposed on that module. For instance, consuming an Angular module is slightly different from consuming an Angular component.
 
 The code demos explore a variation of methods to expose and consume Angular micro-frontends (MFEs). Angular MFEs can be exposed as an Angular module, Angular component, Angular standalone component, Angular routes, Web Component, etc and they can be consumed by another Angular app by using Angular routing, programatically without Angular routing, by declaring Web Components or Angular wrapper components on the HTML, etc.
+
+There are many ways to expose Angular/Vue/React/etc apps as webpack modules and equally many ways to consume them. 
 
 **There is no single best way to do things, some ways might enable functionality that others don't but in the end it's up to you to decide what you prefer for your use case.**
 
