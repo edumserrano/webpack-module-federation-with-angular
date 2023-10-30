@@ -2,7 +2,7 @@
 
 - [Description](#description)
 - [Code demos](#code-demos)
-- [Shared Modules](#shared-modules)
+- [Shared dependencies](#shared-dependencies)
 - [Recommendations](#recommendations)
 - [Multi-frameworks with Module Federation](#multi-frameworks-with-module-federation)
 - [Pitfalls](#pitfalls)
@@ -50,9 +50,11 @@ This repo came about as a result of my journey to learn how to use [Webpack Modu
 | [communication-event-bus-ng16](/code-demos/communication-event-bus-ng16/README.md) </br></br>  Both shell and remote app use Angular 16.                                   | The setup is the same as the [web-component-ng16](/code-demos/web-component-ng16/README.md) code demo. <br></br> The focus of this demo is on showing how you can create an abstraction on top of the browser Custom Events to act as an Event Bus/Aggregator, which you can use throughout the app to subscribe to strongly typed events.                                                                                                                                                                                                                                    |
 | [advanced-ng16](/code-demos/advanced-ng16/README.md) </br></br>  Both shell and remote apps use Angular 16.                                                                | This code demo focuses on showing how you can structure your shell app code in regards to loading micro frontend apps. <br></br> It also provides an implementation of tooling that helps standardize how you load micro frontend apps in Angular as well as handle related errors.                                                                                                                                                                                                                                                                                           |
 
-## Shared Modules
+## Shared dependencies
 
-TODO
+The [shared section](https://webpack.js.org/plugins/module-federation-plugin/#sharing-libraries) of the `ModuleFederationPlugin` configuration let's you define libraries that are shared between your federated modules. This means you can, among other things, prevent the same library from being loaded several times.
+
+For more information see the [shared documentation page](/docs/shared.md).
 
 ## Recommendations
 

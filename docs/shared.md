@@ -1,32 +1,71 @@
 # Shared
 
-- [TODO](#todo)
+- [Intro](#intro)
+- [Quick overview](#quick-overview)
+- [When should I use a singleton?](#when-should-i-use-a-singleton)
+- [When should I use eager?](#when-should-i-use-eager)
+- [Learn more](#learn-more)
 
-## TODO
+## Intro
 
-review the description of https://www.npmjs.com/package/@angular-architects/module-federation because it contains lots of helpful info. See how to reference the most important parts. At least reference it when talking about the shared array of module federation and the helpers this library provides.
+The [shared section](https://webpack.js.org/plugins/module-federation-plugin/#sharing-libraries) of the `ModuleFederationPlugin` configuration let's you define libraries that are shared between your federated modules. This allows you to prevent the same library from being loaded several times.
 
+Shared dependencies isn't something that is properly explored in the [code demos](#code-demos). The code demos use the [shareAll](https://www.npmjs.com/package/@angular-architects/module-federation#shareall) and [share](https://www.npmjs.com/package/@angular-architects/module-federation#share-helper) helpers from the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package to share all the possible dependencies between shell and remotes.
 
-3)  Create a documentation page about the shared array on module federation. Also link to https://github.com/webpack/webpack.js.org/issues/3757
-    1)  https://www.angulararchitects.io/en/blog/getting-out-of-version-mismatch-hell-with-module-federation/
-    2)  https://github.com/webpack/webpack/pull/10960
-    3)  https://webpack.js.org/plugins/module-federation-plugin/#specify-package-versions
-    4) See `When should I use a singleton?` and `What about eager?` from https://scriptedalchemy.medium.com/when-should-you-leverage-module-federation-and-how-2998b132c840
-    5)  Add the below from https://www.bitovi.com/blog/how-to-build-a-micro-frontend-architecture-with-angular
-    ```
-    The shared option uses the sharedPlugin which has its own set of configuration properties. This helps manage how libraries are shared in the shared scope.
+Angular, an likely many other frontend frameworks, wasn't made with a micro frontend architecture in mind and therefore might not work well when multiple versions of Angular are loaded. So whilst, on the one hand, you can use the shared configuration to optimize the number of dependencies that are loaded; on the other, you **must** use it to share some packages that will make your app fail if loaded twice. In an Angular app you should **at least** share `@angular/core`, `@angular/common` and `@angular/router` or apply workarounds to allow multiple versions of Angular to co-exist.
 
-    Some important config options to know are :
+## Quick overview
 
-    eager: Allows Webpack to include the shared packages directly instead of fetching the library via an asynchronous request. When Eager is set as ‘true’, all shared modules will be compiled with the exposed module.
+The shared option uses the `sharedPlugin` which has its own set of configuration properties. This helps manage how libraries are shared in the shared scope. This is an example of how a shared section could look like:
 
-    singleton: Allows only a single version of the shared module in the shared scope. This means at every instance, only one version of the package will be loaded on the page. If a scope already has a version of @angular/core, and the imported module uses a different version of @angular/core, Webpack will ignore the new version and use the version already present in the scope.
+```ts
+plugins: [
+  new ModuleFederationPlugin({
+    ...
+    shared: {
+      '@angular/core': { singleton: true, strict: false },
+      '@angular/common': { singleton: true, strict: false },
+      '@angular/router': { singleton: true, strict: false },
+      'place-my-order-assets': { singleton: true, strict: false },
+    }
+  })
+]
+```
 
-    StrictVersion: Allows Webpack to reject the shared module if its version is not valid. This is useful when the required version is specified.
+Some important config options to know are:
 
-    RequiredVersion: This option states the required version of the shared module. Learn more about the shared option on the Webpack official documentation.
-    ```
-    6) Also 
-    ```
-    the shared dependencies (and rules) between your remote and shell app. This allows tight control for your remote to not re-declare modules/services that you expect to be singleton, or prevent mismatched versions of Angular or other libraries existing in the eco-system. By assigning strictVersion to true, the build will quick fail if an issue occurs. Removing this option will potentially pass the build, but display warnings in the dev console.
-    ```
+`eager`: allows Webpack to include the shared packages directly instead of fetching the library via an asynchronous request. When Eager is set as ‘true’, all shared modules will be compiled with the exposed module.
+
+`singleton`: allows only a single version of the shared module in the shared scope. This means at every instance, only one version of the package will be loaded on the page. If a scope already has a version of @angular/core, and the imported module uses a different version of @angular/core, Webpack will ignore the new version and use the version already present in the scope.
+
+`StrictVersion`: allows Webpack to reject the shared module if its version is not valid. This is useful when the required version is specified.
+
+`RequiredVersion`: this option states the required version of the shared module. Learn more about the shared option on the Webpack official documentation.
+
+See [here](https://webpack.js.org/plugins/module-federation-plugin/#sharing-libraries) for the full config options available.
+
+## When should I use a singleton?
+
+> If your application seems to be behaving strangely during development, like pieces of data disappear when activating other federated modules. Its probably instantiating another singleton and losing track of data you wanted to hold onto via that singleton bridge.
+>
+>There's no real automated way to determine if something should be a singleton or not beyond common sense. Using singletons will not allow multiple versions of a module to exist in one shareScope. So pick and choose. [^1]
+
+Also note that using singletons reduces the number of packages that need to be downloaded for your app to work.
+
+[^1]: Taken from `When should I use a singleton?` section of [When should you leverage Module Federation, and how?](https://scriptedalchemy.medium.com/when-should-you-leverage-module-federation-and-how-2998b132c840). Note that the author of this article is the creator of Module Federation.
+
+## When should I use eager?
+
+> I avoid eager:true at all costs, only using it if there is some kind of incompatibility like with next.js. Eager true will front-load the shared module which can mean downloading unused libraries when you don’t want to, since webpack will not chunk an eager module into a separate file. There may be some workarounds but so far those are untested outside of accidentally stumbling across it. [^2]
+
+[^2]: Taken from `What about eager?` section of [When should you leverage Module Federation, and how?](https://scriptedalchemy.medium.com/when-should-you-leverage-module-federation-and-how-2998b132c840). Note that the author of this article is the creator of Module Federation.
+
+## Learn more
+
+For a better understanding on how shared dependencies work in Webpack Module Federation see:
+
+- [Module Federation Series Part 1: A Little in-depth](https://vugar-005.medium.com/module-federation-series-part-1-a-little-in-depth-258f331bc11e): good article detailing different shared configurations used in an Angular setup and their effects.
+- [Versioned shared modules for Module Federation](https://github.com/webpack/webpack/pull/10960): GitHub issue where shared modules have been redesigned. It contains information about the motivation for the redesign and how shared modules work now.
+- [Getting Out of Version-Mismatch-Hell with Module Federation](https://www.angulararchitects.io/en/blog/getting-out-of-version-mismatch-hell-with-module-federation/)
+- share helpers from `@angular-architects/module-federation` npm package: see [share helper](https://www.npmjs.com/package/@angular-architects/module-federation#share-helper), [shareAll helper](https://www.npmjs.com/package/@angular-architects/module-federation#shareall) and [Sharing Libs of a Monorepo](https://www.npmjs.com/package/@angular-architects/module-federation#sharing-libs-of-a-monorepo).
+- [official docs on sharing libraries](https://webpack.js.org/plugins/module-federation-plugin/#sharing-libraries)
