@@ -8,6 +8,7 @@
 - [Shell app](#shell-app)
   - [How the remote is loaded into the shell](#how-the-remote-is-loaded-into-the-shell)
 - [Webpack Module Federation](#webpack-module-federation)
+- [Web components and routing](#web-components-and-routing)
 - [Web components and styling](#web-components-and-styling)
 - [Bonus](#bonus)
   - [Add strict type information to remotely imported web components](#add-strict-type-information-to-remotely-imported-web-components)
@@ -89,6 +90,12 @@ The setup of Webpack Module Federation was done using the [@angular-architects/m
 Also, read the official docs at:
 - [the readme page for the @angular-architects/module-federation npm package](https://www.npmjs.com/package/@angular-architects/module-federation?activeTab=readme)
 - [the tutorial for the @angular-architects/module-federation plugin](https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md)
+
+## Web components and routing
+
+> If a web component has it's own router, you can use our UrlMatchers startsWith and endsWith to define, which part of the URL is intended for the shell and for the micro frontend
+
+To cope with this scenario see the [UrlMatchers](https://www.npmjs.com/package/@angular-architects/module-federation-tools#sub-routes) from the `@angular-architects/module-federation-tools` npm package.
 
 ## Web components and styling
 
