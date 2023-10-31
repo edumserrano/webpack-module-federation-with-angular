@@ -6,6 +6,7 @@
 - [Multi-frameworks with Module Federation](#multi-frameworks-with-module-federation)
 - [Pitfalls](#pitfalls)
 - [Recommendations when using Module Federation](#recommendations-when-using-module-federation)
+- [Native Federation](#native-federation)
 - [Other learning material](#other-learning-material)
 
 ## Description 
@@ -70,6 +71,23 @@ See the following two articles for more information about common pitfalls and wo
 ## Recommendations when using Module Federation
 
 [This document](/docs/recommendations.md) presents some of my recommendations when using Webpack Module Federation.
+
+## Native Federation
+
+As part of learning about Webpack Module federation I also came across [Native Federation](https://www.npmjs.com/package/@angular-architects/native-federation).
+
+> In order to be able to use the proven mental model of Module Federation independently of webpack, the [Native Federation](https://www.npmjs.com/package/@angular-architects/native-federation) project was created. It offers the same options and configuration as Module Federation, but works with all possible build tools. It also uses browser-native technologies such as EcmaScript modules and [Import Maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap). This measure is intended to ensure long-term support from browsers and also allow alternative implementations.
+>
+> Native Federation is called before and after the actual bundler in the build process. That's why it doesn't matter which bundler is actually used.
+
+For more information on Native Federation and how to setup an app with it see:
+- [Micro Frontends with Modern Angular – Part 1: Standalone and esbuild](https://www.angulararchitects.io/en/blog/micro-frontends-with-modern-angular-part-1-standalone-and-esbuild/).
+- The [Usage/Tutorial](https://www.npmjs.com/package/@angular-architects/native-federation#usage-tutorial-) section of the `@angular-architects/native-federation` npm package.
+
+> **Note**
+>
+> The concepts explained in this repo and other articles written about Module Federation also apply to Native Federation because they share the same API.
+>
 
 ## Other learning material
 
