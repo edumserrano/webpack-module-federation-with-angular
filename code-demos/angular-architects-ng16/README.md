@@ -75,4 +75,4 @@ Also, read the official docs at:
 
 ## Learn more
 
-This example was based on the [The Microfrontend Revolution: Module Federation with Angular](https://www.angulararchitects.io/blog/the-microfrontend-revolution-part-2-module-federation-with-angular/) article.
+This example was based on the [The Microfrontend Revolution: Module Federation with Angular](https://www.angulararchitects.io/en/blog/the-microfrontend-revolution-part-2-module-federation-with-angular/) article.
