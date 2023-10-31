@@ -8,6 +8,7 @@
 - [Recommendations when using Module Federation](#recommendations-when-using-module-federation)
 - [Native Federation](#native-federation)
 - [Other learning material](#other-learning-material)
+- [Micro frontends](#micro-frontends)
 
 ## Description 
 
@@ -91,4 +92,13 @@ For more information on Native Federation and how to setup an app with it see:
 
 ## Other learning material
 
-[This page](/docs/other-learning-material.md) contains a collection of links that helped me learn Webpack Module Federation and build the [code demos](#code-demos).
+There are several links spread throughout the READMEs and the code of the [code demos](#code-demos) about documentation/articles/videos. However, I thought it would be good to call out a few links that either didn't make sense in any particular place of the code demos or that I found fundamental to learning about Module Federation.
+
+You can find them on [this page](/docs/other-learning-material.md).
+
+## Micro frontends
+
+Module Federation is only a small part of the micro frontends universe. If you want to learn more explore the following links with a curated list of resources on micro frontends:
+
+- [billyjov/microfrontend-resources](https://github.com/billyjov/microfrontend-resources)
+- [rajasegar/awesome-micro-frontends](https://github.com/rajasegar/awesome-micro-frontends)
