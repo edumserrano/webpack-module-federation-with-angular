@@ -95,7 +95,7 @@ Also, read the official docs at:
 
 > If a web component has it's own router, you can use our UrlMatchers startsWith and endsWith to define, which part of the URL is intended for the shell and for the micro frontend
 
-To cope with this scenario see the [UrlMatchers](https://www.npmjs.com/package/@angular-architects/module-federation-tools#sub-routes) from the `@angular-architects/module-federation-tools` npm package.
+To cope with this scenario see the [UrlMatchers](https://www.npmjs.com/package/@angular-architects/module-federation-tools#sub-routes) from the `@angular-architects/module-federation-tools` npm package. Also check the article [How to use routing in Angular web components](https://medium.com/@timon.grassl/how-to-use-routing-in-angular-web-components-c6a76449cdb).
 
 ## Web components and styling
 
@@ -179,12 +179,11 @@ Also note that there is some tooling comming up from the community to let you au
 
 For more info see:
 
+- [webcomponents.org](https://www.webcomponents.org/introduction) and [MDN web docs on Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
 - [Angular elements overview](https://angular.io/guide/elements): everything in here is important to read but note that the section `Mapping` explains how the Angular Inputs and Outputs are mapped to custom element properties and custom events.
-- [Export Angular components as Custom Elements with Angular Elements](https://medium.com/vincent-ogloblinsky/export-angular-components-as-custom-elements-with-angular-elements-a2a0bfcd7f8a)
-- [Learn how Angular Elements transmits Component’s @Outputs outside Angular](https://medium.com/angular-in-depth/how-angular-elements-uses-custom-events-mechanism-to-transmit-components-outputs-outside-angular-7b469386f6e2)
-- [Handling data with Web Components](https://itnext.io/handling-data-with-web-components-9e7e4a452e6e)   
-- [How to use routing in Angular web components](https://medium.com/@timon.grassl/how-to-use-routing-in-angular-web-components-c6a76449cdb)
+- [Understanding the Magic Behind Angular Elements](https://netbasal.com/understanding-the-magic-behind-angular-elements-8e6804f32e9f)
 - [Getting to Know the createApplication API in Angular](https://netbasal.com/getting-to-know-the-createapplication-api-in-angular-f1c0a2685047)
-- [MDN web docs on Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
-- [Micro Apps with Web Components using Angular Elements](https://www.angulararchitects.io/en/blog/micro-apps-with-web-components-using-angular-elements/)
-- [The Best Way To Lazy Load Angular Elements](https://tomastrajan.medium.com/the-best-way-to-lazy-load-angular-elements-97a51a5c2007): this talks about a library named [@angular-extensions/elements](https://angular-extensions.github.io/elements/home) to facilitate loading Angular elements. I haven't tried it and I also don't know if it works well with module federation. Still worth a reading. 
+- [Angular Elements: Web Components with Standalone Components](https://www.angulararchitects.io/en/blog/angular-elements-web-components-with-standalone-components/)
+- [Learn how Angular Elements transmits Component’s @Outputs outside Angular](https://medium.com/angular-in-depth/how-angular-elements-uses-custom-events-mechanism-to-transmit-components-outputs-outside-angular-7b469386f6e2)
+- [Handling data with Web Components](https://itnext.io/handling-data-with-web-components-9e7e4a452e6e)
+- [Custom Elements Everywhere](https://custom-elements-everywhere.com/): making sure frameworks and custom elements can be BFFs.

@@ -15,7 +15,7 @@ export class LoadViaRoutingComponent {
   private subscribeToEvents(checkoutEvents$: CheckoutEvents) {
     checkoutEvents$
       .pipe(
-        takeUntilDestroyed() // see https://indepth.dev/posts/1518/takeuntildestroy-in-angular-v16
+        takeUntilDestroyed() // see https://angularindepth.com/posts/1518/takeuntildestroy-in-angular-v16
       )
       .subscribe((x) => {
         alert(`Checkout event from component loaded via Angular routing:\n\n${x}`);

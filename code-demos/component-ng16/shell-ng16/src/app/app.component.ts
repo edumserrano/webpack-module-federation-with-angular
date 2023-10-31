@@ -113,8 +113,9 @@ export class AppComponent {
     // Second, we get an instance of a factory that will allow us to instantiate the 'MyComponent'.
     // Note that compileModuleAndAllComponentsAsync is something you should only use if you don't have an alternative
     // because it's part of @angular/compiler which is currently considered a low level API and is  subject to internal changes.
-    // For more see https://indepth.dev/posts/1054/here-is-what-you-need-to-know-about-dynamic-components-in-Angular and
-    // the official docs https://angular.io/api/core/Compiler#!#compileModuleAndAllComponentsAsync-anchor
+    // For more see:
+    // - Here is what you need to know about dynamic components in Angular: https://angularindepth.com/posts/1054/here-is-what-you-need-to-know-about-dynamic-components-in-angular.
+    // - compileModuleAndAllComponentsAsync docs: https://angular.io/api/core/Compiler#!#compileModuleAndAllComponentsAsync-anchor.
     const moduleWithComponentFactories: ModuleWithComponentFactories<unknown> = await this._compiler.compileModuleAndAllComponentsAsync(webpackModule[ngModuleName]);
     const componentFactory: ComponentFactory<any> | undefined = moduleWithComponentFactories.componentFactories.find(x => x.componentType.name === ngComponentName);
     if(!componentFactory) {
@@ -194,7 +195,7 @@ export class AppComponent {
     //
     // However, the compileModuleAsync is something you should only use if you don't have an alternative
     // because it's part of @angular/compiler which is currently considered a low level API and is  subject to internal changes.
-    // For more see https://indepth.dev/posts/1054/here-is-what-you-need-to-know-about-dynamic-components-in-Angular and
+    // For more see https://angularindepth.com/posts/1054/here-is-what-you-need-to-know-about-dynamic-components-in-Angular and
     // the official docs https://angular.io/api/core/Compiler#!#compileModuleAndAllComponentsAsync-anchor
 
     // Third, we get hold of the component type of the component we want to create, which is 'typeof MyComponent'.

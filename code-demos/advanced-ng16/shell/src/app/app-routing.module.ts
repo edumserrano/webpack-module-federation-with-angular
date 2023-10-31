@@ -7,7 +7,7 @@ import { LoadViaHtmlComponent } from './load-via-html/load-via-html.component';
 // works because the bindToComponentInputs option is set to true below
 // For more info see:
 // - https://angular.io/api/router/ExtraOptions
-// - https://indepth.dev/posts/1519/router-data-as-components-inputs-in-angular-v16
+// - https://angularindepth.com/posts/1519/router-data-as-components-inputs-in-angular-v16
 // - https://www.freecodecamp.org/news/use-input-for-angular-route-parameters/
 // - https://itnext.io/bind-route-info-to-component-inputs-new-router-feature-1d747e559dc4
 export const routes: Routes = [

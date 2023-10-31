@@ -116,5 +116,7 @@ For more information see:
 - [Migrate an existing Angular project to standalone](https://angular.io/guide/standalone-migration)
 - [Dynamic component loading](https://angular.io/guide/dynamic-component-loader#dynamic-component-loading)
 - [Why Migrate to Angular Standalone Components](https://medium.com/angular-gems/angular-standalone-components-590b3076d48a)
+- [Angular's Future with Standalone Components](https://www.angulararchitects.io/en/blog/angulars-future-without-ngmodules-lightweight-solutions-on-top-of-standalone-components/)
+- [Standalone components and APIs 1st edition](/docs/standalone-components-and-APIs-1st-edition.pdf): This repo contains a copy of this free book which you can get from the [angular architects](https://www.angulararchitects.io/en/ebooks/anguar-standalone-components-and-apis/) website.
 - [Sharing data between child and parent directives and components](https://angular.io/guide/inputs-outputs): this is useful to understand Angular inputs and outputs.
 - [Module Federation with Angular’s Standalone Components](https://www.angulararchitects.io/blog/module-federation-with-angulars-standalone-components/): specifically the section named `Alternative: Dynamic Shell` which also shows a code example similar to this one.

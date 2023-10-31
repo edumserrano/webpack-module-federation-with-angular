@@ -10,8 +10,11 @@
 ## Description
 
 This document aims to clarify how Webpack Module Federation allows exposing and consuming webpack modules at runtime. Check out the official webpack docs for a better understanding of the terms used:
+
 - [What is a webpack Module](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
 - [Module Federation](https://webpack.js.org/concepts/module-federation/)
+
+Also note that the term `module` used in Webpack Module Federation refers to JavaScript modules, not to confuse with Angular modules. See [JavaScript modules vs. NgModules](https://angular.io/guide/ngmodule-vs-jsmodule).
 
 > **Note**
 > 
@@ -136,6 +139,10 @@ module.exports = {
   },
   ...
 ```
+
+> **Note**
+> 
+> You can also use other languages other than JavaScript, such as `Typescript`, for the Webpack configuration file. See [Webpack configuration languages](https://webpack.js.org/configuration/configuration-languages/).
 
 ## How the loading of an external webpack module works
 

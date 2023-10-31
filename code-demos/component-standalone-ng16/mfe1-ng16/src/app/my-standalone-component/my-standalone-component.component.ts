@@ -36,7 +36,7 @@ export class MyStandaloneComponent implements OnDestroy, OnInit {
   // we will be trying to update a property whilst we are in the middle of an Angular change detection cycle
   // and so we get the error.
   //
-  // For more information read https://indepth.dev/posts/1001/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error#dynamic-component-instantiation,
+  // For more information read https://angularindepth.com/posts/1001/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error#dynamic-component-instantiation,
   // specially the `Dynamic component instantiation` section.
   @Output()
   public readonly loadedEvent: EventEmitter<string> = new EventEmitter<string>(true);

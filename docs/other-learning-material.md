@@ -1,87 +1,31 @@
 # Other learning material
 
-- [Description](#description)
-- [Webpack Module Federation](#webpack-module-federation)
-- [Angular](#angular)
-  - [Common errors in Webpack Module Federation](#common-errors-in-webpack-module-federation)
-- [Custom elements aka Web components](#custom-elements-aka-web-components)
-- [Micro-frontends](#micro-frontends)
+## Module Federation
 
-## Description 
-
-This document contains a collection of resources that help with:
-
-- **learning Webpack Module Federation**.
-- applying Webpack Module Federation to Angular apps.
-- learning about some Angular concepts used throught the code demos.
-- learning about micro-frontends.
-
-Some of the resources grouped here are also linked in places where they are relevant, such as in the READMEs or in the code for the demo apps. However, it's useful to gather everything in one place and augment it with other valuable resources.
-
-> **Note**
->
-> Links marked with a :star: are specially relevant.
-
-## Webpack Module Federation
-
-- [Webpack Module Federation documentation](https://webpack.js.org/concepts/module-federation/)
-- [Webpack ModuleFederationPlugin documentation](https://webpack.js.org/plugins/module-federation-plugin/)
-- [Webpack configuration languages](https://webpack.js.org/configuration/configuration-languages/): Although all the code demos use `Javascript` for webpack configuration files, you can use other languages like `Typescript`.
-- [Module Federation options, usage, hints](https://gist.github.com/zfeher/201f55c057553078fe5b0aac1dad6969)
+- [10 part article series on Webpack Module Federation and Angular](https://www.angulararchitects.io/en/blog/the-microfrontend-revolution-module-federation-in-webpack-5/) 
 - [Webpack 5 Module Federation: A game-changer in JavaScript architecture](https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669)
 - [When should you leverage Module Federation, and how?](https://scriptedalchemy.medium.com/when-should-you-leverage-module-federation-and-how-2998b132c840)
 - [Understanding Module Federation: A Deep Dive](https://scriptedalchemy.medium.com/understanding-webpack-module-federation-a-deep-dive-efe5c55bf366)
-- :star: [Module federation examples](https://github.com/module-federation/module-federation-examples): Implementation examples of module federation , by the creators of module federation
-- :star: [10 part article series on Webpack Module Federation and Angular](https://www.angulararchitects.io/en/blog/the-microfrontend-revolution-module-federation-in-webpack-5/)
-- :star: [angular-architects/module-federation-plugin repo](https://github.com/angular-architects/module-federation-plugin): home for the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) and [@angular-architects/module-federation-tools](https://www.npmjs.com/package/@angular-architects/module-federation-tools) npm packages.   
-- :star: [Module Federation Series Part 1: A Little in-depth](https://vugar-005.medium.com/module-federation-series-part-1-a-little-in-depth-258f331bc11e): contains a good explanation of how shared modules work as well as common errors encountered when they're misconfigured.
-- [Zack Jackson Medium articles](https://scriptedalchemy.medium.com/) and [twitter profile](https://twitter.com/ScriptedAlchemy): Zack Jackson is the creator of Module Federation. He has several articles and tweets on the matter.
-- [Benefits of Module Federation: Unlocking the Power of Software Modularity](https://blog.bitsrc.io/discover-the-benefits-of-module-federation-unlocking-the-power-of-software-modularity-8b1ef62c8c2c)
-- [angular-architects/module-federation-plugin migration guides](https://github.com/angular-architects/module-federation-plugin/blob/main/migration-guide.md)
-- [Micro-frontends and moduliths with angular 5th edition](/docs/micro-frontends-and-moduliths-with-angular-5th-edition.pdf): you can get this PDF by going to TODO and TODO.
-
-## Angular
-
-- [How to manually bootstrap an Angular application](https://medium.com/angular-in-depth/how-to-manually-bootstrap-an-angular-application-9a36ccf86429)
-- [Ways of Bootstrapping Angular Applications](https://medium.com/learnwithrahul/ways-of-bootstrapping-angular-applications-d379f594f604)
-- [ApplicationRef documentation](https://angular.io/api/core/ApplicationRef#bootstrap)
-- [bootstrapApplication documentation](https://angular.io/api/platform-browser/bootstrapApplication)
-- [createApplication documentation](https://angular.io/api/platform-browser/createApplication)
-- [Getting to Know the createApplication API in Angular](https://netbasal.com/getting-to-know-the-createapplication-api-in-angular-f1c0a2685047)
-- [JavaScript modules vs. NgModules](https://angular.io/guide/ngmodule-vs-jsmodule): the term `module` used in Webpack Module Federation refers to JavaScript modules, not to confuse with Angular modules.
-- [8 part article series on Angular's Future with Standalone Components](https://www.angulararchitects.io/en/blog/angulars-future-without-ngmodules-lightweight-solutions-on-top-of-standalone-components/)
-- [Render ngTemplates dynamically using ViewContainerRef in Angular](https://dev.to/railsstudent/render-ngtemplates-dynamically-using-viewcontainerref-in-angular-17lp)
-- [angularindepth](https://angularindepth.com/)
-- [https://netbasal.medium.com/](https://netbasal.medium.com/)
-- [angular-architects blog](https://www.angulararchitects.io/en/blog/)
-- [Dynamically Add Components in Angular](https://davembush.medium.com/dynamically-add-components-in-angular-7dc62b2a58d3)
-- [Configuring application environments](https://angular.io/guide/build#configuring-application-environments)
-- [Standalone components and APIs 1st edition](/docs/standalone-components-and-APIs-1st-edition.pdf): you can get this PDF by going to TODO and TODO.
-
-### Common errors in Webpack Module Federation
-
-- [inject() must be called from an injection context](https://stackoverflow.com/questions/65004891/inject-must-be-called-from-an-injection-context-when-importing-angular-app-u): usually happens when multiple versions of the Angular platform are instantiated.
-- [Cannot read property 'ɵmod' of undefined](https://stackoverflow.com/questions/66586956/getting-cannot-read-property-%C9%B5mod-of-undefined-when-importing-custom-module): usually the problem is that you're trying to access an incorrect module. For instance, on the `ModuleFederationPlugin.exposes`, a micro-frontend app exposes a module with the key `mfe1` but the shell app is trying to access the remote module from the micro-frontend app using an incorrect key, meaning, anything else other than `mfe1`.
-- [Webpack documentation on troubleshooting module federation](https://webpack.js.org/concepts/module-federation/#troubleshooting)
+- [github.com/module-federation](https://github.com/module-federation): official plugins designed and developed by the authors of Webpack Module Federation. Explore the [repos on this GitHub organization](https://github.com/orgs/module-federation/repositories). For instance:
+  - [module-federation/module-federation-examples](https://github.com/module-federation/module-federation-examples): implementation examples of module federation , by the creators of module federation.
+  - [module-federation/universe](https://github.com/module-federation/universe): a collection of tools, plugins, and utilities for Module Federation.
+  - [module-federation/federation-dashboard](https://github.com/module-federation/federation-dashboard): dashboard service to command, control, and visualize module federation based systems.
+- [module-federation.io](https://module-federation.io/): set of resources on Module Federation. Explore the website and don't forget to check out their [getting started docs](https://module-federation.io/docs/en/mf-docs/0.2/getting-started/). 
 
 ## Custom elements aka Web components 
 
-- :star: [Web Component-based Micro Frontends with Angular](https://www.youtube.com/watch?v=ee17YczpCpU): great video showing how to structure your micro-frontend apps. It doesn't use Webpack Module Federation but all the concepts on this video are great and applicable when you're using Webpack Module Federation. The code for the video can be found at [fboeller/microfrontends-with-angular](https://github.com/fboeller/microfrontends-with-angular).
-- [Angular Elements: Web Components with Standalone Components](https://www.angulararchitects.io/en/blog/angular-elements-web-components-with-standalone-components/)
-- :star: [Understanding the Magic Behind Angular Elements](https://netbasal.com/understanding-the-magic-behind-angular-elements-8e6804f32e9f)
-- :star: [The Ultimate Guide to Web Components](https://ultimatecourses.com/blog/the-ultimate-guide-to-web-components)
-- [Attributes and properties](https://javascript.info/dom-attributes-and-properties)
-- [Here is what you need to know about dynamic components in Angular](https://angularindepth.com/posts/1054/here-is-what-you-need-to-know-about-dynamic-components-in-angular): more useful for older Angular versions, like Angular 12 since newer versions of Angular don't require `ComponentFactoryResolver`.
-- [Different Patterns in Communicating Between Web Components](https://blog.bitsrc.io/different-patterns-in-communicating-between-web-components-7ac52771aeb8)
-- [Cross Component Communication with Custom Events | Developer Quick Takes](https://www.youtube.com/watch?v=hIv22aTl3-g)
-- [Custom events composed property](https://stackoverflow.com/questions/43061417/how-to-listen-for-custom-events-defined-web-component) and also [this](https://stackoverflow.com/questions/65349728/webcomponents-communicating-by-custom-events-cannot-send-data) and this[A complete guide on shadow DOM and event propagation](https://pm.dartus.fr/blog/a-complete-guide-on-shadow-dom-and-event-propagation/)
-- [Handling data with Web Components](https://itnext.io/handling-data-with-web-components-9e7e4a452e6e)
-- [If Web Components are so great, why am I not using them?](https://daverupert.com/2023/07/why-not-webcomponents/)
+- [webcomponents.org: getting started with Web components](https://www.webcomponents.org/introduction)
+- [Understanding the Magic Behind Angular Elements](https://netbasal.com/understanding-the-magic-behind-angular-elements-8e6804f32e9f)
+- [The Ultimate Guide to Web Components](https://ultimatecourses.com/blog/the-ultimate-guide-to-web-components)
 - [Custom Elements Everywhere](https://custom-elements-everywhere.com/): making sure frameworks and custom elements can be BFFs.
 
-## Micro-frontends
+# Videos
 
-- [I don’t understand micro-frontends](https://lucamezzalira.medium.com/i-dont-understand-micro-frontends-88f7304799a9#:~:text=Too%20often%20I%20saw%20people,been%20the%20best%20(or%20only))
-- [billyjov/microfrontend-resources](https://github.com/billyjov/microfrontend-resources): a curated list of resources about Micro frontends grouped by types.
-- [rajasegar/awesome-micro-frontends](https://github.com/rajasegar/awesome-micro-frontends): an awesome list of resources about Micro-Frontends architecture such as tools, books, posts, videos, talks and more.
-- [ChristianUlbrich/awesome-microfrontends](https://github.com/ChristianUlbrich/awesome-microfrontends): a curated and hopefully awe-some list about Micro Frontends.
+- [Web Component-based Micro Frontends with Angular](https://www.youtube.com/watch?v=ee17YczpCpU): great video showing how to structure your micro-frontend apps. It doesn't use Webpack Module Federation but all the concepts on this video are great and applicable when you're using Module Federation. The code for the video can be found on the `recording` branch of the [fboeller/microfrontends-with-angular](https://github.com/fboeller/microfrontends-with-angular/tree/recording) repo.
+- [Micro frontends and the multiverse of Frameworks](https://www.youtube.com/watch?v=oX7N3Pyo-T8): talk from `ng-conf 2022`. You can find the code [here](https://github.com/adrianiskandar/ModuleFederationWebComponents).
+- [Let's build together a microfrontends application combining multiple frameworks using Module Federation](https://www.youtube.com/watch?v=libbOCJH6pc) talk from `Devoxx Belgium 2023 Conference`. You can find the code[here](https://github.com/sdedieu/snow-shop).
+  
+## Books
+
+- [Micro-frontends and moduliths with angular 5th edition](/docs/micro-frontends-and-moduliths-with-angular-5th-edition.pdf): this repo contains a copy of this free book which you can get from the [angular architects](https://www.angulararchitects.io/ebooks/micro-frontends-and-moduliths-with-angular/) website.
+- [Practical Module Federation](https://module-federation.myshopify.com/products/practical-module-federation): from Jack Herrington and Zack Jackson, the creator of Webpck Module Federation.

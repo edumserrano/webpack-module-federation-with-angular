@@ -80,7 +80,8 @@ What should you do? I think it varies on a case by case and I'm not sure if ther
 For more info see:
 
 - [Event: bubbles property](https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles)
-- [Event: composed property](https://developer.mozilla.org/en-US/docs/Web/API/Event/composed)
+- [Event: composed property](https://developer.mozilla.org/en-US/docs/Web/API/Event/composed). 
+  - Take a look at the [How to listen for custom events defined web component](https://stackoverflow.com/questions/43061417/how-to-listen-for-custom-events-defined-web-component) and [Webcomponents communicating by custom events cannot send data](https://stackoverflow.com/questions/65349728/webcomponents-communicating-by-custom-events-cannot-send-data) stackoverflow questions that are related with the custom events' `composed` property and [A complete guide on shadow DOM and event propagation](https://pm.dartus.fr/blog/a-complete-guide-on-shadow-dom-and-event-propagation/)
 - [Introduction to Events](https://javascript.info/events)
 - [Dispatching custom events](https://javascript.info/dispatch-events)
 - [Custom Events in JavaScript](https://www.devlane.com/blog/custom-events-in-javascript)
