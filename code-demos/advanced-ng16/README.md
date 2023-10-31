@@ -126,7 +126,7 @@ The checkout component has the following wrappers:
 - [checkout.loaded-via-route-resolver.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/checkout/checkout.loaded-via-route-resolver.component.ts)
 - [checkout.loaded-via-route-guard.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/checkout/checkout.loaded-via-route-guard.component.ts)
 
-The main goal of using an Angular wrapper component is to brige the gap between an externally loaded JavaScript module and your Angular app. The wrapper component contains all the necessary logic to load the mfe and expose any inputs and outputs required. From there on, you can reuse the wrapper component throughout your Angular app without worrying with the fact that it's actually an mfe app.
+The main goal of using an Angular wrapper component is to bridge the gap between an externally loaded JavaScript module and your Angular app. The wrapper component contains all the necessary logic to load the mfe and expose any inputs and outputs required. From there on, you can reuse the wrapper component throughout your Angular app without worrying with the fact that it's actually an mfe app.
 
 Let's also talk about a few points regarding the implementation of the wrapper components:
 

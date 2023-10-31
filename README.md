@@ -5,7 +5,7 @@
 - [Shared dependencies](#shared-dependencies)
 - [Multi-frameworks with Module Federation](#multi-frameworks-with-module-federation)
 - [Pitfalls](#pitfalls)
-- [Recommendations](#recommendations)
+- [Recommendations when using Module Federation](#recommendations-when-using-module-federation)
 - [Other learning material](#other-learning-material)
 
 ## Description 
@@ -67,12 +67,9 @@ See the following two articles for more information about common pitfalls and wo
 - [Pitfalls with Module Federation and Angular](https://www.angulararchitects.io/en/blog/pitfalls-with-module-federation-and-angular/): the goal of this article is to show typical pitfalls that come when using Module Federation together with Angular and strategies for avoiding them.
 - [Multi-Framework and -Version Micro Frontends with Module Federation: The Good, the Bad, the Ugly](https://www.angulararchitects.io/en/blog/multi-framework-and-version-micro-frontends-with-module-federation-the-good-the-bad-the-ugly/): combining Module Federation and Web Components brings several advantages. But there are also some pitfalls we need workarounds for.
 
+## Recommendations when using Module Federation
 
-## Recommendations
-
-TODO
-
-
+[This document](/docs/recommendations.md) presents some of my recommendations when using Webpack Module Federation.
 
 ## Other learning material
 

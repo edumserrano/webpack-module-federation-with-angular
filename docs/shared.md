@@ -4,6 +4,7 @@
 - [Quick overview](#quick-overview)
 - [When should I use a singleton?](#when-should-i-use-a-singleton)
 - [When should I use eager?](#when-should-i-use-eager)
+- [Improve resolution of shared dependencies when using dynamic Module Federation](#improve-resolution-of-shared-dependencies-when-using-dynamic-module-federation)
 - [Learn more](#learn-more)
 
 ## Intro
@@ -59,6 +60,20 @@ Also note that using singletons reduces the number of packages that need to be d
 > I avoid eager:true at all costs, only using it if there is some kind of incompatibility like with next.js. Eager true will front-load the shared module which can mean downloading unused libraries when you don’t want to, since webpack will not chunk an eager module into a separate file. There may be some workarounds but so far those are untested outside of accidentally stumbling across it. [^2]
 
 [^2]: Taken from `What about eager?` section of [When should you leverage Module Federation, and how?](https://scriptedalchemy.medium.com/when-should-you-leverage-module-federation-and-how-2998b132c840). Note that the author of this article is the creator of Module Federation.
+
+## Improve resolution of shared dependencies when using dynamic Module Federation
+
+See `Dynamic Module Federation` section on the [README for the @angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation#advanced-features) npm package where the following is mentioned:
+
+> If somehow possible, load the remoteEntry upfront. This allows Module Federation to take the remote's metadata in consideration when negotiating the versions of the shared libraries.
+
+The section goes on to show how to use the `loadRemoteEntry` function from `@angular-architects/module-federation` to load all the required remote entries at the start of your app.
+
+To give a practical example of the difference between doing this or not, consider you have a shell app using Angular 15 that is loading an mfe app using Angular 16. Furthermore, you've declared Angular as a shared dependency in both apps with singleton set to `true` and `strict` set to `false`.
+
+If you use dynamic Module Federation, meaning you don't declare the remotes the shell app is loading on the webpack configuration file, when you run the shell it will do the dependency resolution logic and decide to use Angular 15 because it doesn't know about any other remotes requiring a different version of Angular.
+
+If you then use the `loadRemoteEntry` function, at app startup the shell will now know that you will be loading an mfe app that uses Angular 16 and so Module Federation will fetch Angular 16 instead of Angular 15.
 
 ## Learn more
 
