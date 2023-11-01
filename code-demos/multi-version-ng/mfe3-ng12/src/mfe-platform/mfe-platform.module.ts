@@ -1,4 +1,4 @@
-import { Injector, NgModule } from '@angular/core';
+import { ApplicationRef, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { NgElementConfig, createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppModule } from 'src/app/app.module';
@@ -18,7 +18,7 @@ import { MyComponent } from 'src/app/my-component/my-component.component';
   //
   bootstrap: [], // Usually it would be: `bootstrap: [MyComponent]`
 })
-export class MfePlatformModule {
+export class MfePlatformModule implements DoBootstrap {
 
   public constructor(private readonly _injector: Injector) {}
 
@@ -30,10 +30,11 @@ export class MfePlatformModule {
   // this mfe by calling the `bootstrapMyComponentAsync` function.
   //
   // For more information about bootrapping Angular applications see:
+  // - https://angular.io/api/core/DoBootstrap
   // - How to manually bootstrap an Angular application: https://medium.com/angular-in-depth/how-to-manually-bootstrap-an-angular-application-9a36ccf86429
   // - Ways of Bootstrapping Angular Applications: https://medium.com/learnwithrahul/ways-of-bootstrapping-angular-applications-d379f594f604
   //
-  public ngDoBootstrap() : void {
+  public ngDoBootstrap(_: ApplicationRef) : void {
     const customElementName = "mfe3-element";
     this.bootstrapMyComponentAsWebComponent(customElementName);
   }
