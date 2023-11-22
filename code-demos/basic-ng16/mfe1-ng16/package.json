@@ -2,7 +2,7 @@
   "name": "mfe1-ng16",
   "version": "0.0.0",
   "scripts": {
-    "start": "ng serve"
+    "start": "npx ng serve"
   },
   "private": true,
   "dependencies": {
