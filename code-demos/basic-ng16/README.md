@@ -78,7 +78,7 @@ And also because it gives Webpack Module Federation the opportunity to [negotiat
 On the other hand the version of the shared module will be checked against a version requirement based on semver (lite).
 If allowed, multiple versions of a shared module might exist and will be consumed based on the required version.
 
-- add a `webpack.config.js` and a `webpack.prof.config.js`. These are used to extend angular's webpack configuration and configure module federation for the apps. See the [Webpack configuration file](#webpack-configuration-file) section below for more details.
+- add a `webpack.config.js` and a `webpack.prod.config.js`. These are used to extend angular's webpack configuration and configure module federation for the apps. See the [Webpack configuration file](#webpack-configuration-file) section below for more details.
 - change the builders used by `ng build` and `ng serve` commands and add some extra options to these commands. For this we installed the [ngx-build-plus](https://www.npmjs.com/package/ngx-build-plus) package with `npm i -D ngx-build-plus` and then we updated the `angular.json` file. These changes allow us to tell Angular to use the `webpack.config.js` files we created when building and serving and therefore apply the module federation settings. See the [Angular configuration file](#angular-configuration-file) section below for more details.
 
 ### Webpack configuration file
