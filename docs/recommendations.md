@@ -33,11 +33,11 @@ Create wrapper components to encapsulate the remote app you are consuming via Mo
 
 The main goal of using a wrapper component is to bridge the gap between an externally loaded JavaScript module and the consuming app. The wrapper component should contain all the necessary logic to load the mfe and expose any inputs and outputs required. Once you have a wrapper component, you can reuse it throughout your app without worrying with the fact that it's actually an mfe app.
 
-This also means that, once you have a wrapper component, you can use it whilst taking advantage of any frontend framework specific patterns of the shell/host. For example, if the shell is an Angular app and you are consuming a Web component, then creating a wrapper for it will allow you to use Angular routing to load the component which otherwise you would not be able to. 
+This also means that, once you have a wrapper component, you can use it whilst taking advantage of any frontend framework specific patterns of the shell/host. For example, if the shell is an Angular app and you are consuming a Web component, then creating a wrapper for it will allow you to use Angular routing to load the component which otherwise you would not be able to.
 
 Besides the above benefits, if you always create wrapper components for your remotes then you end up standardizing how your micro frontends apps work in terms of consuming remote JS modules, which might make a significant difference in large organizations.
 
-> **Note**
+> [!NOTE]
 >
 > I was first introduced to this idea by watching [Web Component-based Micro Frontends with Angular](https://www.youtube.com/watch?v=ee17YczpCpU).
 >
@@ -50,10 +50,10 @@ Depending on your frontend framework and what you want to expose this might even
 
 Even if you have to do some extra code to get this separation I still think it's worth it. Check the `Dev platform and MFE platform` section of the [multi-version-ng](/code-demos/multi-version-ng/README.md#dev-platform-and-mfe-platform) README which talks about the development platform setup for the `mfe3-ng12` app.
 
-> **Note**
+> [!NOTE]
 >
 > The concept for this separation came from watching [Web Component-based Micro Frontends with Angular](https://www.youtube.com/watch?v=ee17YczpCpU).
-> 
+>
 
 ## Breaking changes in micro frontends
 
@@ -84,10 +84,10 @@ Then deprecate the old module, `my-mfe`, when there's no more consumers. The ide
 
 For communications between mfe apps I think you will either:
 
-1) Use the host app to orchestrate the communication between the different micro fronteds. Meaning, the host will subscribe to the required events and pass the data to other micro frontends.  
+1) Use the host app to orchestrate the communication between the different micro fronteds. Meaning, the host will subscribe to the required events and pass the data to other micro frontends.
 2) Publish custom events with `bubbles` true so that micro frontends can subscribe to the event without any orchestration from the host app.
 
-Besides frontend communication, you can also use the backend for communication. In a more extreme example, you could have zero commnunication done via the frontend and have all the communication done via explicit API calls to pull information and by using web sockets you can push updates to the frontend. 
+Besides frontend communication, you can also use the backend for communication. In a more extreme example, you could have zero commnunication done via the frontend and have all the communication done via explicit API calls to pull information and by using web sockets you can push updates to the frontend.
 
 ## A note on handling remote import failures
 

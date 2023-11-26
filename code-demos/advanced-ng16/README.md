@@ -22,7 +22,7 @@
 
 ## Description
 
-Unlike other demos in this repo, the focus of this demo is not about exploring an aspect of Webpack Module Federation. Instead, it focuses on showing how you can structure your shell app code in regards to loading micro frontend apps. Furthermore, this code demo provides an implementation of tooling that helps standardize how you load micro frontend apps in Angular as well as handle related errors. 
+Unlike other demos in this repo, the focus of this demo is not about exploring an aspect of Webpack Module Federation. Instead, it focuses on showing how you can structure your shell app code in regards to loading micro frontend apps. Furthermore, this code demo provides an implementation of tooling that helps standardize how you load micro frontend apps in Angular as well as handle related errors.
 
 This code demo is named `advanced-ng16` because it requires some knowledge of Angular to properly understand the code. However, fear not because there are several explanations and references scattered throughout the code to help you out.
 
@@ -48,7 +48,7 @@ exposes: {
 },
 ```
 
-The above defines a webpack module that is named `payment` and that is mapped to the [./src/app/payment/payment.component.ts](/code-demos/advanced-ng16/payment/src/app/payment/payment.component.ts) Angular standalone component. 
+The above defines a webpack module that is named `payment` and that is mapped to the [./src/app/payment/payment.component.ts](/code-demos/advanced-ng16/payment/src/app/payment/payment.component.ts) Angular standalone component.
 
 ### Dev platform
 
@@ -76,7 +76,7 @@ The above defines two webpack modules:
 - one named `checkout` that is mapped to the [./src/app/checkout/remote-bootstrap.ts](/code-demos/advanced-ng16/checkout/src/app/checkout/remote-bootstrap.ts) file, which exposes a `mountAsync` function that converts the `CheckoutComponent` Angular standalone component to a Web component with the provided name.
 - one named `checkout-auto` that is mapped to the [./src/app/checkout/remote-bootstrap-auto.ts](/code-demos/advanced-ng16/checkout/src/app/checkout/remote-bootstrap-auto.ts) file, which when loaded will automatically convert the `CheckoutComponent` Angular standalone component to a Web component named `mfe-checkout`.
 
-> **Note**
+> [!NOTE]
 >
 > The checkout app exposes the same `CheckoutComponent` as a Web component in two sliglty different ways because each one enables a slightly different load scenario for the shell.
 >
@@ -99,15 +99,15 @@ The shell app is an Angular 16 app that loads the components exposed by the paym
 
 The shell app consists of a couple of pages:
 
-- one that uses Angular routing to load the mfe apps: see [app-routing.module.ts](/code-demos/advanced-ng16/shell/src/app/app-routing.module.ts) and [load-via-routing.component.html](/code-demos/advanced-ng16/shell/src/app/load-via-routing/load-via-routing.component.html). 
+- one that uses Angular routing to load the mfe apps: see [app-routing.module.ts](/code-demos/advanced-ng16/shell/src/app/app-routing.module.ts) and [load-via-routing.component.html](/code-demos/advanced-ng16/shell/src/app/load-via-routing/load-via-routing.component.html).
 - one that loads the mfe apps via HTML declaration: see [app-routing.module.ts](/code-demos/advanced-ng16/shell/src/app/app-routing.module.ts) and [load-via-html.component.html](/code-demos/advanced-ng16/shell/src/app/load-via-html/load-via-html.component.html).
 
 Use the `Go to MFEs loaded via routing page` and `Go to MFEs loaded via HTML page` buttons to explore the different ways the shell is loading the micro frontend apps.
 
-> **Note** 
-> 
+> [!NOTE]
+>
 > The shell app contains one [RouterOutlet](https://angular.io/api/router/RouterOutlet) at [app.component.html](./shell/src/app/app.component.html) and another at [load-via-routing.component.html](./shell/src/app/load-via-routing/load-via-routing.component.html). To understand how nested routers work see [The Art of Nested Router Outlets in Angular](https://blog.devgenius.io/the-art-of-nested-router-outlets-in-angular-dafb38245a30).
-> 
+>
 
 ### How to structure your micro frontends
 
@@ -177,15 +177,15 @@ export class CheckoutComponent implements OnInit {
 }
 ```
 
-> **Note**
-> 
+> [!NOTE]
+>
 > There isn't an example of loading the `payment` component using a functional guard because that requires an exposed module that when imported will register a Web component and, although we could mimic what was done on the checkout app, the payment app does not expose a module like that.
 >
 
-> **Note**
-> 
+> [!NOTE]
+>
 > You can ignore the following console warning:
-> 
+>
 > `Component ID generation collision detected. Components '<component name>' and '<component name>' with selector '<selector>' generated the same component ID. To fix this, you can change the selector of one of those components or add an extra host attribute to force a different ID. Find more at https://angular.io/errors/NG0912`
 >
 > This happens because this code demo is using the same selector for all the checkout and payment wrapper components.
@@ -193,7 +193,7 @@ export class CheckoutComponent implements OnInit {
 
 ## Micro frontends tooling used by the shell
 
-The shell contains a set of utilities that can be reused to load remote JavaScript modules exposed via Webpack Module Federation. See the [advanced-ng16/shell/src/micro-frontends-tooling folder](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling). 
+The shell contains a set of utilities that can be reused to load remote JavaScript modules exposed via Webpack Module Federation. See the [advanced-ng16/shell/src/micro-frontends-tooling folder](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling).
 
 The following sections provide a detailed description for each of the utilities.
 
@@ -226,12 +226,12 @@ The directive takes two inputs:
 
 The `RemoteModuleDirective` also produces `RemoteModuleEvent` events because it uses the `RemoteModuleService`.
 
-> **Note**
+> [!NOTE]
 >
 > The `loadRemoteModuleCallback` input could be deleted from the Angular directive as one can use the `RemoteModuleEvent` events to get the same functionality by subscribing to them and then filtering by the `RemoteModuleLoaded` event with the `id` used in the `remoteModuleoptions` input.
 >
 > The `loadRemoteModuleCallback` is really just a shortcut for this.
-> 
+>
 
 ### remoteModuleGuard
 
@@ -252,7 +252,7 @@ The [remoteModuleResolver](/code-demos/advanced-ng16/shell/src/micro-frontends-t
 
 This resolver is meant to be used with the [resolve](https://angular.io/api/router/ResolveFn) property of an Angular route and it will only let the navigation proceed to the route if the remote JS module is loaded successfully. Otherwise, if the remote JS module fails to load then a [RemoteModuleResolverError](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling/remote-module.resolver.ts) error is thrown and the navigation is aborted.
 
-Furthermore, and this is the main difference between the `remoteModuleGuard` and the `remoteModuleResolver`, when the resolver is able to load the remote JS module it makes the module available in the route data via the `remoteModule` key. This allows you to do further operations using the remote module in order to initialize it and mount it to the DOM. Note the `const webpackModule: any = this._route.snapshot.data["remoteModule"];` line and follow up lines in the [payment.loaded-via-route-resolver.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/payment/payment.loaded-via-route-resolver.component.ts). 
+Furthermore, and this is the main difference between the `remoteModuleGuard` and the `remoteModuleResolver`, when the resolver is able to load the remote JS module it makes the module available in the route data via the `remoteModule` key. This allows you to do further operations using the remote module in order to initialize it and mount it to the DOM. Note the `const webpackModule: any = this._route.snapshot.data["remoteModule"];` line and follow up lines in the [payment.loaded-via-route-resolver.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/payment/payment.loaded-via-route-resolver.component.ts).
 
 The `remoteModuleResolver` resolver also produces `RemoteModuleEvent` events because it uses the `RemoteModuleService`.
 
@@ -260,7 +260,7 @@ The `remoteModuleResolver` resolver also produces `RemoteModuleEvent` events bec
 
 The [withRemoteModuleEventsHandler](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling/with-remote-module-events-handler.ts) provides a way to setup global handlers for the `RemoteModuleEvent` events. See usage at [app.module.ts](/code-demos/advanced-ng16/shell/src/app/app.module.ts) where this handler is used to log the events to the console when the shell is running in development mode.
 
-You can provide multiple instances of the `withRemoteModuleEventsHandler` provider in the `providers` array of an Angular [module](https://angular.io/guide/architecture-modules)/[bootstrapApplication](https://angular.io/api/platform-browser/bootstrapApplication) and separate the behavior each instance is responsible for. 
+You can provide multiple instances of the `withRemoteModuleEventsHandler` provider in the `providers` array of an Angular [module](https://angular.io/guide/architecture-modules)/[bootstrapApplication](https://angular.io/api/platform-browser/bootstrapApplication) and separate the behavior each instance is responsible for.
 
 You can use this to centralize app behaviors for:
 
@@ -275,21 +275,21 @@ You can use this to centralize app behaviors for:
 
 The [withNavigationErrorHandler](/code-demos/advanced-ng16/shell/src/micro-frontends-tooling/with-navigation-error-handler.ts) provides a way to setup global handlers for when Angular navigation fails and the Angular router emits a `NavigationError` event. See usage at [app.module.ts](/code-demos/advanced-ng16/shell/src/app/app.module.ts) where this handler is used to log the errors to the console when the shell is running in development mode.
 
-You can provide multiple instances of the `withNavigationErrorHandler` provider in the `providers` array of an Angular [module](https://angular.io/guide/architecture-modules)/[bootstrapApplication](https://angular.io/api/platform-browser/bootstrapApplication) and separate the behavior each instance is responsible for. 
+You can provide multiple instances of the `withNavigationErrorHandler` provider in the `providers` array of an Angular [module](https://angular.io/guide/architecture-modules)/[bootstrapApplication](https://angular.io/api/platform-browser/bootstrapApplication) and separate the behavior each instance is responsible for.
 
 You can use this to centralize app behaviors, like showing an error message, when a navigation fails.
 
-> **Note**
-> 
+> [!NOTE]
+>
 > To simulate a navigation error and trigger the `withNavigationErrorHandler` function go to [payment.loaded-via-route-resolver.component.ts](/code-demos/advanced-ng16/shell/src/micro-frontends/payment/payment.loaded-via-route-resolver.component.ts) and change the `exposedModule: "./payment"` to `exposedModule: "./i-dont-exist"`. Then try to load this component:
 >
 > - click the `Go to MFEs loaded via routing page` link.
 > - click the `Load payment mfe via a route resolver` link.
-> - see the `navigation error handler` log in the console. 
+> - see the `navigation error handler` log in the console.
 >
 
-> **Note**
-> 
+> [!NOTE]
+>
 > This implementation is essentially a copy of the [withNavigationErrorHandler](https://github.com/angular/angular/blob/c2b1a242e8db0ef8e03f7ee85ffa1f82562fd735/packages/router/src/provide_router.ts#L637-L652) router feature that can be used when using Angular standalone components. See [Simplifying Navigation Error Handling with Angular’s Upcoming Feature](https://medium.com/@artur.fedotiew/%EF%B8%8F-simplifying-navigation-error-handling-with-angulars-upcoming-feature-%EF%B8%8F-b55ee04d246a).
 >
 
@@ -314,4 +314,4 @@ For more info see:
 - [How To Use Route Resolvers with Angular Router](https://www.digitalocean.com/community/tutorials/angular-route-resolvers)
 - [Tutorial on how to implement the Resolver in Angular](https://medium.com/@sandakova.varvara/https-indepth-dev-tutorials-angular-indepth-guide-how-to-implement-resolver-in-angular-13b8005e93b9#:~:text=Resolver%20is%20just%20a%20simple,per%20route%20as%20you%20want.)
 - [Angular Router Standalone APIs](https://angularexperts.io/blog/angular-router-standalone-apis)
-- [Working with providers in Angular](https://sergeygultyayev.medium.com/working-with-providers-in-angular-eeb493151446) 
+- [Working with providers in Angular](https://sergeygultyayev.medium.com/working-with-providers-in-angular-eeb493151446)

@@ -13,7 +13,7 @@
 
 ## Description
 
-This example shows how to setup Webpack Module Federation without having to declare a remote in the shell's webpack configuration file. This code demo is called dynamic because it does NOT require the remote to be declared in the shell's webpack configuration. 
+This example shows how to setup Webpack Module Federation without having to declare a remote in the shell's webpack configuration file. This code demo is called dynamic because it does NOT require the remote to be declared in the shell's webpack configuration.
 
 The remote webpack module contains an Angular module which the shell loads using Angular routing and a manifest file.
 
@@ -43,7 +43,7 @@ exposes: {
 },
 ```
 
-The above defines a webpack module that is named `my-feature-module` and that is mapped to the [./src/app/my-feature/my-feature.module.ts](/code-demos/dynamic-manifest-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) file, which is where the `MyFeatureModule` Angular module is defined. 
+The above defines a webpack module that is named `my-feature-module` and that is mapped to the [./src/app/my-feature/my-feature.module.ts](/code-demos/dynamic-manifest-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) file, which is where the `MyFeatureModule` Angular module is defined.
 
 ### Dev platform
 
@@ -61,11 +61,11 @@ The `/mfe1` route added to the [AppRoutingModule](/code-demos/dynamic-manifest-n
 
 Once the webpack module is loaded from the remote we return the exposed Angular module from the mfe1 app named `MyFeatureModule` to the [loadChildren function](https://angular.io/api/router/LoadChildren). At this point, the `loadChildren` function will lazy load the routes available from the `MyFeatureModule` Angular module which means we can access the `MyComponent` Angular component from the mfe1 app by going to `/mfe1/my-component` path.
 
-Lastly, note that the `loadRemoteModule` function will get the location of the remote named `mfe1` from the manifest file [mf.manifest.json](/code-demos/dynamic-manifest-ng16/shell-ng16/src/assets/mf.manifest.json). The manifest file maps the remote named `mfe1` to the remote at `http://localhost:4201/remoteEntry.js`. The manifest file is loaded at app startup via the [main.ts](/code-demos/dynamic-manifest-ng16/shell-ng16/src/main.ts) file. 
+Lastly, note that the `loadRemoteModule` function will get the location of the remote named `mfe1` from the manifest file [mf.manifest.json](/code-demos/dynamic-manifest-ng16/shell-ng16/src/assets/mf.manifest.json). The manifest file maps the remote named `mfe1` to the remote at `http://localhost:4201/remoteEntry.js`. The manifest file is loaded at app startup via the [main.ts](/code-demos/dynamic-manifest-ng16/shell-ng16/src/main.ts) file.
 
 ### Why use a manifest file?
 
-You can use the manifest file approach simply because you prefer it as a way to organize your remotes, however one of advantages you can get by using it is to have a manifest file per environment. 
+You can use the manifest file approach simply because you prefer it as a way to organize your remotes, however one of advantages you can get by using it is to have a manifest file per environment.
 
 You can do this by using Angular [fileReplacements](https://angular.io/guide/build#configure-target-specific-file-replacements) which allow you to tell Angular which manifest file to use when building for a given Angular configuration.
 
@@ -80,7 +80,7 @@ This way:
 - when building and deploying to the non-production environment the remotes defined on the non-production manifest file are used;
 - when building and deploying to the production environment, the remotes defined on the production manifest file are used.
 
-> **Note**
+> [!NOTE]
 >
 > You can still have the location of the remotes defined per environment without using a manifest file. You can implement the `fileReplacement` strategy and use environment files and environment variables in your code to achieve the same.
 >

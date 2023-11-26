@@ -10,12 +10,12 @@
 
 ## Description
 
-Unlike other demos in this repo, the focus of this demo is not about exploring an aspect of Webpack Module Federation. Instead, it focuses on showing how communication between different micro frontend apps and the shell/host app can be implemented. 
+Unlike other demos in this repo, the focus of this demo is not about exploring an aspect of Webpack Module Federation. Instead, it focuses on showing how communication between different micro frontend apps and the shell/host app can be implemented.
 
 The communication in a micro frontend app can be done using [Custom Events](https://dom.spec.whatwg.org/#customevent). However, in an Angular app there are a few things that you should be aware.
 
-> **Note**
-> 
+> [!NOTE]
+>
 > The setup of this code demo is the same as the `web-components-ng16`. For more information, please read the [web-components-ng16 README](../web-component-ng16/README.md).
 >
 
@@ -37,7 +37,7 @@ The [documentation for these properties](https://dom.spec.whatwg.org/#interface-
 - `bubbles`: returns true or false depending on how event was initialized. True if event goes through its target’s ancestors in reverse tree order; otherwise false.
 - `composed`: returns true or false depending on how event was initialized. True if event invokes listeners past a ShadowRoot node that is the root of its target; otherwise false.
 
-Why might you care about the `bubbles` and `composed` properties? In short, because they allow you to control whether you can subscribe to the event at any level of the DOM. With these properties set to false you can only subscribe to the custom event if you have a reference to the HTML element that produces it. 
+Why might you care about the `bubbles` and `composed` properties? In short, because they allow you to control whether you can subscribe to the event at any level of the DOM. With these properties set to false you can only subscribe to the custom event if you have a reference to the HTML element that produces it.
 
 For more information see [Allow dispatch of bubbling custom events when using @angular/elements](https://github.com/angular/angular/issues/39489).
 
@@ -51,8 +51,8 @@ In addition, when the `Send message` button is clicked, the Web component will a
 
 Use the `Go to /my-standalone-component` to load the `MyStandaloneComponent` component and look at the console for the logs produced when you click the `Send message` button.
 
-> **Note**
-> 
+> [!NOTE]
+>
 > Even though the mfe1 app is producing messages to the console when the `Send message` button is clicked, this does not happen when the mfe1 app is integrated into the shell. This is because the subscription to the button click happens at the [app.component.ts](../communication-custom-events-ng16/mfe1-ng16/src/app/app.component.ts) and that is not part of the exported webpack module, which is the [MyStandaloneComponent](../communication-custom-events-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts) Angular standalone component.
 >
 
@@ -62,7 +62,7 @@ The shell app is created to show the difference between subscribing to a custom 
 
 The [app.component.ts](/code-demos/communication-custom-events-ng16/shell-ng16/src/app/app.component.ts) programatically subscribes to both the `message-sent` and `greet-message`. For each custom event, two subscriptions are done, one subscription is done at the Web component instance and another is done at the `document` instance.
 
-Then, something similar is done declaritively at the [app.component.html](/code-demos/communication-custom-events-ng16/shell-ng16/src/app/app.component.html). A subscription to both the `message-sent` and `greet-message` custom events is done at the Web component instance and another at a parent `div`. 
+Then, something similar is done declaritively at the [app.component.html](/code-demos/communication-custom-events-ng16/shell-ng16/src/app/app.component.html). A subscription to both the `message-sent` and `greet-message` custom events is done at the Web component instance and another at a parent `div`.
 
 When you click the `Send message` button, several messages appear on the page, each one indicating what subscription produced the message. What you can see with this demo is that the subscriptions made to the `message-sent` event do not bubble through the DOM and therefore the subscriptions made to this event outside of the Web component instance do not get triggered. In constrast, all the subscriptions made to the `greet-message` are triggered because the event is manually dispatched with the `bubbles` property set to `true`.
 
@@ -70,17 +70,17 @@ When you click the `Send message` button, several messages appear on the page, e
 
 The concepts explained in this code demo should allow you to implement communication in your multiple micro frontend app. I think you will either:
 
-1) Use the shell to orchestrate the communication between the different micro fronteds. Meaning, the shell will subscribe to the required events and pass the data to other micro frontends. 
+1) Use the shell to orchestrate the communication between the different micro fronteds. Meaning, the shell will subscribe to the required events and pass the data to other micro frontends.
 2) Publish custom events with `bubbles` true so that micro frontends can subscribe to the event without any orchestration from the shell.
 
-What should you do? I think it varies on a case by case and I'm not sure if there is really any pros/cons to either approach. What is more important is that you are aware of the trade-offs that you make and implement what works best for you. 
+What should you do? I think it varies on a case by case and I'm not sure if there is really any pros/cons to either approach. What is more important is that you are aware of the trade-offs that you make and implement what works best for you.
 
 ## Learn more
 
 For more info see:
 
 - [Event: bubbles property](https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles)
-- [Event: composed property](https://developer.mozilla.org/en-US/docs/Web/API/Event/composed). 
+- [Event: composed property](https://developer.mozilla.org/en-US/docs/Web/API/Event/composed).
   - Take a look at the [How to listen for custom events defined web component](https://stackoverflow.com/questions/43061417/how-to-listen-for-custom-events-defined-web-component) and [Webcomponents communicating by custom events cannot send data](https://stackoverflow.com/questions/65349728/webcomponents-communicating-by-custom-events-cannot-send-data) stackoverflow questions that are related with the custom events' `composed` property and [A complete guide on shadow DOM and event propagation](https://pm.dartus.fr/blog/a-complete-guide-on-shadow-dom-and-event-propagation/)
 - [Introduction to Events](https://javascript.info/events)
 - [Dispatching custom events](https://javascript.info/dispatch-events)

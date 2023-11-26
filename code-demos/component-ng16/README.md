@@ -42,8 +42,8 @@ exposes: {
 ```
 
 The above defines two webpack modules:
-1) one named `my-feature-module` and that is mapped to the [./src/app/my-feature/my-feature.module.ts](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) file, which is where the `MyFeatureModule` Angular module is defined. 
-2) one named `my-component` and that is mapped to the [./src/app/my-feature/my-component/my-component.component.ts](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) file, which is where the `MyFeatureModule` Angular module is defined. 
+1) one named `my-feature-module` and that is mapped to the [./src/app/my-feature/my-feature.module.ts](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) file, which is where the `MyFeatureModule` Angular module is defined.
+2) one named `my-component` and that is mapped to the [./src/app/my-feature/my-component/my-component.component.ts](/code-demos/component-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) file, which is where the `MyFeatureModule` Angular module is defined.
 
 This example is exposing two webpack modules to show different ways of loading the `MyComponent` Angular component on the shell.
 
@@ -57,10 +57,10 @@ This means that the input value `test input value from dev platform` set by the 
 
 The shell app is an Angular 16 app that dynamically instantiates an Angular component exposed by the mfe1 app and adds it to the DOM. You can test this by clicking on any of the `Load MyComponent ...` buttons. All of the load buttons produce the same end result through slighlty different code.
 
-> **Note**
+> [!NOTE]
 >
 > The different versions are just to show some of the possible ways to dynamically load an Angular component without using Angular routing. None of them is significantly better than the other, you should choose the one that works best for you or implement your own variation.
-> 
+>
 
 ### How the remote is loaded into the shell
 

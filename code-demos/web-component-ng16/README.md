@@ -23,7 +23,7 @@ The remote webpack module contains a function that converts an Angular standalon
 
 The shell app is rendered in a red colored background and the remotely loaded mfe1 app is rendered in a blue colored background.
 
-> **Note**
+> [!NOTE]
 >
 > Although the mfe1 app is using an Angular standalone component, the module federation setup shown in this example could also be used with a non-standalone Angular component. You do NOT have to use Angular standalone components to export Angular components as Web components.
 >
@@ -53,9 +53,9 @@ exposes: {
 },
 ```
 
-The above defines a webpack module that is named `standalone-component-as-web-component` and that is mapped to the [./src/app/my-standalone-component/my-standalone-component-bootstrap.ts](/code-demos/web-component-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component-bootstrap.ts) file, which is where the `bootstrapMyComponentAsync` function that converts the `MyStandaloneComponent` Angular standalone component to a Web component is defined. 
+The above defines a webpack module that is named `standalone-component-as-web-component` and that is mapped to the [./src/app/my-standalone-component/my-standalone-component-bootstrap.ts](/code-demos/web-component-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component-bootstrap.ts) file, which is where the `bootstrapMyComponentAsync` function that converts the `MyStandaloneComponent` Angular standalone component to a Web component is defined.
 
-> **Note**
+> [!NOTE]
 >
 > The Angular component is converted to a Web component using the `createCustomElement` function from `@angular/elements`. For more info see [Angular elements overview](https://angular.io/guide/elements).
 >
@@ -74,11 +74,11 @@ Click on the `Send message` button from the remotely loaded component and see th
 
 ### How the remote is loaded into the shell
 
-The shell app uses the `loadRemoteModule` function to load the webpack module from the mfe1 app and, once the remote webpack module is loaded, the shell uses the exposed `bootstrapMyComponentAsync` to load the Web component from the mfe1 app. See the `ngOnInit` method at [app.component.ts](/code-demos/web-component-ng16/shell-ng16/src/app/app.component.ts). 
+The shell app uses the `loadRemoteModule` function to load the webpack module from the mfe1 app and, once the remote webpack module is loaded, the shell uses the exposed `bootstrapMyComponentAsync` to load the Web component from the mfe1 app. See the `ngOnInit` method at [app.component.ts](/code-demos/web-component-ng16/shell-ng16/src/app/app.component.ts).
 
 The `bootstrapMyComponentAsync` registers a custom element in the `CustomElementRegistry` with the name `my-mfe-element`, which means that now wherever the custom element `<my-mfe-element></my-mfe-element>` is defined it will render the Web component from the mfe1 app. See [app.component.html](/code-demos/web-component-ng16/shell-ng16/src/app/app.component.html).
 
-> **Note**
+> [!NOTE]
 >
 > To use custom elements like the `my-mfe-element` and avoid Angular complaining that it doesn't know what it is, we make use of the `CUSTOM_ELEMENTS_SCHEMA` schema, which is added to the schema array at [app module](../web-component-ng16/shell-ng16/src/app/app.module.ts) schemas.
 >
@@ -99,7 +99,7 @@ To cope with this scenario see the [UrlMatchers](https://www.npmjs.com/package/@
 
 ## Web components and styling
 
-Beware of issues with styling when using web components. If styles from your Angular component that you have exposed as a Web component using `@angular/elements` are bleeding out, then you might need to set your [ViewEncapsulation](https://angular.io/api/core/ViewEncapsulation) to `ViewEncapsulation.ShadowDom`, which uses the ShadowDOM specification, on the Angular component which is being passed to `createCustomElement`. 
+Beware of issues with styling when using web components. If styles from your Angular component that you have exposed as a Web component using `@angular/elements` are bleeding out, then you might need to set your [ViewEncapsulation](https://angular.io/api/core/ViewEncapsulation) to `ViewEncapsulation.ShadowDom`, which uses the ShadowDOM specification, on the Angular component which is being passed to `createCustomElement`.
 
 In this example app, the `ViewEncapsulation` configuration would be applied to the [MyStandaloneComponent](/code-demos/web-component-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts) component.
 
@@ -109,13 +109,13 @@ This section is not directly related with working with Webpack Module Federation
 
 ### Add strict type information to remotely imported web components
 
-When using the remotely imported web component from the mfe1 app you do not have any type information. However, you can create a [type declaration file `.d.ts`](https://medium.com/@ohansemmanuel/what-is-a-d-ts-file-in-typescript-2e2d90d58eca#:~:text=TLDR-,.,information%20used%20for%20type%20checking), whose purpose is to describe the shape of the mfe1 module and only contains type information used for type checking. The [mfe1.d.ts](/code-demos/web-component-ng16/shell-ng16/src/app/mfe1.d.ts) shows how you can do that. 
+When using the remotely imported web component from the mfe1 app you do not have any type information. However, you can create a [type declaration file `.d.ts`](https://medium.com/@ohansemmanuel/what-is-a-d-ts-file-in-typescript-2e2d90d58eca#:~:text=TLDR-,.,information%20used%20for%20type%20checking), whose purpose is to describe the shape of the mfe1 module and only contains type information used for type checking. The [mfe1.d.ts](/code-demos/web-component-ng16/shell-ng16/src/app/mfe1.d.ts) shows how you can do that.
 
 With the `mfe1.d.ts` type declaration file you can programmatically instantiate the web component from the mfe1 app and add it to the DOM and get strict type checking whilst doing it:
 
 ```ts
-// Import the MyMfeElement interface declaration for the 
-import { MyMfeElement } from './mfe1'; 
+// Import the MyMfeElement interface declaration for the
+import { MyMfeElement } from './mfe1';
 
 // Create an instance of the MyMfeElement web component programmatically
 const myMfeElement: MyMfeElement = document.createElement("my-mfe-element");
@@ -151,7 +151,7 @@ Notice how the above code snippet:
 
 The declaration file explained in the previous section only affects type checking for Typescript files, which means it only helps when working with remote web components programmatically. When you declare a web component directly on HTML you don't have any type checking or code-completion aid.
 
-As of writing this, I don't think there is a standard way to provide this information that all code editors accept. There is an effort to create a standard from the web components org named [custom-elements-manifest](https://github.com/webcomponents/custom-elements-manifest) but it hasn't been adopted by code editors yet. There is an open issue on the WICG[^1] repo where ths is being discussed. See [Editor support for WebComponents](https://github.com/WICG/webcomponents/issues/776). 
+As of writing this, I don't think there is a standard way to provide this information that all code editors accept. There is an effort to create a standard from the web components org named [custom-elements-manifest](https://github.com/webcomponents/custom-elements-manifest) but it hasn't been adopted by code editors yet. There is an open issue on the WICG[^1] repo where ths is being discussed. See [Editor support for WebComponents](https://github.com/WICG/webcomponents/issues/776).
 
 [^1]: The Web Incubator Community Group (WICG) is a community group of the World Wide Web Consortium (W3C) that incubates new web platform features.
 
@@ -172,7 +172,7 @@ Also note that there is some tooling comming up from the community to let you au
 
 ## Learn more
 
-> **Warning**
+> [!WARNING]
 >
 > Some of the information on the links below might not be fully usable without a few tweaks on the latest versions of Angular. However, the majority of the information and concepts still hold true.
 >

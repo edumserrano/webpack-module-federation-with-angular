@@ -42,7 +42,7 @@ exposes: {
 },
 ```
 
-The above defines a webpack module that is named `my-feature-module` and that is mapped to the [./src/app/my-feature/my-feature.module.ts](/code-demos/basic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) file, which is where the `MyFeatureModule` Angular module is defined. 
+The above defines a webpack module that is named `my-feature-module` and that is mapped to the [./src/app/my-feature/my-feature.module.ts](/code-demos/basic-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) file, which is where the `MyFeatureModule` Angular module is defined.
 
 ### Dev platform
 
@@ -60,8 +60,8 @@ The `/mfe1` route added to the [AppRoutingModule](/code-demos/basic-ng16/shell-n
 
 Also note that for typescript to be ok with the `import('mfe1/my-feature-module')` we must tell it that the module `mfe1/my-feature-module` exists and we do that by declaring it in the [remote-module.d.ts](/code-demos/basic-ng16/shell-ng16/src/app/remote-modules.d.ts) file.
 
-> **Note**
-> 
+> [!NOTE]
+>
 > For a better understanding of how the external webpack module from mfe1 is loaded into the shell see [How the loading of an external webpack module works
 ](../../docs/basics-module-federation.md#how-the-loading-of-an-external-webpack-module-works).
 >
@@ -91,9 +91,9 @@ The only difference between the shell's webpack configuration and the mfe1's web
 - the shell wants to consume the mfe1 app and therefore in the `plugins.ModuleFederationPlugin.remotes` it points to the mfe1 app location.
 - the mfe1 app wants to expose an Angular module and therefore in the `plugins.ModuleFederationPlugin.exposes` indicates which Angular module is exposed.
 
-> **Note**
-> 
-> For a better understanding of the settings defined in the webpack configuration file see  [Basics of Webpack Module Federation](../../docs/basics-module-federation.md). 
+> [!NOTE]
+>
+> For a better understanding of the settings defined in the webpack configuration file see  [Basics of Webpack Module Federation](../../docs/basics-module-federation.md).
 >
 
 ### Angular configuration file
@@ -102,28 +102,28 @@ The `angular.json` file contains Angular specific app configuration. This file n
 
 Using the Shell's Angular configuration file as an example, what was changed was:
 
-- The builder for `ng build` at `projects.shell-ng16.architect.build.builder` was changed to `ngx-build-plus:browser`: 
+- The builder for `ng build` at `projects.shell-ng16.architect.build.builder` was changed to `ngx-build-plus:browser`:
 ```json
 "builder": "ngx-build-plus:browser",
 ```
 
-- Extra default options were added for `ng build` at `projects.shell-ng16.architect.build.options`: 
+- Extra default options were added for `ng build` at `projects.shell-ng16.architect.build.options`:
 ```json
 "extraWebpackConfig": "webpack.config.js",
 "commonChunk": false
 ```
 `CommonChunk` must be set to `false` to avoid issues when using shared libraries. See [Internal dependency does not emmited to separated chunk](https://github.com/manfredsteyer/module-federation-plugin-example/issues/8) and [singleton shared libs](https://github.com/angular-architects/module-federation-plugin/issues/23).
-- Extra production options were added for `ng build` at `projects.shell-ng16.architect.build.configurations.production`: 
+- Extra production options were added for `ng build` at `projects.shell-ng16.architect.build.configurations.production`:
 ```json
 "extraWebpackConfig": "webpack.prod.config.js"
 ```
 
-- The builder for `ng serve` at `projects.shell-ng16.architect.serve.builder` was changed to `ngx-build-plus:dev-server`: 
+- The builder for `ng serve` at `projects.shell-ng16.architect.serve.builder` was changed to `ngx-build-plus:dev-server`:
 ```json
 "builder": "ngx-build-plus:dev-server",
 ```
 
-- Extra default options were added for `ng serve` at `projects.shell-ng16.architect.serve.options`: 
+- Extra default options were added for `ng serve` at `projects.shell-ng16.architect.serve.options`:
 ```json
 "options": {
     "port": 4200,
@@ -132,7 +132,7 @@ Using the Shell's Angular configuration file as an example, what was changed was
 }
 ```
 
-- Extra production options were added for `ng serve` at `projects.shell-ng16.architect.serve.configurations.production`: 
+- Extra production options were added for `ng serve` at `projects.shell-ng16.architect.serve.configurations.production`:
 ```json
 "extraWebpackConfig": "webpack.prod.config.js"
 ```

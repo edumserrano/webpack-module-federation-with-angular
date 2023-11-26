@@ -43,7 +43,7 @@ exposes: {
 },
 ```
 
-The above defines a webpack module that is named `my-component` and that is mapped to the [./src/app/my-feature/my-component/my-component.component.ts](/code-demos/component-directive-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) file, which is where the `MyComponent` Angular component is defined. 
+The above defines a webpack module that is named `my-component` and that is mapped to the [./src/app/my-feature/my-component/my-component.component.ts](/code-demos/component-directive-ng16/mfe1-ng16/src/app/my-feature/my-component/my-component.component.ts) file, which is where the `MyComponent` Angular component is defined.
 
 ### Dev platform
 
@@ -59,12 +59,12 @@ In addition to remotely loading the Angular component, the `LoadRemoteComponentD
 
 Lastly, at [app.component.ts](/code-demos/component-directive-ng16/shell-ng16/src/app/app.component.ts), the shell app declares the inputs and outputs to use with the remotely loaded component. Click on the `Send message` button from the remotely loaded component and see the message produced by that component be displayed on the shell.
 
-> **Note**
+> [!NOTE]
 >
 > There are many ways to dynamically instantiate an Angular component, this example just shows one possible way. It is similar to the `loadV4` method at [/code-demos/component-ng16/shell-ng16/src/app/app.component.ts](../component-ng16/shell-ng16/src/app/app.component.ts) from the [component-ng16](../component-ng16/README.md) example, as well as the approach shown in the [component-standalone-ng16](../component-standalone-ng16/README.md).
-> 
+>
 > The Angular directive from example also works for loading remotely exposed Angular standalone components.
-> 
+>
 
 ### How the remote is loaded into the shell
 
@@ -72,7 +72,7 @@ The shell app loads the Angular component exposed by the mfe1 app using an Angul
 
 The [LoadRemoteComponentDirective](/code-demos/component-directive-ng16/shell-ng16/src/app/load-remote-component.directive.ts):
 
-1) loads the remote webpack module from the mfe1 app using the `loadRemoteModule` function from the `@angular-architects/module-federation` npm package. 
+1) loads the remote webpack module from the mfe1 app using the `loadRemoteModule` function from the `@angular-architects/module-federation` npm package.
 2) creates an instance of the component and attach it to the DOM using the `ViewContainerRef.createComponent` method.
 3) uses the `ComponentRef.setInput` method to set the inputs of the component.
 4) uses the `ComponentRef.instance` object to subscribe to the outputs of the component.

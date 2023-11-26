@@ -16,8 +16,8 @@ This document aims to clarify how Webpack Module Federation allows exposing and 
 
 Also note that the term `module` used in Webpack Module Federation refers to JavaScript modules, not to confuse with Angular modules. See [JavaScript modules vs. NgModules](https://angular.io/guide/ngmodule-vs-jsmodule).
 
-> **Note**
-> 
+> [!NOTE]
+>
 > Although there are references to Angular in this documention, the majority of the information here is agnostic to the frontend technology used. It's valid as long as you're using Webpack.
 >
 
@@ -29,11 +29,11 @@ The below shows an example of the **minimum** configuration required to get Webp
 - [gist with Module Federation options, usage, hints](https://gist.github.com/zfeher/201f55c057553078fe5b0aac1dad6969)
 - [ModuleFederationPlugin schema](https://github.com/webpack/webpack/blob/main/schemas/plugins/container/ModuleFederationPlugin.json)
 
-> **Note**
-> 
-> When using angular, the example webpack configuration files below can be further simplified by using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package. See the [angular-architects-ng16](../angular-architects-ng16/README.md) example and look at the `webpack.config.js` files for the remote and shell apps. 
+> [!NOTE]
 >
-> The `@angular-architects/module-federation` package streamlines the webpack configuration by providing functions that set several of the webpack configuration values shown below. 
+> When using angular, the example webpack configuration files below can be further simplified by using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package. See the [angular-architects-ng16](../angular-architects-ng16/README.md) example and look at the `webpack.config.js` files for the remote and shell apps.
+>
+> The `@angular-architects/module-federation` package streamlines the webpack configuration by providing functions that set several of the webpack configuration values shown below.
 >
 
 ### Example webpack configuration file for a remote app
@@ -140,8 +140,8 @@ module.exports = {
   ...
 ```
 
-> **Note**
-> 
+> [!NOTE]
+>
 > You can also use other languages other than JavaScript, such as `Typescript`, for the Webpack configuration file. See [Webpack configuration languages](https://webpack.js.org/configuration/configuration-languages/).
 
 ## How the loading of an external webpack module works
@@ -181,7 +181,7 @@ import('mfe1/my-feature-module').then((m) => m.MyFeatureModule);
 
 In this example we loaded an Angular module because that is what the remote was exposing but the remote can expose anything, such as simple functions.
 
-> **Note**
-> 
+> [!NOTE]
+>
 > You can see all this implemented in an Angular app on the [basic-ng16](../basic-ng16/README.md) example.
 >

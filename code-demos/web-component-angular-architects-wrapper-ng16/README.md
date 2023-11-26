@@ -19,7 +19,7 @@ The remote webpack module executes a function that converts an Angular standalon
 
 The shell app is rendered in a red colored background and the remotely loaded mfe1 app is rendered in a blue colored background.
 
-> **Note**
+> [!NOTE]
 >
 > Although the mfe1 app is using an Angular standalone component, the module federation setup shown in this example could also be used with a non-standalone Angular component. You do NOT have to use Angular standalone components to export Angular components as Web components.
 >
@@ -32,7 +32,7 @@ The shell app is rendered in a red colored background and the remotely loaded mf
 The shell will load the Web component from the mfe1 in two ways:
 
 - using the wrapper Angular component directly on HTML: the web component will load on the shell's page load.
-- using the wrapper Angular component with Angular routing: the web component will load when navigating to `/mfe1`. 
+- using the wrapper Angular component with Angular routing: the web component will load when navigating to `/mfe1`.
 
 ## MFE1 app
 
@@ -52,14 +52,14 @@ exposes: {
 },
 ```
 
-The above defines a webpack module that is named `standalone-component-as-web-component` and that is mapped to the [./src/app/my-standalone-component/remote-bootstrap.ts](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/my-standalone-component/remote-bootstrap.ts) file, which executes the `bootstrapMyComponentAsync` function that converts the `MyStandaloneComponent` Angular standalone component to a Web component. 
+The above defines a webpack module that is named `standalone-component-as-web-component` and that is mapped to the [./src/app/my-standalone-component/remote-bootstrap.ts](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/my-standalone-component/remote-bootstrap.ts) file, which executes the `bootstrapMyComponentAsync` function that converts the `MyStandaloneComponent` Angular standalone component to a Web component.
 
-> **Note**
+> [!NOTE]
 >
 > The Angular component is converted to a Web component using the `createCustomElement` function from `@angular/elements`. For more info see [Angular elements overview](https://angular.io/guide/elements).
 >
 
-> **Note**
+> [!NOTE]
 >
 > In the [tsconfig.app.json](../web-component-angular-architects-wrapper-ng16/mfe1-ng16/tsconfig.app.json) config file we added the `src/app/my-standalone-component/remote-bootstrap.ts` entry to the `files` array to avoid a Typescript compilation error saying `<filename> is missing from the TypeScript compilation. Please make sure it is in your tsconfig via the 'files' or 'include' property`.
 >
@@ -80,7 +80,7 @@ The shell uses the `WebComponentWrapper` in two ways:
 
 ### How the remote is loaded into the shell
 
-The [WebComponentWrapper](https://github.com/angular-architects/module-federation-plugin/blob/53a9aa740475b87f689a5781847d418e66b44226/libs/mf-tools/src/lib/web-components/web-component-wrapper.ts) Angular component uses the `loadRemoteModule` function to load the webpack module from the mfe1 app. Upon loading the webpack module, the `bootstrapMyComponentAsync` is executed and registers a custom element in the `CustomElementRegistry` with the name `my-mfe-element`, which means that wherever the custom element `<my-mfe-element></my-mfe-element>` is defined it will render the Web component from the mfe1 app. 
+The [WebComponentWrapper](https://github.com/angular-architects/module-federation-plugin/blob/53a9aa740475b87f689a5781847d418e66b44226/libs/mf-tools/src/lib/web-components/web-component-wrapper.ts) Angular component uses the `loadRemoteModule` function to load the webpack module from the mfe1 app. Upon loading the webpack module, the `bootstrapMyComponentAsync` is executed and registers a custom element in the `CustomElementRegistry` with the name `my-mfe-element`, which means that wherever the custom element `<my-mfe-element></my-mfe-element>` is defined it will render the Web component from the mfe1 app.
 
 Then, the `WebComponentWrapper` creates a custom element in the DOM with the name from `WebComponentWrapperOptions.elementName`, which in this example is set to `my-mfe-element`. Once this is done the Web component gets rendered in this custom element.
 
@@ -94,7 +94,7 @@ Also, read the official docs at:
 
 ## Web components and Angular styling
 
-Beware of issues with styling when using web components. If styles from your Angular component that you have exposed as a Web component using `@angular/elements` are bleeding out, then you might need to set your [ViewEncapsulation](https://angular.io/api/core/ViewEncapsulation) to `ViewEncapsulation.ShadowDom`, which uses the ShadowDOM specification, on the Angular component which is being passed to `createCustomElement`. 
+Beware of issues with styling when using web components. If styles from your Angular component that you have exposed as a Web component using `@angular/elements` are bleeding out, then you might need to set your [ViewEncapsulation](https://angular.io/api/core/ViewEncapsulation) to `ViewEncapsulation.ShadowDom`, which uses the ShadowDOM specification, on the Angular component which is being passed to `createCustomElement`.
 
 In this example app, the `ViewEncapsulation` configuration would be applied to the [MyStandaloneComponent](/code-demos/web-component-angular-architects-wrapper-ng16/mfe1-ng16/src/app/my-standalone-component/my-standalone-component.component.ts) component.
 

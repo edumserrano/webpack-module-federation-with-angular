@@ -46,9 +46,9 @@ exposes: {
 },
 ```
 
-The above defines a webpack module that is named `standalone-routes` and that is mapped to the [./src/app/standalone-component.route.ts](/code-demos/routes-ng16/mfe1-ng16/src/app/standalone-component.route.ts) file, which is where the routes to the Angular standalone components are defined. 
+The above defines a webpack module that is named `standalone-routes` and that is mapped to the [./src/app/standalone-component.route.ts](/code-demos/routes-ng16/mfe1-ng16/src/app/standalone-component.route.ts) file, which is where the routes to the Angular standalone components are defined.
 
-> **Note**
+> [!NOTE]
 >
 > Although the mfe1 app is using Angular standalone components, the approach to expose Angular routes would also if the components were not standalone.
 >
@@ -70,10 +70,10 @@ The `/mfe1` route added to the [AppRoutingModule](/code-demos/routes-ng16/shell-
 - `/mfe1/my`: loads the `MyStandaloneComponent`.
 - `/mfe1/another`: loads the `AnotherStandaloneComponent`.
 
-> **Note**
-> 
+> [!NOTE]
+>
 > Since the shell is loading a set of routes, the shell cannot change the path for the loaded routes which means that the children routes `/my` and `/another` are the same in both the shell and on the mfe1 app. However, we can choose the parent route for remotely loaded routes and on the shell this is `/mfe1` whilst on the mfe1 app it's `/standalone`.
-> 
+>
 
 ## Webpack Module Federation
 

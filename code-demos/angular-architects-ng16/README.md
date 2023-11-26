@@ -23,7 +23,7 @@ The shell app is rendered in a red colored background and the remotely loaded mf
 1) Go to `/code-demos/angular-architects-ng16/shell-ng16` folder and run `npm i`, followed by `npm start`. This will start the shell app on http://localhost:4200.
 2) Go to `/code-demos/angular-architects-ng16/mfe1-ng16` folder and run `npm i`, followed by `npm start`. This will start the mfe1 app on http://localhost:4201.
 
-To see the mfe1 app loaded into the shell go to the shell's URL and click the `Load Angular module named MyFeatureModule from mfe1` link. 
+To see the mfe1 app loaded into the shell go to the shell's URL and click the `Load Angular module named MyFeatureModule from mfe1` link.
 
 ## MFE1 app
 
@@ -41,7 +41,7 @@ exposes: {
 },
 ```
 
-The above defines a webpack module that is named `my-feature-module` and that is mapped to the [./src/app/my-feature/my-feature.module.ts](/code-demos/angular-architects-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) file, which is where the `MyFeatureModule` Angular module is defined. 
+The above defines a webpack module that is named `my-feature-module` and that is mapped to the [./src/app/my-feature/my-feature.module.ts](/code-demos/angular-architects-ng16/mfe1-ng16/src/app/my-feature/my-feature.module.ts) file, which is where the `MyFeatureModule` Angular module is defined.
 
 ### Dev platform
 
@@ -59,8 +59,8 @@ The `/mfe1` route added to the [AppRoutingModule](/code-demos/angular-architects
 
 Also note that for typescript to be ok with the `import('mfe1/my-feature-module')` we must tell it that the module `mfe1/my-feature-module` exists and we do that by declaring it in the [remote-module.d.ts](/code-demos/angular-architects-ng16/shell-ng16/src/app/remote-modules.d.ts) file.
 
-> **Note**
-> 
+> [!NOTE]
+>
 > For a better understanding of how the external webpack module from mfe1 is loaded into the shell see [How the loading of an external webpack module works
 ](../../docs/basics-module-federation.md#how-the-loading-of-an-external-webpack-module-works).
 >
