@@ -79,6 +79,7 @@ If you then use the `loadRemoteEntry` function, at app startup the shell will no
 
 For a better understanding on how shared dependencies work in Webpack Module Federation see:
 
+- [Module Federation Shared API](https://dev.to/infoxicator/module-federation-shared-api-ach)
 - [Module Federation Series Part 1: A Little in-depth](https://vugar-005.medium.com/module-federation-series-part-1-a-little-in-depth-258f331bc11e): good article detailing different shared configurations used in an Angular setup and their effects.
 - [Versioned shared modules for Module Federation](https://github.com/webpack/webpack/pull/10960): GitHub issue where shared modules have been redesigned. It contains information about the motivation for the redesign and how shared modules work now.
 - [Getting Out of Version-Mismatch-Hell with Module Federation](https://www.angulararchitects.io/en/blog/getting-out-of-version-mismatch-hell-with-module-federation/)
