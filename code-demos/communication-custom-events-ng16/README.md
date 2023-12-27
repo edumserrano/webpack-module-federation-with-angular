@@ -92,3 +92,4 @@ For more info see:
 - [Cross Component Communication with Custom Events](https://www.youtube.com/watch?v=hIv22aTl3-g)
 - [Different Patterns in Communicating Between Web Components](https://blog.bitsrc.io/different-patterns-in-communicating-between-web-components-7ac52771aeb8)
 - [Handling data with Web Components](https://itnext.io/handling-data-with-web-components-9e7e4a452e6e)
+- [Event Bus npm package](https://www.npmjs.com/package/@trutoo/event-bus): simple typesafe cross-platform pubsub communication between different single page applications, web components, fragments, or services. Purposefully built for a micro frontend architecture with a distributed responsibility for deployment. Allowing for framework agnostic and safe communication between different implementations and version.

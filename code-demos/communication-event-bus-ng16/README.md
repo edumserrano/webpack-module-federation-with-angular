@@ -5,6 +5,7 @@
 - [The event bus](#the-event-bus)
 - [MFE1 app](#mfe1-app)
 - [Shell app](#shell-app)
+- [Learn more](#learn-more)
 
 ## Description
 
@@ -44,3 +45,7 @@ Use the `Go to /my-standalone-component` to load the `MyStandaloneComponent` com
 The shell loads the Web component from the mfe1 app by using a wrapper Angular component named [Mfe1Component](/code-demos/communication-event-bus-ng16/shell-ng16/src/app/mfe1-component/mfe1.component.ts). This component also subscribes to the `message-sent` custom event and republishes it to the Event Bus using the [MessageSentEvent](/code-demos/communication-event-bus-ng16/shell-ng16/src/app/mfe1-component/message-sent-event.ts) class.
 
 From here on now, any part of the shell can subscribe in a strongly typed fashion to the `MessageSentEvent` through the Event Bus. For an example see the [OtherComponent](/code-demos/communication-event-bus-ng16/shell-ng16/src/app/other-component/other.component.ts) Angular component.
+
+## Learn more
+
+- [Event Bus npm package](https://www.npmjs.com/package/@trutoo/event-bus): simple typesafe cross-platform pubsub communication between different single page applications, web components, fragments, or services. Purposefully built for a micro frontend architecture with a distributed responsibility for deployment. Allowing for framework agnostic and safe communication between different implementations and version.
