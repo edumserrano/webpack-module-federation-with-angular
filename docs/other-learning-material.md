@@ -24,7 +24,8 @@
 - [Web Component-based Micro Frontends with Angular](https://www.youtube.com/watch?v=ee17YczpCpU): great video showing how to structure your micro-frontend apps. It doesn't use Webpack Module Federation but all the concepts on this video are great and applicable when you're using Module Federation. The code for the video can be found on the `recording` branch of the [fboeller/microfrontends-with-angular](https://github.com/fboeller/microfrontends-with-angular/tree/recording) repo.
 - [Micro frontends and the multiverse of Frameworks](https://www.youtube.com/watch?v=oX7N3Pyo-T8): talk from `ng-conf 2022`. You can find the code [here](https://github.com/adrianiskandar/ModuleFederationWebComponents).
 - [Let's build together a microfrontends application combining multiple frameworks using Module Federation](https://www.youtube.com/watch?v=libbOCJH6pc) talk from `Devoxx Belgium 2023 Conference`. You can find the code[here](https://github.com/sdedieu/snow-shop).
-  
+- [Micro Frontends - Communication Patterns](https://hasgeek.com/jsfoo/microfrontends-conf/schedule/micro-frontends-communication-patterns-NJ6MRtNaEc1aNh8oe6kERY): different communication patterns used by PayPal in their MFE architecture. 
+
 ## Books
 
 - [Micro-frontends and moduliths with angular 5th edition](/docs/micro-frontends-and-moduliths-with-angular-5th-edition.pdf): this repo contains a copy of this free book which you can get from the [angular architects](https://www.angulararchitects.io/ebooks/micro-frontends-and-moduliths-with-angular/) website.
