@@ -9,7 +9,7 @@
       "description": "Ignore references to localhost."
     },
     {
-      "pattern": "^webcomponents.org",
+      "pattern": "^%5Bwebcomponents.org%5D",
       "description": "This is not meant to be a link. It's the name of the organization."
     }
   ],
