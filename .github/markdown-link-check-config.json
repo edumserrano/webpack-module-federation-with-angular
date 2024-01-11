@@ -32,12 +32,11 @@
     },
     {
       "urls": [
-        "https://docs.github.com"
+        "https://twitter.com/lucamezzalira"
       ],
       "headers": {
-        "Accept-Encoding": "gzip, deflate, br"
       },
-      "description": "Avoids 403s from GitHub docs"
+      "description": "Remove headers to avoid 400s from Twitter"
     }
   ]
 }
