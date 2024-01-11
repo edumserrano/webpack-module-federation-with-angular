@@ -7,6 +7,10 @@
     {
       "pattern": "^http://localhost*",
       "description": "Ignore references to localhost."
+    },
+    {
+      "pattern": "^webcomponents.org",
+      "description": "This is not meant to be a link. It's the name of the organization."
     }
   ],
   "replacementPatterns": [

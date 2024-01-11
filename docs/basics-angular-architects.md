@@ -31,7 +31,7 @@ ng g @angular-architects/module-federation:init --project shell-ng16 --port 4200
 
 > [!NOTE]
 >
-> The last step which updates the `remotes` on the shell app might not be necessary. It's possible to leave the `remotes` block on the webpack configuration file for the shell empty and dynamically load the external webpack module using helper functions from the `@angular-architects/module-federation` package. For a code demo see the [dynamic-ng16](../dynamic-ng16/README.md) example.
+> The last step which updates the `remotes` on the shell app might not be necessary. It's possible to leave the `remotes` block on the webpack configuration file for the shell empty and dynamically load the external webpack module using helper functions from the `@angular-architects/module-federation` package. For a code demo see the [dynamic-ng16](../code-demos/dynamic-ng16/README.md) example.
 >
 
 ## What if I want to know what this package is doing for me?

@@ -31,7 +31,7 @@ The below shows an example of the **minimum** configuration required to get Webp
 
 > [!NOTE]
 >
-> When using angular, the example webpack configuration files below can be further simplified by using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package. See the [angular-architects-ng16](../angular-architects-ng16/README.md) example and look at the `webpack.config.js` files for the remote and shell apps.
+> When using angular, the example webpack configuration files below can be further simplified by using the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) npm package. See the [angular-architects-ng16](../code-demos/angular-architects-ng16/README.md) example and look at the `webpack.config.js` files for the remote and shell apps.
 >
 > The `@angular-architects/module-federation` package streamlines the webpack configuration by providing functions that set several of the webpack configuration values shown below.
 >
@@ -183,5 +183,5 @@ In this example we loaded an Angular module because that is what the remote was 
 
 > [!NOTE]
 >
-> You can see all this implemented in an Angular app on the [basic-ng16](../basic-ng16/README.md) example.
+> You can see all this implemented in an Angular app on the [basic-ng16](../code-demos/basic-ng16/README.md) example.
 >

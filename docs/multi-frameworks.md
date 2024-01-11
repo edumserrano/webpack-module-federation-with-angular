@@ -13,7 +13,7 @@ There's no [code demo](/README.md#code-demos) in this repo that shows how to cre
 This document gives you information on how you can have multiple frameworks working in a single application but beware of the following alert:
 
 > In his recent talk on [Micro Frontend Anti Patterns](https://www.youtube.com/watch?v=asXPRrg6M2Y), my friend [Luca Mezzalira](https://twitter.com/lucamezzalira) mentions using several frontend frameworks in one application.
-> 
+>
 >There's a good reason for considering this an anti pattern: Current frameworks are not prepared to be bootstrapped in the same browser tab together with other frameworks or other versions of themselves. Besides leading to bigger bundles, this also increases the complexity and calls for some workarounds.
 However, Luca also explains that there are some situations where such an approach might be needed. He brings up the following examples: dealing with legacy systems, migration to a new UI framework/library, after merging companies with different tech stacks.[^1]
 
@@ -23,7 +23,7 @@ However, Luca also explains that there are some situations where such an approac
 
 If you're interested in multi-framework apps and want to learn more I advise you to study the following videos:
 
-- [Micro frontends and the multiverse of Frameworks](https://www.youtube.com/watch?v=oX7N3Pyo-T8): talk from `ng-conf 2022` for which the code is at the [adrianiskandar/ModuleFederationWebComponents](https://github.com/adrianiskandar/ModuleFederationWebComponents) repo. 
+- [Micro frontends and the multiverse of Frameworks](https://www.youtube.com/watch?v=oX7N3Pyo-T8): talk from `ng-conf 2022` for which the code is at the [adrianiskandar/ModuleFederationWebComponents](https://github.com/adrianiskandar/ModuleFederationWebComponents) repo.
 - [Let's build together a microfrontends application combining multiple frameworks using Module Federation](https://www.youtube.com/watch?v=libbOCJH6pc) talk from `Devoxx Belgium 2023 Conference` for which the code can be found through the [sdedieu/snow-shop](https://github.com/sdedieu/snow-shop) repo.
 
 And articles:
@@ -40,7 +40,7 @@ For other examples see the following [Example 1](#example-1) and [Example 2](#ex
 
 ### Example 1
 
-The [README](https://www.npmjs.com/package/@angular-architects/module-federation-tools) for the `@angular-architects/module-federation-tools` package shows an example of how to use Webpack Module Federation in a multi-framework environment. The example can be seem live at https://red-ocean-0fe4c4610.azurestaticapps.net/dashboard.
+The [README](https://www.npmjs.com/package/@angular-architects/module-federation-tools) for the `@angular-architects/module-federation-tools` package shows an example of how to use Webpack Module Federation in a multi-framework environment. The example can be seem live at https://red-ocean-0fe4c4610.azurestaticapps.net.
 
 ![Module federation with multi-frameworks](static-assets/module-federation-multi-frameworks.png)
 

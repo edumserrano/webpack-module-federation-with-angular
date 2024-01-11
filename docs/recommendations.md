@@ -8,7 +8,6 @@
 - [Communications between micro frontends](#communications-between-micro-frontends)
 - [A note on handling remote import failures](#a-note-on-handling-remote-import-failures)
 
-
 ## Intro
 
 I don't have enough experience with Module Federation to properly back up some of the following statements so I recommend you exercise your own judgment as well. The below are my opinions.
