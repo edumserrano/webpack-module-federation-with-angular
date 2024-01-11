@@ -29,6 +29,15 @@
         "Accept-Encoding": "gzip, deflate, br"
       },
       "description": "Avoids 403s from GitHub docs"
+    },
+    {
+      "urls": [
+        "https://docs.github.com"
+      ],
+      "headers": {
+        "Accept-Encoding": "gzip, deflate, br"
+      },
+      "description": "Avoids 403s from GitHub docs"
     }
   ]
 }
