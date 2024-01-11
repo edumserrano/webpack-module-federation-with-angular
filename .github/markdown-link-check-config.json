@@ -12,6 +12,10 @@
       "pattern": "^%5Bwebcomponents.org%5D",
       "description": "This is not meant to be a link. It's the name of the organization."
     }
+    {
+      "pattern": "^https://twitter.com/lucamezzalira",
+      "description": "Twitter is returning 400s, probably need some header to get 200s."
+    }
   ],
   "replacementPatterns": [
     {
@@ -29,14 +33,6 @@
         "Accept-Encoding": "gzip, deflate, br"
       },
       "description": "Avoids 403s from GitHub docs"
-    },
-    {
-      "urls": [
-        "https://twitter.com/lucamezzalira"
-      ],
-      "headers": {
-      },
-      "description": "Remove headers to avoid 400s from Twitter"
     }
   ]
 }
