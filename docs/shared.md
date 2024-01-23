@@ -73,8 +73,9 @@ If all your apps, meaning shell, remotes and shared libraries, are in the same r
 - [Using Module Federation with (Nx) Monorepos and Angular](https://www.angulararchitects.io/en/blog/using-module-federation-with-monorepos-and-angular/)
 - [Code demo from the module/federation/module-federation-examples repo](https://github.com/module-federation/module-federation-examples/blob/master/angular15-microfrontends-lazy-components/README.md): in this demo the [mdmf-shared project](https://github.com/module-federation/module-federation-examples/tree/master/angular15-microfrontends-lazy-components/projects/mdmf-shared) is a shared library that maintains app state. Explore the [module/federation/module-federation-examples](https://github.com/module-federation/module-federation-examples) repo for other examples using shared libraries.
 
+**You don't have to have all your apps in the same repo to be able to share libraries. You can use NPM packages and share them as singletons across your shell and remotes.**
+
 > [!NOTE]
-> You don't have to have all your apps in the same repo to be able to share libraries. You use NPM packages and share them as singletons across your shell and remotes.
 >
 > Specific to Angular, even if a library is set to singleton and is only loaded once, it doesn't mean that its Angular services will be singletons. If you want a service to be a singleton across shell and remotes you should make sure that you provide the service in the root injector, for instance by adding:
 > ```ts
