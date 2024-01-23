@@ -75,7 +75,7 @@ The shell app is an Angular 16 app that dynamically instantiates an Angular stan
 >
 > The approaches shown here are NOT limited to Angular standalone components. The same would work for non-standalone components.
 >
-> Furthermore, you can also use the Angular directive aproach shown in the [component-directive-ng16](../component-directive-ng16/README.md) example to load Angular standalone components.
+> Furthermore, you can also use the Angular directive approach shown in the [component-directive-ng16](../component-directive-ng16/README.md) example to load Angular standalone components.
 >
 
 #### Using Angular routing
