@@ -60,7 +60,9 @@ This repo came about as a result of my journey to learn how to use [Webpack Modu
 
 ## Shared dependencies
 
-The [shared section](https://webpack.js.org/plugins/module-federation-plugin/#sharing-libraries) of the `ModuleFederationPlugin` configuration let's you define libraries that are shared between your federated modules. This means you can, among other things, prevent the same library from being loaded several times.
+The [shared section](https://webpack.js.org/plugins/module-federation-plugin/#sharing-libraries) of the `ModuleFederationPlugin` configuration let's you define libraries that are shared between your federated modules. This means you can, among other things, prevent the same library from being loaded several times. For instance, if you have a shell using Angular 16 and 3 remotes also using Angular, you can define the Angular libraries as singletons in the [shared section](https://webpack.js.org/plugins/module-federation-plugin/#sharing-libraries) of the module federation configuration and the Angular libraries will only be downloaded once.
+
+The [shared section](https://webpack.js.org/plugins/module-federation-plugin/#sharing-libraries) of the `ModuleFederationPlugin` configuration is also what you would use if you want to share cross cutting concerns across the shell and youre remotes. Things like authentication, logging or even some shared state.
 
 For more information see the [Shared modules in Webpack Module Federation](/docs/shared.md) documentation page.
 
