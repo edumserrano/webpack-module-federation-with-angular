@@ -71,7 +71,7 @@ For more information see: [Module Federation — Sharing Library Code](https://m
 If all your apps, meaning shell, remotes and shared libraries, are in the same repo then see:
 
 - [Using Module Federation with (Nx) Monorepos and Angular](https://www.angulararchitects.io/en/blog/using-module-federation-with-monorepos-and-angular/)
-- [Code demo from the module/federation/module-federation-examples repo](https://github.com/module-federation/module-federation-examples/blob/master/angular15-microfrontends-lazy-components/README.md): in this demo the [mdmf-shared project](https://github.com/module-federation/module-federation-examples/tree/master/angular15-microfrontends-lazy-components/projects/mdmf-shared) is a shared library that maintains app state. Explore other examples in the [module/federation/module-federation-examples](https://github.com/module-federation/module-federation-examples) for other examples using shared libraries.
+- [Code demo from the module/federation/module-federation-examples repo](https://github.com/module-federation/module-federation-examples/blob/master/angular15-microfrontends-lazy-components/README.md): in this demo the [mdmf-shared project](https://github.com/module-federation/module-federation-examples/tree/master/angular15-microfrontends-lazy-components/projects/mdmf-shared) is a shared library that maintains app state. Explore the [module/federation/module-federation-examples](https://github.com/module-federation/module-federation-examples) repo for other examples using shared libraries.
 
 > [!NOTE]
 > You don't have to have all your apps in the same repo to be able to share libraries. You use NPM packages and share them as singletons across your shell and remotes.
