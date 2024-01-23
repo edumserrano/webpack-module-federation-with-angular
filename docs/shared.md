@@ -4,6 +4,7 @@
 - [Quick overview](#quick-overview)
 - [When should I use a singleton?](#when-should-i-use-a-singleton)
 - [When should I use eager?](#when-should-i-use-eager)
+- [Share libraries](#share-libraries)
 - [Improve resolution of shared dependencies when using dynamic Module Federation](#improve-resolution-of-shared-dependencies-when-using-dynamic-module-federation)
 - [Learn more](#learn-more)
 
@@ -60,6 +61,29 @@ Also note that using singletons reduces the number of packages that need to be d
 > I avoid eager:true at all costs, only using it if there is some kind of incompatibility like with next.js. Eager true will front-load the shared module which can mean downloading unused libraries when you don’t want to, since webpack will not chunk an eager module into a separate file. There may be some workarounds but so far those are untested outside of accidentally stumbling across it. [^2]
 
 [^2]: Taken from `What about eager?` section of [When should you leverage Module Federation, and how?](https://scriptedalchemy.medium.com/when-should-you-leverage-module-federation-and-how-2998b132c840). Note that the author of this article is the creator of Module Federation.
+
+## Share libraries
+
+The [shared section](https://webpack.js.org/plugins/module-federation-plugin/#sharing-libraries) of the `ModuleFederationPlugin` configuration is also what you would use if you want to share cross cutting concerns across the shell and the remotes. Things like authentication, logging or even have some shared state.
+
+For more information see: [Module Federation — Sharing Library Code](https://medium.com/tenable-techblog/7-module-federation-sharing-library-code-759ae98f7fc8)
+
+If all your apps, meaning shell, remotes and shared libraries, are in the same repo then see:
+
+- [Using Module Federation with (Nx) Monorepos and Angular](https://www.angulararchitects.io/en/blog/using-module-federation-with-monorepos-and-angular/)
+- [Code demo from the module/federation/module-federation-examples repo](https://github.com/module-federation/module-federation-examples/blob/master/angular15-microfrontends-lazy-components/README.md): in this demo the [mdmf-shared project](https://github.com/module-federation/module-federation-examples/tree/master/angular15-microfrontends-lazy-components/projects/mdmf-shared) is a shared library that maintains app state. Explore other examples in the [module/federation/module-federation-examples](https://github.com/module-federation/module-federation-examples) for other examples using shared libraries.
+
+> [!NOTE]
+> You don't have to have all your apps in the same repo to be able to share libraries. You use NPM packages and share them as singletons across your shell and remotes.
+>
+> Specific to Angular, even if a library is set to singleton and is only loaded once, it doesn't mean that its Angular services will be singletons. If you want a service to be a singleton across shell and remotes you should make sure that you provide the service in the root injector, for instance by adding:
+> ```ts
+> @Injectable({
+>   providedIn: 'root'
+> })
+> ```
+>
+> Or by making sure that the Angular service is declared as a provider of the shell's Angular module, and is not declared as a provider in any other Angular modules.
 
 ## Improve resolution of shared dependencies when using dynamic Module Federation
 

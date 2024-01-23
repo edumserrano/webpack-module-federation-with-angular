@@ -62,7 +62,7 @@ How can you deploy the changes without breaking your app? How can you deploy in 
 
 I haven't come across articles addressing this so I may be missing something and this isn't a problem at all but I wanted to call it out and get you thinking about it.
 
-I actually think that the answer to this problem is to NOT make breaking changes. Meaning, always make your changes in a backwards compatible format. For example, if you've changed an input or an output in a way that would require changes from your consumers, then find a way to keep the orignal inputs/outputs working whilst also providing the new inputs/outputs. This would allow the consumers to migrate at their own pace and eventually you could delete the old inputs/outputs.
+I actually think that the answer to this problem is to NOT make breaking changes. Meaning, always make your changes in a backwards compatible format. For example, if you've changed an input or an output in a way that would require changes from your consumers, then find a way to keep the original inputs/outputs working whilst also providing the new inputs/outputs. This would allow the consumers to migrate at their own pace and eventually you could delete the old inputs/outputs.
 
 If the mfe your are changing is imported in different places of your app, you could also consider exposing a second module in the webpack configuration and let consumers change to it when ready. Something like this:
 
@@ -83,10 +83,11 @@ Then deprecate the old module, `my-mfe`, when there's no more consumers. The ide
 
 For communications between mfe apps I think you will either:
 
-1) Use the host app to orchestrate the communication between the different micro fronteds. Meaning, the host will subscribe to the required events and pass the data to other micro frontends.
+1) Use the host app to orchestrate the communication between the different micro frontends. Meaning, the host will subscribe to the required events and pass the data to other micro frontends.
 2) Publish custom events with `bubbles` true so that micro frontends can subscribe to the event without any orchestration from the host app.
+3) Use the [shared section](/README.md#shared-dependencies) of the `ModuleFederationPlugin` configuration to share code across shell and remotes, for instance, code that can maintain state. You could then set the state in one mfe app and read it in another.
 
-Besides frontend communication, you can also use the backend for communication. In a more extreme example, you could have zero commnunication done via the frontend and have all the communication done via explicit API calls to pull information and by using web sockets you can push updates to the frontend.
+Besides frontend communication, you can also use the backend for communication. In a more extreme example, you could have zero communication done via the frontend and have all the communication done via explicit API calls to pull information and by using web sockets you can push updates to the frontend.
 
 ## A note on handling remote import failures
 
@@ -94,6 +95,6 @@ If you have a shell app that uses static Module Federation, meaning you declare 
 
 The same is true when you use dynamic Module Federation and you [load the remote entries at app startup](/docs/shared.md#improve-resolution-of-shared-dependencies-when-using-dynamic-module-federation).
 
-I don't think this is talked enough on the articles about Module Federation but it's important to understand and plan accordingly. No one wants to deploy an app with several mfes and then have it completly failover because one of the mfes failed to load.
+I don't think this is talked enough on the articles about Module Federation but it's important to understand and plan accordingly. No one wants to deploy an app with several mfes and then have it completely failover because one of the mfes failed to load.
 
 **In short, this is a call out for you to remember to graciously handle failures from loading remotes, specially if you're loading the remote entries at app startup. This is not done for you out of the box.**
