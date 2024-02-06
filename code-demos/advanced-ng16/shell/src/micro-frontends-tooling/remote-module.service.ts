@@ -71,17 +71,6 @@ export class RemoteModuleService {
   }
 
   private triggerLoading(options: LoadRemoteModuleOptionsExtended) {
-    if(options.type === 'manifest')
-    {
-      options.remoteName
-    }
-    else if(options.type === 'module') {
-      options.remoteEntry
-    }
-    else if(options.type === 'script') {
-      options.remoteEntry;
-      options.remoteName
-    }
     const event = new RemoteModuleLoading(
       options.id,
       options);
