@@ -104,9 +104,11 @@ If you then use the `loadRemoteEntry` function, at app startup the shell will no
 
 For a better understanding on how shared dependencies work in Webpack Module Federation see:
 
-- [Module Federation Shared API](https://dev.to/infoxicator/module-federation-shared-api-ach)
-- [Module Federation Series Part 1: A Little in-depth](https://vugar-005.medium.com/module-federation-series-part-1-a-little-in-depth-258f331bc11e): good article detailing different shared configurations used in an Angular setup and their effects.
-- [Versioned shared modules for Module Federation](https://github.com/webpack/webpack/pull/10960): GitHub issue where shared modules have been redesigned. It contains information about the motivation for the redesign and how shared modules work now.
+- [Module Federation Shared API](https://dev.to/infoxicator/module-federation-shared-api-ach): good introduction article to the Shared API.
+- [Module Federation Series Part 1: A Little in-depth](https://vugar-005.medium.com/module-federation-series-part-1-a-little-in-depth-258f331bc11e): article detailing different shared configurations used in an Angular setup and their effects.
+- [Module Federation — Sharing Vendor Code](https://medium.com/tenable-techblog/module-federation-sharing-vendor-code-1794270b21c1): practical example of improving bundle size by proper configuration of shared dependencies.
+- [Webpack module federation | Think twice before sharing a dependency](https://medium.com/@marvusm.mmi/webpack-module-federation-think-twice-before-sharing-a-dependency-18b3b0e352cb): in-depth article about how a missconfigurition in shared dependencies can have severe impacts in bundle size.
 - [Getting Out of Version-Mismatch-Hell with Module Federation](https://www.angulararchitects.io/en/blog/getting-out-of-version-mismatch-hell-with-module-federation/)
+- [Versioned shared modules for Module Federation](https://github.com/webpack/webpack/pull/10960): GitHub issue where shared modules have been redesigned. It contains information about the motivation for the redesign and how shared modules work now.
 - share helpers from `@angular-architects/module-federation` npm package: see [share helper](https://www.npmjs.com/package/@angular-architects/module-federation#share-helper), [shareAll helper](https://www.npmjs.com/package/@angular-architects/module-federation#shareall) and [Sharing Libs of a Monorepo](https://www.npmjs.com/package/@angular-architects/module-federation#sharing-libs-of-a-monorepo).
 - [official docs on sharing libraries](https://webpack.js.org/plugins/module-federation-plugin/#sharing-libraries)
